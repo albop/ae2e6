@@ -1,0 +1,574 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Macro II - Fluctuations",
+    "section": "",
+    "text": "Date\n\n\nTitle\n\n\n\n\n\n\nMar 20, 2024\n\n\nSolving DSGE models\n\n\n\n\nMar 27, 2024\n\n\nOpen Economy\n\n\n\n\nApr 3, 2024\n\n\nHeterogenous Agents\n\n\n\n\nApr 10, 2024\n\n\nGreen Transition\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html#schedule-wip",
+    "href": "index.html#schedule-wip",
+    "title": "Macro II - Fluctuations",
+    "section": "",
+    "text": "Date\n\n\nTitle\n\n\n\n\n\n\nMar 20, 2024\n\n\nSolving DSGE models\n\n\n\n\nMar 27, 2024\n\n\nOpen Economy\n\n\n\n\nApr 3, 2024\n\n\nHeterogenous Agents\n\n\n\n\nApr 10, 2024\n\n\nGreen Transition\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "slides/prep_4/index_handout.html",
+    "href": "slides/prep_4/index_handout.html",
+    "title": "Green Transition",
+    "section": "",
+    "text": "Come back later!."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "slides/session_1/handout.html",
+    "href": "slides/session_1/handout.html",
+    "title": "Solving DSGE models",
+    "section": "",
+    "text": "What is the main specificity of economic modeling?\n\nIn (macro)economics, we model the behaviour of economic agents by specifying:\n\ntheir objective \\[\\max_{c_t} E_t \\sum_{s\\geq t} \\beta^s U(c_s)\\] \\[\\max \\pi_t\\] \\[\\cdots\\]\ntheir constraints (budget constraint, econ. environment…)\n\n\n\n\n\n\n. . .\n\nThis has important implications:\n\nmacro models are forward looking\nmacro models need to be solved\n\n\n\nIn many cases, there is not closed form for the solution -&gt; we need numerical techniques\n\n\n\n\n\n\n\n\n1996: Michel Juillard created an opensource software to solve DSGE models\n\nDSGE: Dynamic Stochastic General Equilibrium\nusually solved around a steady-state\n\nNow about 10 contributors.\n\n\n\n\nIt has been widely adopted:\n\nearly version in Gauss\nthen Matlab/Octave/Scilab\nlatest version in Julia\n\n\n\n\n\n\n\nMichel Juillard\n\n\n\n\n\n\n\nNowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)\n\nthey are usually based on the midsize model from Smets & Wouters (10 equations)\nbut have grown up a lot (&gt;&gt;100 equations)\n\n. . .\nInstitutions (led by researchers) are (slowly) diversifying their model\n\nComputational General Equilibrium Models\nAgent-based\nSemi-structural models\nHeterogenous Agents Models",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#section",
+    "href": "slides/session_1/handout.html#section",
+    "title": "Solving DSGE models",
+    "section": "",
+    "text": "What is the main specificity of economic modeling?\n\nIn (macro)economics, we model the behaviour of economic agents by specifying:\n\ntheir objective \\[\\max_{c_t} E_t \\sum_{s\\geq t} \\beta^s U(c_s)\\] \\[\\max \\pi_t\\] \\[\\cdots\\]\ntheir constraints (budget constraint, econ. environment…)\n\n\n\n\n\n\n. . .\n\nThis has important implications:\n\nmacro models are forward looking\nmacro models need to be solved\n\n\n\nIn many cases, there is not closed form for the solution -&gt; we need numerical techniques",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#dynare",
+    "href": "slides/session_1/handout.html#dynare",
+    "title": "Solving DSGE models",
+    "section": "",
+    "text": "1996: Michel Juillard created an opensource software to solve DSGE models\n\nDSGE: Dynamic Stochastic General Equilibrium\nusually solved around a steady-state\n\nNow about 10 contributors.\n\n\n\n\nIt has been widely adopted:\n\nearly version in Gauss\nthen Matlab/Octave/Scilab\nlatest version in Julia\n\n\n\n\n\n\n\nMichel Juillard",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#dsge-models-in-institutions",
+    "href": "slides/session_1/handout.html#dsge-models-in-institutions",
+    "title": "Solving DSGE models",
+    "section": "",
+    "text": "Nowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)\n\nthey are usually based on the midsize model from Smets & Wouters (10 equations)\nbut have grown up a lot (&gt;&gt;100 equations)\n\n. . .\nInstitutions (led by researchers) are (slowly) diversifying their model\n\nComputational General Equilibrium Models\nAgent-based\nSemi-structural models\nHeterogenous Agents Models",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#model",
+    "href": "slides/session_1/handout.html#model",
+    "title": "Solving DSGE models",
+    "section": "Model",
+    "text": "Model\nA very concise representation of a model\n\\[\\mathbb{E}_t \\left[ f(y_{t+1}, y_t, y_{t-1}, \\epsilon_t) \\right]= 0\\]\n\n\n\nThe problem:\n\n\\(y_t\\in\\mathbb{R}^n\\): the vector of endogenous variables\n\\(\\epsilon_t\\in\\mathbb{R}^{n_e}\\): the vector of exogenous variables\n\nwe assume that \\(\\epsilon_t\\) is a zero-mean gaussian process\n\n\\(f: \\mathbb{R}^n\\rightarrow \\mathbb{R}^n\\): the model equations\n\n\n\n\nThe solution:\n\n\\(g\\) such that \\[\\forall t, y_t = g(y_{t-1},\\epsilon_t)\\]\n\n\n\n\n\nThe situation is different when one is making a perfect foresight simulation.",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#the-timing-of-the-equations",
+    "href": "slides/session_1/handout.html#the-timing-of-the-equations",
+    "title": "Solving DSGE models",
+    "section": "The timing of the equations",
+    "text": "The timing of the equations\n\n\n\n\n\n\nTip\n\n\n\nIn dynare the model equations are coded in the model; ... ; end; block.\n\n\nNew information arrives with the innovations \\(\\epsilon_t\\).\nAt date \\(t\\), the information set is spanned by \\(\\mathcal{F}_t = \\mathcal{F} (\\cdots, \\epsilon_{t-3}, \\epsilon_{t-2}, \\epsilon_{t-1}, \\epsilon_t)\\)\nBy convention an endogenous variable has a subscript \\(t\\) if it is known first at date \\(t\\).",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#example",
+    "href": "slides/session_1/handout.html#example",
+    "title": "Solving DSGE models",
+    "section": "Example",
+    "text": "Example\nThe timing of equations\nUsing Dynare’s timing conventions:\n\nWrite the production function in the RBC\nWrite the law of motion for capital \\(k\\), with a depreciation rate \\(\\delta\\) and investment \\(i\\)\n\nwhen is capital known?\nwhen is investment known?\n\nAdd a multiplicative investment efficiency shock \\(\\chi_t\\). Assume it is an \\(AR1\\) driven by innovation \\(\\eta_t\\) and autocorrelation \\(\\rho_{\\chi}\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#steady-state",
+    "href": "slides/session_1/handout.html#steady-state",
+    "title": "Solving DSGE models",
+    "section": "Steady-state",
+    "text": "Steady-state\nThe deterministic steady-state satisfies:\n\\[ f(\\overline{y},\\overline{y}, \\overline{y}, 0)= 0\\]\nOften, there is a closed-form solution.\nOtherwise, one must resort to a numerical solver to solve\n\\[\\overline{y}\\rightarrow f(\\overline{y},\\overline{y}, \\overline{y}, 0)\\]\n\n\n\n\n\n\nTip\n\n\n\n\n\nIn dynare the steady-state values are provided in the steadystate_model; ... ; end; block. One can check they are correct using the check; statement.\nTo find numerically the steady-state: steady;.",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#the-implicit-system",
+    "href": "slides/session_1/handout.html#the-implicit-system",
+    "title": "Solving DSGE models",
+    "section": "The implicit system",
+    "text": "The implicit system\nReplacing the solution \\[y_t = g(y_{t-1},\\epsilon_t)\\] in the system \\[\\mathbb{E}_t \\left[ f(y_{t+1}, y_t, y_{t-1}, \\epsilon_t) \\right]= 0\\]\nwe obtain:\n\\[\\mathbb{E}_t \\left[ f(g(g(y_{t-1},\\epsilon_{t}),\\epsilon_{t+1}), g(y_{t-1},\\epsilon_t), y_{t-1}, \\epsilon_t) \\right]= 0\\]\nIt is an equation defining implicitly the function \\(g()\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#the-state-space",
+    "href": "slides/session_1/handout.html#the-state-space",
+    "title": "Solving DSGE models",
+    "section": "The state-space",
+    "text": "The state-space\n\\[\\mathbb{E}_t \\left[ f(g(g(y_{t-1},\\epsilon_{t}),\\epsilon_{t+1}), g(y_{t-1},\\epsilon_t), y_{t-1}, \\epsilon_t) \\right]= 0\\]\nIn this expression, \\(y_{t-1},\\epsilon_t\\) is the state-space.\n. . .\nDropping the time subscripts, the equation must be satisfied for any realization of \\((y,\\epsilon)\\) \\[\\forall (y,\\epsilon)\\  \\Phi(g)(y,\\epsilon) = \\mathbb{E}_{\\epsilon'} \\left[ f(g(g(y,\\epsilon),\\epsilon'), g(y,\\epsilon), y, \\epsilon) \\right]= 0\\]\nIt is a functional equation \\(\\Phi(g)=0\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#expected-shocks",
+    "href": "slides/session_1/handout.html#expected-shocks",
+    "title": "Solving DSGE models",
+    "section": "Expected shocks",
+    "text": "Expected shocks\nFirst order approximation:\n\nAssume \\(|y_t-\\overline{y}|&lt;&lt;1\\),\\(|\\epsilon|&lt;&lt;1\\),\\(|\\epsilon'|&lt;&lt;1\\)\n\nPerform a Taylor expansion with respect to future shock:\n\\[\\begin{align}\n& & \\mathbb{E}_{\\epsilon'} \\left[ f(g(g(y,\\epsilon),\\epsilon'), g(y,\\epsilon), y, \\epsilon) \\right]  \\\\\n= & &  \\mathbb{E}_{\\epsilon'}\\left[ f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) \\right] \\\\\n  & & +  \\mathbb{E}_{\\epsilon'} \\left[ f^{\\prime}_{y_{t+1}}(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) g^{\\prime}_{\\epsilon} \\epsilon^\\prime\\right] + o(\\epsilon^{\\prime}) \\\\\n\\approx & & f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon)\n\\end{align}\\]\n. . .\nThis uses the fact that \\(\\mathbb{E}\\left[ \\epsilon^{\\prime}\\right] = 0\\).\nAt first order, expected shocks play no role.\nTo capture precautionary behaviour (like risk premia), we would need to increase the approximation order.",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#first-order-perturbation",
+    "href": "slides/session_1/handout.html#first-order-perturbation",
+    "title": "Solving DSGE models",
+    "section": "First order perturbation",
+    "text": "First order perturbation\nWe are left with the system:\n\\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe can now use a variant of the implicit function theorem to recover a first approximation of \\(g\\) as: \\[g(y,\\epsilon) = \\overline{y} + g^{\\prime}_{y} (y-\\overline{y}) + g^{\\prime}_e \\epsilon_t \\]\n. . .\nWe can obtain the unknown quantities \\(g^{\\prime}_y\\), and \\(g^{\\prime}_e\\) using the method of undeterminate coefficients:\nPlug the first approximation into the system and write the conditions \\[F^{\\prime}_y(\\overline{y}, 0) = 0\\] \\[F^{\\prime}_\\epsilon(\\overline{y}, 0) = 0\\]",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#computing-gprime_y",
+    "href": "slides/session_1/handout.html#computing-gprime_y",
+    "title": "Solving DSGE models",
+    "section": "Computing \\(g^{\\prime}_y\\)",
+    "text": "Computing \\(g^{\\prime}_y\\)\nRecall the system: \\[F(y,\\epsilon) = f(g(g(y,0),\\epsilon), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe have \\[F^{\\prime}_y(\\overline{y}, 0) = f^{\\prime}_{y_{t+1}} g^{\\prime}_y g^{\\prime}_y + f^{\\prime}_{y_{t}} g^{\\prime}_y + f^{\\prime}_{y_{t-1}} = 0 \\]\n. . .\nThis is a specific Riccatti equation \\[A X^2 + B X + C\\] where \\(A,B,C\\) and \\(X=g^{\\prime}_y\\) are square matrices \\(\\in \\mathbb{R}^n \\times \\mathbb{R}^n\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#first-order-deterministic-model",
+    "href": "slides/session_1/handout.html#first-order-deterministic-model",
+    "title": "Solving DSGE models",
+    "section": "First Order Deterministic Model",
+    "text": "First Order Deterministic Model\nLet’s pause a minute to observe the first order deterministic model: \\[A X^2 + B X + C\\]\nFrom our intuition in dimension 1, we know there must be multiple solutions\n\nhow do we find them?\nhow do we select the right ones?\n\nI the absence of shocks the dynamics of the model are given by \\[y_t = X y_{t-1}\\]\nWhat is the condition for the model to be stationary?\n. . .\n-&gt; the biggest eigenvalue of \\(X\\) should be smaller than 1\n\nDevelop intuition in dimension 1.",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#multiplicity-of-solution",
+    "href": "slides/session_1/handout.html#multiplicity-of-solution",
+    "title": "Solving DSGE models",
+    "section": "Multiplicity of solution",
+    "text": "Multiplicity of solution\nIt is possible to show that the system is associated with \\(2 n\\) generalized eigenvalues:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{2 n}|\\]\nFor each choice \\(C\\) of \\(n\\) eigenvalues (\\(|C|=n\\)), a specific recursive solution \\(X_C\\) can be constructed. It has eigenvalues \\(C\\).\n. . .\nThis yields at least \\(\\left(\\begin{matrix} 2 n \\\\ n \\end{matrix}\\right)\\) different combinations.\n. . .\nA model is well defined when there is exactly one solution that is non divergent.\nThis is equivalent to:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{n}| \\leq 1 &lt; |\\lambda_{n+1}| \\leq \\cdots \\leq |\\lambda_{2 n}|\\]",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#example-1",
+    "href": "slides/session_1/handout.html#example-1",
+    "title": "Solving DSGE models",
+    "section": "Example 1",
+    "text": "Example 1\nForward looking inflation:\n\\[\\pi_t = \\alpha \\pi_{t+1}\\] with \\(\\alpha&lt;1\\).\nIs it well defined?\n. . .\nWe can rewrite the system as:\n\\[\\alpha \\pi_{t+1} - \\pi_t + 0 \\pi_{t-1}  = 0\\]\nor\n\\[\\pi_{t+1} - (\\frac{1}{\\alpha} + 0 )\\pi_t + \\left(\\frac{1}{\\alpha} 0\\right) \\pi_{t-1} = 0\\]\n. . .\nThe generalized eigenvalues are \\(0\\leq 1 &lt; \\frac{1}{\\alpha}\\).\n. . .\nThe unique stable solution is \\(\\pi_t=0 \\pi_{t-1}\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#example-2",
+    "href": "slides/session_1/handout.html#example-2",
+    "title": "Solving DSGE models",
+    "section": "Example 2",
+    "text": "Example 2\nDebt accumulation equation by a rational agent:\n\\[b_{t+1} - (1+\\frac{1}{\\beta}) b_t + \\frac{1}{\\beta} b_{t-1} = 0\\]\nIs it well-defined?\n. . .\nTwo generalized eigenvalues \\(\\lambda_1=1 &lt; \\lambda_2=\\frac{1}{\\beta}\\)\n. . .\nThe unique non-diverging solution is \\(b_t = b_{t-1}\\).\n\nit is a unit-root: any initial deviation in \\(b_{t-1}\\) has persistent effects",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#example-3",
+    "href": "slides/session_1/handout.html#example-3",
+    "title": "Solving DSGE models",
+    "section": "Example 3",
+    "text": "Example 3\nProductivity process: \\[z_t = \\rho z_{t-1}\\] with \\(\\rho&lt;1\\): well defined\n. . .\nIn that case there is a hidden infinite eigenvalue \\(\\infty\\) associated to \\(z_{t+1}\\).\n. . .\nTo see why consider the system associated with eigenvalues \\(m\\) and \\(\\rho\\): \\[z_{t+1} - (m+\\rho) z_t + m \\rho z_{t-1} = 0\\]\n\\[\\frac{1}{m} z_{t+1} - (1+\\frac{\\rho}{m}) z_t + \\rho z_{t-1} = 0\\]\nWhich corresponds to the initial model when \\(m=\\infty\\)\n. . .\nThe generalized eigenvalues are \\(\\lambda_1 = \\rho \\leq 1 &lt; \\lambda_2 = \\infty\\)\nMore generally, any variable that does not appear in \\(t+1\\) creates one infinite generalized eigenvalue.",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#a-criterium-for-well-definedness",
+    "href": "slides/session_1/handout.html#a-criterium-for-well-definedness",
+    "title": "Solving DSGE models",
+    "section": "A criterium for well-definedness",
+    "text": "A criterium for well-definedness\nLooking again at the list of eigenvalues we set aside the infinite ones.\nThe model is well specified iff we can sort the eigenvalues as:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{n}| \\leq 1 &lt; |\\lambda_{n+1}| \\leq \\cdots  |\\lambda_{n+k}| \\leq \\underbrace{|\\lambda_{n+k+1}| \\cdots \\leq |\\lambda_{2 n}|}_{\\text{infinite eigenvalues}}\\]\n\n\n\n\n\n\nBlanchard-Kahn criterium\n\n\n\nThe model satisfies the Blanchard-Kahn criterium if the number of eigenvalues greater than one, is exactly equal to the number of variables appearing in \\(t+1\\).\nIn that case the model is well-defined.",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#computing-the-solution",
+    "href": "slides/session_1/handout.html#computing-the-solution",
+    "title": "Solving DSGE models",
+    "section": "Computing the solution",
+    "text": "Computing the solution\nThere are several classical methods to compute the solution to the algebraic Riccatti equation: \\[A X^2+ B X + C=0\\]\n\nqz decomposition\n\ntraditionnally used in the DSGE literature since Chris Sims\na little bit unintuitive\n\ncyclic reduction\n\nnew default in dynare, more adequate for big models\n\nlinear time iteration\n\nconceptually very simple",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#computing-gprime_e",
+    "href": "slides/session_1/handout.html#computing-gprime_e",
+    "title": "Solving DSGE models",
+    "section": "Computing \\(g^{\\prime}_{e}\\)",
+    "text": "Computing \\(g^{\\prime}_{e}\\)\nNow we have \\(g^{\\prime}_y\\), how do we get \\(g^{\\prime}_{e}\\)?\nRecall: \\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe have \\[F^{\\prime}_e(\\overline{y}, 0) =  f^{\\prime}_{y_{t+1}}  g^{\\prime}_y  g^{\\prime}_e + f^{\\prime}_{y_{t}} g^{\\prime}_e + f^{\\prime}_{\\epsilon_t} = 0 \\]\nNow this is easy:\n\\[g^{\\prime}_e = - (f^{\\prime}_{y_{t+1}}  g^{\\prime}_y + f^{\\prime}_{y_{t}} )^{-1}  f^{\\prime}_{\\epsilon_t} = 0 \\]",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#the-model-solution",
+    "href": "slides/session_1/handout.html#the-model-solution",
+    "title": "Solving DSGE models",
+    "section": "The model solution",
+    "text": "The model solution\nThe result of the model solution: \\[y_t = g_y y_{t-1} + g_e \\epsilon_t\\]\nIt is an AR1, driven by exogenous shock \\(\\epsilon_t\\).\n. . .\nBecause it is a well known structure, one can investigate the model with\n\nimpulse response functions\nstochastic simulations\n\n. . .\nThen to compare the model to the data we compute\n\nimplied moments\nlikelihood\n\nOptimizing the fit to the data is called model estimation",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#linear-time-iteration",
+    "href": "slides/session_1/handout.html#linear-time-iteration",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration",
+    "text": "Linear Time Iteration\nRecall the system to solve: \\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nbut now assume the decision rules today and tomorrow are different:\n\ntoday: \\(y_t = g(y_{t-1}, \\epsilon_t) = \\overline{y} + X y_{t-1} + g_y \\epsilon_t\\)\ntomorrow: \\(y_{t+1} = \\tilde{g}(y_t, \\epsilon_{t+1}) = \\overline{y} + \\tilde{X} y_{t-1} + \\tilde{g}_y \\epsilon_t\\)\n\nThen the Ricatti equation is written:\n\\[A \\tilde{X} X + B X + C = 0\\]",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#linear-time-iteration-2",
+    "href": "slides/session_1/handout.html#linear-time-iteration-2",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (2)",
+    "text": "Linear Time Iteration (2)\nThe linear time iteration algorithm consists in solving the decision rule \\(X\\) today as a function of decision rule tomorrow \\(\\tilde{X}\\).\nThis corresponds to the simple formula:\n\\[X = -(A\\tilde{X} + B)^{-1} C\\]\nAnd the full algorithm can be described as:\n\nchoose \\(X_0\\)\nfor any \\(X_n\\), compute \\(X_{n+1} = T(X_n) = -(A X_n + B)^{-1} C\\)\n\nrepeat until convergence",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#linear-time-iteration-3",
+    "href": "slides/session_1/handout.html#linear-time-iteration-3",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (3)",
+    "text": "Linear Time Iteration (3)\nIt can be shown that, starting from a random initial guess, the linear time-iteration algorithm converges to the solution \\(X\\) with the smallest modulus:\n\\[\\underbrace{|\\lambda_1| \\leq \\cdots  \\leq |\\lambda_n|}_{\\text{Selected eigenvalues}} \\leq |\\lambda_{n+1}|\\cdots \\leq |\\lambda_{2n}|\\]\nIn other words, it finds the right solution when the model is well specified.\nHow do you check it is well specified?\n\n\\(\\lambda_n\\) is the biggest eigenvalue of solution \\(X\\)\nwhat about \\(\\lambda_{n+1}\\)?\n\n\\(\\frac{1}{\\lambda_{n+1}}\\) is the biggest eigenvalue of \\((AX+B)^{-1}A\\)\njump to Section 3",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#linear-time-iteration-4",
+    "href": "slides/session_1/handout.html#linear-time-iteration-4",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (4)",
+    "text": "Linear Time Iteration (4)\nDefine \\[M(\\lambda) = A\\lambda^2 + B \\lambda + C\\]\nFor any solution \\(X\\), \\(M(\\lambda)\\) can be factorized as: 1\n\\[M(\\lambda)=(\\lambda A + A X + B)(\\lambda I -X)\\]\nand\n\\[det(M(\\lambda)) = \\underbrace{det(\\lambda A + A X + B)}_{Q(\\lambda)}det(\\lambda I -X)\\]\nBy construction \\(Q(\\lambda)\\) is a polynomial whose roots are those that are not selected by the solution i.e. \\(\\Lambda\\setminus Sp(X)\\).",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#linear-time-iteration-5",
+    "href": "slides/session_1/handout.html#linear-time-iteration-5",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (5)",
+    "text": "Linear Time Iteration (5)\nFor \\(\\lambda \\neq 0\\) we have:\n\\[\\lambda \\in Sp((A X +B )^{-1} A)\\] \\[\\iff  det( (A X +B )^{-1})A - I\\lambda )=0\\] \\[\\iff  det( \\frac{1}{\\lambda} A - I (A X +B )  )=0\\] \\[\\iff Q(\\frac{1}{\\lambda})=0\\] \\[\\iff \\frac{1}{\\lambda} \\in G \\setminus Sp(X)\\]\nIn words, \\((AX+B)^{-1}\\) contains all the eigenvalues that have been rejected by the selection of \\(X\\).\nIn particular, \\(\\rho((AX+B)^{-1})A)=1/\\min(G\\setminus Sp(X))\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#what-can-you-do-with-the-solution",
+    "href": "slides/session_1/handout.html#what-can-you-do-with-the-solution",
+    "title": "Solving DSGE models",
+    "section": "What can you do with the solution",
+    "text": "What can you do with the solution\nThe solution of a model found by Dynare has an especially simple form: an AR1\n\n\\(y_t = X y_{t-1} + Y \\epsilon_t\\)\nwhere the covariances \\(\\Sigma\\) of \\(\\epsilon_t\\) can be chosen by the modeler\n\n. . .\nWith this solution we can (cf next TD)\n\ncompute (conditional and unconditional) moments\nperform stochastic simulations, impulse response function\n\n. . .",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#going-further",
+    "href": "slides/session_1/handout.html#going-further",
+    "title": "Solving DSGE models",
+    "section": "Going Further",
+    "text": "Going Further\nTaking the model to the data with Dynare\n\n“estimate” the model: compute the likelihood of a solution and maximize it by choosing the right parameters\n“identify” shocks in the data\n\nOther functions\n\nhigher order approximation\nramsey plan\ndiscretionary policy\n…",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#coming-next",
+    "href": "slides/session_1/handout.html#coming-next",
+    "title": "Solving DSGE models",
+    "section": "Coming Next",
+    "text": "Coming Next\n\nMany models",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#footnotes",
+    "href": "slides/session_1/handout.html#footnotes",
+    "title": "Solving DSGE models",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nSpecial case of Bezout theorem. Easy to check in that case↩︎",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/index.html#section",
+    "href": "slides/session_1/index.html#section",
+    "title": "Solving DSGE models",
+    "section": "",
+    "text": "What is the main specificity of economic modeling?\n\nIn (macro)economics, we model the behaviour of economic agents by specifying:\n\ntheir objective \\[\\max_{c_t} E_t \\sum_{s\\geq t} \\beta^s U(c_s)\\] \\[\\max \\pi_t\\] \\[\\cdots\\]\ntheir constraints (budget constraint, econ. environment…)\n\n\n\n\n\n\n\n\nThis has important implications:\n\nmacro models are forward looking\nmacro models need to be solved\n\n\n\nIn many cases, there is not closed form for the solution -&gt; we need numerical techniques"
+  },
+  {
+    "objectID": "slides/session_1/index.html#dynare",
+    "href": "slides/session_1/index.html#dynare",
+    "title": "Solving DSGE models",
+    "section": "Dynare",
+    "text": "Dynare\n\n\n\n\n1996: Michel Juillard created an opensource software to solve DSGE models\n\nDSGE: Dynamic Stochastic General Equilibrium\nusually solved around a steady-state\n\nNow about 10 contributors.\n\n\n\n\nIt has been widely adopted:\n\nearly version in Gauss\nthen Matlab/Octave/Scilab\nlatest version in Julia\n\n\n\n\n\n\n\nMichel Juillard"
+  },
+  {
+    "objectID": "slides/session_1/index.html#dsge-models-in-institutions",
+    "href": "slides/session_1/index.html#dsge-models-in-institutions",
+    "title": "Solving DSGE models",
+    "section": "DSGE Models in institutions",
+    "text": "DSGE Models in institutions\nNowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)\n\nthey are usually based on the midsize model from Smets & Wouters (10 equations)\nbut have grown up a lot (&gt;&gt;100 equations)\n\n\nInstitutions (led by researchers) are (slowly) diversifying their model\n\nComputational General Equilibrium Models\nAgent-based\nSemi-structural models\nHeterogenous Agents Models"
+  },
+  {
+    "objectID": "slides/session_1/index.html#model",
+    "href": "slides/session_1/index.html#model",
+    "title": "Solving DSGE models",
+    "section": "Model",
+    "text": "Model\nA very concise representation of a model\n\\[\\mathbb{E}_t \\left[ f(y_{t+1}, y_t, y_{t-1}, \\epsilon_t) \\right]= 0\\]\n\n\n\nThe problem:\n\n\\(y_t\\in\\mathbb{R}^n\\): the vector of endogenous variables\n\\(\\epsilon_t\\in\\mathbb{R}^{n_e}\\): the vector of exogenous variables\n\nwe assume that \\(\\epsilon_t\\) is a zero-mean gaussian process\n\n\\(f: \\mathbb{R}^n\\rightarrow \\mathbb{R}^n\\): the model equations\n\n\n\n\nThe solution:\n\n\\(g\\) such that \\[\\forall t, y_t = g(y_{t-1},\\epsilon_t)\\]\n\n\n\n\n\nThe situation is different when one is making a perfect foresight simulation."
+  },
+  {
+    "objectID": "slides/session_1/index.html#the-timing-of-the-equations",
+    "href": "slides/session_1/index.html#the-timing-of-the-equations",
+    "title": "Solving DSGE models",
+    "section": "The timing of the equations",
+    "text": "The timing of the equations\n\n\n\n\n\n\nTip\n\n\nIn dynare the model equations are coded in the model; ... ; end; block.\n\n\n\nNew information arrives with the innovations \\(\\epsilon_t\\).\nAt date \\(t\\), the information set is spanned by \\(\\mathcal{F}_t = \\mathcal{F} (\\cdots, \\epsilon_{t-3}, \\epsilon_{t-2}, \\epsilon_{t-1}, \\epsilon_t)\\)\nBy convention an endogenous variable has a subscript \\(t\\) if it is known first at date \\(t\\)."
+  },
+  {
+    "objectID": "slides/session_1/index.html#example",
+    "href": "slides/session_1/index.html#example",
+    "title": "Solving DSGE models",
+    "section": "Example",
+    "text": "Example\nThe timing of equations\nUsing Dynare’s timing conventions:\n\nWrite the production function in the RBC\nWrite the law of motion for capital \\(k\\), with a depreciation rate \\(\\delta\\) and investment \\(i\\)\n\nwhen is capital known?\nwhen is investment known?\n\nAdd a multiplicative investment efficiency shock \\(\\chi_t\\). Assume it is an \\(AR1\\) driven by innovation \\(\\eta_t\\) and autocorrelation \\(\\rho_{\\chi}\\)"
+  },
+  {
+    "objectID": "slides/session_1/index.html#steady-state",
+    "href": "slides/session_1/index.html#steady-state",
+    "title": "Solving DSGE models",
+    "section": "Steady-state",
+    "text": "Steady-state\nThe deterministic steady-state satisfies:\n\\[ f(\\overline{y},\\overline{y}, \\overline{y}, 0)= 0\\]\nOften, there is a closed-form solution.\nOtherwise, one must resort to a numerical solver to solve\n\\[\\overline{y}\\rightarrow f(\\overline{y},\\overline{y}, \\overline{y}, 0)\\]\n\n\n\n\n\n\nTip\n\n\nIn dynare the steady-state values are provided in the steadystate_model; ... ; end; block. One can check they are correct using the check; statement.\nTo find numerically the steady-state: steady;."
+  },
+  {
+    "objectID": "slides/session_1/index.html#the-implicit-system",
+    "href": "slides/session_1/index.html#the-implicit-system",
+    "title": "Solving DSGE models",
+    "section": "The implicit system",
+    "text": "The implicit system\nReplacing the solution \\[y_t = g(y_{t-1},\\epsilon_t)\\] in the system \\[\\mathbb{E}_t \\left[ f(y_{t+1}, y_t, y_{t-1}, \\epsilon_t) \\right]= 0\\]\nwe obtain:\n\\[\\mathbb{E}_t \\left[ f(g(g(y_{t-1},\\epsilon_{t}),\\epsilon_{t+1}), g(y_{t-1},\\epsilon_t), y_{t-1}, \\epsilon_t) \\right]= 0\\]\nIt is an equation defining implicitly the function \\(g()\\)"
+  },
+  {
+    "objectID": "slides/session_1/index.html#the-state-space",
+    "href": "slides/session_1/index.html#the-state-space",
+    "title": "Solving DSGE models",
+    "section": "The state-space",
+    "text": "The state-space\n\\[\\mathbb{E}_t \\left[ f(g(g(y_{t-1},\\epsilon_{t}),\\epsilon_{t+1}), g(y_{t-1},\\epsilon_t), y_{t-1}, \\epsilon_t) \\right]= 0\\]\nIn this expression, \\(y_{t-1},\\epsilon_t\\) is the state-space.\n\nDropping the time subscripts, the equation must be satisfied for any realization of \\((y,\\epsilon)\\) \\[\\forall (y,\\epsilon)\\  \\Phi(g)(y,\\epsilon) = \\mathbb{E}_{\\epsilon'} \\left[ f(g(g(y,\\epsilon),\\epsilon'), g(y,\\epsilon), y, \\epsilon) \\right]= 0\\]\nIt is a functional equation \\(\\Phi(g)=0\\)"
+  },
+  {
+    "objectID": "slides/session_1/index.html#expected-shocks",
+    "href": "slides/session_1/index.html#expected-shocks",
+    "title": "Solving DSGE models",
+    "section": "Expected shocks",
+    "text": "Expected shocks\nFirst order approximation:\n\nAssume \\(|y_t-\\overline{y}|&lt;&lt;1\\),\\(|\\epsilon|&lt;&lt;1\\),\\(|\\epsilon'|&lt;&lt;1\\)\n\nPerform a Taylor expansion with respect to future shock:\n\\[\\begin{align}\n& & \\mathbb{E}_{\\epsilon'} \\left[ f(g(g(y,\\epsilon),\\epsilon'), g(y,\\epsilon), y, \\epsilon) \\right]  \\\\\n= & &  \\mathbb{E}_{\\epsilon'}\\left[ f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) \\right] \\\\\n  & & +  \\mathbb{E}_{\\epsilon'} \\left[ f^{\\prime}_{y_{t+1}}(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) g^{\\prime}_{\\epsilon} \\epsilon^\\prime\\right] + o(\\epsilon^{\\prime}) \\\\\n\\approx & & f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon)\n\\end{align}\\]\n\nThis uses the fact that \\(\\mathbb{E}\\left[ \\epsilon^{\\prime}\\right] = 0\\).\nAt first order, expected shocks play no role.\nTo capture precautionary behaviour (like risk premia), we would need to increase the approximation order."
+  },
+  {
+    "objectID": "slides/session_1/index.html#first-order-perturbation",
+    "href": "slides/session_1/index.html#first-order-perturbation",
+    "title": "Solving DSGE models",
+    "section": "First order perturbation",
+    "text": "First order perturbation\nWe are left with the system:\n\\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe can now use a variant of the implicit function theorem to recover a first approximation of \\(g\\) as: \\[g(y,\\epsilon) = \\overline{y} + g^{\\prime}_{y} (y-\\overline{y}) + g^{\\prime}_e \\epsilon_t \\]\n\nWe can obtain the unknown quantities \\(g^{\\prime}_y\\), and \\(g^{\\prime}_e\\) using the method of undeterminate coefficients:\nPlug the first approximation into the system and write the conditions \\[F^{\\prime}_y(\\overline{y}, 0) = 0\\] \\[F^{\\prime}_\\epsilon(\\overline{y}, 0) = 0\\]"
+  },
+  {
+    "objectID": "slides/session_1/index.html#computing-gprime_y",
+    "href": "slides/session_1/index.html#computing-gprime_y",
+    "title": "Solving DSGE models",
+    "section": "Computing \\(g^{\\prime}_y\\)",
+    "text": "Computing \\(g^{\\prime}_y\\)\nRecall the system: \\[F(y,\\epsilon) = f(g(g(y,0),\\epsilon), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe have \\[F^{\\prime}_y(\\overline{y}, 0) = f^{\\prime}_{y_{t+1}} g^{\\prime}_y g^{\\prime}_y + f^{\\prime}_{y_{t}} g^{\\prime}_y + f^{\\prime}_{y_{t-1}} = 0 \\]\n\nThis is a specific Riccatti equation \\[A X^2 + B X + C\\] where \\(A,B,C\\) and \\(X=g^{\\prime}_y\\) are square matrices \\(\\in \\mathbb{R}^n \\times \\mathbb{R}^n\\)"
+  },
+  {
+    "objectID": "slides/session_1/index.html#first-order-deterministic-model",
+    "href": "slides/session_1/index.html#first-order-deterministic-model",
+    "title": "Solving DSGE models",
+    "section": "First Order Deterministic Model",
+    "text": "First Order Deterministic Model\nLet’s pause a minute to observe the first order deterministic model: \\[A X^2 + B X + C\\]\nFrom our intuition in dimension 1, we know there must be multiple solutions\n\nhow do we find them?\nhow do we select the right ones?\n\nI the absence of shocks the dynamics of the model are given by \\[y_t = X y_{t-1}\\]\nWhat is the condition for the model to be stationary?\n\n-&gt; the biggest eigenvalue of \\(X\\) should be smaller than 1\n\nDevelop intuition in dimension 1."
+  },
+  {
+    "objectID": "slides/session_1/index.html#multiplicity-of-solution",
+    "href": "slides/session_1/index.html#multiplicity-of-solution",
+    "title": "Solving DSGE models",
+    "section": "Multiplicity of solution",
+    "text": "Multiplicity of solution\nIt is possible to show that the system is associated with \\(2 n\\) generalized eigenvalues:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{2 n}|\\]\nFor each choice \\(C\\) of \\(n\\) eigenvalues (\\(|C|=n\\)), a specific recursive solution \\(X_C\\) can be constructed. It has eigenvalues \\(C\\).\n\nThis yields at least \\(\\left(\\begin{matrix} 2 n \\\\ n \\end{matrix}\\right)\\) different combinations.\n\n\nA model is well defined when there is exactly one solution that is non divergent.\nThis is equivalent to:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{n}| \\leq 1 &lt; |\\lambda_{n+1}| \\leq \\cdots \\leq |\\lambda_{2 n}|\\]"
+  },
+  {
+    "objectID": "slides/session_1/index.html#example-1",
+    "href": "slides/session_1/index.html#example-1",
+    "title": "Solving DSGE models",
+    "section": "Example 1",
+    "text": "Example 1\nForward looking inflation:\n\\[\\pi_t = \\alpha \\pi_{t+1}\\] with \\(\\alpha&lt;1\\).\nIs it well defined?\n\nWe can rewrite the system as:\n\\[\\alpha \\pi_{t+1} - \\pi_t + 0 \\pi_{t-1}  = 0\\]\nor\n\\[\\pi_{t+1} - (\\frac{1}{\\alpha} + 0 )\\pi_t + \\left(\\frac{1}{\\alpha} 0\\right) \\pi_{t-1} = 0\\]\n\n\nThe generalized eigenvalues are \\(0\\leq 1 &lt; \\frac{1}{\\alpha}\\).\n\n\nThe unique stable solution is \\(\\pi_t=0 \\pi_{t-1}\\)"
+  },
+  {
+    "objectID": "slides/session_1/index.html#example-2",
+    "href": "slides/session_1/index.html#example-2",
+    "title": "Solving DSGE models",
+    "section": "Example 2",
+    "text": "Example 2\nDebt accumulation equation by a rational agent:\n\\[b_{t+1} - (1+\\frac{1}{\\beta}) b_t + \\frac{1}{\\beta} b_{t-1} = 0\\]\nIs it well-defined?\n\nTwo generalized eigenvalues \\(\\lambda_1=1 &lt; \\lambda_2=\\frac{1}{\\beta}\\)\n\n\nThe unique non-diverging solution is \\(b_t = b_{t-1}\\).\n\nit is a unit-root: any initial deviation in \\(b_{t-1}\\) has persistent effects"
+  },
+  {
+    "objectID": "slides/session_1/index.html#example-3",
+    "href": "slides/session_1/index.html#example-3",
+    "title": "Solving DSGE models",
+    "section": "Example 3",
+    "text": "Example 3\nProductivity process: \\[z_t = \\rho z_{t-1}\\] with \\(\\rho&lt;1\\): well defined\n\nIn that case there is a hidden infinite eigenvalue \\(\\infty\\) associated to \\(z_{t+1}\\).\n\n\nTo see why consider the system associated with eigenvalues \\(m\\) and \\(\\rho\\): \\[z_{t+1} - (m+\\rho) z_t + m \\rho z_{t-1} = 0\\]\n\\[\\frac{1}{m} z_{t+1} - (1+\\frac{\\rho}{m}) z_t + \\rho z_{t-1} = 0\\]\nWhich corresponds to the initial model when \\(m=\\infty\\)\n\n\nThe generalized eigenvalues are \\(\\lambda_1 = \\rho \\leq 1 &lt; \\lambda_2 = \\infty\\)\nMore generally, any variable that does not appear in \\(t+1\\) creates one infinite generalized eigenvalue."
+  },
+  {
+    "objectID": "slides/session_1/index.html#a-criterium-for-well-definedness",
+    "href": "slides/session_1/index.html#a-criterium-for-well-definedness",
+    "title": "Solving DSGE models",
+    "section": "A criterium for well-definedness",
+    "text": "A criterium for well-definedness\nLooking again at the list of eigenvalues we set aside the infinite ones.\nThe model is well specified iff we can sort the eigenvalues as:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{n}| \\leq 1 &lt; |\\lambda_{n+1}| \\leq \\cdots  |\\lambda_{n+k}| \\leq \\underbrace{|\\lambda_{n+k+1}| \\cdots \\leq |\\lambda_{2 n}|}_{\\text{infinite eigenvalues}}\\]\n\n\n\n\n\n\nBlanchard-Kahn criterium\n\n\nThe model satisfies the Blanchard-Kahn criterium if the number of eigenvalues greater than one, is exactly equal to the number of variables appearing in \\(t+1\\).\nIn that case the model is well-defined."
+  },
+  {
+    "objectID": "slides/session_1/index.html#computing-the-solution",
+    "href": "slides/session_1/index.html#computing-the-solution",
+    "title": "Solving DSGE models",
+    "section": "Computing the solution",
+    "text": "Computing the solution\nThere are several classical methods to compute the solution to the algebraic Riccatti equation: \\[A X^2+ B X + C=0\\]\n\nqz decomposition\n\ntraditionnally used in the DSGE literature since Chris Sims\na little bit unintuitive\n\ncyclic reduction\n\nnew default in dynare, more adequate for big models\n\nlinear time iteration\n\nconceptually very simple"
+  },
+  {
+    "objectID": "slides/session_1/index.html#computing-gprime_e",
+    "href": "slides/session_1/index.html#computing-gprime_e",
+    "title": "Solving DSGE models",
+    "section": "Computing \\(g^{\\prime}_{e}\\)",
+    "text": "Computing \\(g^{\\prime}_{e}\\)\nNow we have \\(g^{\\prime}_y\\), how do we get \\(g^{\\prime}_{e}\\)?\nRecall: \\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe have \\[F^{\\prime}_e(\\overline{y}, 0) =  f^{\\prime}_{y_{t+1}}  g^{\\prime}_y  g^{\\prime}_e + f^{\\prime}_{y_{t}} g^{\\prime}_e + f^{\\prime}_{\\epsilon_t} = 0 \\]\nNow this is easy:\n\\[g^{\\prime}_e = - (f^{\\prime}_{y_{t+1}}  g^{\\prime}_y + f^{\\prime}_{y_{t}} )^{-1}  f^{\\prime}_{\\epsilon_t} = 0 \\]"
+  },
+  {
+    "objectID": "slides/session_1/index.html#the-model-solution",
+    "href": "slides/session_1/index.html#the-model-solution",
+    "title": "Solving DSGE models",
+    "section": "The model solution",
+    "text": "The model solution\nThe result of the model solution: \\[y_t = g_y y_{t-1} + g_e \\epsilon_t\\]\nIt is an AR1, driven by exogenous shock \\(\\epsilon_t\\).\n\nBecause it is a well known structure, one can investigate the model with\n\nimpulse response functions\nstochastic simulations\n\n\n\nThen to compare the model to the data we compute\n\nimplied moments\nlikelihood\n\nOptimizing the fit to the data is called model estimation"
+  },
+  {
+    "objectID": "slides/session_1/index.html#linear-time-iteration",
+    "href": "slides/session_1/index.html#linear-time-iteration",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration",
+    "text": "Linear Time Iteration\nRecall the system to solve: \\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nbut now assume the decision rules today and tomorrow are different:\n\ntoday: \\(y_t = g(y_{t-1}, \\epsilon_t) = \\overline{y} + X y_{t-1} + g_y \\epsilon_t\\)\ntomorrow: \\(y_{t+1} = \\tilde{g}(y_t, \\epsilon_{t+1}) = \\overline{y} + \\tilde{X} y_{t-1} + \\tilde{g}_y \\epsilon_t\\)\n\nThen the Ricatti equation is written:\n\\[A \\tilde{X} X + B X + C = 0\\]"
+  },
+  {
+    "objectID": "slides/session_1/index.html#linear-time-iteration-2",
+    "href": "slides/session_1/index.html#linear-time-iteration-2",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (2)",
+    "text": "Linear Time Iteration (2)\nThe linear time iteration algorithm consists in solving the decision rule \\(X\\) today as a function of decision rule tomorrow \\(\\tilde{X}\\).\nThis corresponds to the simple formula:\n\\[X = -(A\\tilde{X} + B)^{-1} C\\]\nAnd the full algorithm can be described as:\n\nchoose \\(X_0\\)\nfor any \\(X_n\\), compute \\(X_{n+1} = T(X_n) = -(A X_n + B)^{-1} C\\)\n\nrepeat until convergence"
+  },
+  {
+    "objectID": "slides/session_1/index.html#linear-time-iteration-3",
+    "href": "slides/session_1/index.html#linear-time-iteration-3",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (3)",
+    "text": "Linear Time Iteration (3)\nIt can be shown that, starting from a random initial guess, the linear time-iteration algorithm converges to the solution \\(X\\) with the smallest modulus:\n\\[\\underbrace{|\\lambda_1| \\leq \\cdots  \\leq |\\lambda_n|}_{\\text{Selected eigenvalues}} \\leq |\\lambda_{n+1}|\\cdots \\leq |\\lambda_{2n}|\\]\nIn other words, it finds the right solution when the model is well specified.\nHow do you check it is well specified?\n\n\\(\\lambda_n\\) is the biggest eigenvalue of solution \\(X\\)\nwhat about \\(\\lambda_{n+1}\\)?\n\n\\(\\frac{1}{\\lambda_{n+1}}\\) is the biggest eigenvalue of \\((AX+B)^{-1}A\\)\njump to Section 3"
+  },
+  {
+    "objectID": "slides/session_1/index.html#linear-time-iteration-4",
+    "href": "slides/session_1/index.html#linear-time-iteration-4",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (4)",
+    "text": "Linear Time Iteration (4)\nDefine \\[M(\\lambda) = A\\lambda^2 + B \\lambda + C\\]\nFor any solution \\(X\\), \\(M(\\lambda)\\) can be factorized as: 1\n\\[M(\\lambda)=(\\lambda A + A X + B)(\\lambda I -X)\\]\nand\n\\[det(M(\\lambda)) = \\underbrace{det(\\lambda A + A X + B)}_{Q(\\lambda)}det(\\lambda I -X)\\]\nBy construction \\(Q(\\lambda)\\) is a polynomial whose roots are those that are not selected by the solution i.e. \\(\\Lambda\\setminus Sp(X)\\).\nSpecial case of Bezout theorem. Easy to check in that case"
+  },
+  {
+    "objectID": "slides/session_1/index.html#linear-time-iteration-5",
+    "href": "slides/session_1/index.html#linear-time-iteration-5",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (5)",
+    "text": "Linear Time Iteration (5)\nFor \\(\\lambda \\neq 0\\) we have:\n\\[\\lambda \\in Sp((A X +B )^{-1} A)\\] \\[\\iff  det( (A X +B )^{-1})A - I\\lambda )=0\\] \\[\\iff  det( \\frac{1}{\\lambda} A - I (A X +B )  )=0\\] \\[\\iff Q(\\frac{1}{\\lambda})=0\\] \\[\\iff \\frac{1}{\\lambda} \\in G \\setminus Sp(X)\\]\nIn words, \\((AX+B)^{-1}\\) contains all the eigenvalues that have been rejected by the selection of \\(X\\).\nIn particular, \\(\\rho((AX+B)^{-1})A)=1/\\min(G\\setminus Sp(X))\\)"
+  },
+  {
+    "objectID": "slides/session_1/index.html#what-can-you-do-with-the-solution",
+    "href": "slides/session_1/index.html#what-can-you-do-with-the-solution",
+    "title": "Solving DSGE models",
+    "section": "What can you do with the solution",
+    "text": "What can you do with the solution\nThe solution of a model found by Dynare has an especially simple form: an AR1\n\n\\(y_t = X y_{t-1} + Y \\epsilon_t\\)\nwhere the covariances \\(\\Sigma\\) of \\(\\epsilon_t\\) can be chosen by the modeler\n\n\nWith this solution we can (cf next TD)\n\ncompute (conditional and unconditional) moments\nperform stochastic simulations, impulse response function"
+  },
+  {
+    "objectID": "slides/session_1/index.html#going-further",
+    "href": "slides/session_1/index.html#going-further",
+    "title": "Solving DSGE models",
+    "section": "Going Further",
+    "text": "Going Further\nTaking the model to the data with Dynare\n\n“estimate” the model: compute the likelihood of a solution and maximize it by choosing the right parameters\n“identify” shocks in the data\n\nOther functions\n\nhigher order approximation\nramsey plan\ndiscretionary policy\n…"
+  },
+  {
+    "objectID": "slides/session_1/index.html#coming-next",
+    "href": "slides/session_1/index.html#coming-next",
+    "title": "Solving DSGE models",
+    "section": "Coming Next",
+    "text": "Coming Next\n\nMany models"
+  }
+]

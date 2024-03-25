@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Pablo Winant">
+<meta name="dcterms.date" content="2024-03-20">
+
+<title>Macro II - Fluctuations - Solving DSGE models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../slides/session_1/handout.html">lectures</a></li><li class="breadcrumb-item"><a href="../../slides/session_1/handout.html">Solving DSGE models</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Macro II - Fluctuations</a> 
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides/session_1/handout.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Solving DSGE models</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#dynare" id="toc-dynare" class="nav-link" data-scroll-target="#dynare">Dynare</a></li>
+  <li><a href="#dsge-models-in-institutions" id="toc-dsge-models-in-institutions" class="nav-link" data-scroll-target="#dsge-models-in-institutions">DSGE Models in institutions</a></li>
+  </ul></li>
+  <li><a href="#solving-a-model" id="toc-solving-a-model" class="nav-link" data-scroll-target="#solving-a-model">Solving a model</a>
+  <ul class="collapse">
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a></li>
+  <li><a href="#the-timing-of-the-equations" id="toc-the-timing-of-the-equations" class="nav-link" data-scroll-target="#the-timing-of-the-equations">The timing of the equations</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#steady-state" id="toc-steady-state" class="nav-link" data-scroll-target="#steady-state">Steady-state</a></li>
+  <li><a href="#the-implicit-system" id="toc-the-implicit-system" class="nav-link" data-scroll-target="#the-implicit-system">The implicit system</a></li>
+  <li><a href="#the-state-space" id="toc-the-state-space" class="nav-link" data-scroll-target="#the-state-space">The state-space</a></li>
+  <li><a href="#expected-shocks" id="toc-expected-shocks" class="nav-link" data-scroll-target="#expected-shocks">Expected shocks</a></li>
+  <li><a href="#first-order-perturbation" id="toc-first-order-perturbation" class="nav-link" data-scroll-target="#first-order-perturbation">First order perturbation</a></li>
+  <li><a href="#computing-gprime_y" id="toc-computing-gprime_y" class="nav-link" data-scroll-target="#computing-gprime_y">Computing <span class="math inline">\(g^{\prime}_y\)</span></a></li>
+  <li><a href="#first-order-deterministic-model" id="toc-first-order-deterministic-model" class="nav-link" data-scroll-target="#first-order-deterministic-model">First Order Deterministic Model</a></li>
+  <li><a href="#multiplicity-of-solution" id="toc-multiplicity-of-solution" class="nav-link" data-scroll-target="#multiplicity-of-solution">Multiplicity of solution</a></li>
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example 1</a></li>
+  <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2">Example 2</a></li>
+  <li><a href="#example-3" id="toc-example-3" class="nav-link" data-scroll-target="#example-3">Example 3</a></li>
+  <li><a href="#a-criterium-for-well-definedness" id="toc-a-criterium-for-well-definedness" class="nav-link" data-scroll-target="#a-criterium-for-well-definedness">A criterium for well-definedness</a></li>
+  <li><a href="#computing-the-solution" id="toc-computing-the-solution" class="nav-link" data-scroll-target="#computing-the-solution">Computing the solution</a></li>
+  <li><a href="#computing-gprime_e" id="toc-computing-gprime_e" class="nav-link" data-scroll-target="#computing-gprime_e">Computing <span class="math inline">\(g^{\prime}_{e}\)</span></a></li>
+  <li><a href="#the-model-solution" id="toc-the-model-solution" class="nav-link" data-scroll-target="#the-model-solution">The model solution</a></li>
+  <li><a href="#linear-time-iteration" id="toc-linear-time-iteration" class="nav-link" data-scroll-target="#linear-time-iteration">Linear Time Iteration</a></li>
+  <li><a href="#linear-time-iteration-2" id="toc-linear-time-iteration-2" class="nav-link" data-scroll-target="#linear-time-iteration-2">Linear Time Iteration (2)</a></li>
+  <li><a href="#linear-time-iteration-3" id="toc-linear-time-iteration-3" class="nav-link" data-scroll-target="#linear-time-iteration-3">Linear Time Iteration (3)</a></li>
+  <li><a href="#linear-time-iteration-4" id="toc-linear-time-iteration-4" class="nav-link" data-scroll-target="#linear-time-iteration-4">Linear Time Iteration (4)</a></li>
+  <li><a href="#linear-time-iteration-5" id="toc-linear-time-iteration-5" class="nav-link" data-scroll-target="#linear-time-iteration-5">Linear Time Iteration (5)</a></li>
+  </ul></li>
+  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#what-can-you-do-with-the-solution" id="toc-what-can-you-do-with-the-solution" class="nav-link" data-scroll-target="#what-can-you-do-with-the-solution">What can you do with the solution</a></li>
+  <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a></li>
+  <li><a href="#coming-next" id="toc-coming-next" class="nav-link" data-scroll-target="#coming-next">Coming Next</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="slides.pdf"><i class="bi bi-file-pdf"></i>Beamer</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../slides/session_1/handout.html">lectures</a></li><li class="breadcrumb-item"><a href="../../slides/session_1/handout.html">Solving DSGE models</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Solving DSGE models</h1>
+<p class="subtitle lead">Macro II - Fluctuations - ENSAE, 2023-2024</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Pablo Winant </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 20, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<div class="columns">
+<div class="column" style="width:80%;">
+<p>What is the main specificity of economic modeling?</p>
+<div class="fragment">
+<p>In (macro)economics, we <em>model</em> the behaviour of economic agents by specifying:</p>
+<ul>
+<li>their objective <span class="math display">\[\max_{c_t} E_t \sum_{s\geq t} \beta^s U(c_s)\]</span> <span class="math display">\[\max \pi_t\]</span> <span class="math display">\[\cdots\]</span></li>
+<li>their constraints (budget constraint, econ. environment…)</li>
+</ul>
+</div>
+</div><div class="column" style="width:20%;">
+<p><img src="assets/lucifer.jpg" class="fragment img-fluid"></p>
+</div>
+</div>
+<p>. . .</p>
+<div class="fragment">
+<p>This has important implications:</p>
+<ul>
+<li>macro models are <em>forward looking</em></li>
+<li>macro models need to be <strong>solved</strong></li>
+</ul>
+</div>
+<div class="fragment">
+<p>In many cases, there is not closed form for the solution -&gt; we need numerical techniques</p>
+</div>
+</section>
+<section id="dynare" class="level2">
+<h2 class="anchored" data-anchor-id="dynare">Dynare</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="incremental">
+<ul class="incremental">
+<li>1996: Michel Juillard created an opensource software to solve DSGE models
+<ul class="incremental">
+<li>DSGE: Dynamic Stochastic General Equilibrium</li>
+<li>usually solved around a steady-state</li>
+</ul></li>
+<li>Now about 10 contributors.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>It has been widely adopted:
+<ul>
+<li>early version in Gauss</li>
+<li>then Matlab/Octave/Scilab</li>
+<li>latest version in Julia</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/michel.jpeg" class="img-fluid figure-img"></p>
+<figcaption>Michel Juillard</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dsge-models-in-institutions" class="level2">
+<h2 class="anchored" data-anchor-id="dsge-models-in-institutions">DSGE Models in institutions</h2>
+<p>Nowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)</p>
+<ul>
+<li>they are usually based on the <em>midsize model</em> from Smets &amp; Wouters (10 equations)</li>
+<li>but have grown up a lot (&gt;&gt;100 equations)</li>
+</ul>
+<p>. . .</p>
+<p>Institutions (led by researchers) are (slowly) diversifying their model</p>
+<ul>
+<li>Computational General Equilibrium Models</li>
+<li>Agent-based</li>
+<li>Semi-structural models</li>
+<li>Heterogenous Agents Models</li>
+</ul>
+</section>
+</section>
+<section id="solving-a-model" class="level1">
+<h1>Solving a model</h1>
+<section id="model" class="level2">
+<h2 class="anchored" data-anchor-id="model">Model</h2>
+<p>A very concise representation of a model</p>
+<p><span class="math display">\[\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0\]</span></p>
+<div class="columns">
+<div class="column">
+<div class="fragment">
+<p>The <strong>problem</strong>:</p>
+<ul>
+<li><span class="math inline">\(y_t\in\mathbb{R}^n\)</span>: the vector of endogenous variables</li>
+<li><span class="math inline">\(\epsilon_t\in\mathbb{R}^{n_e}\)</span>: the vector of exogenous variables
+<ul>
+<li>we assume that <span class="math inline">\(\epsilon_t\)</span> is a zero-mean gaussian process</li>
+</ul></li>
+<li><span class="math inline">\(f: \mathbb{R}^n\rightarrow \mathbb{R}^n\)</span>: the model equations</li>
+</ul>
+</div>
+</div><div class="column">
+<div class="fragment">
+<p>The <strong>solution</strong>:</p>
+<ul>
+<li><span class="math inline">\(g\)</span> such that <span class="math display">\[\forall t, y_t = g(y_{t-1},\epsilon_t)\]</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="notes">
+<p>The situation is different when one is making a perfect foresight simulation.</p>
+</div>
+</section>
+<section id="the-timing-of-the-equations" class="level2">
+<h2 class="anchored" data-anchor-id="the-timing-of-the-equations">The timing of the equations</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In dynare the model equations are coded in the <code>model; ... ; end;</code> block.</p>
+</div>
+</div>
+<p>New information arrives with the innovations <span class="math inline">\(\epsilon_t\)</span>.</p>
+<p>At date <span class="math inline">\(t\)</span>, the information set is spanned by <span class="math inline">\(\mathcal{F}_t = \mathcal{F} (\cdots, \epsilon_{t-3}, \epsilon_{t-2}, \epsilon_{t-1}, \epsilon_t)\)</span></p>
+<p>By convention <em>an endogenous variable has a subscript <span class="math inline">\(t\)</span> if it is known first at date <span class="math inline">\(t\)</span></em>.</p>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p><strong>The timing of equations</strong></p>
+<p>Using Dynare’s timing conventions:</p>
+<ul>
+<li><p>Write the production function in the RBC</p></li>
+<li><p>Write the law of motion for capital <span class="math inline">\(k\)</span>, with a depreciation rate <span class="math inline">\(\delta\)</span> and investment <span class="math inline">\(i\)</span></p>
+<ul>
+<li>when is capital known?</li>
+<li>when is investment known?</li>
+</ul></li>
+<li><p>Add a multiplicative investment efficiency shock <span class="math inline">\(\chi_t\)</span>. Assume it is an <span class="math inline">\(AR1\)</span> driven by innovation <span class="math inline">\(\eta_t\)</span> and autocorrelation <span class="math inline">\(\rho_{\chi}\)</span></p></li>
+</ul>
+</section>
+<section id="steady-state" class="level2">
+<h2 class="anchored" data-anchor-id="steady-state">Steady-state</h2>
+<p>The deterministic steady-state satisfies:</p>
+<p><span class="math display">\[ f(\overline{y},\overline{y}, \overline{y}, 0)= 0\]</span></p>
+<p>Often, there is a closed-form solution.</p>
+<p>Otherwise, one must resort to a numerical solver to solve</p>
+<p><span class="math display">\[\overline{y}\rightarrow f(\overline{y},\overline{y}, \overline{y}, 0)\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In dynare the steady-state values are provided in the <code>steadystate_model; ... ; end;</code> block. One can check they are correct using the <code>check;</code> statement.</p>
+<p>To find numerically the steady-state: <code>steady;</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-implicit-system" class="level2" data-auto-animate="true">
+<h2 data-auto-animate="true" class="anchored" data-anchor-id="the-implicit-system">The implicit system</h2>
+<p>Replacing the solution <span class="math display">\[y_t = g(y_{t-1},\epsilon_t)\]</span> in the system <span class="math display">\[\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0\]</span></p>
+<p>we obtain:</p>
+<p><span class="math display">\[\mathbb{E}_t \left[ f(g(g(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), g(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0\]</span></p>
+<p>It is an equation defining implicitly the function <span class="math inline">\(g()\)</span></p>
+</section>
+<section id="the-state-space" class="level2" data-auto-animate="true">
+<h2 data-auto-animate="true" class="anchored" data-anchor-id="the-state-space">The state-space</h2>
+<p><span class="math display">\[\mathbb{E}_t \left[ f(g(g(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), g(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0\]</span></p>
+<p>In this expression, <span class="math inline">\(y_{t-1},\epsilon_t\)</span> is the state-space.</p>
+<p>. . .</p>
+<p>Dropping the time subscripts, the equation must be satisfied for any realization of <span class="math inline">\((y,\epsilon)\)</span> <span class="math display">\[\forall (y,\epsilon)\  \Phi(g)(y,\epsilon) = \mathbb{E}_{\epsilon'} \left[ f(g(g(y,\epsilon),\epsilon'), g(y,\epsilon), y, \epsilon) \right]= 0\]</span></p>
+<p>It is a functional equation <span class="math inline">\(\Phi(g)=0\)</span></p>
+</section>
+<section id="expected-shocks" class="level2">
+<h2 class="anchored" data-anchor-id="expected-shocks">Expected shocks</h2>
+<p>First order approximation:</p>
+<ul>
+<li>Assume <span class="math inline">\(|y_t-\overline{y}|&lt;&lt;1\)</span>,<span class="math inline">\(|\epsilon|&lt;&lt;1\)</span>,<span class="math inline">\(|\epsilon'|&lt;&lt;1\)</span></li>
+</ul>
+<p>Perform a Taylor expansion with respect to future shock:</p>
+<p><span class="math display">\[\begin{align}
+&amp; &amp; \mathbb{E}_{\epsilon'} \left[ f(g(g(y,\epsilon),\epsilon'), g(y,\epsilon), y, \epsilon) \right]  \\
+= &amp; &amp;  \mathbb{E}_{\epsilon'}\left[ f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) \right] \\
+  &amp; &amp; +  \mathbb{E}_{\epsilon'} \left[ f^{\prime}_{y_{t+1}}(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) g^{\prime}_{\epsilon} \epsilon^\prime\right] + o(\epsilon^{\prime}) \\
+\approx &amp; &amp; f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon)
+\end{align}\]</span></p>
+<p>. . .</p>
+<p>This uses the fact that <span class="math inline">\(\mathbb{E}\left[ \epsilon^{\prime}\right] = 0\)</span>.</p>
+<p>At first order, expected shocks play no role.</p>
+<p>To capture precautionary behaviour (like risk premia), we would need to increase the approximation order.</p>
+</section>
+<section id="first-order-perturbation" class="level2">
+<h2 class="anchored" data-anchor-id="first-order-perturbation">First order perturbation</h2>
+<p>We are left with the system:</p>
+<p><span class="math display">\[F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0\]</span></p>
+<p>We can now use a variant of the <em>implicit function theorem</em> to recover a first approximation of <span class="math inline">\(g\)</span> as: <span class="math display">\[g(y,\epsilon) = \overline{y} + g^{\prime}_{y} (y-\overline{y}) + g^{\prime}_e \epsilon_t \]</span></p>
+<p>. . .</p>
+<p>We can obtain the unknown quantities <span class="math inline">\(g^{\prime}_y\)</span>, and <span class="math inline">\(g^{\prime}_e\)</span> using the <em>method of undeterminate coefficients</em>:</p>
+<p>Plug the first approximation into the system and write the conditions <span class="math display">\[F^{\prime}_y(\overline{y}, 0) = 0\]</span> <span class="math display">\[F^{\prime}_\epsilon(\overline{y}, 0) = 0\]</span></p>
+</section>
+<section id="computing-gprime_y" class="level2">
+<h2 class="anchored" data-anchor-id="computing-gprime_y">Computing <span class="math inline">\(g^{\prime}_y\)</span></h2>
+<p>Recall the system: <span class="math display">\[F(y,\epsilon) = f(g(g(y,0),\epsilon), g(y,\epsilon), y, \epsilon) = 0\]</span></p>
+<p>We have <span class="math display">\[F^{\prime}_y(\overline{y}, 0) = f^{\prime}_{y_{t+1}} g^{\prime}_y g^{\prime}_y + f^{\prime}_{y_{t}} g^{\prime}_y + f^{\prime}_{y_{t-1}} = 0 \]</span></p>
+<p>. . .</p>
+<p>This is a specific Riccatti equation <span class="math display">\[A X^2 + B X + C\]</span> where <span class="math inline">\(A,B,C\)</span> and <span class="math inline">\(X=g^{\prime}_y\)</span> are square matrices <span class="math inline">\(\in \mathbb{R}^n \times \mathbb{R}^n\)</span></p>
+</section>
+<section id="first-order-deterministic-model" class="level2">
+<h2 class="anchored" data-anchor-id="first-order-deterministic-model">First Order Deterministic Model</h2>
+<p>Let’s pause a minute to observe the first order deterministic model: <span class="math display">\[A X^2 + B X + C\]</span></p>
+<p>From our intuition in dimension 1, we know there must be multiple solutions</p>
+<ul>
+<li>how do we find them?</li>
+<li>how do we select the right ones?</li>
+</ul>
+<p>I the absence of shocks the dynamics of the model are given by <span class="math display">\[y_t = X y_{t-1}\]</span></p>
+<p>What is the condition for the model to be stationary?</p>
+<p>. . .</p>
+<p>-&gt; the biggest eigenvalue of <span class="math inline">\(X\)</span> should be smaller than 1</p>
+<div class="notes">
+<p>Develop intuition in dimension 1.</p>
+</div>
+</section>
+<section id="multiplicity-of-solution" class="level2">
+<h2 class="anchored" data-anchor-id="multiplicity-of-solution">Multiplicity of solution</h2>
+<p>It is possible to show that the system is associated with <span class="math inline">\(2 n\)</span> generalized eigenvalues:</p>
+<p><span class="math display">\[|\lambda_1| \leq \cdots \leq |\lambda_{2 n}|\]</span></p>
+<p>For each choice <span class="math inline">\(C\)</span> of <span class="math inline">\(n\)</span> eigenvalues (<span class="math inline">\(|C|=n\)</span>), a specific recursive solution <span class="math inline">\(X_C\)</span> can be <em>constructed</em>. It has eigenvalues <span class="math inline">\(C\)</span>.</p>
+<p>. . .</p>
+<p>This yields at least <span class="math inline">\(\left(\begin{matrix} 2 n \\ n \end{matrix}\right)\)</span> different combinations.</p>
+<p>. . .</p>
+<p>A model is well defined when there is <strong>exactly one solution that is non divergent</strong>.</p>
+<p>This is equivalent to:</p>
+<p><span class="math display">\[|\lambda_1| \leq \cdots \leq |\lambda_{n}| \leq 1 &lt; |\lambda_{n+1}| \leq \cdots \leq |\lambda_{2 n}|\]</span></p>
+</section>
+<section id="example-1" class="level2">
+<h2 class="anchored" data-anchor-id="example-1">Example 1</h2>
+<p>Forward looking inflation:</p>
+<p><span class="math display">\[\pi_t = \alpha \pi_{t+1}\]</span> with <span class="math inline">\(\alpha&lt;1\)</span>.</p>
+<p>Is it well defined?</p>
+<p>. . .</p>
+<p>We can rewrite the system as:</p>
+<p><span class="math display">\[\alpha \pi_{t+1} - \pi_t + 0 \pi_{t-1}  = 0\]</span></p>
+<p>or</p>
+<p><span class="math display">\[\pi_{t+1} - (\frac{1}{\alpha} + 0 )\pi_t + \left(\frac{1}{\alpha} 0\right) \pi_{t-1} = 0\]</span></p>
+<p>. . .</p>
+<p>The generalized eigenvalues are <span class="math inline">\(0\leq 1 &lt; \frac{1}{\alpha}\)</span>.</p>
+<p>. . .</p>
+<p>The unique stable solution is <span class="math inline">\(\pi_t=0 \pi_{t-1}\)</span></p>
+</section>
+<section id="example-2" class="level2">
+<h2 class="anchored" data-anchor-id="example-2">Example 2</h2>
+<p>Debt accumulation equation by a rational agent:</p>
+<p><span class="math display">\[b_{t+1} - (1+\frac{1}{\beta}) b_t + \frac{1}{\beta} b_{t-1} = 0\]</span></p>
+<p>Is it well-defined?</p>
+<p>. . .</p>
+<p>Two generalized eigenvalues <span class="math inline">\(\lambda_1=1 &lt; \lambda_2=\frac{1}{\beta}\)</span></p>
+<p>. . .</p>
+<p>The unique non-diverging solution is <span class="math inline">\(b_t = b_{t-1}\)</span>.</p>
+<ul>
+<li>it is a <em>unit-root</em>: any initial deviation in <span class="math inline">\(b_{t-1}\)</span> has persistent effects</li>
+</ul>
+</section>
+<section id="example-3" class="level2">
+<h2 class="anchored" data-anchor-id="example-3">Example 3</h2>
+<p>Productivity process: <span class="math display">\[z_t = \rho z_{t-1}\]</span> with <span class="math inline">\(\rho&lt;1\)</span>: <span class="fragment">well defined</span></p>
+<p>. . .</p>
+<p>In that case there is a hidden infinite eigenvalue <span class="math inline">\(\infty\)</span> associated to <span class="math inline">\(z_{t+1}\)</span>.</p>
+<p>. . .</p>
+<p>To see why consider the system associated with eigenvalues <span class="math inline">\(m\)</span> and <span class="math inline">\(\rho\)</span>: <span class="math display">\[z_{t+1} - (m+\rho) z_t + m \rho z_{t-1} = 0\]</span></p>
+<p><span class="math display">\[\frac{1}{m} z_{t+1} - (1+\frac{\rho}{m}) z_t + \rho z_{t-1} = 0\]</span></p>
+<p>Which corresponds to the initial model when <span class="math inline">\(m=\infty\)</span></p>
+<p>. . .</p>
+<p>The generalized eigenvalues are <span class="math inline">\(\lambda_1 = \rho \leq 1 &lt; \lambda_2 = \infty\)</span></p>
+<p>More generally, any variable that does not appear in <span class="math inline">\(t+1\)</span> creates one infinite generalized eigenvalue.</p>
+</section>
+<section id="a-criterium-for-well-definedness" class="level2">
+<h2 class="anchored" data-anchor-id="a-criterium-for-well-definedness">A criterium for well-definedness</h2>
+<p>Looking again at the list of eigenvalues we set aside the infinite ones.</p>
+<p>The model is well specified iff we can sort the eigenvalues as:</p>
+<p><span class="math display">\[|\lambda_1| \leq \cdots \leq |\lambda_{n}| \leq 1 &lt; |\lambda_{n+1}| \leq \cdots  |\lambda_{n+k}| \leq \underbrace{|\lambda_{n+k+1}| \cdots \leq |\lambda_{2 n}|}_{\text{infinite eigenvalues}}\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Blanchard-Kahn criterium
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The model satisfies the Blanchard-Kahn criterium if the number of eigenvalues greater than one, is exactly equal to the number of variables <em>appearing</em> in <span class="math inline">\(t+1\)</span>.</p>
+<p>In that case the model is well-defined.</p>
+</div>
+</div>
+</section>
+<section id="computing-the-solution" class="level2">
+<h2 class="anchored" data-anchor-id="computing-the-solution">Computing the solution</h2>
+<p>There are several classical methods to compute the solution to the algebraic Riccatti equation: <span class="math display">\[A X^2+ B X + C=0\]</span></p>
+<ul>
+<li>qz decomposition
+<ul>
+<li>traditionnally used in the DSGE literature since Chris Sims</li>
+<li>a little bit unintuitive</li>
+</ul></li>
+<li>cyclic reduction
+<ul>
+<li>new default in dynare, more adequate for big models</li>
+</ul></li>
+<li>linear time iteration
+<ul>
+<li>conceptually very simple</li>
+</ul></li>
+</ul>
+</section>
+<section id="computing-gprime_e" class="level2">
+<h2 class="anchored" data-anchor-id="computing-gprime_e">Computing <span class="math inline">\(g^{\prime}_{e}\)</span></h2>
+<p>Now we have <span class="math inline">\(g^{\prime}_y\)</span>, how do we get <span class="math inline">\(g^{\prime}_{e}\)</span>?</p>
+<p>Recall: <span class="math display">\[F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0\]</span></p>
+<p>We have <span class="math display">\[F^{\prime}_e(\overline{y}, 0) =  f^{\prime}_{y_{t+1}}  g^{\prime}_y  g^{\prime}_e + f^{\prime}_{y_{t}} g^{\prime}_e + f^{\prime}_{\epsilon_t} = 0 \]</span></p>
+<p>Now this is easy:</p>
+<p><span class="math display">\[g^{\prime}_e = - (f^{\prime}_{y_{t+1}}  g^{\prime}_y + f^{\prime}_{y_{t}} )^{-1}  f^{\prime}_{\epsilon_t} = 0 \]</span></p>
+</section>
+<section id="the-model-solution" class="level2">
+<h2 class="anchored" data-anchor-id="the-model-solution">The model solution</h2>
+<p>The result of the model solution: <span class="math display">\[y_t = g_y y_{t-1} + g_e \epsilon_t\]</span></p>
+<p>It is an AR1, driven by exogenous shock <span class="math inline">\(\epsilon_t\)</span>.</p>
+<p>. . .</p>
+<p>Because it is a well known structure, one can investigate the model with</p>
+<ul>
+<li>impulse response functions</li>
+<li>stochastic simulations</li>
+</ul>
+<p>. . .</p>
+<p>Then to compare the model to the data we compute</p>
+<ul>
+<li>implied moments</li>
+<li>likelihood</li>
+</ul>
+<p>Optimizing the fit to the data is called <em>model</em> estimation</p>
+</section>
+<section id="linear-time-iteration" class="level2">
+<h2 class="anchored" data-anchor-id="linear-time-iteration">Linear Time Iteration</h2>
+<p>Recall the system to solve: <span class="math display">\[F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0\]</span></p>
+<p>but now assume the decision rules today and tomorrow are different:</p>
+<ul>
+<li>today: <span class="math inline">\(y_t = g(y_{t-1}, \epsilon_t) = \overline{y} + X y_{t-1} + g_y \epsilon_t\)</span></li>
+<li>tomorrow: <span class="math inline">\(y_{t+1} = \tilde{g}(y_t, \epsilon_{t+1}) = \overline{y} + \tilde{X} y_{t-1} + \tilde{g}_y \epsilon_t\)</span></li>
+</ul>
+<p>Then the Ricatti equation is written:</p>
+<p><span class="math display">\[A \tilde{X} X + B X + C = 0\]</span></p>
+</section>
+<section id="linear-time-iteration-2" class="level2">
+<h2 class="anchored" data-anchor-id="linear-time-iteration-2">Linear Time Iteration (2)</h2>
+<p>The linear time iteration algorithm consists in solving the decision rule <span class="math inline">\(X\)</span> today as a function of decision rule tomorrow <span class="math inline">\(\tilde{X}\)</span>.</p>
+<p>This corresponds to the simple formula:</p>
+<p><span class="math display">\[X = -(A\tilde{X} + B)^{-1} C\]</span></p>
+<p>And the full algorithm can be described as:</p>
+<ul>
+<li>choose <span class="math inline">\(X_0\)</span></li>
+<li>for any <span class="math inline">\(X_n\)</span>, compute <span class="math inline">\(X_{n+1} = T(X_n) = -(A X_n + B)^{-1} C\)</span>
+<ul>
+<li>repeat until convergence</li>
+</ul></li>
+</ul>
+</section>
+<section id="linear-time-iteration-3" class="level2">
+<h2 class="anchored" data-anchor-id="linear-time-iteration-3">Linear Time Iteration (3)</h2>
+<p>It can be shown that, starting from a random initial guess, the linear time-iteration algorithm converges to the solution <span class="math inline">\(X\)</span> with the smallest modulus:</p>
+<p><span class="math display">\[\underbrace{|\lambda_1| \leq \cdots  \leq |\lambda_n|}_{\text{Selected eigenvalues}} \leq |\lambda_{n+1}|\cdots \leq |\lambda_{2n}|\]</span></p>
+<p>In other words, it finds the right solution when the model is well specified.</p>
+<p>How do you check it is well specified?</p>
+<ul>
+<li><span class="math inline">\(\lambda_n\)</span> is the biggest eigenvalue of solution <span class="math inline">\(X\)</span></li>
+<li>what about <span class="math inline">\(\lambda_{n+1}\)</span>?
+<ul>
+<li><span class="math inline">\(\frac{1}{\lambda_{n+1}}\)</span> is the biggest eigenvalue of <span class="math inline">\((AX+B)^{-1}A\)</span></li>
+<li>jump to <a href="#sec-conclusion" class="quarto-xref">Section&nbsp;3</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="linear-time-iteration-4" class="level2" data-background-color="lightgrey">
+<h2 data-background-color="lightgrey" class="anchored" data-anchor-id="linear-time-iteration-4">Linear Time Iteration (4)</h2>
+<p>Define <span class="math display">\[M(\lambda) = A\lambda^2 + B \lambda + C\]</span></p>
+<p>For any solution <span class="math inline">\(X\)</span>, <span class="math inline">\(M(\lambda)\)</span> can be factorized as: <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><span class="math display">\[M(\lambda)=(\lambda A + A X + B)(\lambda I -X)\]</span></p>
+<p>and</p>
+<p><span class="math display">\[det(M(\lambda)) = \underbrace{det(\lambda A + A X + B)}_{Q(\lambda)}det(\lambda I -X)\]</span></p>
+<p>By construction <span class="math inline">\(Q(\lambda)\)</span> is a polynomial whose roots are those that are not selected by the solution i.e.&nbsp;<span class="math inline">\(\Lambda\setminus Sp(X)\)</span>.</p>
+</section>
+<section id="linear-time-iteration-5" class="level2" data-background-color="lightgrey">
+<h2 data-background-color="lightgrey" class="anchored" data-anchor-id="linear-time-iteration-5">Linear Time Iteration (5)</h2>
+<p>For <span class="math inline">\(\lambda \neq 0\)</span> we have:</p>
+<p><span class="math display">\[\lambda \in Sp((A X +B )^{-1} A)\]</span> <span class="math display">\[\iff  det( (A X +B )^{-1})A - I\lambda )=0\]</span> <span class="math display">\[\iff  det( \frac{1}{\lambda} A - I (A X +B )  )=0\]</span> <span class="math display">\[\iff Q(\frac{1}{\lambda})=0\]</span> <span class="math display">\[\iff \frac{1}{\lambda} \in G \setminus Sp(X)\]</span></p>
+<p>In words, <span class="math inline">\((AX+B)^{-1}\)</span> contains all the eigenvalues that have been rejected by the selection of <span class="math inline">\(X\)</span>.</p>
+<p>In particular, <span class="math inline">\(\rho((AX+B)^{-1})A)=1/\min(G\setminus Sp(X))\)</span></p>
+</section>
+</section>
+<section id="sec-conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="what-can-you-do-with-the-solution" class="level2">
+<h2 class="anchored" data-anchor-id="what-can-you-do-with-the-solution">What can you do with the solution</h2>
+<p>The solution of a model found by Dynare has an especially simple form: an AR1</p>
+<ul>
+<li><span class="math inline">\(y_t = X y_{t-1} + Y \epsilon_t\)</span></li>
+<li>where the covariances <span class="math inline">\(\Sigma\)</span> of <span class="math inline">\(\epsilon_t\)</span> can be chosen by the modeler</li>
+</ul>
+<p>. . .</p>
+<p>With this solution we can (cf next TD)</p>
+<ul>
+<li>compute (conditional and unconditional) moments</li>
+<li>perform stochastic simulations, impulse response function</li>
+</ul>
+<p>. . .</p>
+</section>
+<section id="going-further" class="level2">
+<h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
+<p>Taking the model to the data with Dynare</p>
+<ul>
+<li>“estimate” the model: compute the likelihood of a solution and maximize it by choosing the right parameters</li>
+<li>“identify” shocks in the data</li>
+</ul>
+<p>Other functions</p>
+<ul>
+<li>higher order approximation</li>
+<li>ramsey plan</li>
+<li>discretionary policy</li>
+<li>…</li>
+</ul>
+</section>
+<section id="coming-next" class="level2">
+<h2 class="anchored" data-anchor-id="coming-next">Coming Next</h2>
+<p><img src="assets/ea0.jpg" class="img-fluid"></p>
+<p>Many models</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Special case of Bezout theorem. Easy to check in that case<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
