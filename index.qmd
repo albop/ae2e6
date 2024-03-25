@@ -1,0 +1,19 @@
+---
+title: "Macro II - Fluctuations"
+listing:
+  id: sample-listings
+  type: table
+  sort-ui: false
+  filter-ui: false
+  contents: 
+    - slides/session_*/index.qmd
+    - slides/prep_*/wip.qmd
+  sort: date
+  fields: [date, title]
+---
+
+## Schedule (WIP)
+
+::: {#sample-listings}
+
+:::

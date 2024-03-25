@@ -1,0 +1,19 @@
+project:
+  type: website
+
+website:
+  title: "Macro II - Fluctuations"
+  search: false
+  sidebar:
+      style: "docked"
+      contents:
+        - section: lectures
+          contents:
+            - slides/session_1/index.qmd
+
+
+format:
+  html:
+    theme: default
+    css: styles.css
+    toc: true

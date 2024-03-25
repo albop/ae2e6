@@ -1,0 +1,594 @@
+---
+title: "Solving DSGE models"
+date: 2024/03/20
+subtitle: "Macro II - Fluctuations - ENSAE, 2023-2024"
+author: Pablo Winant
+format:
+    revealjs:
+        navigation-mode: linear
+        layout: wide
+        toc: true
+        toc-depth: 1
+        toc-title: Plan
+        width: 1920
+        height: 1080
+    beamer:
+        output-file: slides.pdf
+    html:
+        output-file: handout.html
+
+---
+
+# Introduction
+
+## 
+
+::: columns
+
+:::: {.column width=80%}
+
+What is the main specificity of economic modeling?
+
+::: {.fragment}
+
+In (macro)economics, we *model* the behaviour of economic agents by specifying:
+
+- their objective $$\max_{c_t} E_t \sum_{s\geq t} \beta^s U(c_s)$$ $$\max \pi_t$$ $$\cdots$$
+- their constraints (budget constraint, econ. environment...)
+
+:::
+
+::::
+
+:::: {.column width=20%}
+
+![](assets/lucifer.jpg){.fragment}
+
+
+
+::::
+:::
+
+. . .
+
+::: fragment
+
+This has important implications:
+
+- macro models are *forward looking*
+- macro models need to be __solved__
+
+:::
+
+::: fragment
+
+In many cases, there is not closed form for the solution -> we need numerical techniques
+
+:::
+
+## Dynare
+
+::: columns
+
+:::: {.column width=60%}
+
+::::: {.incremental}
+
+- 1996: Michel Juillard created an opensource software to solve DSGE models
+    - DSGE: Dynamic Stochastic General Equilibrium
+    - usually solved around a steady-state
+- Now about 10 contributors.
+
+:::::
+
+:::: {.fragment}
+
+- It has been widely adopted:
+    - early version in Gauss
+    - then Matlab/Octave/Scilab
+    - latest version in Julia
+
+::::
+
+
+::::
+
+:::: {.column width=40%}
+
+![Michel Juillard](assets/michel.jpeg)
+
+::::
+
+:::
+
+## DSGE Models in institutions
+
+Nowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)
+
+- they are usually based on the *midsize model* from Smets & Wouters (10 equations)
+- but have grown up a lot (>>100 equations)
+
+. . .
+
+Institutions (led by researchers) are (slowly) diversifying their model
+
+- Computational General Equilibrium Models
+- Agent-based
+- Semi-structural models
+- Heterogenous Agents Models
+
+# Solving a model
+
+## Model
+
+A very concise representation of a model
+
+$$\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0$$
+
+::: columns
+
+:::: column 
+
+::::: fragment
+
+The __problem__:
+
+- $y_t\in\mathbb{R}^n$: the vector of endogenous variables
+- $\epsilon_t\in\mathbb{R}^{n_e}$: the vector of exogenous variables
+    - we assume that $\epsilon_t$ is a zero-mean gaussian process
+- $f: \mathbb{R}^n\rightarrow \mathbb{R}^n$: the model equations
+
+:::::
+::::
+
+:::: column
+
+::::: fragment
+
+The __solution__:
+
+- $g$ such that $$\forall t, y_t = g(y_{t-1},\epsilon_t)$$
+
+:::::
+
+::::
+
+:::
+
+::: notes
+The situation is different when one is making a perfect foresight simulation.
+:::
+
+## The timing of the equations
+
+::: {.callout-tip}
+
+In dynare the model equations are coded in the `model; ... ; end;` block.
+
+:::
+
+New information arrives with the innovations $\epsilon_t$. 
+
+At date $t$, the information set is spanned by $\mathcal{F}_t = \mathcal{F} (\cdots, \epsilon_{t-3}, \epsilon_{t-2}, \epsilon_{t-1}, \epsilon_t)$
+
+By convention *an endogenous variable has a subscript $t$ if it is known first at date $t$*.
+
+## Example
+
+__The timing of equations__
+
+Using Dynare's timing conventions:
+
+- Write the production function in the RBC
+
+- Write the law of motion for capital $k$, with a depreciation rate $\delta$ and investment $i$
+    - when is capital known?
+    - when is investment known?
+
+- Add a multiplicative investment efficiency shock $\chi_t$. Assume it is an $AR1$ driven by innovation $\eta_t$ and autocorrelation $\rho_{\chi}$
+
+
+##  Steady-state
+
+The deterministic steady-state satisfies:
+
+$$ f(\overline{y},\overline{y}, \overline{y}, 0)= 0$$
+
+Often, there is a closed-form solution.
+
+Otherwise, one must resort to a numerical solver to solve
+
+$$\overline{y}\rightarrow f(\overline{y},\overline{y}, \overline{y}, 0)$$
+
+
+::: {.callout-tip collapse="true"}
+
+In dynare the steady-state values are provided in the `steadystate_model; ... ; end;` block. One can check they are correct using the `check;` statement.
+
+To find numerically the steady-state: `steady;`.
+
+:::
+
+
+## The implicit system {auto-animate="true"}
+
+Replacing the solution $$y_t = g(y_{t-1},\epsilon_t)$$ in the system
+$$\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0$$
+
+we obtain:
+
+$$\mathbb{E}_t \left[ f(g(g(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), g(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0$$
+
+It is an equation defining implicitly the function $g()$
+
+## The state-space{auto-animate="true"}
+
+$$\mathbb{E}_t \left[ f(g(g(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), g(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0$$
+
+In this expression, $y_{t-1},\epsilon_t$ is the state-space.
+
+. . .
+
+Dropping the time subscripts, the equation must be satisfied for any realization of $(y,\epsilon)$
+$$\forall (y,\epsilon)\  \Phi(g)(y,\epsilon) = \mathbb{E}_{\epsilon'} \left[ f(g(g(y,\epsilon),\epsilon'), g(y,\epsilon), y, \epsilon) \right]= 0$$
+
+It is a functional equation $\Phi(g)=0$
+
+## Expected shocks
+
+First order approximation:
+
+- Assume $|y_t-\overline{y}|<<1$,$|\epsilon|<<1$,$|\epsilon'|<<1$
+
+Perform a Taylor expansion with respect to future shock:
+
+\begin{align}
+ & & \mathbb{E}_{\epsilon'} \left[ f(g(g(y,\epsilon),\epsilon'), g(y,\epsilon), y, \epsilon) \right]  \\
+= & &  \mathbb{E}_{\epsilon'}\left[ f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) \right] \\ 
+  & & +  \mathbb{E}_{\epsilon'} \left[ f^{\prime}_{y_{t+1}}(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) g^{\prime}_{\epsilon} \epsilon^\prime\right] + o(\epsilon^{\prime}) \\
+\approx & & f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon)
+\end{align}
+
+. . .
+
+This uses the fact that $\mathbb{E}\left[ \epsilon^{\prime}\right] = 0$. 
+
+At first order, expected shocks play no role.
+
+To capture precautionary behaviour (like risk premia), we would need to increase the approximation order.
+
+## First order perturbation
+
+We are left with the system:
+
+$$F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0$$
+
+We can now use a variant of the *implicit function theorem* to recover a first approximation of $g$ as:
+$$g(y,\epsilon) = \overline{y} + g^{\prime}_{y} (y-\overline{y}) + g^{\prime}_e \epsilon_t $$
+
+. . .
+ 
+We can obtain the unknown quantities $g^{\prime}_y$,  and $g^{\prime}_e$ using the *method of undeterminate coefficients*:
+
+Plug the first approximation into the system and write the conditions $$F^{\prime}_y(\overline{y}, 0) = 0$$ $$F^{\prime}_\epsilon(\overline{y}, 0) = 0$$
+
+
+
+## Computing $g^{\prime}_y$
+
+Recall the system:
+$$F(y,\epsilon) = f(g(g(y,0),\epsilon), g(y,\epsilon), y, \epsilon) = 0$$
+
+
+We have $$F^{\prime}_y(\overline{y}, 0) = f^{\prime}_{y_{t+1}} g^{\prime}_y g^{\prime}_y + f^{\prime}_{y_{t}} g^{\prime}_y + f^{\prime}_{y_{t-1}} = 0 $$
+
+. . .
+
+This is a specific Riccatti equation  $$A X^2 + B X + C$$ where $A,B,C$ and $X=g^{\prime}_y$ are square matrices $\in \mathbb{R}^n \times \mathbb{R}^n$
+
+## First Order Deterministic Model
+
+Let's pause a minute to observe the first order deterministic model:
+$$A X^2 + B X + C$$
+
+From our intuition in dimension 1, we know there must be multiple solutions
+
+- how do we find them?
+- how do we select the right ones?
+
+I the absence of shocks the dynamics of the model are given by $$y_t = X y_{t-1}$$
+
+What is the condition for the model to be stationary?
+
+. . .
+
+-> the biggest eigenvalue of $X$ should be smaller than 1
+
+::: notes
+
+Develop intuition in dimension 1.
+
+:::
+
+
+## Multiplicity of solution
+
+It is possible to show that the system is associated with $2 n$ generalized eigenvalues:
+
+$$|\lambda_1| \leq \cdots \leq |\lambda_{2 n}|$$
+
+For each choice $C$ of $n$ eigenvalues ($|C|=n$), a specific recursive solution $X_C$ can be *constructed*. It has eigenvalues $C$.
+
+. . .
+
+This yields at least $\left(\begin{matrix} 2 n \\ n \end{matrix}\right)$ different combinations.
+
+. . .
+
+A model is well defined when there is __exactly one solution that is non divergent__.
+
+This is equivalent to:
+
+$$|\lambda_1| \leq \cdots \leq |\lambda_{n}| \leq 1 < |\lambda_{n+1}| \leq \cdots \leq |\lambda_{2 n}|$$
+
+
+
+## Example 1
+
+Forward looking inflation:
+
+$$\pi_t = \alpha \pi_{t+1}$$
+with $\alpha<1$. 
+
+Is it well defined?
+
+. . .
+
+We can rewrite the system as:
+
+$$\alpha \pi_{t+1} - \pi_t + 0 \pi_{t-1}  = 0$$
+
+or
+
+$$\pi_{t+1} - (\frac{1}{\alpha} + 0 )\pi_t + \left(\frac{1}{\alpha} 0\right) \pi_{t-1} = 0$$
+
+. . .
+
+The generalized eigenvalues are $0\leq 1 < \frac{1}{\alpha}$.
+
+. . .
+
+The unique stable solution is $\pi_t=0 \pi_{t-1}$
+
+
+## Example 2
+
+Debt accumulation equation by a rational agent:
+
+$$b_{t+1} - (1+\frac{1}{\beta}) b_t + \frac{1}{\beta} b_{t-1} = 0$$
+
+Is it well-defined?
+
+. . .
+
+Two generalized eigenvalues $\lambda_1=1 < \lambda_2=\frac{1}{\beta}$
+
+. . .
+
+The unique non-diverging solution is $b_t = b_{t-1}$.
+
+- it is a *unit-root*: any initial deviation in $b_{t-1}$ has persistent effects
+
+
+## Example 3 
+
+Productivity process: 
+$$z_t = \rho z_{t-1}$$
+with $\rho<1$: [well defined]{.fragment}
+
+. . .
+
+In that case there is a hidden infinite eigenvalue $\infty$ associated to $z_{t+1}$.
+
+. . .
+
+To see why consider the system associated with eigenvalues $m$ and $\rho$:
+$$z_{t+1} - (m+\rho) z_t + m \rho z_{t-1} = 0$$
+
+$$\frac{1}{m} z_{t+1} - (1+\frac{\rho}{m}) z_t + \rho z_{t-1} = 0$$
+
+Which corresponds to the initial model when $m=\infty$
+
+. . .
+
+
+The generalized eigenvalues are $\lambda_1 = \rho \leq 1 < \lambda_2 = \infty$
+
+More generally, any variable that does not appear in $t+1$ creates one infinite generalized eigenvalue.
+
+## A criterium for well-definedness
+
+Looking again at the list of eigenvalues we set aside the infinite ones.
+
+The model is well specified iff we can sort the eigenvalues as:
+
+$$|\lambda_1| \leq \cdots \leq |\lambda_{n}| \leq 1 < |\lambda_{n+1}| \leq \cdots  |\lambda_{n+k}| \leq \underbrace{|\lambda_{n+k+1}| \cdots \leq |\lambda_{2 n}|}_{\text{infinite eigenvalues}}$$
+
+
+::: {.callout-note}
+
+### Blanchard-Kahn criterium
+
+The model satisfies the Blanchard-Kahn criterium if the number of eigenvalues greater than one, is exactly equal to the number of variables *appearing* in $t+1$.
+
+In that case the model is well-defined.
+
+:::
+
+## Computing the solution
+
+There are several classical methods to compute the solution to the algebraic Riccatti equation: $$A X^2+ B X + C=0$$
+
+- qz decomposition
+    - traditionnally used in the DSGE literature since Chris Sims
+    - a little bit unintuitive
+- cyclic reduction
+    - new default in dynare, more adequate for big models
+- linear time iteration
+    - conceptually very simple
+
+## Computing $g^{\prime}_{e}$
+
+Now we have $g^{\prime}_y$, how do we get $g^{\prime}_{e}$?
+
+Recall:
+$$F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0$$
+
+
+We have $$F^{\prime}_e(\overline{y}, 0) =  f^{\prime}_{y_{t+1}}  g^{\prime}_y  g^{\prime}_e + f^{\prime}_{y_{t}} g^{\prime}_e + f^{\prime}_{\epsilon_t} = 0 $$
+
+Now this is easy:
+
+$$g^{\prime}_e = - (f^{\prime}_{y_{t+1}}  g^{\prime}_y + f^{\prime}_{y_{t}} )^{-1}  f^{\prime}_{\epsilon_t} = 0 $$
+
+
+## The model solution
+
+The result of the model solution:
+$$y_t = g_y y_{t-1} + g_e \epsilon_t$$
+
+It is an AR1, driven by exogenous shock $\epsilon_t$.
+
+. . .
+
+Because it is a well known structure, one can investigate the model with
+
+- impulse response functions
+- stochastic simulations
+
+. . .
+
+Then to compare the model to the data we compute
+
+- implied moments
+- likelihood
+
+Optimizing the fit to the data is called *model* estimation
+
+
+## Linear Time Iteration
+
+Recall the system to solve:
+$$F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0$$
+
+but now assume the decision rules today and tomorrow are different:
+
+- today: $y_t = g(y_{t-1}, \epsilon_t) = \overline{y} + X y_{t-1} + g_y \epsilon_t$
+- tomorrow: $y_{t+1} = \tilde{g}(y_t, \epsilon_{t+1}) = \overline{y} + \tilde{X} y_{t-1} + \tilde{g}_y \epsilon_t$
+
+Then the Ricatti equation is written:
+
+$$A \tilde{X} X + B X + C = 0$$
+
+
+## Linear Time Iteration (2)
+
+The linear time iteration algorithm consists in solving the decision rule $X$  today as a function of decision rule tomorrow $\tilde{X}$.
+
+This corresponds to the simple formula:
+
+$$X = -(A\tilde{X} + B)^{-1} C$$
+
+And the full algorithm can be described as:
+
+- choose $X_0$
+- for any $X_n$, compute $X_{n+1} = T(X_n) = -(A X_n + B)^{-1} C$
+    - repeat until convergence
+
+## Linear Time Iteration (3)
+
+It can be shown that, starting from a random initial guess, the linear time-iteration algorithm converges to the solution $X$ with the smallest modulus:
+
+$$\underbrace{|\lambda_1| \leq \cdots  \leq |\lambda_n|}_{\text{Selected eigenvalues}} \leq |\lambda_{n+1}|\cdots \leq |\lambda_{2n}|$$
+
+In other words, it finds the right solution when the model is well specified.
+
+How do you check it is well specified?
+
+- $\lambda_n$ is the biggest eigenvalue of solution $X$
+- what about $\lambda_{n+1}$?
+    - $\frac{1}{\lambda_{n+1}}$ is the biggest eigenvalue of $(AX+B)^{-1}A$
+    - jump to @sec-conclusion
+ 
+## Linear Time Iteration (4)  {background-color="lightgrey"}
+
+Define $$M(\lambda) = A\lambda^2 + B \lambda + C$$
+
+For any solution $X$, $M(\lambda)$ can be factorized as: [^footnote_bezout]
+
+$$M(\lambda)=(\lambda A + A X + B)(\lambda I -X)$$
+
+and
+
+$$det(M(\lambda)) = \underbrace{det(\lambda A + A X + B)}_{Q(\lambda)}det(\lambda I -X)$$
+
+[^footnote_bezout]: Special case of Bezout theorem. Easy to check in that case
+
+By construction $Q(\lambda)$ is a polynomial whose roots are those that are not selected by the solution i.e. $\Lambda\setminus Sp(X)$.
+
+## Linear Time Iteration (5)  {background-color="lightgrey"}
+
+For $\lambda \neq 0$ we have:
+
+$$\lambda \in Sp((A X +B )^{-1} A)$$
+$$\iff	det( (A X +B )^{-1})A - I\lambda )=0$$
+$$\iff	det( \frac{1}{\lambda} A - I (A X +B )  )=0$$
+$$\iff Q(\frac{1}{\lambda})=0$$
+$$\iff \frac{1}{\lambda} \in G \setminus Sp(X)$$
+
+In words, $(AX+B)^{-1}$ contains all the eigenvalues that have been rejected by the selection of $X$.
+
+In particular, $\rho((AX+B)^{-1})A)=1/\min(G\setminus Sp(X))$
+
+
+# Conclusion {#sec-conclusion}
+
+## What can you do with the solution
+
+The solution of a model found by Dynare has an especially simple form: an AR1
+
+- $y_t = X y_{t-1} + Y \epsilon_t$
+- where the covariances $\Sigma$ of $\epsilon_t$ can be chosen by the modeler
+
+. . .
+
+With this solution we can (cf next TD)
+
+- compute (conditional and unconditional) moments
+- perform stochastic simulations, impulse response function
+
+. . .
+
+
+
+## Going Further
+
+Taking the model to the data with Dynare
+
+- "estimate" the model: compute the likelihood of a solution and maximize it by choosing the right parameters
+- "identify" shocks in the data
+
+Other functions
+
+- higher order approximation
+- ramsey plan
+- discretionary policy
+- ...
+
+## Coming Next
+
+
+![](assets/ea0.jpg)
+
+
+Many models
