@@ -10,6 +10,7 @@ website:
         - section: lectures
           contents:
             - slides/session_1/index.qmd
+            - slides/session_2/index.qmd
         - section: tutorials
           contents:
             - tutorials/session_1/index.ipynb
