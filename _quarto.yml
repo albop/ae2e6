@@ -10,10 +10,13 @@ website:
         - section: lectures
           contents:
             - slides/session_1/index.qmd
-
+        - section: tutorials
+          contents:
+            - tutorials/session_1/index.ipynb
 
 format:
   html:
     theme: default
     css: styles.css
     toc: true
+  ipynb: default

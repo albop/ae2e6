@@ -1,0 +1,21 @@
+---
+title: "Open Economy"
+date: 2024/03/27
+subtitle: "Macro II - Fluctuations - ENSAE, 2023-2024"
+author: Pablo Winant
+format:
+    revealjs:
+        navigation-mode: grid
+        layout: wide
+        toc: true
+        toc-depth: 1
+        toc-title: Plan
+        width: 1920
+        height: 1080
+    beamer:
+        output-file: slides.pdf
+---
+
+![](wip.png)
+
+Come back later!.
