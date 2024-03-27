@@ -1,5 +1,68 @@
 [
   {
+    "objectID": "tutorials/session_1/index_correction.html",
+    "href": "tutorials/session_1/index_correction.html",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "",
+    "text": "Objectives\n\n\n\n\n\n\nIntroduce Julia environment\n\nrun cells\nbasic types: numbers, strings, vectors, matrices\nfunctions\nsimple plots\n\nSimulate AR1 models\n\nimpulse response functions\nstochastic simulations\n\nconditional / unconditional moments\n\ndevelop intuition about eigenvalues / ergodic distributions\n\nLearn the Dyno mini-interface\n\ncheck the steady-state\nunderstand the meaning of shocks (exogenous variables, innovations)\nunderstand the outputs (decision rule, simulation, graphs)\ninterpret IRFs (persistence, magnitude, …)"
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#why-julia",
+    "href": "tutorials/session_1/index_correction.html#why-julia",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Why Julia?",
+    "text": "Why Julia?\nDevelopped at MIT on top of opensource technologies\n\nlinux / git / llvm\n\nSyntax inspired by Matlab but:\n\nmore consistent\nlots of features from high level languages\n\nEverything is JIT-compiled\n\nno interpreted vs compiled treadeoff -&gt; very fast\nmost of the base library is written in Julia\n\nOpensource/free + vibrant community"
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#numbers",
+    "href": "tutorials/session_1/index_correction.html#numbers",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Numbers",
+    "text": "Numbers\n\n# numbers (usual operations usual)\n(1.0+(2.0+3.0*(4.0+5.0)))/30\n\n1.0\n\n\n\n# exponentials are denoted by ^\n2^8\n\n256"
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#variables-assignments-comparisons",
+    "href": "tutorials/session_1/index_correction.html#variables-assignments-comparisons",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Variables / assignments / comparisons",
+    "text": "Variables / assignments / comparisons\n\n# variable assignment\nx = 10\n\n10\n\n\n\n# Variable names can have Unicode characters\n# To get ϵ in the REPL, type \\epsilon&lt;TAB&gt;\na = 20\nσ = 34\nϵ = 1e-4\n\n0.0001\n\n\n\n# comparison \n2 == 3\n\nfalse\n\n\n\n3&lt;=3\n\ntrue"
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#strings",
+    "href": "tutorials/session_1/index_correction.html#strings",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Strings",
+    "text": "Strings\n\n# Strings can also contain Unicode characters\nfancy_str = \"α is a string\"\n\n\"α is a string\"\n\n\n\n# double quotes define a character, not a string\n'c' \n\n'c': ASCII/Unicode U+0063 (category Ll: Letter, lowercase)\n\n\n\n# string interpolation (1/2)\nhe_who_must_not_be_named = \"Voldemort\"\n\"Welcome $(he_who_must_not_be_named)!\"\n\n\"Welcome Voldemort!\"\n\n\n\n# string interpolation (2/2)\nn = 1999999\nprintln(\"Iteration \", n, \" is still running...\")\n\nIteration 1999999 is still running..."
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#arrays",
+    "href": "tutorials/session_1/index_correction.html#arrays",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Arrays",
+    "text": "Arrays\n\n# vectors\nv = [1,2,3]\n\n3-element Vector{Int64}:\n 1\n 2\n 3\n\n\n\n# matrices \nM = [1 2 3 ; 4 5 6 ; 7 8 9]\n\n3×3 Matrix{Int64}:\n 1  2  3\n 4  5  6\n 7  8  9\n\n\n\n# matrix multiplication\nM*v\n\n3-element Vector{Int64}:\n 14\n 32\n 50\n\n\n\n# mutating vectors\nx = [\"One\"]\npush!(x, \"Two\")\npush!(x, \"Three\")\npush!(x, \"Four\")\npush!(x, \"Five\")\n\n# Note how the type of the vector is different from above\n# Vectors in Julia hold homoegenous types\n\n# Also note the exclation mark in `push!`: it is a reminder\n# of the fact that `push!` mutates its first argument\n\n5-element Vector{String}:\n \"One\"\n \"Two\"\n \"Three\"\n \"Four\"\n \"Five\"\n\n\n\n# access elements in a vector\nv[1]\n\n1\n\n\n\n# access elements in a matrix\nM[1,2]\n\n2\n\n\n\n\n\n\n\n\nWarning\n\n\n\nIndexing in Julia is 1-based. First element of a collection is denoted by 1.\n\n\n\n# slice matrices\nprintln(M)\n\n# keep first line\nprintln(\"First line\")\nprintln(M[1,:])\n\n# keep second column\nprintln(\"Second column\")\nprintln(M[:,2])\n\n# extract a submatrix\nprintln(M[1:2,1:2])\n\n[1 2 3; 4 5 6; 7 8 9]\nFirst line\n[1, 2, 3]\nSecond column\n[2, 5, 8]\n[1 2; 4 5]\n\n\n\n# concatenate vectors (horizontally)\nvcat( [1,2], [3,4])\n\n4-element Vector{Int64}:\n 1\n 2\n 3\n 4\n\n\n\n# concatenate vectors\nhcat( [1,2], [3,4])\n\n2×2 Matrix{Int64}:\n 1  3\n 2  4\n\n\n\n# transpose matrix\nhcat( [1,2], [3,4])'\n\n2×2 adjoint(::Matrix{Int64}) with eltype Int64:\n 1  2\n 3  4"
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#tuples",
+    "href": "tutorials/session_1/index_correction.html#tuples",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Tuples",
+    "text": "Tuples\n\n# like in python\n# tuples can hold heterogenous data\nt = (\"This\", \"is\", 1, \"tuple\")\n\n(\"This\", \"is\", 1, \"tuple\")\n\n\n\n# access elements in a tuple (still 1-based)\nt[3]\n\n1\n\n\n\n# tuples are `immutable`\n# The following should raise an exception\npush!(t, \"not a vector\")\n\nMethodError: MethodError: no method matching push!(::Tuple{String, String, Int64, String}, ::String)\n\nClosest candidates are:\n  push!(::Any, ::Any, !Matched::Any)\n   @ Base abstractarray.jl:3389\n  push!(::Any, ::Any, !Matched::Any, !Matched::Any...)\n   @ Base abstractarray.jl:3390\n  push!(!Matched::Set, ::Any)\n   @ Base set.jl:103\n  ..."
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#loops",
+    "href": "tutorials/session_1/index_correction.html#loops",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Loops",
+    "text": "Loops\n\n# loop over any iterable (like in python)\nfor i in 1:5\n    println(\"Iteration \", i)\nend\n# note how 1 and 5 are both included.\n\nIteration 1\nIteration 2\nIteration 3\nIteration 4\nIteration 5\n\n\n\nfor i ∈ [\"Paris\", \"New-York\", \"Bogota\"]\n    println(\"City: \", i)\nend\n\nCity: Paris\nCity: New-York\nCity: Bogota\n\n\n\n# Vector comprehensions (like in python)\n# enumerate all squares of even numbers (% computes modulo)\n[i^2 for i=1:10 if i%2==1]\n\n5-element Vector{Int64}:\n  1\n  9\n 25\n 49\n 81"
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#functions",
+    "href": "tutorials/session_1/index_correction.html#functions",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Functions",
+    "text": "Functions\n\n# matlab like syntax\n# with positional and keyword arguments separated by `;`\n\nfunction fun(a,b; c=3)\n    z = a+b*c\n    return z\nend\n\nfun (generic function with 1 method)\n\n\n\nfun(1,2)\n\n7\n\n\n\nfun(1,2; c=4)\n\n9"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Macro II - Fluctuations",
@@ -970,5 +1033,104 @@
     "title": "Solving DSGE models",
     "section": "Linear Time Iteration (5)",
     "text": "Linear Time Iteration (5)\nFor \\(\\lambda \\neq 0\\) we have:\n\\[\\lambda \\in Sp((A X +B )^{-1} A)\\] \\[\\iff  det( (A X +B )^{-1})A - I\\lambda )=0\\] \\[\\iff  det( \\frac{1}{\\lambda} A - I (A X +B )  )=0\\] \\[\\iff Q(\\frac{1}{\\lambda})=0\\] \\[\\iff \\frac{1}{\\lambda} \\in G \\setminus Sp(X)\\]\nIn words, \\((AX+B)^{-1}\\) contains all the eigenvalues that have been rejected by the selection of \\(X\\).\nIn particular, \\(\\rho((AX+B)^{-1})A)=1/\\min(G\\setminus Sp(X))\\)"
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html",
+    "href": "tutorials/session_1/problem.html",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "",
+    "text": "Objectives\n\n\n\n\n\n\nIntroduce Julia environment\n\nrun cells\nbasic types: numbers, strings, vectors, matrices\nfunctions\nsimple plots\n\nSimulate AR1 models\n\nimpulse response functions\nstochastic simulations\n\nconditional / unconditional moments\n\ndevelop intuition about eigenvalues / ergodic distributions\n\nLearn the Dyno mini-interface\n\ncheck the steady-state\nunderstand the meaning of shocks (exogenous variables, innovations)\nunderstand the outputs (decision rule, simulation, graphs)\ninterpret IRFs (persistence, magnitude, …)",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#why-julia",
+    "href": "tutorials/session_1/problem.html#why-julia",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Why Julia?",
+    "text": "Why Julia?\nDevelopped at MIT on top of opensource technologies\n\nlinux / git / llvm\n\nSyntax inspired by Matlab but:\n\nmore consistent\nlots of features from high level languages\n\nEverything is JIT-compiled\n\nno interpreted vs compiled treadeoff -&gt; very fast\nmost of the base library is written in Julia\n\nOpensource/free + vibrant community",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#numbers",
+    "href": "tutorials/session_1/problem.html#numbers",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Numbers",
+    "text": "Numbers\n\n# numbers (usual operations usual)\n(1.0+(2.0+3.0*(4.0+5.0)))/30\n\n1.0\n\n\n\n# exponentials are denoted by ^\n2^8\n\n256",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#variables-assignments-comparisons",
+    "href": "tutorials/session_1/problem.html#variables-assignments-comparisons",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Variables / assignments / comparisons",
+    "text": "Variables / assignments / comparisons\n\n# variable assignment\nx = 10\n\n10\n\n\n\n# Variable names can have Unicode characters\n# To get ϵ in the REPL, type \\epsilon&lt;TAB&gt;\na = 20\nσ = 34\nϵ = 1e-4\n\n0.0001\n\n\n\n# comparison \n2 == 3\n\nfalse\n\n\n\n3&lt;=3\n\ntrue",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#strings",
+    "href": "tutorials/session_1/problem.html#strings",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Strings",
+    "text": "Strings\n\n# Strings can also contain Unicode characters\nfancy_str = \"α is a string\"\n\n\"α is a string\"\n\n\n\n# double quotes define a character, not a string\n'c' \n\n'c': ASCII/Unicode U+0063 (category Ll: Letter, lowercase)\n\n\n\n# string interpolation (1/2)\nhe_who_must_not_be_named = \"Voldemort\"\n\"Welcome $(he_who_must_not_be_named)!\"\n\n\"Welcome Voldemort!\"\n\n\n\n# string interpolation (2/2)\nn = 1999999\nprintln(\"Iteration \", n, \" is still running...\")\n\nIteration 1999999 is still running...",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#arrays",
+    "href": "tutorials/session_1/problem.html#arrays",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Arrays",
+    "text": "Arrays\n\n# vectors\nv = [1,2,3]\n\n3-element Vector{Int64}:\n 1\n 2\n 3\n\n\n\n# matrices \nM = [1 2 3 ; 4 5 6 ; 7 8 9]\n\n3×3 Matrix{Int64}:\n 1  2  3\n 4  5  6\n 7  8  9\n\n\n\n# matrix multiplication\nM*v\n\n3-element Vector{Int64}:\n 14\n 32\n 50\n\n\n\n# mutating vectors\nx = [\"One\"]\npush!(x, \"Two\")\npush!(x, \"Three\")\npush!(x, \"Four\")\npush!(x, \"Five\")\n\n# Note how the type of the vector is different from above\n# Vectors in Julia hold homoegenous types\n\n# Also note the exclation mark in `push!`: it is a reminder\n# of the fact that `push!` mutates its first argument\n\n5-element Vector{String}:\n \"One\"\n \"Two\"\n \"Three\"\n \"Four\"\n \"Five\"\n\n\n\n# access elements in a vector\nv[1]\n\n1\n\n\n\n# access elements in a matrix\nM[1,2]\n\n2\n\n\n\n\n\n\n\n\nWarning\n\n\n\nIndexing in Julia is 1-based. First element of a collection is denoted by 1.\n\n\n\n# slice matrices\nprintln(M)\n\n# keep first line\nprintln(\"First line\")\nprintln(M[1,:])\n\n# keep second column\nprintln(\"Second column\")\nprintln(M[:,2])\n\n# extract a submatrix\nprintln(M[1:2,1:2])\n\n[1 2 3; 4 5 6; 7 8 9]\nFirst line\n[1, 2, 3]\nSecond column\n[2, 5, 8]\n[1 2; 4 5]\n\n\n\n# concatenate vectors (horizontally)\nvcat( [1,2], [3,4])\n\n4-element Vector{Int64}:\n 1\n 2\n 3\n 4\n\n\n\n# concatenate vectors\nhcat( [1,2], [3,4])\n\n2×2 Matrix{Int64}:\n 1  3\n 2  4\n\n\n\n# transpose matrix\nhcat( [1,2], [3,4])'\n\n2×2 adjoint(::Matrix{Int64}) with eltype Int64:\n 1  2\n 3  4",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#tuples",
+    "href": "tutorials/session_1/problem.html#tuples",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Tuples",
+    "text": "Tuples\n\n# like in python\n# tuples can hold heterogenous data\nt = (\"This\", \"is\", 1, \"tuple\")\n\n(\"This\", \"is\", 1, \"tuple\")\n\n\n\n# access elements in a tuple (still 1-based)\nt[3]\n\n1\n\n\n\n# tuples are `immutable`\n# The following should raise an exception\npush!(t, \"not a vector\")\n\nMethodError: MethodError: no method matching push!(::Tuple{String, String, Int64, String}, ::String)\n\nClosest candidates are:\n  push!(::Any, ::Any, !Matched::Any)\n   @ Base abstractarray.jl:3389\n  push!(::Any, ::Any, !Matched::Any, !Matched::Any...)\n   @ Base abstractarray.jl:3390\n  push!(!Matched::Set, ::Any)\n   @ Base set.jl:103\n  ...",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#loops",
+    "href": "tutorials/session_1/problem.html#loops",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Loops",
+    "text": "Loops\n\n# loop over any iterable (like in python)\nfor i in 1:5\n    println(\"Iteration \", i)\nend\n# note how 1 and 5 are both included.\n\nIteration 1\nIteration 2\nIteration 3\nIteration 4\nIteration 5\n\n\n\nfor i ∈ [\"Paris\", \"New-York\", \"Bogota\"]\n    println(\"City: \", i)\nend\n\nCity: Paris\nCity: New-York\nCity: Bogota\n\n\n\n# Vector comprehensions (like in python)\n# enumerate all squares of even numbers (% computes modulo)\n[i^2 for i=1:10 if i%2==1]\n\n5-element Vector{Int64}:\n  1\n  9\n 25\n 49\n 81",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#functions",
+    "href": "tutorials/session_1/problem.html#functions",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Functions",
+    "text": "Functions\n\n# matlab like syntax\n# with positional and keyword arguments separated by `;`\n\nfunction fun(a,b; c=3)\n    z = a+b*c\n    return z\nend\n\nfun (generic function with 1 method)\n\n\n\nfun(1,2)\n\n7\n\n\n\nfun(1,2; c=4)\n\n9",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
   }
 ]
