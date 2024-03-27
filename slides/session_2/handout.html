@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Pablo Winant">
+<meta name="dcterms.date" content="2024-03-27">
+
+<title>Macro II - Fluctuations - Small Open Economy Extension (IRBC)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../slides/session_1/handout.html">lectures</a></li><li class="breadcrumb-item"><a href="../../slides/session_2/handout.html">Small Open Economy Extension (IRBC)</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Macro II - Fluctuations</a> 
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides/session_1/handout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solving DSGE models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides/session_2/handout.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Small Open Economy Extension (IRBC)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/session_1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to DSGE Model &amp; Julia Basics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-and-basic-facts" id="toc-introduction-and-basic-facts" class="nav-link active" data-scroll-target="#introduction-and-basic-facts">Introduction and Basic Facts</a>
+  <ul class="collapse">
+  <li><a href="#why-a-small-open-economy" id="toc-why-a-small-open-economy" class="nav-link" data-scroll-target="#why-a-small-open-economy">Why a small open economy?</a></li>
+  <li><a href="#from-rbc-to-irbc" id="toc-from-rbc-to-irbc" class="nav-link" data-scroll-target="#from-rbc-to-irbc">From RBC to IRBC</a></li>
+  <li><a href="#irbc-facts" id="toc-irbc-facts" class="nav-link" data-scroll-target="#irbc-facts">IRBC Facts</a></li>
+  <li><a href="#irbc-facts-1" id="toc-irbc-facts-1" class="nav-link" data-scroll-target="#irbc-facts-1">IRBC Facts</a></li>
+  <li><a href="#stylized-facts" id="toc-stylized-facts" class="nav-link" data-scroll-target="#stylized-facts">Stylized Facts</a></li>
+  </ul></li>
+  <li><a href="#modeling-a-small-open-econmomy" id="toc-modeling-a-small-open-econmomy" class="nav-link" data-scroll-target="#modeling-a-small-open-econmomy">Modeling a Small Open Econmomy</a>
+  <ul class="collapse">
+  <li><a href="#endowment-model" id="toc-endowment-model" class="nav-link" data-scroll-target="#endowment-model">Endowment model</a></li>
+  <li><a href="#endowment-model-2" id="toc-endowment-model-2" class="nav-link" data-scroll-target="#endowment-model-2">Endowment model (2)</a></li>
+  <li><a href="#endowment-model-3" id="toc-endowment-model-3" class="nav-link" data-scroll-target="#endowment-model-3">Endowment model (3)</a></li>
+  <li><a href="#current-account" id="toc-current-account" class="nav-link" data-scroll-target="#current-account">Current Account</a></li>
+  <li><a href="#unit-root" id="toc-unit-root" class="nav-link" data-scroll-target="#unit-root">Unit root</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#adding-capital" id="toc-adding-capital" class="nav-link" data-scroll-target="#adding-capital">Adding capital</a></li>
+  <li><a href="#adding-capital-optimality-conditions" id="toc-adding-capital-optimality-conditions" class="nav-link" data-scroll-target="#adding-capital-optimality-conditions">Adding capital: optimality conditions</a></li>
+  <li><a href="#add-friction-to-the-investment" id="toc-add-friction-to-the-investment" class="nav-link" data-scroll-target="#add-friction-to-the-investment">Add friction to the investment</a></li>
+  </ul></li>
+  <li><a href="#a-benchmark-small-open-economy-model" id="toc-a-benchmark-small-open-economy-model" class="nav-link" data-scroll-target="#a-benchmark-small-open-economy-model">A benchmark Small Open Economy Model</a>
+  <ul class="collapse">
+  <li><a href="#a-benchmark-small-open-economy-model-1" id="toc-a-benchmark-small-open-economy-model-1" class="nav-link" data-scroll-target="#a-benchmark-small-open-economy-model-1">A benchmark Small Open Economy Model</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The model</a></li>
+  <li><a href="#how-to-make-the-distribution-stationary" id="toc-how-to-make-the-distribution-stationary" class="nav-link" data-scroll-target="#how-to-make-the-distribution-stationary">How to make the distribution stationary?</a></li>
+  <li><a href="#how-to-get-rid-of-the-unit-root" id="toc-how-to-get-rid-of-the-unit-root" class="nav-link" data-scroll-target="#how-to-get-rid-of-the-unit-root">How to get rid of the unit root?</a></li>
+  <li><a href="#calibration" id="toc-calibration" class="nav-link" data-scroll-target="#calibration">Calibration</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="slides.pdf"><i class="bi bi-file-pdf"></i>Beamer</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../slides/session_1/handout.html">lectures</a></li><li class="breadcrumb-item"><a href="../../slides/session_2/handout.html">Small Open Economy Extension (IRBC)</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Small Open Economy Extension (IRBC)</h1>
+<p class="subtitle lead">Macro II - Fluctuations - ENSAE, 2023-2024</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Pablo Winant </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 27, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-and-basic-facts" class="level1">
+<h1>Introduction and Basic Facts</h1>
+<section id="why-a-small-open-economy" class="level2">
+<h2 class="anchored" data-anchor-id="why-a-small-open-economy">Why a small open economy?</h2>
+<p>What are the classical reasons to open economy to trade</p>
+<div class="incremental">
+<ul class="incremental">
+<li>trade integration
+<ul class="incremental">
+<li>taste for variety</li>
+<li>comparative advantage</li>
+</ul></li>
+<li>financial integration
+<ul class="incremental">
+<li>smooth shock / insurance</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="from-rbc-to-irbc" class="level2">
+<h2 class="anchored" data-anchor-id="from-rbc-to-irbc">From RBC to IRBC</h2>
+<p>After the success of RBC models to match business cycles it didn’t take long before the same methodology was applied to International Business Cycles</p>
+<p>. . .</p>
+<p>Seminal Paper:</p>
+<ul>
+<li><a href="papers/Backus-InternationalRealBusiness-1992.pdf"><em>International Real Business Cycles</em></a>, Backus, Kehoe, Kydland (1992) (freshwater economists)</li>
+</ul>
+<p>Very successful methodology:</p>
+<ul>
+<li>facts at odd with theoretical predictions have been called “puzzles”</li>
+</ul>
+</section>
+<section id="irbc-facts" class="level2" data-auto-animate="true">
+<h2 data-auto-animate="true" class="anchored" data-anchor-id="irbc-facts">IRBC Facts</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/moments.png" class="img-fluid figure-img"></p>
+<figcaption>Moments</figcaption>
+</figure>
+</div>
+<p>From Kehoe,Kydland (1995)</p>
+</section>
+<section id="irbc-facts-1" class="level2" data-auto-animate="true">
+<h2 data-auto-animate="true" class="anchored" data-anchor-id="irbc-facts-1">IRBC Facts</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/moments.png" class="img-fluid figure-img"></p>
+<figcaption>Moments</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:80%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/comovements.png" class="img-fluid figure-img"></p>
+<figcaption>Comoments</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="stylized-facts" class="level2">
+<h2 class="anchored" data-anchor-id="stylized-facts">Stylized Facts</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/moments.png" class="img-fluid figure-img"></p>
+<figcaption>Moments</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/comovements.png" class="img-fluid figure-img"></p>
+<figcaption>Comoments</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:80%;">
+<div class="incremental">
+<p>Domestically:</p>
+<div class="fragment">
+<ul class="incremental">
+<li>output more variable than consumption</li>
+<li>output autocorrelated</li>
+<li>productivity strongly procyclical</li>
+<li>trade balance strongly countercyclcal</li>
+<li>positive comovements in output</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Internationally:</p>
+<ul class="incremental">
+<li>smaller comovements in consumption
+<ul class="incremental">
+<li>Backus-Kehoe-Kydland puzzle</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="modeling-a-small-open-econmomy" class="level1">
+<h1>Modeling a Small Open Econmomy</h1>
+<section id="endowment-model" class="level2">
+<h2 class="anchored" data-anchor-id="endowment-model">Endowment model</h2>
+<p>Take an endowment economy: income <span class="math inline">\((y_t)_t\)</span> is exogenously given. We assume it is deterministic</p>
+<p><span class="math display">\[\max_{c_t} \sum_{t=0}^{\infty} \beta^t u(c_t)\]</span></p>
+<p><span class="math display">\[c_t+a_{t+1} \leq y_t + (1+r) a_t\]</span></p>
+<p>Country takes world interest rate <span class="math inline">\(r\)</span> as given</p>
+<ul>
+<li>a small open economy doesn’t affect world prices</li>
+</ul>
+</section>
+<section id="endowment-model-2" class="level2">
+<h2 class="anchored" data-anchor-id="endowment-model-2">Endowment model (2)</h2>
+<p>We solve this problem with the terminal conditions:</p>
+<ul>
+<li><p><span class="math inline">\(a_0\)</span> given</p></li>
+<li><p><span class="math inline">\(\lim_{T\rightarrow\infty} \frac{a_{T+1}}{(1+r)^T}\geq0\)</span></p>
+<ul>
+<li><em>no-ponzi</em> condition</li>
+</ul></li>
+</ul>
+<p>. . .</p>
+<p>The no-ponzi condition will in effect eliminate diverging solutions. In a first order approximation, it selects the right eigenvalues.</p>
+</section>
+<section id="endowment-model-3" class="level2">
+<h2 class="anchored" data-anchor-id="endowment-model-3">Endowment model (3)</h2>
+<p>We get the lagrangian:</p>
+<p><span class="math display">\[\mathcal{L}= \sum_{t=0}^{\infty} \beta^t u(c_t) + \sum_{t=0}^{\infty} \beta^t \lambda_t \left(y_t + (1+r) a_t - c_t+a_{t+1} \right)\]</span></p>
+<p>First order conditions:</p>
+<p><span class="math display">\[\begin{align}
+u^{\prime}(c_t)&amp; =&amp; \lambda_t \\
+\lambda_t &amp;=&amp; \beta (1+r) \lambda_{t+1}
+\end{align}\]</span></p>
+<p>Under the <em>technical assumption</em> <span class="math inline">\(\beta (1+r)=1\)</span> we get:</p>
+<p><span class="math display">\[c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
+<p>. . .</p>
+<ul>
+<li>problem isomorphic to consumption-savings decisions</li>
+<li>consumption is determined by permanent income</li>
+</ul>
+</section>
+<section id="current-account" class="level2">
+<h2 class="anchored" data-anchor-id="current-account">Current Account</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Reminders on Current Account">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reminders on Current Account
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>trade balance</strong> is exports-imports (here <span class="math inline">\(y_t-c_t\)</span>)</p>
+<p>The <strong>current account</strong> is trade balance + net factor payments (here <span class="math inline">\(y_t-c_t+r a_t\)</span>)</p>
+<p>Positive <strong>current account</strong>: additional lending to the rest of the world.</p>
+</div>
+</div>
+<p>. . .</p>
+<p>Using the formula from before</p>
+<p><span class="math display">\[CA_0 =  a_0 r + (1-\frac{r}{1+r}) y_0 + \frac{r}{1+r}\left\{ \sum_{t\geq1}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
+<p>How does the current account reacts to income shocks?</p>
+<ul>
+<li><p>current account responds positively to <em>temporary</em> shock in income</p></li>
+<li><p>and to news about future income shocks:</p>
+<ul>
+<li>This is the <em>intertemporal approach</em> to the current account</li>
+</ul></li>
+</ul>
+</section>
+<section id="unit-root" class="level2">
+<h2 class="anchored" data-anchor-id="unit-root">Unit root</h2>
+<p>Still with the same formula: <span class="math display">\[c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
+<p>What is the effect of an increase in <span class="math inline">\(a_0\)</span>?</p>
+<ul>
+<li>consumption rises permanently
+<ul>
+<li>by small amount <span class="math inline">\(r\)</span> corresponding to interests paid forever on <span class="math inline">\(a_0\)</span></li>
+</ul></li>
+<li>this will correspond to a unit root in the solution</li>
+</ul>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>From the first order conditions</p>
+<p><span class="math display">\[\begin{align}
+u^{\prime}(c_t) &amp; = &amp; \lambda_t \\
+\lambda_t &amp; = &amp;  \beta (1+r) \lambda_{t+1}
+\end{align}\]</span></p>
+<p>assuming <span class="math inline">\(u(c_t) = \log (c_t)\)</span>, can you get the equation for the law of motion of <span class="math inline">\(a_t\)</span> and show the presence of a unit root?</p>
+</section>
+<section id="adding-capital" class="level2">
+<h2 class="anchored" data-anchor-id="adding-capital">Adding capital</h2>
+<p>We add capital and production to our endowment economy: <span class="math display">\[y_t = z_t k_t^\alpha\]</span> <span class="math display">\[k_t = (1-\delta) k_{t-1} + i_{t-1}\]</span></p>
+<p>The aggregate resource constraint becomes:</p>
+<p><span class="math display">\[a_{t+1} + c_t + i_t = (1+r) a_t + y_t\]</span></p>
+<p>Now maximize <span class="math inline">\(\sum_t \beta^ t U(c_t)\)</span></p>
+<p>. . .</p>
+<p>We get first order conditions</p>
+<p><span class="math display">\[\lambda_t = \beta \lambda_{t+1} (1+r)\]</span> <span class="math display">\[\lambda_t = \beta \lambda_{t+1}\left[ (1-\delta) + z_{t+1} f^{\prime}(k_{t+1}) \right]\]</span></p>
+<p>where <span class="math inline">\(\lambda_t\)</span> is lagrange multiplier associated to budget constraint.</p>
+</section>
+<section id="adding-capital-optimality-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="adding-capital-optimality-conditions">Adding capital: optimality conditions</h2>
+<p>Since <span class="math inline">\(\lambda_t\)</span> (constraint is always binding), we get:</p>
+<p><span class="math display">\[(1-\delta) + z_{t+1} f^{\prime}(k_{t+1}) = 1+r\]</span></p>
+<p><span class="math display">\[k_{t+1} = \left( \frac{r+\delta}{\alpha z_{t+1}}\right)^{\frac{1}{\alpha-1}}\]</span></p>
+<p>and investment <span class="math display">\[i_t = \left( \frac{r+\delta}{\alpha z_{t+1}}\right)^{\frac{1}{\alpha-1}}- (1-\delta)\left( \frac{r+\delta}{\alpha z_{t}}\right)^{\frac{1}{\alpha-1}}\]</span></p>
+<p>. . .</p>
+<p>Here investment is fully determined by productivity shocks</p>
+<ul>
+<li>too simple: no international dependence</li>
+</ul>
+<!-- 
+## The elusive gains of financial integration
+
+Side note:
+
+Cf: Gourinchas and Jeanne *The elusive gains from financial integration.
+The immediate adjustment of capital provides an upper bound on the gains from financial integration.
+ -->
+</section>
+<section id="add-friction-to-the-investment" class="level2">
+<h2 class="anchored" data-anchor-id="add-friction-to-the-investment">Add friction to the investment</h2>
+<p>A possible solution: change the resource constraint such that adjusting capital is costly</p>
+<p>For instance:</p>
+<p><span class="math display">\[a_{t+1} + c_t + i_t + \frac{\omega}{2}\frac{(k_{t+1}-k_t)^ 2-\delta k^{\star})^2}{k_t} = (1+r)a_t + z f(k_t)\]</span></p>
+<p><span class="math display">\[k_{t+1} = (1-\delta) k_t + i_t\]</span></p>
+<p>where <span class="math inline">\(\omega\)</span> is an adjustment friction. Typically, <span class="math inline">\(\omega\)</span> is chosen so that the model replicates <span class="math inline">\(\frac{Var(i_t)}{Var(y_t)}\)</span> from the data.</p>
+<p>. . .</p>
+<p>🔜 Cf tutorial.</p>
+</section>
+</section>
+<section id="a-benchmark-small-open-economy-model" class="level1">
+<h1>A benchmark Small Open Economy Model</h1>
+<section id="a-benchmark-small-open-economy-model-1" class="level2">
+<h2 class="anchored" data-anchor-id="a-benchmark-small-open-economy-model-1">A benchmark Small Open Economy Model</h2>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/economics-grohe.jpg" class="img-fluid figure-img"></p>
+<figcaption>Stephanie Schmitt Grohe and Martin Uribe</figcaption>
+</figure>
+</div>
+</div><div class="column">
+<p><a href="papers/1-s2.0-S0022199602000569-main.pdf"><em>Closing Small Economy Models</em></a>, Schmitt Grohe and Uribe (2003), JIE</p>
+<ul>
+<li>small open economy model with production, consumption-leisure tradeoff and capital adjustment costs
+<ul>
+<li>= RBC+open+adj costs</li>
+</ul></li>
+<li>perform some moments matching</li>
+<li>compare different ways of stationarizing the model</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="the-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-model">The model</h2>
+<p><span class="math display">\[\max_{c_t, n_t} \sum_{t=0}^{\infty} \beta^t u(c_t)\]</span></p>
+<p><span class="math display">\[c_t + k_{t+1} + a_{t+1} = y_t + g_t - \frac{\omega}{2}(k_{t+1}-k_t)^2 +(1-\delta) k_t + (1+r^{\star}+\pi(a_t))a_t\]</span> <span class="math display">\[y_t = f(k_t, n_t, z_t)\]</span></p>
+<p><span class="math display">\[z_{t+1} = \rho z_t + \epsilon_{t+1}\]</span></p>
+<p>and <span class="math inline">\(u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^{1-\psi}
+)\right)^{1-\sigma}\)</span></p>
+</section>
+<section id="how-to-make-the-distribution-stationary" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-make-the-distribution-stationary">How to make the distribution stationary?</h2>
+<p>The solution of the model exhibits a unit root:</p>
+<p><span class="math display">\[a_t = a_{t-1} + ... \text{other variables in t-1} + \text{shocks in t}\]</span></p>
+<p>. . .</p>
+<p>Problem:</p>
+<ul>
+<li>there isn’t a unique deterministic steady-state</li>
+<li>the ergodic distribution of the model variables is not defined</li>
+</ul>
+<p>This raises practical issues (notably for estimation) for the <em>linear</em> model.</p>
+<ul>
+<li>no unconditional moments</li>
+</ul>
+</section>
+<section id="how-to-get-rid-of-the-unit-root" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-get-rid-of-the-unit-root">How to get rid of the unit root?</h2>
+<p><em>General idea</em>:</p>
+<ul>
+<li>introduce a force that pulls the level of foreign assets towards equilibrium</li>
+</ul>
+<p>Schmitt Grohe and Uribe (2003) consider many options:</p>
+<div class="r-stack">
+<div class="fragment current-visible">
+<ul>
+<li>debt-elastic interest rate: <span class="math display">\[1+r = 1+r^{\star} + \pi(a_d)\]</span>
+<ul>
+<li>with <span class="math inline">\(\pi(0)=0\)</span> and <span class="math inline">\(\pi^{\prime}(0)&gt;0\)</span></li>
+<li><span class="math inline">\(\pi\)</span> can be understood as a risk premium on rising debt</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>endogenous time-discount (aka Usawa preferences) <span class="math display">\[\beta(c_t) = (1+c_t)^{-\chi}\]</span></li>
+<li>costs of adjustment for international portfolios</li>
+</ul>
+</div>
+</div>
+<p>. . .</p>
+<p>SGU show that the choice of the stationarization device has little effect for the dynamics (moments) of most variables</p>
+</section>
+<section id="calibration" class="level2">
+<h2 class="anchored" data-anchor-id="calibration">Calibration</h2>
+<div class="columns">
+<div class="column">
+<table class="table">
+<thead>
+<tr class="header">
+<th>Parameters</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(σ\)</span></td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(ψ\)</span></td>
+<td>1.45</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(α\)</span></td>
+<td>0.32</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(ω\)</span></td>
+<td>0.028</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(r\)</span></td>
+<td>0.04</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column">
+<table class="table">
+<thead>
+<tr class="header">
+<th>Parameters</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(δ\)</span></td>
+<td>0.1</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(ρ\)</span></td>
+<td>0.42</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(σ²\)</span></td>
+<td>0.0129</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A^{\star}\)</span></td>
+<td>-0.7442</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(χ\)</span></td>
+<td>0.000742</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/sgu_irf.png" style="height:60.0%" class="figure-img"></p>
+<figcaption>Impulse Response Function</figcaption>
+</figure>
+</div>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/sgu_moments.png" style="height:60.0%" class="figure-img"></p>
+<figcaption>Moments (from SGU)</figcaption>
+</figure>
+</div>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<ul>
+<li>The model matches unconditional correlations fairly well
+<ul>
+<li>The stationarization device has little effect on the moments</li>
+</ul></li>
+<li>Unconditional correlations are not that great
+<ul>
+<li>a limitation of the moment matching method?</li>
+</ul></li>
+<li>Correlation of consumption with output is too high
+<ul>
+<li>and probably cross-correlation of consumption too low</li>
+<li>still the Backus-Kehoe-Kydland puzzle…</li>
+</ul></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

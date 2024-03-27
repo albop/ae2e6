@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Macro II - Fluctuations</title>
+<title>Macro II - Fluctuations - Intro to DSGE Model &amp; Julia Basics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,23 +20,55 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -52,35 +84,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-sample-listings .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-sample-listings'] = new List('listing-sample-listings', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -112,7 +115,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar docked">
@@ -138,7 +141,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Macro II - Fluctuations</a> 
+      <a href="../../">Macro II - Fluctuations</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -154,13 +157,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/session_1/handout.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/session_1/handout.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Solving DSGE models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/session_2/handout.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/session_2/handout.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Small Open Economy Extension (IRBC)</span></a>
   </div>
 </li>
@@ -177,7 +180,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/session_1/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../tutorials/session_1/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Intro to DSGE Model &amp; Julia Basics</span></a>
   </div>
 </li>
@@ -193,16 +196,19 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#schedule-wip" id="toc-schedule-wip" class="nav-link active" data-scroll-target="#schedule-wip">Schedule (WIP)</a></li>
+  <li><a href="#intro-to-dsge-model-julia-basics" id="toc-intro-to-dsge-model-julia-basics" class="nav-link active" data-scroll-target="#intro-to-dsge-model-julia-basics">Intro to DSGE Model &amp; Julia Basics</a></li>
+  <li><a href="#julia-basics" id="toc-julia-basics" class="nav-link" data-scroll-target="#julia-basics">Julia Basics</a></li>
+  <li><a href="#manipulating-ar1-models" id="toc-manipulating-ar1-models" class="nav-link" data-scroll-target="#manipulating-ar1-models">Manipulating AR1 Models</a></li>
+  <li><a href="#using-dyno" id="toc-using-dyno" class="nav-link" data-scroll-target="#using-dyno">Using Dyno</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.ipynb" download="index.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.out.out.ipynb" download="index.out.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Macro II - Fluctuations</h1>
+<h1 class="title">Intro to DSGE Model &amp; Julia Basics</h1>
 </div>
 
 
@@ -219,60 +225,102 @@ window.Quarto = {
 </header>
 
 
-<section id="schedule-wip" class="level2">
-<h2 class="anchored" data-anchor-id="schedule-wip">Schedule (WIP)</h2>
-<div id="listing-sample-listings" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Date
-</th>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1710889200000" data-listing-file-modified-sort="1711530289754" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1850" data-listing-title-sort="Solving DSGE models" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Mar 20, 2024</span>
-</td>
-<td>
-<a href="./slides/session_1/handout.html" class="title listing-title">Solving DSGE models</a>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1711494000000" data-listing-file-modified-sort="1711530255938" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1168" data-listing-title-sort="Small Open Economy Extension (IRBC)" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Mar 27, 2024</span>
-</td>
-<td>
-<a href="./slides/session_2/handout.html" class="title listing-title">Small Open Economy Extension (IRBC)</a>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1712095200000" data-listing-file-modified-sort="1710925575433" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3" data-listing-title-sort="Heterogenous Agents" data-listing-filename-sort="wip.qmd">
-<td>
-<span class="listing-date">Apr 3, 2024</span>
-</td>
-<td>
-<a href="./slides/prep_3/wip.html" class="title listing-title">Heterogenous Agents</a>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1712700000000" data-listing-file-modified-sort="1710925611688" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3" data-listing-title-sort="Green Transition" data-listing-filename-sort="wip.qmd">
-<td>
-<span class="listing-date">Apr 10, 2024</span>
-</td>
-<td>
-<a href="./slides/prep_4/index_handout.html" class="title listing-title">Green Transition</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+<section id="intro-to-dsge-model-julia-basics" class="level1">
+<h1>Intro to DSGE Model &amp; Julia Basics</h1>
+<p>Business Cycles and Fluctuations - AE2E6</p>
+<blockquote class="blockquote">
+<p><strong>Objectives</strong></p>
+<ul>
+<li>Introduce Julia environment
+<ul>
+<li>run cells</li>
+<li>basic types: numbers, strings, vectors, matrices</li>
+<li>functions</li>
+<li>simple plots</li>
+</ul></li>
+<li>Simulate AR1 models
+<ul>
+<li>impulse response functions</li>
+<li>stochastic simulations
+<ul>
+<li>conditional / unconditional moments</li>
+</ul></li>
+<li>develop intuition about eigenvalues / ergodic distributions</li>
+</ul></li>
+<li>Learn the Dyno mini-interface
+<ul>
+<li>check the steady-state</li>
+<li>understand the meaning of shocks (exogenous variables, innovations)</li>
+<li>understand the outputs (decision rule, simulation, graphs)</li>
+<li>interpret IRFs (persistence, magnitude, …)</li>
+</ul></li>
+</ul>
+</blockquote>
+</section>
+<section id="julia-basics" class="level1">
+<h1>Julia Basics</h1>
+</section>
+<section id="manipulating-ar1-models" class="level1">
+<h1>Manipulating AR1 Models</h1>
+<p>We consider here a simple autoregressive model:</p>
+<p><span class="math display">\[y_t = A y_{t-1} + B e_t\]</span></p>
+<p>where <span class="math inline">\(y_t=(y^1_t, y^2_t)\)</span> a vector of variables and <span class="math inline">\(e_t=(e^1_t, e^2_t)\)</span> a normal i.i.d. multivariate process defined by covariance matrix <span class="math inline">\(\Sigma \in R^p \times R^p\)</span>.</p>
+<p>We start by choosing:</p>
+<p><span class="math display">\[A = \begin{bmatrix}\rho &amp; 0 \\ 2 &amp; \lambda\end{bmatrix}\]</span></p>
+<p><span class="math display">\[B = \begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}\]</span></p>
+<p><span class="math display">\[\Sigma = \begin{bmatrix}0.05 &amp; 0.005 \\ 0.005 &amp; 0.01\end{bmatrix}\]</span></p>
+<p><strong>Define julia variables for matrices <span class="math inline">\(A, B, \Sigma\)</span>.</strong></p>
+<p><strong>Compute (programmatically) the eigenvalues of A.</strong></p>
+<p><strong>Simulate the response to a one deviation shock to <span class="math inline">\(e^1_t\)</span> and <span class="math inline">\(e^2_t\)</span> over 10 periods.</strong></p>
+<p><strong>Plot the result</strong></p>
+<p><strong>What do you get if one eigenvalue is equal to 1? Greater than 1?</strong></p>
+<p><strong>Import the Distributions package. Use <code>MvNormal</code> to compute draws from a multivariate distribution with covariance matrix <span class="math inline">\(\Sigma\)</span></strong></p>
+<div id="cell-16" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we need the distributions package to compute mvnormal</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">Pkg;</span> Pkg.add("Distributions")</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>   Resolving package versions...
+  No Changes to `~/.julia/environments/v1.10/Project.toml`
+  No Changes to `~/.julia/environments/v1.10/Manifest.toml`</code></pre>
 </div>
 </div>
-
+<div id="cell-17" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># MvNormal</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check the doc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Perform a stochastic simulation over 20 periods starting with a one standard-deviation in <span class="math inline">\(e_2\)</span>.</strong></p>
+<p><strong>Perform K=500 stochastic simulations over 20 periods starting with a one standard-deviation in <span class="math inline">\(e_2\)</span>. Plot the result.</strong></p>
+<p><strong>Ergodic Distribution.</strong></p>
+<p>It can be shown that the ergodic distribution is a multivariate normal law, with covariance matrix <span class="math inline">\(\Omega\)</span>.</p>
+<p>This matrix is a solution to the equation <span class="math inline">\(\Omega = A \Omega A' + B \Sigma B'\)</span>.</p>
+<p>A simple algorithm to find it consist in applying the recurrence <span class="math inline">\(\Omega = A \Omega A' + B \Sigma B'\)</span> until convergence, starting with <span class="math inline">\(\Omega_0 =0\)</span>.</p>
+<p>Implement this algorithm.</p>
+<div id="cell-24" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ergodic_steady_state</span>(A,B,Σ; N<span class="op">=</span><span class="fl">1000</span>, tol_η<span class="op">=</span><span class="fl">1e-8</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    Ω<span class="fl">0</span> <span class="op">=</span> Σ<span class="op">*</span><span class="fl">0</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>N</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        Ω <span class="op">=</span> A<span class="op">*</span>Ω<span class="fl">0</span><span class="op">*</span>A<span class="op">'+</span>B<span class="op">*</span>Σ<span class="op">*</span>B<span class="op">'</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        η <span class="op">=</span> <span class="fu">maximum</span>( <span class="fu">abs</span>.( Ω <span class="op">-</span> Ω<span class="fl">0</span>) )</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> η<span class="op">&lt;</span>tol_η</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> Ω</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        Ω<span class="fl">0</span> <span class="op">=</span> Ω</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">error</span>(<span class="st">"No convergence"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>ergodic_steady_state (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p><strong>Compare the result with the empirical ergodic distribution obtained from the simulations</strong></p>
+</section>
+<section id="using-dyno" class="level1">
+<h1>Using Dyno</h1>
+<p><strong>Open the RBC. Fix the mistakes in the modfile. Inspect the various elements of the solution.</strong></p>
+<p><strong>Interpret the effect of a productivity shock.</strong></p>
+<p><strong>Bonus: copy the solution to the model from the web interface. Compute impulse response functions yourself and compare to dyno.</strong></p>
 
 
 </section>

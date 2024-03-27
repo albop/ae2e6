@@ -346,6 +346,7 @@ Pablo Winant
 <li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
 <li><a href="#/solving-a-model" id="/toc-solving-a-model">Solving a model</a></li>
 <li><a href="#/sec-conclusion" id="/toc-sec-conclusion">Conclusion</a></li>
+<li><a href="#/sec:linear_time_iteration" id="/toc-sec:linear_time_iteration">Appendix: Linear Time Iteration</a></li>
 </ul>
 </nav>
 </section>
@@ -710,7 +711,7 @@ Pablo Winant
 <ul>
 <li>new default in dynare, more adequate for big models</li>
 </ul></li>
-<li>linear time iteration
+<li>linear time iteration cf <span class="citation" data-cites="sec:linear_time_iteration">@sec:linear_time_iteration</span>
 <ul>
 <li>conceptually very simple</li>
 </ul></li>
@@ -738,11 +739,60 @@ Pablo Winant
 <div class="fragment">
 <p>Then to compare the model to the data we compute</p>
 <ul>
-<li>implied moments</li>
+<li>implied moments:
+<ul>
+<li>covariances, autocorrelation</li>
+</ul></li>
 <li>likelihood</li>
 </ul>
 <p>Optimizing the fit to the data is called <em>model</em> estimation</p>
 </div>
+</section></section>
+<section>
+<section id="sec-conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
+
+</section>
+<section id="what-can-you-do-with-the-solution" class="slide level2">
+<h2>What can you do with the solution</h2>
+<p>The solution of a model found by Dynare has an especially simple form: an AR1</p>
+<ul>
+<li><span class="math inline">\(y_t = X y_{t-1} + Y \epsilon_t\)</span></li>
+<li>where the covariances <span class="math inline">\(\Sigma\)</span> of <span class="math inline">\(\epsilon_t\)</span> can be chosen by the modeler</li>
+</ul>
+<div class="fragment">
+<p>With this solution we can (cf next TD)</p>
+<ul>
+<li>compute (conditional and unconditional) moments</li>
+<li>perform stochastic simulations, impulse response function</li>
+</ul>
+</div>
+</section>
+<section id="going-further" class="slide level2">
+<h2>Going Further</h2>
+<p>Taking the model to the data with Dynare</p>
+<ul>
+<li>“estimate” the model: compute the likelihood of a solution and maximize it by choosing the right parameters</li>
+<li>“identify” shocks in the data</li>
+</ul>
+<p>Other functions</p>
+<ul>
+<li>higher order approximation</li>
+<li>(noninear) perfect foresight simulations</li>
+<li>ramsey plan</li>
+<li>discretionary policy</li>
+<li>…</li>
+</ul>
+</section>
+<section id="coming-next" class="slide level2">
+<h2>Coming Next</h2>
+
+<img data-src="assets/ea0.jpg" class="r-stretch"><p>Many models</p>
+</section></section>
+<section>
+<section id="sec:linear_time_iteration" class="title-slide slide level1 center">
+<h1>Appendix: Linear Time Iteration</h1>
+
 </section>
 <section id="linear-time-iteration" class="slide level2">
 <h2>Linear Time Iteration</h2>
@@ -780,11 +830,10 @@ Pablo Winant
 <li>what about <span class="math inline">\(\lambda_{n+1}\)</span>?
 <ul>
 <li><span class="math inline">\(\frac{1}{\lambda_{n+1}}\)</span> is the biggest eigenvalue of <span class="math inline">\((AX+B)^{-1}A\)</span></li>
-<li>jump to <a href="#/sec-conclusion" class="quarto-xref">Section&nbsp;3</a></li>
 </ul></li>
 </ul>
 </section>
-<section id="linear-time-iteration-4" class="slide level2" data-background-color="lightgrey">
+<section id="linear-time-iteration-4" class="slide level2">
 <h2>Linear Time Iteration (4)</h2>
 <p>Define <span class="math display">\[M(\lambda) = A\lambda^2 + B \lambda + C\]</span></p>
 <p>For any solution <span class="math inline">\(X\)</span>, <span class="math inline">\(M(\lambda)\)</span> can be factorized as: <sup>1</sup></p>
@@ -793,52 +842,12 @@ Pablo Winant
 <p><span class="math display">\[det(M(\lambda)) = \underbrace{det(\lambda A + A X + B)}_{Q(\lambda)}det(\lambda I -X)\]</span></p>
 <p>By construction <span class="math inline">\(Q(\lambda)\)</span> is a polynomial whose roots are those that are not selected by the solution i.e.&nbsp;<span class="math inline">\(\Lambda\setminus Sp(X)\)</span>.</p>
 <aside><ol class="aside-footnotes"><li id="fn1"><p>Special case of Bezout theorem. Easy to check in that case</p></li></ol></aside></section>
-<section id="linear-time-iteration-5" class="slide level2" data-background-color="lightgrey">
+<section id="linear-time-iteration-5" class="slide level2">
 <h2>Linear Time Iteration (5)</h2>
 <p>For <span class="math inline">\(\lambda \neq 0\)</span> we have:</p>
 <p><span class="math display">\[\lambda \in Sp((A X +B )^{-1} A)\]</span> <span class="math display">\[\iff  det( (A X +B )^{-1})A - I\lambda )=0\]</span> <span class="math display">\[\iff  det( \frac{1}{\lambda} A - I (A X +B )  )=0\]</span> <span class="math display">\[\iff Q(\frac{1}{\lambda})=0\]</span> <span class="math display">\[\iff \frac{1}{\lambda} \in G \setminus Sp(X)\]</span></p>
 <p>In words, <span class="math inline">\((AX+B)^{-1}\)</span> contains all the eigenvalues that have been rejected by the selection of <span class="math inline">\(X\)</span>.</p>
 <p>In particular, <span class="math inline">\(\rho((AX+B)^{-1})A)=1/\min(G\setminus Sp(X))\)</span></p>
-</section></section>
-<section>
-<section id="sec-conclusion" class="title-slide slide level1 center">
-<h1>Conclusion</h1>
-
-</section>
-<section id="what-can-you-do-with-the-solution" class="slide level2">
-<h2>What can you do with the solution</h2>
-<p>The solution of a model found by Dynare has an especially simple form: an AR1</p>
-<ul>
-<li><span class="math inline">\(y_t = X y_{t-1} + Y \epsilon_t\)</span></li>
-<li>where the covariances <span class="math inline">\(\Sigma\)</span> of <span class="math inline">\(\epsilon_t\)</span> can be chosen by the modeler</li>
-</ul>
-<div class="fragment">
-<p>With this solution we can (cf next TD)</p>
-<ul>
-<li>compute (conditional and unconditional) moments</li>
-<li>perform stochastic simulations, impulse response function</li>
-</ul>
-</div>
-</section>
-<section id="going-further" class="slide level2">
-<h2>Going Further</h2>
-<p>Taking the model to the data with Dynare</p>
-<ul>
-<li>“estimate” the model: compute the likelihood of a solution and maximize it by choosing the right parameters</li>
-<li>“identify” shocks in the data</li>
-</ul>
-<p>Other functions</p>
-<ul>
-<li>higher order approximation</li>
-<li>ramsey plan</li>
-<li>discretionary policy</li>
-<li>…</li>
-</ul>
-</section>
-<section id="coming-next" class="slide level2">
-<h2>Coming Next</h2>
-
-<img data-src="assets/ea0.jpg" class="r-stretch"><p>Many models</p>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

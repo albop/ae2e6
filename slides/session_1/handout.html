@@ -127,6 +127,29 @@ window.Quarto = {
  <span class="menu-text">Solving DSGE models</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides/session_2/handout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Small Open Economy Extension (IRBC)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/session_1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to DSGE Model &amp; Julia Basics</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -165,17 +188,20 @@ window.Quarto = {
   <li><a href="#computing-the-solution" id="toc-computing-the-solution" class="nav-link" data-scroll-target="#computing-the-solution">Computing the solution</a></li>
   <li><a href="#computing-gprime_e" id="toc-computing-gprime_e" class="nav-link" data-scroll-target="#computing-gprime_e">Computing <span class="math inline">\(g^{\prime}_{e}\)</span></a></li>
   <li><a href="#the-model-solution" id="toc-the-model-solution" class="nav-link" data-scroll-target="#the-model-solution">The model solution</a></li>
-  <li><a href="#linear-time-iteration" id="toc-linear-time-iteration" class="nav-link" data-scroll-target="#linear-time-iteration">Linear Time Iteration</a></li>
-  <li><a href="#linear-time-iteration-2" id="toc-linear-time-iteration-2" class="nav-link" data-scroll-target="#linear-time-iteration-2">Linear Time Iteration (2)</a></li>
-  <li><a href="#linear-time-iteration-3" id="toc-linear-time-iteration-3" class="nav-link" data-scroll-target="#linear-time-iteration-3">Linear Time Iteration (3)</a></li>
-  <li><a href="#linear-time-iteration-4" id="toc-linear-time-iteration-4" class="nav-link" data-scroll-target="#linear-time-iteration-4">Linear Time Iteration (4)</a></li>
-  <li><a href="#linear-time-iteration-5" id="toc-linear-time-iteration-5" class="nav-link" data-scroll-target="#linear-time-iteration-5">Linear Time Iteration (5)</a></li>
   </ul></li>
   <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion">Conclusion</a>
   <ul class="collapse">
   <li><a href="#what-can-you-do-with-the-solution" id="toc-what-can-you-do-with-the-solution" class="nav-link" data-scroll-target="#what-can-you-do-with-the-solution">What can you do with the solution</a></li>
   <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a></li>
   <li><a href="#coming-next" id="toc-coming-next" class="nav-link" data-scroll-target="#coming-next">Coming Next</a></li>
+  </ul></li>
+  <li><a href="#sec:linear_time_iteration" id="toc-sec:linear_time_iteration" class="nav-link" data-scroll-target="#sec\:linear_time_iteration">Appendix: Linear Time Iteration</a>
+  <ul class="collapse">
+  <li><a href="#linear-time-iteration" id="toc-linear-time-iteration" class="nav-link" data-scroll-target="#linear-time-iteration">Linear Time Iteration</a></li>
+  <li><a href="#linear-time-iteration-2" id="toc-linear-time-iteration-2" class="nav-link" data-scroll-target="#linear-time-iteration-2">Linear Time Iteration (2)</a></li>
+  <li><a href="#linear-time-iteration-3" id="toc-linear-time-iteration-3" class="nav-link" data-scroll-target="#linear-time-iteration-3">Linear Time Iteration (3)</a></li>
+  <li><a href="#linear-time-iteration-4" id="toc-linear-time-iteration-4" class="nav-link" data-scroll-target="#linear-time-iteration-4">Linear Time Iteration (4)</a></li>
+  <li><a href="#linear-time-iteration-5" id="toc-linear-time-iteration-5" class="nav-link" data-scroll-target="#linear-time-iteration-5">Linear Time Iteration (5)</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="slides.pdf"><i class="bi bi-file-pdf"></i>Beamer</a></li></ul></div></nav>
@@ -537,7 +563,7 @@ Blanchard-Kahn criterium
 <ul>
 <li>new default in dynare, more adequate for big models</li>
 </ul></li>
-<li>linear time iteration
+<li>linear time iteration cf <span class="citation" data-cites="sec:linear_time_iteration">@sec:linear_time_iteration</span>
 <ul>
 <li>conceptually very simple</li>
 </ul></li>
@@ -564,11 +590,56 @@ Blanchard-Kahn criterium
 <p>. . .</p>
 <p>Then to compare the model to the data we compute</p>
 <ul>
-<li>implied moments</li>
+<li>implied moments:
+<ul>
+<li>covariances, autocorrelation</li>
+</ul></li>
 <li>likelihood</li>
 </ul>
 <p>Optimizing the fit to the data is called <em>model</em> estimation</p>
 </section>
+</section>
+<section id="sec-conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="what-can-you-do-with-the-solution" class="level2">
+<h2 class="anchored" data-anchor-id="what-can-you-do-with-the-solution">What can you do with the solution</h2>
+<p>The solution of a model found by Dynare has an especially simple form: an AR1</p>
+<ul>
+<li><span class="math inline">\(y_t = X y_{t-1} + Y \epsilon_t\)</span></li>
+<li>where the covariances <span class="math inline">\(\Sigma\)</span> of <span class="math inline">\(\epsilon_t\)</span> can be chosen by the modeler</li>
+</ul>
+<p>. . .</p>
+<p>With this solution we can (cf next TD)</p>
+<ul>
+<li>compute (conditional and unconditional) moments</li>
+<li>perform stochastic simulations, impulse response function</li>
+</ul>
+<p>. . .</p>
+</section>
+<section id="going-further" class="level2">
+<h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
+<p>Taking the model to the data with Dynare</p>
+<ul>
+<li>“estimate” the model: compute the likelihood of a solution and maximize it by choosing the right parameters</li>
+<li>“identify” shocks in the data</li>
+</ul>
+<p>Other functions</p>
+<ul>
+<li>higher order approximation</li>
+<li>(noninear) perfect foresight simulations</li>
+<li>ramsey plan</li>
+<li>discretionary policy</li>
+<li>…</li>
+</ul>
+</section>
+<section id="coming-next" class="level2">
+<h2 class="anchored" data-anchor-id="coming-next">Coming Next</h2>
+<p><img src="assets/ea0.jpg" class="img-fluid"></p>
+<p>Many models</p>
+</section>
+</section>
+<section id="sec:linear_time_iteration" class="level1">
+<h1>Appendix: Linear Time Iteration</h1>
 <section id="linear-time-iteration" class="level2">
 <h2 class="anchored" data-anchor-id="linear-time-iteration">Linear Time Iteration</h2>
 <p>Recall the system to solve: <span class="math display">\[F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0\]</span></p>
@@ -605,12 +676,11 @@ Blanchard-Kahn criterium
 <li>what about <span class="math inline">\(\lambda_{n+1}\)</span>?
 <ul>
 <li><span class="math inline">\(\frac{1}{\lambda_{n+1}}\)</span> is the biggest eigenvalue of <span class="math inline">\((AX+B)^{-1}A\)</span></li>
-<li>jump to <a href="#sec-conclusion" class="quarto-xref">Section&nbsp;3</a></li>
 </ul></li>
 </ul>
 </section>
-<section id="linear-time-iteration-4" class="level2" data-background-color="lightgrey">
-<h2 data-background-color="lightgrey" class="anchored" data-anchor-id="linear-time-iteration-4">Linear Time Iteration (4)</h2>
+<section id="linear-time-iteration-4" class="level2">
+<h2 class="anchored" data-anchor-id="linear-time-iteration-4">Linear Time Iteration (4)</h2>
 <p>Define <span class="math display">\[M(\lambda) = A\lambda^2 + B \lambda + C\]</span></p>
 <p>For any solution <span class="math inline">\(X\)</span>, <span class="math inline">\(M(\lambda)\)</span> can be factorized as: <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p><span class="math display">\[M(\lambda)=(\lambda A + A X + B)(\lambda I -X)\]</span></p>
@@ -618,50 +688,12 @@ Blanchard-Kahn criterium
 <p><span class="math display">\[det(M(\lambda)) = \underbrace{det(\lambda A + A X + B)}_{Q(\lambda)}det(\lambda I -X)\]</span></p>
 <p>By construction <span class="math inline">\(Q(\lambda)\)</span> is a polynomial whose roots are those that are not selected by the solution i.e.&nbsp;<span class="math inline">\(\Lambda\setminus Sp(X)\)</span>.</p>
 </section>
-<section id="linear-time-iteration-5" class="level2" data-background-color="lightgrey">
-<h2 data-background-color="lightgrey" class="anchored" data-anchor-id="linear-time-iteration-5">Linear Time Iteration (5)</h2>
+<section id="linear-time-iteration-5" class="level2">
+<h2 class="anchored" data-anchor-id="linear-time-iteration-5">Linear Time Iteration (5)</h2>
 <p>For <span class="math inline">\(\lambda \neq 0\)</span> we have:</p>
 <p><span class="math display">\[\lambda \in Sp((A X +B )^{-1} A)\]</span> <span class="math display">\[\iff  det( (A X +B )^{-1})A - I\lambda )=0\]</span> <span class="math display">\[\iff  det( \frac{1}{\lambda} A - I (A X +B )  )=0\]</span> <span class="math display">\[\iff Q(\frac{1}{\lambda})=0\]</span> <span class="math display">\[\iff \frac{1}{\lambda} \in G \setminus Sp(X)\]</span></p>
 <p>In words, <span class="math inline">\((AX+B)^{-1}\)</span> contains all the eigenvalues that have been rejected by the selection of <span class="math inline">\(X\)</span>.</p>
 <p>In particular, <span class="math inline">\(\rho((AX+B)^{-1})A)=1/\min(G\setminus Sp(X))\)</span></p>
-</section>
-</section>
-<section id="sec-conclusion" class="level1">
-<h1>Conclusion</h1>
-<section id="what-can-you-do-with-the-solution" class="level2">
-<h2 class="anchored" data-anchor-id="what-can-you-do-with-the-solution">What can you do with the solution</h2>
-<p>The solution of a model found by Dynare has an especially simple form: an AR1</p>
-<ul>
-<li><span class="math inline">\(y_t = X y_{t-1} + Y \epsilon_t\)</span></li>
-<li>where the covariances <span class="math inline">\(\Sigma\)</span> of <span class="math inline">\(\epsilon_t\)</span> can be chosen by the modeler</li>
-</ul>
-<p>. . .</p>
-<p>With this solution we can (cf next TD)</p>
-<ul>
-<li>compute (conditional and unconditional) moments</li>
-<li>perform stochastic simulations, impulse response function</li>
-</ul>
-<p>. . .</p>
-</section>
-<section id="going-further" class="level2">
-<h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
-<p>Taking the model to the data with Dynare</p>
-<ul>
-<li>“estimate” the model: compute the likelihood of a solution and maximize it by choosing the right parameters</li>
-<li>“identify” shocks in the data</li>
-</ul>
-<p>Other functions</p>
-<ul>
-<li>higher order approximation</li>
-<li>ramsey plan</li>
-<li>discretionary policy</li>
-<li>…</li>
-</ul>
-</section>
-<section id="coming-next" class="level2">
-<h2 class="anchored" data-anchor-id="coming-next">Coming Next</h2>
-<p><img src="assets/ea0.jpg" class="img-fluid"></p>
-<p>Many models</p>
 
 
 </section>
