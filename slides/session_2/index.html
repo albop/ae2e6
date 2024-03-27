@@ -483,7 +483,7 @@ Pablo Winant
 <section id="endowment-model-3" class="slide level2">
 <h2>Endowment model (3)</h2>
 <p>We get the lagrangian:</p>
-<p><span class="math display">\[\mathcal{L}= \sum_{t=0}^{\infty} \beta^t u(c_t) + \sum_{t=0}^{\infty} \beta^t \lambda_t \left(y_t + (1+r) a_t - c_t+a_{t+1} \right)\]</span></p>
+<p><span class="math display">\[\mathcal{L}= \sum_{t=0}^{\infty} \beta^t u(c_t) + \sum_{t=0}^{\infty} \beta^t \lambda_t \left(y_t + (1+r) a_t - c_t-a_{t+1} \right)\]</span></p>
 <p>First order conditions:</p>
 <p><span class="math display">\[\begin{align}
 u^{\prime}(c_t)&amp; =&amp; \lambda_t \\
@@ -519,7 +519,7 @@ u^{\prime}(c_t)&amp; =&amp; \lambda_t \\
 </div>
 <div class="fragment">
 <p>Using the formula from before</p>
-<p><span class="math display">\[CA_0 =  a_0 r + (1-\frac{r}{1+r}) y_0 + \frac{r}{1+r}\left\{ \sum_{t\geq1}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
+<p><span class="math display">\[CA_0 =  a_0 r + (1-\frac{r}{1+r}) y_0 - \frac{r}{1+r}\left\{ \sum_{t\geq1}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
 <p>How does the current account reacts to income shocks?</p>
 <ul>
 <li><p>current account responds positively to <em>temporary</em> shock in income</p></li>
@@ -588,7 +588,7 @@ The immediate adjustment of capital provides an upper bound on the gains from fi
 <h2>Add friction to the investment</h2>
 <p>A possible solution: change the resource constraint such that adjusting capital is costly</p>
 <p>For instance:</p>
-<p><span class="math display">\[a_{t+1} + c_t + i_t + \frac{\omega}{2}\frac{(k_{t+1}-k_t)^ 2-\delta k^{\star})^2}{k_t} = (1+r)a_t + z f(k_t)\]</span></p>
+<p><span class="math display">\[a_{t+1} + c_t + i_t + \frac{\omega}{2}\frac{(k_{t+1}-k_t)^ 2}{k_t} = (1+r)a_t + z f(k_t)\]</span></p>
 <p><span class="math display">\[k_{t+1} = (1-\delta) k_t + i_t\]</span></p>
 <p>where <span class="math inline">\(\omega\)</span> is an adjustment friction. Typically, <span class="math inline">\(\omega\)</span> is chosen so that the model replicates <span class="math inline">\(\frac{Var(i_t)}{Var(y_t)}\)</span> from the data.</p>
 <div class="fragment">

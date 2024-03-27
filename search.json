@@ -74,14 +74,14 @@
     "href": "slides/session_2/index.html#endowment-model-3",
     "title": "Small Open Economy Extension (IRBC)",
     "section": "Endowment model (3)",
-    "text": "Endowment model (3)\nWe get the lagrangian:\n\\[\\mathcal{L}= \\sum_{t=0}^{\\infty} \\beta^t u(c_t) + \\sum_{t=0}^{\\infty} \\beta^t \\lambda_t \\left(y_t + (1+r) a_t - c_t+a_{t+1} \\right)\\]\nFirst order conditions:\n\\[\\begin{align}\nu^{\\prime}(c_t)& =& \\lambda_t \\\\\n\\lambda_t &=& \\beta (1+r) \\lambda_{t+1}\n\\end{align}\\]\nUnder the technical assumption \\(\\beta (1+r)=1\\) we get:\n\\[c_0 = \\frac{r}{1+r}\\left\\{ (1+r) a_0 + \\sum_{t=0}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\n\n\nproblem isomorphic to consumption-savings decisions\nconsumption is determined by permanent income"
+    "text": "Endowment model (3)\nWe get the lagrangian:\n\\[\\mathcal{L}= \\sum_{t=0}^{\\infty} \\beta^t u(c_t) + \\sum_{t=0}^{\\infty} \\beta^t \\lambda_t \\left(y_t + (1+r) a_t - c_t-a_{t+1} \\right)\\]\nFirst order conditions:\n\\[\\begin{align}\nu^{\\prime}(c_t)& =& \\lambda_t \\\\\n\\lambda_t &=& \\beta (1+r) \\lambda_{t+1}\n\\end{align}\\]\nUnder the technical assumption \\(\\beta (1+r)=1\\) we get:\n\\[c_0 = \\frac{r}{1+r}\\left\\{ (1+r) a_0 + \\sum_{t=0}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\n\n\nproblem isomorphic to consumption-savings decisions\nconsumption is determined by permanent income"
   },
   {
     "objectID": "slides/session_2/index.html#current-account",
     "href": "slides/session_2/index.html#current-account",
     "title": "Small Open Economy Extension (IRBC)",
     "section": "Current Account",
-    "text": "Current Account\n\n\n\n\n\n\n\nReminders on Current Account\n\n\nThe trade balance is exports-imports (here \\(y_t-c_t\\))\nThe current account is trade balance + net factor payments (here \\(y_t-c_t+r a_t\\))\nPositive current account: additional lending to the rest of the world.\n\n\n\n\n\nUsing the formula from before\n\\[CA_0 =  a_0 r + (1-\\frac{r}{1+r}) y_0 + \\frac{r}{1+r}\\left\\{ \\sum_{t\\geq1}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nHow does the current account reacts to income shocks?\n\ncurrent account responds positively to temporary shock in income\nand to news about future income shocks:\n\nThis is the intertemporal approach to the current account"
+    "text": "Current Account\n\n\n\n\n\n\n\nReminders on Current Account\n\n\nThe trade balance is exports-imports (here \\(y_t-c_t\\))\nThe current account is trade balance + net factor payments (here \\(y_t-c_t+r a_t\\))\nPositive current account: additional lending to the rest of the world.\n\n\n\n\n\nUsing the formula from before\n\\[CA_0 =  a_0 r + (1-\\frac{r}{1+r}) y_0 - \\frac{r}{1+r}\\left\\{ \\sum_{t\\geq1}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nHow does the current account reacts to income shocks?\n\ncurrent account responds positively to temporary shock in income\nand to news about future income shocks:\n\nThis is the intertemporal approach to the current account"
   },
   {
     "objectID": "slides/session_2/index.html#unit-root",
@@ -116,7 +116,7 @@
     "href": "slides/session_2/index.html#add-friction-to-the-investment",
     "title": "Small Open Economy Extension (IRBC)",
     "section": "Add friction to the investment",
-    "text": "Add friction to the investment\nA possible solution: change the resource constraint such that adjusting capital is costly\nFor instance:\n\\[a_{t+1} + c_t + i_t + \\frac{\\omega}{2}\\frac{(k_{t+1}-k_t)^ 2-\\delta k^{\\star})^2}{k_t} = (1+r)a_t + z f(k_t)\\]\n\\[k_{t+1} = (1-\\delta) k_t + i_t\\]\nwhere \\(\\omega\\) is an adjustment friction. Typically, \\(\\omega\\) is chosen so that the model replicates \\(\\frac{Var(i_t)}{Var(y_t)}\\) from the data.\n\n🔜 Cf tutorial."
+    "text": "Add friction to the investment\nA possible solution: change the resource constraint such that adjusting capital is costly\nFor instance:\n\\[a_{t+1} + c_t + i_t + \\frac{\\omega}{2}\\frac{(k_{t+1}-k_t)^ 2}{k_t} = (1+r)a_t + z f(k_t)\\]\n\\[k_{t+1} = (1-\\delta) k_t + i_t\\]\nwhere \\(\\omega\\) is an adjustment friction. Typically, \\(\\omega\\) is chosen so that the model replicates \\(\\frac{Var(i_t)}{Var(y_t)}\\) from the data.\n\n🔜 Cf tutorial."
   },
   {
     "objectID": "slides/session_2/index.html#a-benchmark-small-open-economy-model-1",
@@ -267,7 +267,7 @@
     "href": "slides/session_2/handout.html#endowment-model-3",
     "title": "Small Open Economy Extension (IRBC)",
     "section": "Endowment model (3)",
-    "text": "Endowment model (3)\nWe get the lagrangian:\n\\[\\mathcal{L}= \\sum_{t=0}^{\\infty} \\beta^t u(c_t) + \\sum_{t=0}^{\\infty} \\beta^t \\lambda_t \\left(y_t + (1+r) a_t - c_t+a_{t+1} \\right)\\]\nFirst order conditions:\n\\[\\begin{align}\nu^{\\prime}(c_t)& =& \\lambda_t \\\\\n\\lambda_t &=& \\beta (1+r) \\lambda_{t+1}\n\\end{align}\\]\nUnder the technical assumption \\(\\beta (1+r)=1\\) we get:\n\\[c_0 = \\frac{r}{1+r}\\left\\{ (1+r) a_0 + \\sum_{t=0}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\n. . .\n\nproblem isomorphic to consumption-savings decisions\nconsumption is determined by permanent income",
+    "text": "Endowment model (3)\nWe get the lagrangian:\n\\[\\mathcal{L}= \\sum_{t=0}^{\\infty} \\beta^t u(c_t) + \\sum_{t=0}^{\\infty} \\beta^t \\lambda_t \\left(y_t + (1+r) a_t - c_t-a_{t+1} \\right)\\]\nFirst order conditions:\n\\[\\begin{align}\nu^{\\prime}(c_t)& =& \\lambda_t \\\\\n\\lambda_t &=& \\beta (1+r) \\lambda_{t+1}\n\\end{align}\\]\nUnder the technical assumption \\(\\beta (1+r)=1\\) we get:\n\\[c_0 = \\frac{r}{1+r}\\left\\{ (1+r) a_0 + \\sum_{t=0}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\n. . .\n\nproblem isomorphic to consumption-savings decisions\nconsumption is determined by permanent income",
     "crumbs": [
       "lectures",
       "Small Open Economy Extension (IRBC)"
@@ -278,7 +278,7 @@
     "href": "slides/session_2/handout.html#current-account",
     "title": "Small Open Economy Extension (IRBC)",
     "section": "Current Account",
-    "text": "Current Account\n\n\n\n\n\n\nReminders on Current Account\n\n\n\nThe trade balance is exports-imports (here \\(y_t-c_t\\))\nThe current account is trade balance + net factor payments (here \\(y_t-c_t+r a_t\\))\nPositive current account: additional lending to the rest of the world.\n\n\n. . .\nUsing the formula from before\n\\[CA_0 =  a_0 r + (1-\\frac{r}{1+r}) y_0 + \\frac{r}{1+r}\\left\\{ \\sum_{t\\geq1}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nHow does the current account reacts to income shocks?\n\ncurrent account responds positively to temporary shock in income\nand to news about future income shocks:\n\nThis is the intertemporal approach to the current account",
+    "text": "Current Account\n\n\n\n\n\n\nReminders on Current Account\n\n\n\nThe trade balance is exports-imports (here \\(y_t-c_t\\))\nThe current account is trade balance + net factor payments (here \\(y_t-c_t+r a_t\\))\nPositive current account: additional lending to the rest of the world.\n\n\n. . .\nUsing the formula from before\n\\[CA_0 =  a_0 r + (1-\\frac{r}{1+r}) y_0 - \\frac{r}{1+r}\\left\\{ \\sum_{t\\geq1}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nHow does the current account reacts to income shocks?\n\ncurrent account responds positively to temporary shock in income\nand to news about future income shocks:\n\nThis is the intertemporal approach to the current account",
     "crumbs": [
       "lectures",
       "Small Open Economy Extension (IRBC)"
@@ -333,7 +333,7 @@
     "href": "slides/session_2/handout.html#add-friction-to-the-investment",
     "title": "Small Open Economy Extension (IRBC)",
     "section": "Add friction to the investment",
-    "text": "Add friction to the investment\nA possible solution: change the resource constraint such that adjusting capital is costly\nFor instance:\n\\[a_{t+1} + c_t + i_t + \\frac{\\omega}{2}\\frac{(k_{t+1}-k_t)^ 2-\\delta k^{\\star})^2}{k_t} = (1+r)a_t + z f(k_t)\\]\n\\[k_{t+1} = (1-\\delta) k_t + i_t\\]\nwhere \\(\\omega\\) is an adjustment friction. Typically, \\(\\omega\\) is chosen so that the model replicates \\(\\frac{Var(i_t)}{Var(y_t)}\\) from the data.\n. . .\n🔜 Cf tutorial.",
+    "text": "Add friction to the investment\nA possible solution: change the resource constraint such that adjusting capital is costly\nFor instance:\n\\[a_{t+1} + c_t + i_t + \\frac{\\omega}{2}\\frac{(k_{t+1}-k_t)^ 2}{k_t} = (1+r)a_t + z f(k_t)\\]\n\\[k_{t+1} = (1-\\delta) k_t + i_t\\]\nwhere \\(\\omega\\) is an adjustment friction. Typically, \\(\\omega\\) is chosen so that the model replicates \\(\\frac{Var(i_t)}{Var(y_t)}\\) from the data.\n. . .\n🔜 Cf tutorial.",
     "crumbs": [
       "lectures",
       "Small Open Economy Extension (IRBC)"
