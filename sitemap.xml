@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://albop.github.io/ae2e6/index_correction.html</loc>
-    <lastmod>2024-03-27T09:07:33.006Z</lastmod>
-  </url>
-  <url>
     <loc>https://albop.github.io/ae2e6/index.html</loc>
     <lastmod>2024-03-25T10:27:21.886Z</lastmod>
   </url>
@@ -35,9 +31,5 @@
   <url>
     <loc>https://albop.github.io/ae2e6/slides/session_1/index.html</loc>
     <lastmod>2024-03-27T09:12:32.488Z</lastmod>
-  </url>
-  <url>
-    <loc>https://albop.github.io/ae2e6/tutorials/session_1/index.html</loc>
-    <lastmod>2024-03-27T08:57:23.084Z</lastmod>
   </url>
 </urlset>
