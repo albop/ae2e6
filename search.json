@@ -67,14 +67,14 @@
     "href": "index.html",
     "title": "Macro II - Fluctuations",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\n\n\n\n\nMar 20, 2024\n\n\nSolving DSGE models\n\n\n\n\nMar 27, 2024\n\n\nSmall Open Economy Extension (IRBC)\n\n\n\n\nApr 3, 2024\n\n\nHeterogenous Agents\n\n\n\n\nApr 10, 2024\n\n\nGreen Transition\n\n\n\n\n\nNo matching items"
+    "text": "Resources for tutorials\n\n\n\n\n\nThe notebooks for the tutorials can be downloaed from this website (click on the Jupyter icon).\nThe following Julia environments can be used:\n\ncandice server\n\nchoose the ENSAE in the list of schools, then “computational economics”\nit has Dynare preinstalled\n\nmybinder\n\na bit slow to run\n\na local Julia installation (your own responsability)\n\nYou can browse the dyno models at this adress"
   },
   {
     "objectID": "index.html#schedule-wip",
     "href": "index.html#schedule-wip",
     "title": "Macro II - Fluctuations",
-    "section": "",
-    "text": "Date\n\n\nTitle\n\n\n\n\n\n\nMar 20, 2024\n\n\nSolving DSGE models\n\n\n\n\nMar 27, 2024\n\n\nSmall Open Economy Extension (IRBC)\n\n\n\n\nApr 3, 2024\n\n\nHeterogenous Agents\n\n\n\n\nApr 10, 2024\n\n\nGreen Transition\n\n\n\n\n\nNo matching items"
+    "section": "Schedule (WIP)",
+    "text": "Schedule (WIP)\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nMar 20, 2024\n\n\nSolving DSGE models\n\n\n\n\nMar 27, 2024\n\n\nSmall Open Economy Extension (IRBC)\n\n\n\n\nApr 3, 2024\n\n\nHeterogenous Agents\n\n\n\n\nApr 10, 2024\n\n\nGreen Transition\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "slides/session_2/index.html#why-a-small-open-economy",
