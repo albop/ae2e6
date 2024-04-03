@@ -67,168 +67,413 @@
     "href": "index.html",
     "title": "Macro II - Fluctuations",
     "section": "",
-    "text": "Resources for tutorials\n\n\n\n\n\nThe notebooks for the tutorials can be downloaed from this website (click on the Jupyter icon).\nThe following Julia environments can be used:\n\ncandice server\n\nchoose the ENSAE in the list of schools, then “computational economics”\nit has Dynare preinstalled\n\nmybinder\n\na bit slow to run\n\na local Julia installation (your own responsability)\n\nYou can browse the dyno models at this adress"
+    "text": "Resources for tutorials\n\n\n\n\n\nThe notebooks for the tutorials can be downloaded from this website (click on the Jupyter icon).\nThe following Julia environments can be used:\n\ncandice server\n\nchoose the ENSAE in the list of schools, then “computational economics”\nit has Dynare preinstalled\n\nmybinder\n\na bit slow to run\n\na local Julia installation (your own responsability)\n\nYou can browse the dyno models at this address"
   },
   {
     "objectID": "index.html#schedule-wip",
     "href": "index.html#schedule-wip",
     "title": "Macro II - Fluctuations",
     "section": "Schedule (WIP)",
-    "text": "Schedule (WIP)\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nMar 20, 2024\n\n\nSolving DSGE models\n\n\n\n\nMar 27, 2024\n\n\nSmall Open Economy Extension (IRBC)\n\n\n\n\nApr 3, 2024\n\n\nHeterogenous Agents\n\n\n\n\nApr 10, 2024\n\n\nGreen Transition\n\n\n\n\n\nNo matching items"
+    "text": "Schedule (WIP)\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nMar 20, 2024\n\n\nSolving DSGE models\n\n\n\n\nMar 27, 2024\n\n\nSmall Open Economy Extension (IRBC)\n\n\n\n\nApr 3, 2024\n\n\nIntro to Heterogeneity\n\n\n\n\nApr 3, 2024\n\n\nHeterogenous Agents\n\n\n\n\nApr 10, 2024\n\n\nGreen Transition\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "slides/session_2/index.html#why-a-small-open-economy",
-    "href": "slides/session_2/index.html#why-a-small-open-economy",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Why a small open economy?",
-    "text": "Why a small open economy?\nWhat are the classical reasons to open economy to trade\n\n\ntrade integration\n\ntaste for variety\ncomparative advantage\n\nfinancial integration\n\nsmooth shock / insurance"
-  },
-  {
-    "objectID": "slides/session_2/index.html#from-rbc-to-irbc",
-    "href": "slides/session_2/index.html#from-rbc-to-irbc",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "From RBC to IRBC",
-    "text": "From RBC to IRBC\nAfter the success of RBC models to match business cycles it didn’t take long before the same methodology was applied to International Business Cycles\n\nSeminal Paper:\n\nInternational Real Business Cycles, Backus, Kehoe, Kydland (1992) (freshwater economists)\n\nVery successful methodology:\n\nfacts at odd with theoretical predictions have been called “puzzles”"
-  },
-  {
-    "objectID": "slides/session_2/index.html#irbc-facts",
-    "href": "slides/session_2/index.html#irbc-facts",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "IRBC Facts",
-    "text": "IRBC Facts\n\nMomentsFrom Kehoe,Kydland (1995)"
-  },
-  {
-    "objectID": "slides/session_2/index.html#irbc-facts-1",
-    "href": "slides/session_2/index.html#irbc-facts-1",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "IRBC Facts",
-    "text": "IRBC Facts\n\n\n\n\n\nMoments\n\n\n\n\n\n\nComoments"
-  },
-  {
-    "objectID": "slides/session_2/index.html#stylized-facts",
-    "href": "slides/session_2/index.html#stylized-facts",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Stylized Facts",
-    "text": "Stylized Facts\n\n\n\n\n\nMoments\n\n\n\n\n\nComoments\n\n\n\n\nDomestically:\n\n\noutput more variable than consumption\noutput autocorrelated\nproductivity strongly procyclical\ntrade balance strongly countercyclcal\npositive comovements in output\n\n\n\nInternationally:\n\nsmaller comovements in consumption\n\nBackus-Kehoe-Kydland puzzle"
-  },
-  {
-    "objectID": "slides/session_2/index.html#endowment-model",
-    "href": "slides/session_2/index.html#endowment-model",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Endowment model",
-    "text": "Endowment model\nTake an endowment economy: income \\((y_t)_t\\) is exogenously given. We assume it is deterministic\n\\[\\max_{c_t} \\sum_{t=0}^{\\infty} \\beta^t u(c_t)\\]\n\\[c_t+a_{t+1} \\leq y_t + (1+r) a_t\\]\nCountry takes world interest rate \\(r\\) as given\n\na small open economy doesn’t affect world prices"
-  },
-  {
-    "objectID": "slides/session_2/index.html#endowment-model-2",
-    "href": "slides/session_2/index.html#endowment-model-2",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Endowment model (2)",
-    "text": "Endowment model (2)\nWe solve this problem with the terminal conditions:\n\n\\(a_0\\) given\n\\(\\lim_{T\\rightarrow\\infty} \\frac{a_{T+1}}{(1+r)^T}\\geq0\\)\n\nno-ponzi condition\n\n\n\nThe no-ponzi condition will in effect eliminate diverging solutions. In a first order approximation, it selects the right eigenvalues."
-  },
-  {
-    "objectID": "slides/session_2/index.html#endowment-model-3",
-    "href": "slides/session_2/index.html#endowment-model-3",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Endowment model (3)",
-    "text": "Endowment model (3)\nWe get the lagrangian:\n\\[\\mathcal{L}= \\sum_{t=0}^{\\infty} \\beta^t u(c_t) + \\sum_{t=0}^{\\infty} \\beta^t \\lambda_t \\left(y_t + (1+r) a_t - c_t-a_{t+1} \\right)\\]\nFirst order conditions:\n\\[\\begin{align}\nu^{\\prime}(c_t)& =& \\lambda_t \\\\\n\\lambda_t &=& \\beta (1+r) \\lambda_{t+1}\n\\end{align}\\]\nUnder the technical assumption \\(\\beta (1+r)=1\\) we get:\n\\[c_0 = \\frac{r}{1+r}\\left\\{ (1+r) a_0 + \\sum_{t=0}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\n\n\nproblem isomorphic to consumption-savings decisions\nconsumption is determined by permanent income"
-  },
-  {
-    "objectID": "slides/session_2/index.html#current-account",
-    "href": "slides/session_2/index.html#current-account",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Current Account",
-    "text": "Current Account\n\n\n\n\n\n\n\nReminders on Current Account\n\n\nThe trade balance is exports-imports (here \\(y_t-c_t\\))\nThe current account is trade balance + net factor payments (here \\(y_t-c_t+r a_t\\))\nPositive current account: additional lending to the rest of the world.\n\n\n\n\n\nUsing the formula from before\n\\[CA_0 =  a_0 r + (1-\\frac{r}{1+r}) y_0 - \\frac{r}{1+r}\\left\\{ \\sum_{t\\geq1}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nHow does the current account reacts to income shocks?\n\ncurrent account responds positively to temporary shock in income\nand to news about future income shocks:\n\nThis is the intertemporal approach to the current account"
-  },
-  {
-    "objectID": "slides/session_2/index.html#unit-root",
-    "href": "slides/session_2/index.html#unit-root",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Unit root",
-    "text": "Unit root\nStill with the same formula: \\[c_0 = \\frac{r}{1+r}\\left\\{ (1+r) a_0 + \\sum_{t=0}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nWhat is the effect of an increase in \\(a_0\\)?\n\nconsumption rises permanently\n\nby small amount \\(r\\) corresponding to interests paid forever on \\(a_0\\)\n\nthis will correspond to a unit root in the solution"
-  },
-  {
-    "objectID": "slides/session_2/index.html#exercise",
-    "href": "slides/session_2/index.html#exercise",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Exercise",
-    "text": "Exercise\nFrom the first order conditions\n\\[\\begin{align}\nu^{\\prime}(c_t) & = & \\lambda_t \\\\\n\\lambda_t & = &  \\beta (1+r) \\lambda_{t+1}\n\\end{align}\\]\nassuming \\(u(c_t) = \\log (c_t)\\), can you get the equation for the law of motion of \\(a_t\\) and show the presence of a unit root?"
-  },
-  {
-    "objectID": "slides/session_2/index.html#adding-capital",
-    "href": "slides/session_2/index.html#adding-capital",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Adding capital",
-    "text": "Adding capital\nWe add capital and production to our endowment economy: \\[y_t = z_t k_t^\\alpha\\] \\[k_t = (1-\\delta) k_{t-1} + i_{t-1}\\]\nThe aggregate resource constraint becomes:\n\\[a_{t+1} + c_t + i_t = (1+r) a_t + y_t\\]\nNow maximize \\(\\sum_t \\beta^ t U(c_t)\\)\n\nWe get first order conditions\n\\[\\lambda_t = \\beta \\lambda_{t+1} (1+r)\\] \\[\\lambda_t = \\beta \\lambda_{t+1}\\left[ (1-\\delta) + z_{t+1} f^{\\prime}(k_{t+1}) \\right]\\]\nwhere \\(\\lambda_t\\) is lagrange multiplier associated to budget constraint."
-  },
-  {
-    "objectID": "slides/session_2/index.html#adding-capital-optimality-conditions",
-    "href": "slides/session_2/index.html#adding-capital-optimality-conditions",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Adding capital: optimality conditions",
-    "text": "Adding capital: optimality conditions\nSince \\(\\lambda_t\\) (constraint is always binding), we get:\n\\[(1-\\delta) + z_{t+1} f^{\\prime}(k_{t+1}) = 1+r\\]\n\\[k_{t+1} = \\left( \\frac{r+\\delta}{\\alpha z_{t+1}}\\right)^{\\frac{1}{\\alpha-1}}\\]\nand investment \\[i_t = \\left( \\frac{r+\\delta}{\\alpha z_{t+1}}\\right)^{\\frac{1}{\\alpha-1}}- (1-\\delta)\\left( \\frac{r+\\delta}{\\alpha z_{t}}\\right)^{\\frac{1}{\\alpha-1}}\\]\n\nHere investment is fully determined by productivity shocks\n\ntoo simple: no international dependence"
-  },
-  {
-    "objectID": "slides/session_2/index.html#add-friction-to-the-investment",
-    "href": "slides/session_2/index.html#add-friction-to-the-investment",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Add friction to the investment",
-    "text": "Add friction to the investment\nA possible solution: change the resource constraint such that adjusting capital is costly\nFor instance:\n\\[a_{t+1} + c_t + i_t + \\frac{\\omega}{2}\\frac{(k_{t+1}-k_t)^ 2}{k_t} = (1+r)a_t + z f(k_t)\\]\n\\[k_{t+1} = (1-\\delta) k_t + i_t\\]\nwhere \\(\\omega\\) is an adjustment friction. Typically, \\(\\omega\\) is chosen so that the model replicates \\(\\frac{Var(i_t)}{Var(y_t)}\\) from the data.\n\n🔜 Cf tutorial."
-  },
-  {
-    "objectID": "slides/session_2/index.html#a-benchmark-small-open-economy-model-1",
-    "href": "slides/session_2/index.html#a-benchmark-small-open-economy-model-1",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "A benchmark Small Open Economy Model",
-    "text": "A benchmark Small Open Economy Model\n\n\n\n\n\nStephanie Schmitt Grohe and Martin Uribe\n\n\n\nClosing Small Economy Models, Schmitt Grohe and Uribe (2003), JIE\n\nsmall open economy model with production, consumption-leisure tradeoff and capital adjustment costs\n\n= RBC+open+adj costs\n\nperform some moments matching\ncompare different ways of stationarizing the model"
-  },
-  {
-    "objectID": "slides/session_2/index.html#the-model",
-    "href": "slides/session_2/index.html#the-model",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "The model",
-    "text": "The model\n\\[\\max_{c_t, n_t} \\sum_{t=0}^{\\infty} \\beta^t u(c_t)\\]\n\\[c_t + k_{t+1} + a_{t+1} = y_t + g_t - \\frac{\\omega}{2}(k_{t+1}-k_t)^2 +(1-\\delta) k_t + (1+r^{\\star}+\\pi(a_t))a_t\\] \\[y_t = f(k_t, n_t, z_t)\\]\n\\[z_{t+1} = \\rho z_t + \\epsilon_{t+1}\\]\nand \\(u(c, n) = \\frac{1}{1-\\sigma}\\left(c^{\\psi}(1-n)^{1-\\psi}\n)\\right)^{1-\\sigma}\\)"
-  },
-  {
-    "objectID": "slides/session_2/index.html#how-to-make-the-distribution-stationary",
-    "href": "slides/session_2/index.html#how-to-make-the-distribution-stationary",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "How to make the distribution stationary?",
-    "text": "How to make the distribution stationary?\nThe solution of the model exhibits a unit root:\n\\[a_t = a_{t-1} + ... \\text{other variables in t-1} + \\text{shocks in t}\\]\n\nProblem:\n\nthere isn’t a unique deterministic steady-state\nthe ergodic distribution of the model variables is not defined\n\nThis raises practical issues (notably for estimation) for the linear model.\n\nno unconditional moments"
-  },
-  {
-    "objectID": "slides/session_2/index.html#how-to-get-rid-of-the-unit-root",
-    "href": "slides/session_2/index.html#how-to-get-rid-of-the-unit-root",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "How to get rid of the unit root?",
-    "text": "How to get rid of the unit root?\nGeneral idea:\n\nintroduce a force that pulls the level of foreign assets towards equilibrium\n\nSchmitt Grohe and Uribe (2003) consider many options:\n\n\n\ndebt-elastic interest rate: \\[1+r = 1+r^{\\star} + \\pi(a_d)\\]\n\nwith \\(\\pi(0)=0\\) and \\(\\pi^{\\prime}(0)&gt;0\\)\n\\(\\pi\\) can be understood as a risk premium on rising debt\n\n\n\n\n\nendogenous time-discount (aka Usawa preferences) \\[\\beta(c_t) = (1+c_t)^{-\\chi}\\]\ncosts of adjustment for international portfolios\n\n\n\n\nSGU show that the choice of the stationarization device has little effect for the dynamics (moments) of most variables"
-  },
-  {
-    "objectID": "slides/session_2/index.html#calibration",
-    "href": "slides/session_2/index.html#calibration",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Calibration",
-    "text": "Calibration\n\n\n\n\n\nParameters\nValues\n\n\n\n\n\\(σ\\)\n2\n\n\n\\(ψ\\)\n1.45\n\n\n\\(α\\)\n0.32\n\n\n\\(ω\\)\n0.028\n\n\n\\(r\\)\n0.04\n\n\n\n\n\n\n\nParameters\nValues\n\n\n\n\n\\(δ\\)\n0.1\n\n\n\\(ρ\\)\n0.42\n\n\n\\(σ²\\)\n0.0129\n\n\n\\(A^{\\star}\\)\n-0.7442\n\n\n\\(χ\\)\n0.000742"
-  },
-  {
-    "objectID": "slides/session_2/index.html#results",
-    "href": "slides/session_2/index.html#results",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Results",
-    "text": "Results\n\n\n\nImpulse Response Function"
-  },
-  {
-    "objectID": "slides/session_2/index.html#section",
-    "href": "slides/session_2/index.html#section",
-    "title": "Small Open Economy Extension (IRBC)",
+    "objectID": "slides/session_3/index.html#section",
+    "href": "slides/session_3/index.html#section",
+    "title": "Intro to Heterogeneity",
     "section": "",
-    "text": "Moments (from SGU)"
+    "text": "DSGE models are often criticized for unrealistic assumptions\n\nExample:\n\nMacroeconomic Policy in DSGE and Agent-Based Models from Revue de l’OFCE\nIn that respect, the Great Recessions has revealed to be a natural experiment for economic analysis, showing the inadequacy of the predominant theoretical frameworks. Indeed, an increasing number of leading economists claim that the current ’’economic crisis is a crisis for economic theory’’ (Kirman, 2010; Colander et al., 2009; Krugman, 2009, 2011; Caballero, 2010; Stiglitz, 2011; Kay, 2011; Dosi, 2011; Delong, 2011). The basic assumptions of mainstream DSGE models, e.g. rational expectations, representative agents, perfect markets etc., prevent the understanding of basic phenomena underlying the current economic crisis\n\n\n\nBut:\n\nmainstream models typically incorporate many non classical elements. For instance New Keynesian models feature imperfect competition\none must distinguish mainstream models from DSGE methodology\n\ntoday: DSGE model with rather radical conclusion"
   },
   {
-    "objectID": "slides/session_2/index.html#conclusions",
-    "href": "slides/session_2/index.html#conclusions",
-    "title": "Small Open Economy Extension (IRBC)",
-    "section": "Conclusions",
-    "text": "Conclusions\n\nThe model matches unconditional correlations fairly well\n\nThe stationarization device has little effect on the moments\n\nUnconditional correlations are not that great\n\na limitation of the moment matching method?\n\nCorrelation of consumption with output is too high\n\nand probably cross-correlation of consumption too low\nstill the Backus-Kehoe-Kydland puzzle…"
+    "objectID": "slides/session_3/index.html#representative-agent",
+    "href": "slides/session_3/index.html#representative-agent",
+    "title": "Intro to Heterogeneity",
+    "section": "Representative Agent",
+    "text": "Representative Agent\n  \nUnder the Representative agent assumption\n\naggregate choices are made as the result of a single optimization problem\n☡ there might restrictions on what is internalized by the agent\n\n\n  Is it a simplifying assumption?\n\n\n \nOr is it actually equivalent to the aggregation of many optimization problems?\n\n\n  \nFor the latter one needs a theory of aggregation1\n\n… which quickly breaks down (for instance when utility fonction are heterogenous)\n\n\ncheck Household heterogeneity in macroeconomic models: A historical perspective (or an older blog) for history of heterogenous agents"
+  },
+  {
+    "objectID": "slides/session_3/index.html#example-with-the-neoclassical-model",
+    "href": "slides/session_3/index.html#example-with-the-neoclassical-model",
+    "title": "Intro to Heterogeneity",
+    "section": "Example with the Neoclassical Model",
+    "text": "Example with the Neoclassical Model\nLet’s consider three versions of the neoclassical model\n\nfully decentralized (many firms, many consumers)\nrepresentative agent\nplanner problem\n\nNote:\n\nfor the neoclassical model, there is a theory of aggregation for the production sector (firms are Cobb-Douglas)\ntwo assumptions are needed to aggregate consumers: log-utility and no uncertainty"
+  },
+  {
+    "objectID": "slides/session_3/index.html#heterogenous-agents",
+    "href": "slides/session_3/index.html#heterogenous-agents",
+    "title": "Intro to Heterogeneity",
+    "section": "Heterogenous Agents",
+    "text": "Heterogenous Agents\nSome economists have recognized early the need to explicitly model heterogeneity.\n\n1977: Bewley\n\nidiosyncratic stochastic endowment\nconsumption-savings model with borrowing constraints\nleads to ex-post heterogeneity (constrained/unconstrained) hence different reactions\n\nHuggett Economy (1993)\n\nadditional ex-ante heterogeneity in idiosyncratic income process\n\nAyiagari Model (1994)\n\nsavings are invested to accumulate aggregate capital\nconsumption-savings model with borrowing constraints\nidiosyncratic productivity shocks (salary)\n\nKrussell Smith Model (1998)\n\nAyagari + aggregate shocks\n\n\nThose models require special computational techniques and were poorly understood mathematically"
+  },
+  {
+    "objectID": "slides/session_3/index.html#mean-field-games-and-heterogenous-agents-models",
+    "href": "slides/session_3/index.html#mean-field-games-and-heterogenous-agents-models",
+    "title": "Intro to Heterogeneity",
+    "section": "Mean Field Games and Heterogenous Agents Models",
+    "text": "Mean Field Games and Heterogenous Agents Models\n2012 Ben Moll did a talk at IMA (UK)\n\n\n\n\nEconomists and world class mathematicians exchanged on mean field games\n\na class of mathematical problems which encompasses heterogenous agents models\na bit math intense (stochastic calculus, viscosity theory, …)"
+  },
+  {
+    "objectID": "slides/session_3/index.html#mean-field-games-and-heterogenous-agents-models-1",
+    "href": "slides/session_3/index.html#mean-field-games-and-heterogenous-agents-models-1",
+    "title": "Intro to Heterogeneity",
+    "section": "Mean Field Games and Heterogenous Agents Models",
+    "text": "Mean Field Games and Heterogenous Agents Models\n\n\n2012 Ben Moll did a talk at IMA (UK)\n\n\nResult: a new stream of heterogenous agents papers\n\nPDE Models in Macroeconomics (2014) with Achdou, Bueary, Lasry, Lions\nThe Dynamics of Inequality (2016) with Gabaix, Lasry, Lions\nMonetary Policy According to HANK (2018) with Kaplan and Violante\n\nthat one was hugely successfull"
+  },
+  {
+    "objectID": "slides/session_3/index.html#hank-hank-hank",
+    "href": "slides/session_3/index.html#hank-hank-hank",
+    "title": "Intro to Heterogeneity",
+    "section": "HANK, HANK HANK, …",
+    "text": "HANK, HANK HANK, …\n\nMonetary Policy According to HANK (2018), by Moll, Kaplan and Violante\n\nHANK: Heterogenous Agents New Keynesian\nstudy unequal consequences of monetary policies\na new baseline model for central banks\n\n\n\n\n\nStimulated a whole literature1\n\nUnderstanding HANK: Insights from a PRANK2\nWhen HANK meets SAM\nHANK beyond FIRE\nAggregate Demand: THANK (Tractable HANK) and TANK by Florin Bilbiie\n\nmain point: you don’t need more than two agents to get the main insights\n\n\n\n\n\nthe ones in the list are not necessary the most representativepseudo representative new-keynesian model"
+  },
+  {
+    "objectID": "slides/session_3/index.html#heterogenous-consumers",
+    "href": "slides/session_3/index.html#heterogenous-consumers",
+    "title": "Intro to Heterogeneity",
+    "section": "Heterogenous consumers",
+    "text": "Heterogenous consumers\nWhy does it matter to model consumer’s heterogeneity?\n\n\nTo reproduce realistic consumption decisions.\n\n\n\nClassically, we make the difference between two kinds of agents:\n\n\n\n\n\n\n\n\nRicardian Households\n\n\nAgents who can freely reallocate consumption intertemporally.\nThey have a high marginal propensity to consume out of additional income.\n\n\n\n  \nRicardian households choose not to consume more today, in order to consume more tomorrow.\n\n\n\n\n\n\n\nKeynesian Households\n\n\nAgents whose consumption in the current period is limited by a binding credit constraint. Either they can’t borrow at all or the amount they can borrow is limited today.\nThey have a high marginal propensity to consume out of additional income.\n\n\n\nKeynesian Households consume today as much as they can.\n\n\n\n\nThe representative agent assumes everyone is ricardian.\nWhat does the data say?"
+  },
+  {
+    "objectID": "slides/session_3/index.html#wealthy-hand-to-mouth-agents",
+    "href": "slides/session_3/index.html#wealthy-hand-to-mouth-agents",
+    "title": "Intro to Heterogeneity",
+    "section": "Wealthy Hand to Mouth agents",
+    "text": "Wealthy Hand to Mouth agents\nWe have just seen that agents in the middle of the wealth distribution, hold a wider proportion of wealth in illiquid assets (housing)\n\nTheir cash in hand (available for immediate purchase) is reduced. A sizable fraction of ther income goes into repaying their loan…).\nThey have higher MPC\nThey also react to interest rates changes (notably those who have floating interest rates)\n“Monetary Policy According to HANK”, 2018, Kaplan, Moll and Violante, stress out the role of “wealthy hand to mouth” and the need to take their existence to evaluate the influence of monetary policies."
+  },
+  {
+    "objectID": "slides/session_3/index.html#how-do-we-model-differences-in-mpc",
+    "href": "slides/session_3/index.html#how-do-we-model-differences-in-mpc",
+    "title": "Intro to Heterogeneity",
+    "section": "How do we model differences in MPC?",
+    "text": "How do we model differences in MPC?\n\n\nSpecify several kinds of agents:\n\nricardians\nhand to mouth (consumption = income)\nex-ante heterogeneity\n\nBy endogenizing borrowing constraint with borrowing constraint\n\nrequires nonlinear solution\nex-post heterogeneity\nwith potential idiosyncratic parameters like time-discount (ex-ante heterogeneity)\n\nBy using preference for wealth\n\ncoming next"
+  },
+  {
+    "objectID": "slides/session_3/index.html#section-1",
+    "href": "slides/session_3/index.html#section-1",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Inequality, Leverage and Crisis, Kumhof, Rancière, Winant (2015)"
+  },
+  {
+    "objectID": "slides/session_3/index.html#introduction",
+    "href": "slides/session_3/index.html#introduction",
+    "title": "Intro to Heterogeneity",
+    "section": "Introduction",
+    "text": "Introduction\nThe 2007 financial crisis, was initially as subprime mortgage crisis\n\n\nhigh indebtedness from low income households\nfueled by easy credit (low i.r.) and high house prices\ndebt-securitization\n\neven for high risk debt (subprimes)\nof which 90% had variable interest rates and/or balloon payments\n\n(moderate) rise in interest rates\n\nbursting of the housing buble\nhouseholds were unable to refinance their loans\n… and defaulted\n\nmbs market collapsed…\n… and with it the whole financial sector\n\n\n\nOk, but from a macro perspective, what fueled such high levels of borrowing?"
+  },
+  {
+    "objectID": "slides/session_3/index.html#section-2",
+    "href": "slides/session_3/index.html#section-2",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Leverage and Inequality\n\n\nA similar pattern emerged before the great recession and before the great depression:1\n\nparallel increases in income inequality and debt over income ratios\n\ninequality data from Saez and Zucman"
+  },
+  {
+    "objectID": "slides/session_3/index.html#section-3",
+    "href": "slides/session_3/index.html#section-3",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Wealth InequalityIncrease in wealth inequality is consistent."
+  },
+  {
+    "objectID": "slides/session_3/index.html#section-4",
+    "href": "slides/session_3/index.html#section-4",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Crisis Probability\n\n\nEconometric measures of household default risk 1 rose consistently.\n\nFrom Schularick and Taylor (2014)"
+  },
+  {
+    "objectID": "slides/session_3/index.html#model",
+    "href": "slides/session_3/index.html#model",
+    "title": "Intro to Heterogeneity",
+    "section": "Model",
+    "text": "Model\nWhat could link rising income inequality to increased borrowing by bottom-earners?\nIntuition:\n\ntop-earners have higher marginal propensity to save\nwhen their income increases they lend to bottom earners\nand rising debt increases the risk of default\n\nLet’s see how to model that in DSGE fashion (ommiting default risk for the sake of simplicity)"
+  },
+  {
+    "objectID": "slides/session_3/index.html#endowments",
+    "href": "slides/session_3/index.html#endowments",
+    "title": "Intro to Heterogeneity",
+    "section": "Endowments",
+    "text": "Endowments\nWe consider and endowment economy:\n\nTotal output\n\n\\[y_t = (1-\\rho_y) \\overline{y} + \\rho_y y_{t-1} + \\epsilon_{y,t}\\]\n\nInequality shock\n\n\\[z_t = (1-\\rho_z) \\overline{z} + \\rho_z z_{t-1} + \\epsilon_{z,t}\\]\nComments:\n\n\\(z_t\\) is the fraction of the total output that is received by top-earners. The rest is received by bottom earners.\nWe assume there is a faction \\(\\chi\\) of top earners.\nour goal is to study the effect of a persistent inequality shock (with \\(\\rho_z=1\\))\n\nwe need a way to model nonzero marginal propensity to save out of a persistent income shock"
+  },
+  {
+    "objectID": "slides/session_3/index.html#top-earners",
+    "href": "slides/session_3/index.html#top-earners",
+    "title": "Intro to Heterogeneity",
+    "section": "Top Earners",
+    "text": "Top Earners\nWe choose the following utility function for top earners: \\[U_t = E_t \\sum_{k\\geq0}^{\\infty} \\beta^k_{\\tau} \\left\\{ \\frac{\\left(c^{\\tau}_{t+k}\\right)^ {1-\\frac{1}{\\sigma}}}{1-\\frac{1}{\\sigma}} + \\varphi \\frac{\\left( 1+b_{t+k}\\frac{1-\\chi}{\\chi}\\right)^{1-\\frac{1}{\\eta}}}{1-\\frac{1}{\\eta}} \\right\\}\\]\n\nConsumption: \\[c^{\\tau}_t = y_t z_t \\frac{1}{\\chi} + \\left(b_{t-1}-b_t p_t\\right)\\frac{1-\\chi}{\\chi}\\] where \\(b_t\\) is debt holdings and \\(p_t\\) the price of it \\(1/r_t\\)\n\n\nOptimality condition from \\(\\max U_t\\)\n\\[p_t = \\beta_{\\tau} E_t\\left[ \\left( \\frac{c^{\\tau}_{t+1}}{c^{\\tau}_t}\\right)^ {-\\frac{1}{\\sigma}}\\right] + \\varphi \\frac{\\left(1+b_t \\frac{1-\\chi}{\\chi}\\right)^ {-\\frac{1}{\\eta}}}{\\left(c_t^{\\tau}\\right)^ {-\\frac{1}{\\sigma}}}\\]"
+  },
+  {
+    "objectID": "slides/session_3/index.html#preference-for-wealth",
+    "href": "slides/session_3/index.html#preference-for-wealth",
+    "title": "Intro to Heterogeneity",
+    "section": "Preference for Wealth",
+    "text": "Preference for Wealth\nThe preference for wealth can be justified as:\n\na preference for social status\ncapitalist spirit\n\nIt implies a steady-state supply of lending for any income level:\n\n\n\n\n\n\n\nWhich in turn implies non-zero marginal propensity to save from a permanent income shock (in the short and the long run)\nParameters \\(\\eta\\) and \\(\\varphi\\) are not observed, but can be chosen in order to match real world MPC (50% for top earners)."
+  },
+  {
+    "objectID": "slides/session_3/index.html#bottom-earners",
+    "href": "slides/session_3/index.html#bottom-earners",
+    "title": "Intro to Heterogeneity",
+    "section": "Bottom Earners",
+    "text": "Bottom Earners\nBottom earners are standard:\n\\[V_t = E_t \\sum_{k \\geq 0}^{\\infty} \\beta^k_b \\left( \\frac{\\left(c_{t+k}^b\\right)^ {1-\\frac{1}{\\sigma}}}{1-\\frac{1}{\\sigma}} \\right)\\]\nBudget constraint:\n\\[c^b_t = y_t(1-z_t)\\frac{1}{1-\\chi} + \\left(b_t p_t - b_{t-1}\\right)\\]\nOptimality condition from \\(\\max V_t\\)\n\\[p_t = \\beta^b E_t \\left[ \\left( \\frac{c_{t+1}^b}{c_t^b}\\right)^{-\\frac{1}{\\sigma}} \\right]\\]"
+  },
+  {
+    "objectID": "slides/session_3/index.html#section-5",
+    "href": "slides/session_3/index.html#section-5",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Calibration"
+  },
+  {
+    "objectID": "slides/session_3/index.html#section-6",
+    "href": "slides/session_3/index.html#section-6",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Inequality Shock"
+  },
+  {
+    "objectID": "slides/session_3/index.html#section-7",
+    "href": "slides/session_3/index.html#section-7",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Pseudo-Historical Simulation"
+  },
+  {
+    "objectID": "slides/session_3/index.html#section-8",
+    "href": "slides/session_3/index.html#section-8",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Pseudo-Historical Simulation\n\n\n\nIn the simulation we use historical values for the driving shocks (output and inequality).\nWhat is the predictive power of the model:\n\nwe match one moment: the evolution of debt/gdep from 1983 to 2010"
+  },
+  {
+    "objectID": "slides/session_3/handout.html",
+    "href": "slides/session_3/handout.html",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "DSGE models are often criticized for unrealistic assumptions\n. . .\nExample:\n\nMacroeconomic Policy in DSGE and Agent-Based Models from Revue de l’OFCE\nIn that respect, the Great Recessions has revealed to be a natural experiment for economic analysis, showing the inadequacy of the predominant theoretical frameworks. Indeed, an increasing number of leading economists claim that the current ’’economic crisis is a crisis for economic theory’’ (Kirman, 2010; Colander et al., 2009; Krugman, 2009, 2011; Caballero, 2010; Stiglitz, 2011; Kay, 2011; Dosi, 2011; Delong, 2011). The basic assumptions of mainstream DSGE models, e.g. rational expectations, representative agents, perfect markets etc., prevent the understanding of basic phenomena underlying the current economic crisis\n\n. . .\nBut:\n\nmainstream models typically incorporate many non classical elements. For instance New Keynesian models feature imperfect competition\none must distinguish mainstream models from DSGE methodology\n\ntoday: DSGE model with rather radical conclusion\n\n\n\n\n\n  \nUnder the Representative agent assumption\n\naggregate choices are made as the result of a single optimization problem\n☡ there might restrictions on what is internalized by the agent\n\n. . .\n  Is it a simplifying assumption?\n. . .\n \nOr is it actually equivalent to the aggregation of many optimization problems?\n. . .\n  \nFor the latter one needs a theory of aggregation1\n\n… which quickly breaks down (for instance when utility fonction are heterogenous)\n\n\n\n\nLet’s consider three versions of the neoclassical model\n\nfully decentralized (many firms, many consumers)\nrepresentative agent\nplanner problem\n\nNote:\n\nfor the neoclassical model, there is a theory of aggregation for the production sector (firms are Cobb-Douglas)\ntwo assumptions are needed to aggregate consumers: log-utility and no uncertainty\n\n\n\n\nSome economists have recognized early the need to explicitly model heterogeneity.\n\n1977: Bewley\n\nidiosyncratic stochastic endowment\nconsumption-savings model with borrowing constraints\nleads to ex-post heterogeneity (constrained/unconstrained) hence different reactions\n\nHuggett Economy (1993)\n\nadditional ex-ante heterogeneity in idiosyncratic income process\n\nAyiagari Model (1994)\n\nsavings are invested to accumulate aggregate capital\nconsumption-savings model with borrowing constraints\nidiosyncratic productivity shocks (salary)\n\nKrussell Smith Model (1998)\n\nAyagari + aggregate shocks\n\n\nThose models require special computational techniques and were poorly understood mathematically\n\n\n\n2012 Ben Moll did a talk at IMA (UK)\n. . .\n\n. . .\nEconomists and world class mathematicians exchanged on mean field games\n\na class of mathematical problems which encompasses heterogenous agents models\na bit math intense (stochastic calculus, viscosity theory, …)\n\n\n\n\n\n\n2012 Ben Moll did a talk at IMA (UK)\n\n\nResult: a new stream of heterogenous agents papers\n\nPDE Models in Macroeconomics (2014) with Achdou, Bueary, Lasry, Lions\nThe Dynamics of Inequality (2016) with Gabaix, Lasry, Lions\nMonetary Policy According to HANK (2018) with Kaplan and Violante\n\nthat one was hugely successfull\n\n\n\n\n\n\n\n\nMonetary Policy According to HANK (2018), by Moll, Kaplan and Violante\n\nHANK: Heterogenous Agents New Keynesian\nstudy unequal consequences of monetary policies\na new baseline model for central banks\n\n\n. . .\n\n\nStimulated a whole literature2\n\nUnderstanding HANK: Insights from a PRANK3\nWhen HANK meets SAM\nHANK beyond FIRE\nAggregate Demand: THANK (Tractable HANK) and TANK by Florin Bilbiie\n\nmain point: you don’t need more than two agents to get the main insights\n\n\n\n\n\n\n\nWhy does it matter to model consumer’s heterogeneity?\n. . .\n\nTo reproduce realistic consumption decisions.\n\n. . .\nClassically, we make the difference between two kinds of agents:\n\n\n\n\n\n\n\n\nRicardian Households\n\n\n\nAgents who can freely reallocate consumption intertemporally.\nThey have a high marginal propensity to consume out of additional income.\n\n\n  \nRicardian households choose not to consume more today, in order to consume more tomorrow.\n\n\n\n\n\n\n\nKeynesian Households\n\n\n\nAgents whose consumption in the current period is limited by a binding credit constraint. Either they can’t borrow at all or the amount they can borrow is limited today.\nThey have a high marginal propensity to consume out of additional income.\n\n\nKeynesian Households consume today as much as they can.\n\n\n. . .\nThe representative agent assumes everyone is ricardian.\nWhat does the data say?\n\nLet’s have a look at the MPC distribution for France.4\n\n\n\nSelf-Reported MPC from Transitory Income Shock\n\n\n\n\n\n\nAverage MPC by Cash-on-Hand Percentiles\n\n\n. . .\nApparently MPC is well predicted by Cash-in-hand (amount of money left to household after having made all compulsory payments).\n\n\n\n\nWealth distribution\n\n\n\n\n\n\nWealth decomposition\n\n\n. . .\nAgents in the middle of the wealth distribution have a mortgage, whose interests leaves very little to spend after payments. They have lower cash-in-hand hence higher marginal propensity to consume (than rich agents).\n\n\n\n\nWe have just seen that agents in the middle of the wealth distribution, hold a wider proportion of wealth in illiquid assets (housing)\n\nTheir cash in hand (available for immediate purchase) is reduced. A sizable fraction of ther income goes into repaying their loan…).\nThey have higher MPC\nThey also react to interest rates changes (notably those who have floating interest rates)\n“Monetary Policy According to HANK”, 2018, Kaplan, Moll and Violante, stress out the role of “wealthy hand to mouth” and the need to take their existence to evaluate the influence of monetary policies.\n\n\n\n\n\n\n\nSpecify several kinds of agents:\n\nricardians\nhand to mouth (consumption = income)\nex-ante heterogeneity\n\nBy endogenizing borrowing constraint with borrowing constraint\n\nrequires nonlinear solution\nex-post heterogeneity\nwith potential idiosyncratic parameters like time-discount (ex-ante heterogeneity)\n\nBy using preference for wealth\n\ncoming next"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#section",
+    "href": "slides/session_3/handout.html#section",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "DSGE models are often criticized for unrealistic assumptions\n. . .\nExample:\n\nMacroeconomic Policy in DSGE and Agent-Based Models from Revue de l’OFCE\nIn that respect, the Great Recessions has revealed to be a natural experiment for economic analysis, showing the inadequacy of the predominant theoretical frameworks. Indeed, an increasing number of leading economists claim that the current ’’economic crisis is a crisis for economic theory’’ (Kirman, 2010; Colander et al., 2009; Krugman, 2009, 2011; Caballero, 2010; Stiglitz, 2011; Kay, 2011; Dosi, 2011; Delong, 2011). The basic assumptions of mainstream DSGE models, e.g. rational expectations, representative agents, perfect markets etc., prevent the understanding of basic phenomena underlying the current economic crisis\n\n. . .\nBut:\n\nmainstream models typically incorporate many non classical elements. For instance New Keynesian models feature imperfect competition\none must distinguish mainstream models from DSGE methodology\n\ntoday: DSGE model with rather radical conclusion"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#representative-agent",
+    "href": "slides/session_3/handout.html#representative-agent",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Under the Representative agent assumption\n\naggregate choices are made as the result of a single optimization problem\n☡ there might restrictions on what is internalized by the agent\n\n. . .\n  Is it a simplifying assumption?\n. . .\n \nOr is it actually equivalent to the aggregation of many optimization problems?\n. . .\n  \nFor the latter one needs a theory of aggregation1\n\n… which quickly breaks down (for instance when utility fonction are heterogenous)"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#example-with-the-neoclassical-model",
+    "href": "slides/session_3/handout.html#example-with-the-neoclassical-model",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Let’s consider three versions of the neoclassical model\n\nfully decentralized (many firms, many consumers)\nrepresentative agent\nplanner problem\n\nNote:\n\nfor the neoclassical model, there is a theory of aggregation for the production sector (firms are Cobb-Douglas)\ntwo assumptions are needed to aggregate consumers: log-utility and no uncertainty"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#heterogenous-agents",
+    "href": "slides/session_3/handout.html#heterogenous-agents",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Some economists have recognized early the need to explicitly model heterogeneity.\n\n1977: Bewley\n\nidiosyncratic stochastic endowment\nconsumption-savings model with borrowing constraints\nleads to ex-post heterogeneity (constrained/unconstrained) hence different reactions\n\nHuggett Economy (1993)\n\nadditional ex-ante heterogeneity in idiosyncratic income process\n\nAyiagari Model (1994)\n\nsavings are invested to accumulate aggregate capital\nconsumption-savings model with borrowing constraints\nidiosyncratic productivity shocks (salary)\n\nKrussell Smith Model (1998)\n\nAyagari + aggregate shocks\n\n\nThose models require special computational techniques and were poorly understood mathematically"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#mean-field-games-and-heterogenous-agents-models",
+    "href": "slides/session_3/handout.html#mean-field-games-and-heterogenous-agents-models",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "2012 Ben Moll did a talk at IMA (UK)\n. . .\n\n. . .\nEconomists and world class mathematicians exchanged on mean field games\n\na class of mathematical problems which encompasses heterogenous agents models\na bit math intense (stochastic calculus, viscosity theory, …)"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#mean-field-games-and-heterogenous-agents-models-1",
+    "href": "slides/session_3/handout.html#mean-field-games-and-heterogenous-agents-models-1",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "2012 Ben Moll did a talk at IMA (UK)\n\n\nResult: a new stream of heterogenous agents papers\n\nPDE Models in Macroeconomics (2014) with Achdou, Bueary, Lasry, Lions\nThe Dynamics of Inequality (2016) with Gabaix, Lasry, Lions\nMonetary Policy According to HANK (2018) with Kaplan and Violante\n\nthat one was hugely successfull"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#hank-hank-hank",
+    "href": "slides/session_3/handout.html#hank-hank-hank",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Monetary Policy According to HANK (2018), by Moll, Kaplan and Violante\n\nHANK: Heterogenous Agents New Keynesian\nstudy unequal consequences of monetary policies\na new baseline model for central banks\n\n\n. . .\n\n\nStimulated a whole literature2\n\nUnderstanding HANK: Insights from a PRANK3\nWhen HANK meets SAM\nHANK beyond FIRE\nAggregate Demand: THANK (Tractable HANK) and TANK by Florin Bilbiie\n\nmain point: you don’t need more than two agents to get the main insights"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#heterogenous-consumers",
+    "href": "slides/session_3/handout.html#heterogenous-consumers",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Why does it matter to model consumer’s heterogeneity?\n. . .\n\nTo reproduce realistic consumption decisions.\n\n. . .\nClassically, we make the difference between two kinds of agents:\n\n\n\n\n\n\n\n\nRicardian Households\n\n\n\nAgents who can freely reallocate consumption intertemporally.\nThey have a high marginal propensity to consume out of additional income.\n\n\n  \nRicardian households choose not to consume more today, in order to consume more tomorrow.\n\n\n\n\n\n\n\nKeynesian Households\n\n\n\nAgents whose consumption in the current period is limited by a binding credit constraint. Either they can’t borrow at all or the amount they can borrow is limited today.\nThey have a high marginal propensity to consume out of additional income.\n\n\nKeynesian Households consume today as much as they can.\n\n\n. . .\nThe representative agent assumes everyone is ricardian.\nWhat does the data say?\n\nLet’s have a look at the MPC distribution for France.4\n\n\n\nSelf-Reported MPC from Transitory Income Shock\n\n\n\n\n\n\nAverage MPC by Cash-on-Hand Percentiles\n\n\n. . .\nApparently MPC is well predicted by Cash-in-hand (amount of money left to household after having made all compulsory payments).\n\n\n\n\nWealth distribution\n\n\n\n\n\n\nWealth decomposition\n\n\n. . .\nAgents in the middle of the wealth distribution have a mortgage, whose interests leaves very little to spend after payments. They have lower cash-in-hand hence higher marginal propensity to consume (than rich agents)."
+  },
+  {
+    "objectID": "slides/session_3/handout.html#wealthy-hand-to-mouth-agents",
+    "href": "slides/session_3/handout.html#wealthy-hand-to-mouth-agents",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "We have just seen that agents in the middle of the wealth distribution, hold a wider proportion of wealth in illiquid assets (housing)\n\nTheir cash in hand (available for immediate purchase) is reduced. A sizable fraction of ther income goes into repaying their loan…).\nThey have higher MPC\nThey also react to interest rates changes (notably those who have floating interest rates)\n“Monetary Policy According to HANK”, 2018, Kaplan, Moll and Violante, stress out the role of “wealthy hand to mouth” and the need to take their existence to evaluate the influence of monetary policies."
+  },
+  {
+    "objectID": "slides/session_3/handout.html#how-do-we-model-differences-in-mpc",
+    "href": "slides/session_3/handout.html#how-do-we-model-differences-in-mpc",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Specify several kinds of agents:\n\nricardians\nhand to mouth (consumption = income)\nex-ante heterogeneity\n\nBy endogenizing borrowing constraint with borrowing constraint\n\nrequires nonlinear solution\nex-post heterogeneity\nwith potential idiosyncratic parameters like time-discount (ex-ante heterogeneity)\n\nBy using preference for wealth\n\ncoming next"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#section-1",
+    "href": "slides/session_3/handout.html#section-1",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Inequality, Leverage and Crisis, Kumhof, Rancière, Winant (2015)"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#introduction",
+    "href": "slides/session_3/handout.html#introduction",
+    "title": "Intro to Heterogeneity",
+    "section": "Introduction",
+    "text": "Introduction\nThe 2007 financial crisis, was initially as subprime mortgage crisis\n\n\nhigh indebtedness from low income households\nfueled by easy credit (low i.r.) and high house prices\ndebt-securitization\n\neven for high risk debt (subprimes)\nof which 90% had variable interest rates and/or balloon payments\n\n(moderate) rise in interest rates\n\nbursting of the housing buble\nhouseholds were unable to refinance their loans\n… and defaulted\n\nmbs market collapsed…\n… and with it the whole financial sector\n\n\n. . .\nOk, but from a macro perspective, what fueled such high levels of borrowing?"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#section-2",
+    "href": "slides/session_3/handout.html#section-2",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Leverage and Inequality\n\n\nA similar pattern emerged before the great recession and before the great depression:5\n\nparallel increases in income inequality and debt over income ratios"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#section-3",
+    "href": "slides/session_3/handout.html#section-3",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Wealth Inequality\n\n\nIncrease in wealth inequality is consistent."
+  },
+  {
+    "objectID": "slides/session_3/handout.html#section-4",
+    "href": "slides/session_3/handout.html#section-4",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Crisis Probability\n\n\nEconometric measures of household default risk 6 rose consistently."
+  },
+  {
+    "objectID": "slides/session_3/handout.html#model",
+    "href": "slides/session_3/handout.html#model",
+    "title": "Intro to Heterogeneity",
+    "section": "Model",
+    "text": "Model\nWhat could link rising income inequality to increased borrowing by bottom-earners?\nIntuition:\n\ntop-earners have higher marginal propensity to save\nwhen their income increases they lend to bottom earners\nand rising debt increases the risk of default\n\nLet’s see how to model that in DSGE fashion (ommiting default risk for the sake of simplicity)"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#endowments",
+    "href": "slides/session_3/handout.html#endowments",
+    "title": "Intro to Heterogeneity",
+    "section": "Endowments",
+    "text": "Endowments\nWe consider and endowment economy:\n\nTotal output\n\n\\[y_t = (1-\\rho_y) \\overline{y} + \\rho_y y_{t-1} + \\epsilon_{y,t}\\]\n\nInequality shock\n\n\\[z_t = (1-\\rho_z) \\overline{z} + \\rho_z z_{t-1} + \\epsilon_{z,t}\\]\nComments:\n\n\\(z_t\\) is the fraction of the total output that is received by top-earners. The rest is received by bottom earners.\nWe assume there is a faction \\(\\chi\\) of top earners.\nour goal is to study the effect of a persistent inequality shock (with \\(\\rho_z=1\\))\n\nwe need a way to model nonzero marginal propensity to save out of a persistent income shock"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#top-earners",
+    "href": "slides/session_3/handout.html#top-earners",
+    "title": "Intro to Heterogeneity",
+    "section": "Top Earners",
+    "text": "Top Earners\nWe choose the following utility function for top earners: \\[U_t = E_t \\sum_{k\\geq0}^{\\infty} \\beta^k_{\\tau} \\left\\{ \\frac{\\left(c^{\\tau}_{t+k}\\right)^ {1-\\frac{1}{\\sigma}}}{1-\\frac{1}{\\sigma}} + \\varphi \\frac{\\left( 1+b_{t+k}\\frac{1-\\chi}{\\chi}\\right)^{1-\\frac{1}{\\eta}}}{1-\\frac{1}{\\eta}} \\right\\}\\]\n. . .\nConsumption: \\[c^{\\tau}_t = y_t z_t \\frac{1}{\\chi} + \\left(b_{t-1}-b_t p_t\\right)\\frac{1-\\chi}{\\chi}\\] where \\(b_t\\) is debt holdings and \\(p_t\\) the price of it \\(1/r_t\\)\n. . .\nOptimality condition from \\(\\max U_t\\)\n\\[p_t = \\beta_{\\tau} E_t\\left[ \\left( \\frac{c^{\\tau}_{t+1}}{c^{\\tau}_t}\\right)^ {-\\frac{1}{\\sigma}}\\right] + \\varphi \\frac{\\left(1+b_t \\frac{1-\\chi}{\\chi}\\right)^ {-\\frac{1}{\\eta}}}{\\left(c_t^{\\tau}\\right)^ {-\\frac{1}{\\sigma}}}\\]"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#preference-for-wealth",
+    "href": "slides/session_3/handout.html#preference-for-wealth",
+    "title": "Intro to Heterogeneity",
+    "section": "Preference for Wealth",
+    "text": "Preference for Wealth\nThe preference for wealth can be justified as:\n\na preference for social status\ncapitalist spirit\n\nIt implies a steady-state supply of lending for any income level:\n\n\n\n\n\n\n\nWhich in turn implies non-zero marginal propensity to save from a permanent income shock (in the short and the long run)\nParameters \\(\\eta\\) and \\(\\varphi\\) are not observed, but can be chosen in order to match real world MPC (50% for top earners)."
+  },
+  {
+    "objectID": "slides/session_3/handout.html#bottom-earners",
+    "href": "slides/session_3/handout.html#bottom-earners",
+    "title": "Intro to Heterogeneity",
+    "section": "Bottom Earners",
+    "text": "Bottom Earners\nBottom earners are standard:\n\\[V_t = E_t \\sum_{k \\geq 0}^{\\infty} \\beta^k_b \\left( \\frac{\\left(c_{t+k}^b\\right)^ {1-\\frac{1}{\\sigma}}}{1-\\frac{1}{\\sigma}} \\right)\\]\nBudget constraint:\n\\[c^b_t = y_t(1-z_t)\\frac{1}{1-\\chi} + \\left(b_t p_t - b_{t-1}\\right)\\]\nOptimality condition from \\(\\max V_t\\)\n\\[p_t = \\beta^b E_t \\left[ \\left( \\frac{c_{t+1}^b}{c_t^b}\\right)^{-\\frac{1}{\\sigma}} \\right]\\]"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#section-5",
+    "href": "slides/session_3/handout.html#section-5",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Calibration"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#section-6",
+    "href": "slides/session_3/handout.html#section-6",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Inequality Shock"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#section-7",
+    "href": "slides/session_3/handout.html#section-7",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Pseudo-Historical Simulation"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#section-8",
+    "href": "slides/session_3/handout.html#section-8",
+    "title": "Intro to Heterogeneity",
+    "section": "",
+    "text": "Pseudo-Historical Simulation\n\n\n\nIn the simulation we use historical values for the driving shocks (output and inequality).\nWhat is the predictive power of the model:\n\nwe match one moment: the evolution of debt/gdep from 1983 to 2010"
+  },
+  {
+    "objectID": "slides/session_3/handout.html#footnotes",
+    "href": "slides/session_3/handout.html#footnotes",
+    "title": "Intro to Heterogeneity",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\ncheck Household heterogeneity in macroeconomic models: A historical perspective (or an older blog) for history of heterogenous agents↩︎\nthe ones in the list are not necessary the most representative↩︎\npseudo representative new-keynesian model↩︎\nFrom From Fiscal Policy and MPC Heterogeneity, Tullio Jappelli and Luigi Pistaferri, American Economic Journal: Macroeconomics, 2014↩︎\ninequality data from Saez and Zucman↩︎\nFrom Schularick and Taylor (2014)↩︎"
+  },
+  {
+    "objectID": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#other-dimensions-of-inequality-measure",
+    "href": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#other-dimensions-of-inequality-measure",
+    "title": "Introduction to Macroeconomics",
+    "section": "Other Dimensions of Inequality (measure)",
+    "text": "Other Dimensions of Inequality (measure)\n\nMeasure:\n\npre-tax income\nafter-tax income\nconsumption\nwealth\n\nPopulation\n\ngenerational gap\ngender gap\nracial gap"
+  },
+  {
+    "objectID": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#pre-tax-vs-post-tax-inequality",
+    "href": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#pre-tax-vs-post-tax-inequality",
+    "title": "Introduction to Macroeconomics",
+    "section": "Pre-tax vs post-tax inequality",
+    "text": "Pre-tax vs post-tax inequality\n\n\n\nGini before and after taxes"
+  },
+  {
+    "objectID": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#consumption-inequality",
+    "href": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#consumption-inequality",
+    "title": "Introduction to Macroeconomics",
+    "section": "Consumption Inequality",
+    "text": "Consumption Inequality\nConsumption inequality much lower than income inequality."
+  },
+  {
+    "objectID": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#other-dimensions-of-inequality-population",
+    "href": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#other-dimensions-of-inequality-population",
+    "title": "Introduction to Macroeconomics",
+    "section": "Other Dimensions of Inequality (population)",
+    "text": "Other Dimensions of Inequality (population)\n\nRacial gap\nGender gap\n\nEU: women get paid in average 15% less than men. 10% less for same work.\n\nGenerational inequality (France)\n\nbaby-boomers had rising income profiles and high pensions\nnew generations have flatter income profiles and (expected) lower pensions"
+  },
+  {
+    "objectID": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#can-we-bear-inequality",
+    "href": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#can-we-bear-inequality",
+    "title": "Introduction to Macroeconomics",
+    "section": "Can we bear inequality ?",
+    "text": "Can we bear inequality ?\n\nYes if:\n\nit is associated with higher economic efficiency (??)\nthe economic cost of reducing inequality is important (??)\nit is associated with high social mobility (???)\n\nNo if: reducing inequality is an objective per se"
+  },
+  {
+    "objectID": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#takeways",
+    "href": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#takeways",
+    "title": "Introduction to Macroeconomics",
+    "section": "Takeways",
+    "text": "Takeways\n\nBasic inequality measure: quantile ratios, gini coefficient\nSeveral dimensions of inequality"
+  },
+  {
+    "objectID": "slides/prep_4/index_handout.html",
+    "href": "slides/prep_4/index_handout.html",
+    "title": "Green Transition",
+    "section": "",
+    "text": "Come back later!."
   },
   {
     "objectID": "slides/session_2/handout.html",
@@ -484,11 +729,165 @@
     ]
   },
   {
-    "objectID": "slides/prep_4/index_handout.html",
-    "href": "slides/prep_4/index_handout.html",
-    "title": "Green Transition",
+    "objectID": "slides/session_2/index.html#why-a-small-open-economy",
+    "href": "slides/session_2/index.html#why-a-small-open-economy",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Why a small open economy?",
+    "text": "Why a small open economy?\nWhat are the classical reasons to open economy to trade\n\n\ntrade integration\n\ntaste for variety\ncomparative advantage\n\nfinancial integration\n\nsmooth shock / insurance"
+  },
+  {
+    "objectID": "slides/session_2/index.html#from-rbc-to-irbc",
+    "href": "slides/session_2/index.html#from-rbc-to-irbc",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "From RBC to IRBC",
+    "text": "From RBC to IRBC\nAfter the success of RBC models to match business cycles it didn’t take long before the same methodology was applied to International Business Cycles\n\nSeminal Paper:\n\nInternational Real Business Cycles, Backus, Kehoe, Kydland (1992) (freshwater economists)\n\nVery successful methodology:\n\nfacts at odd with theoretical predictions have been called “puzzles”"
+  },
+  {
+    "objectID": "slides/session_2/index.html#irbc-facts",
+    "href": "slides/session_2/index.html#irbc-facts",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "IRBC Facts",
+    "text": "IRBC Facts\n\nMomentsFrom Kehoe,Kydland (1995)"
+  },
+  {
+    "objectID": "slides/session_2/index.html#irbc-facts-1",
+    "href": "slides/session_2/index.html#irbc-facts-1",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "IRBC Facts",
+    "text": "IRBC Facts\n\n\n\n\n\nMoments\n\n\n\n\n\n\nComoments"
+  },
+  {
+    "objectID": "slides/session_2/index.html#stylized-facts",
+    "href": "slides/session_2/index.html#stylized-facts",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Stylized Facts",
+    "text": "Stylized Facts\n\n\n\n\n\nMoments\n\n\n\n\n\nComoments\n\n\n\n\nDomestically:\n\n\noutput more variable than consumption\noutput autocorrelated\nproductivity strongly procyclical\ntrade balance strongly countercyclcal\npositive comovements in output\n\n\n\nInternationally:\n\nsmaller comovements in consumption\n\nBackus-Kehoe-Kydland puzzle"
+  },
+  {
+    "objectID": "slides/session_2/index.html#endowment-model",
+    "href": "slides/session_2/index.html#endowment-model",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Endowment model",
+    "text": "Endowment model\nTake an endowment economy: income \\((y_t)_t\\) is exogenously given. We assume it is deterministic\n\\[\\max_{c_t} \\sum_{t=0}^{\\infty} \\beta^t u(c_t)\\]\n\\[c_t+a_{t+1} \\leq y_t + (1+r) a_t\\]\nCountry takes world interest rate \\(r\\) as given\n\na small open economy doesn’t affect world prices"
+  },
+  {
+    "objectID": "slides/session_2/index.html#endowment-model-2",
+    "href": "slides/session_2/index.html#endowment-model-2",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Endowment model (2)",
+    "text": "Endowment model (2)\nWe solve this problem with the terminal conditions:\n\n\\(a_0\\) given\n\\(\\lim_{T\\rightarrow\\infty} \\frac{a_{T+1}}{(1+r)^T}\\geq0\\)\n\nno-ponzi condition\n\n\n\nThe no-ponzi condition will in effect eliminate diverging solutions. In a first order approximation, it selects the right eigenvalues."
+  },
+  {
+    "objectID": "slides/session_2/index.html#endowment-model-3",
+    "href": "slides/session_2/index.html#endowment-model-3",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Endowment model (3)",
+    "text": "Endowment model (3)\nWe get the lagrangian:\n\\[\\mathcal{L}= \\sum_{t=0}^{\\infty} \\beta^t u(c_t) + \\sum_{t=0}^{\\infty} \\beta^t \\lambda_t \\left(y_t + (1+r) a_t - c_t-a_{t+1} \\right)\\]\nFirst order conditions:\n\\[\\begin{align}\nu^{\\prime}(c_t)& =& \\lambda_t \\\\\n\\lambda_t &=& \\beta (1+r) \\lambda_{t+1}\n\\end{align}\\]\nUnder the technical assumption \\(\\beta (1+r)=1\\) we get:\n\\[c_0 = \\frac{r}{1+r}\\left\\{ (1+r) a_0 + \\sum_{t=0}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\n\n\nproblem isomorphic to consumption-savings decisions\nconsumption is determined by permanent income"
+  },
+  {
+    "objectID": "slides/session_2/index.html#current-account",
+    "href": "slides/session_2/index.html#current-account",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Current Account",
+    "text": "Current Account\n\n\n\n\n\n\n\nReminders on Current Account\n\n\nThe trade balance is exports-imports (here \\(y_t-c_t\\))\nThe current account is trade balance + net factor payments (here \\(y_t-c_t+r a_t\\))\nPositive current account: additional lending to the rest of the world.\n\n\n\n\n\nUsing the formula from before\n\\[CA_0 =  a_0 r + (1-\\frac{r}{1+r}) y_0 - \\frac{r}{1+r}\\left\\{ \\sum_{t\\geq1}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nHow does the current account reacts to income shocks?\n\ncurrent account responds positively to temporary shock in income\nand to news about future income shocks:\n\nThis is the intertemporal approach to the current account"
+  },
+  {
+    "objectID": "slides/session_2/index.html#unit-root",
+    "href": "slides/session_2/index.html#unit-root",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Unit root",
+    "text": "Unit root\nStill with the same formula: \\[c_0 = \\frac{r}{1+r}\\left\\{ (1+r) a_0 + \\sum_{t=0}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nWhat is the effect of an increase in \\(a_0\\)?\n\nconsumption rises permanently\n\nby small amount \\(r\\) corresponding to interests paid forever on \\(a_0\\)\n\nthis will correspond to a unit root in the solution"
+  },
+  {
+    "objectID": "slides/session_2/index.html#exercise",
+    "href": "slides/session_2/index.html#exercise",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Exercise",
+    "text": "Exercise\nFrom the first order conditions\n\\[\\begin{align}\nu^{\\prime}(c_t) & = & \\lambda_t \\\\\n\\lambda_t & = &  \\beta (1+r) \\lambda_{t+1}\n\\end{align}\\]\nassuming \\(u(c_t) = \\log (c_t)\\), can you get the equation for the law of motion of \\(a_t\\) and show the presence of a unit root?"
+  },
+  {
+    "objectID": "slides/session_2/index.html#adding-capital",
+    "href": "slides/session_2/index.html#adding-capital",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Adding capital",
+    "text": "Adding capital\nWe add capital and production to our endowment economy: \\[y_t = z_t k_t^\\alpha\\] \\[k_t = (1-\\delta) k_{t-1} + i_{t-1}\\]\nThe aggregate resource constraint becomes:\n\\[a_{t+1} + c_t + i_t = (1+r) a_t + y_t\\]\nNow maximize \\(\\sum_t \\beta^ t U(c_t)\\)\n\nWe get first order conditions\n\\[\\lambda_t = \\beta \\lambda_{t+1} (1+r)\\] \\[\\lambda_t = \\beta \\lambda_{t+1}\\left[ (1-\\delta) + z_{t+1} f^{\\prime}(k_{t+1}) \\right]\\]\nwhere \\(\\lambda_t\\) is lagrange multiplier associated to budget constraint."
+  },
+  {
+    "objectID": "slides/session_2/index.html#adding-capital-optimality-conditions",
+    "href": "slides/session_2/index.html#adding-capital-optimality-conditions",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Adding capital: optimality conditions",
+    "text": "Adding capital: optimality conditions\nSince \\(\\lambda_t\\) (constraint is always binding), we get:\n\\[(1-\\delta) + z_{t+1} f^{\\prime}(k_{t+1}) = 1+r\\]\n\\[k_{t+1} = \\left( \\frac{r+\\delta}{\\alpha z_{t+1}}\\right)^{\\frac{1}{\\alpha-1}}\\]\nand investment \\[i_t = \\left( \\frac{r+\\delta}{\\alpha z_{t+1}}\\right)^{\\frac{1}{\\alpha-1}}- (1-\\delta)\\left( \\frac{r+\\delta}{\\alpha z_{t}}\\right)^{\\frac{1}{\\alpha-1}}\\]\n\nHere investment is fully determined by productivity shocks\n\ntoo simple: no international dependence"
+  },
+  {
+    "objectID": "slides/session_2/index.html#add-friction-to-the-investment",
+    "href": "slides/session_2/index.html#add-friction-to-the-investment",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Add friction to the investment",
+    "text": "Add friction to the investment\nA possible solution: change the resource constraint such that adjusting capital is costly\nFor instance:\n\\[a_{t+1} + c_t + i_t + \\frac{\\omega}{2}\\frac{(k_{t+1}-k_t)^ 2}{k_t} = (1+r)a_t + z f(k_t)\\]\n\\[k_{t+1} = (1-\\delta) k_t + i_t\\]\nwhere \\(\\omega\\) is an adjustment friction. Typically, \\(\\omega\\) is chosen so that the model replicates \\(\\frac{Var(i_t)}{Var(y_t)}\\) from the data.\n\n🔜 Cf tutorial."
+  },
+  {
+    "objectID": "slides/session_2/index.html#a-benchmark-small-open-economy-model-1",
+    "href": "slides/session_2/index.html#a-benchmark-small-open-economy-model-1",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "A benchmark Small Open Economy Model",
+    "text": "A benchmark Small Open Economy Model\n\n\n\n\n\nStephanie Schmitt Grohe and Martin Uribe\n\n\n\nClosing Small Economy Models, Schmitt Grohe and Uribe (2003), JIE\n\nsmall open economy model with production, consumption-leisure tradeoff and capital adjustment costs\n\n= RBC+open+adj costs\n\nperform some moments matching\ncompare different ways of stationarizing the model"
+  },
+  {
+    "objectID": "slides/session_2/index.html#the-model",
+    "href": "slides/session_2/index.html#the-model",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "The model",
+    "text": "The model\n\\[\\max_{c_t, n_t} \\sum_{t=0}^{\\infty} \\beta^t u(c_t)\\]\n\\[c_t + k_{t+1} + a_{t+1} = y_t + g_t - \\frac{\\omega}{2}(k_{t+1}-k_t)^2 +(1-\\delta) k_t + (1+r^{\\star}+\\pi(a_t))a_t\\] \\[y_t = f(k_t, n_t, z_t)\\]\n\\[z_{t+1} = \\rho z_t + \\epsilon_{t+1}\\]\nand \\(u(c, n) = \\frac{1}{1-\\sigma}\\left(c^{\\psi}(1-n)^{1-\\psi}\n)\\right)^{1-\\sigma}\\)"
+  },
+  {
+    "objectID": "slides/session_2/index.html#how-to-make-the-distribution-stationary",
+    "href": "slides/session_2/index.html#how-to-make-the-distribution-stationary",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "How to make the distribution stationary?",
+    "text": "How to make the distribution stationary?\nThe solution of the model exhibits a unit root:\n\\[a_t = a_{t-1} + ... \\text{other variables in t-1} + \\text{shocks in t}\\]\n\nProblem:\n\nthere isn’t a unique deterministic steady-state\nthe ergodic distribution of the model variables is not defined\n\nThis raises practical issues (notably for estimation) for the linear model.\n\nno unconditional moments"
+  },
+  {
+    "objectID": "slides/session_2/index.html#how-to-get-rid-of-the-unit-root",
+    "href": "slides/session_2/index.html#how-to-get-rid-of-the-unit-root",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "How to get rid of the unit root?",
+    "text": "How to get rid of the unit root?\nGeneral idea:\n\nintroduce a force that pulls the level of foreign assets towards equilibrium\n\nSchmitt Grohe and Uribe (2003) consider many options:\n\n\n\ndebt-elastic interest rate: \\[1+r = 1+r^{\\star} + \\pi(a_d)\\]\n\nwith \\(\\pi(0)=0\\) and \\(\\pi^{\\prime}(0)&gt;0\\)\n\\(\\pi\\) can be understood as a risk premium on rising debt\n\n\n\n\n\nendogenous time-discount (aka Usawa preferences) \\[\\beta(c_t) = (1+c_t)^{-\\chi}\\]\ncosts of adjustment for international portfolios\n\n\n\n\nSGU show that the choice of the stationarization device has little effect for the dynamics (moments) of most variables"
+  },
+  {
+    "objectID": "slides/session_2/index.html#calibration",
+    "href": "slides/session_2/index.html#calibration",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Calibration",
+    "text": "Calibration\n\n\n\n\n\nParameters\nValues\n\n\n\n\n\\(σ\\)\n2\n\n\n\\(ψ\\)\n1.45\n\n\n\\(α\\)\n0.32\n\n\n\\(ω\\)\n0.028\n\n\n\\(r\\)\n0.04\n\n\n\n\n\n\n\nParameters\nValues\n\n\n\n\n\\(δ\\)\n0.1\n\n\n\\(ρ\\)\n0.42\n\n\n\\(σ²\\)\n0.0129\n\n\n\\(A^{\\star}\\)\n-0.7442\n\n\n\\(χ\\)\n0.000742"
+  },
+  {
+    "objectID": "slides/session_2/index.html#results",
+    "href": "slides/session_2/index.html#results",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Results",
+    "text": "Results\n\n\n\nImpulse Response Function"
+  },
+  {
+    "objectID": "slides/session_2/index.html#section",
+    "href": "slides/session_2/index.html#section",
+    "title": "Small Open Economy Extension (IRBC)",
     "section": "",
-    "text": "Come back later!."
+    "text": "Moments (from SGU)"
+  },
+  {
+    "objectID": "slides/session_2/index.html#conclusions",
+    "href": "slides/session_2/index.html#conclusions",
+    "title": "Small Open Economy Extension (IRBC)",
+    "section": "Conclusions",
+    "text": "Conclusions\n\nThe model matches unconditional correlations fairly well\n\nThe stationarization device has little effect on the moments\n\nUnconditional correlations are not that great\n\na limitation of the moment matching method?\n\nCorrelation of consumption with output is too high\n\nand probably cross-correlation of consumption too low\nstill the Backus-Kehoe-Kydland puzzle…"
+  },
+  {
+    "objectID": "slides/session_3/assets_ineq/inequalities.html",
+    "href": "slides/session_3/assets_ineq/inequalities.html",
+    "title": "Macro II - Fluctuations",
+    "section": "",
+    "text": "import dbnomics\nfrom matplotlib import pyplot as plt\nplt.style.use('ggplot')\nplt.rcParams['axes.facecolor']='w'\nplt.rcParams.update({\"axes.grid\" : True, \"grid.color\": \"grey\"})\nimport pandas as pd\nimport numpy as np\n\n\n\nls gid-excel-2018\n\ngid-codebook.txt  gid-previewexcel.csv  __MACOSX/\n\n\n\nimport pandas as pd\n\n\nfilename =\"gid-excel-2018/gid-previewexcel.csv\"\n\n\ndf = pd.read_csv(filename, engine=\"python\")\n\n\nimport altair as alt\n\n\ndf.columns\n\nIndex(['country', 'coun3', 'year', 'atkinson2', 'gini', 'm2mratio',\n       'palmaratio', 'income1', 'income2', 'income3', 'income4', 'income5',\n       'income6', 'income7', 'income8', 'income9', 'income10', 'incomeatperc1',\n       'incomeatperc10', 'incomeatperc20', 'incomeatperc30', 'incomeatperc40',\n       'incomeatperc50', 'incomeatperc60', 'incomeatperc70', 'incomeatperc80',\n       'incomeatperc90', 'incomeatperc95', 'incomeatperc99', 'incomeatperc100',\n       'mean', 'mean2011PPP', 'mld', 'ratio90to10levels', 'share1', 'share2',\n       'share3', 'share4', 'share5', 'share6', 'share7', 'share8', 'share9',\n       'share10', 'growthrate', 'incdefn', 'population', 'databasesource',\n       'sharetop1', 'sharetop5', 'source1', 'sqcoeffvariation',\n       'surveysource2', 'surveyyears', 'consumptionsurvey', 'theil'],\n      dtype='object')\n\n\n\ndef get_value(country, year, name):\n    dd = df[(df['country']==country) & (df['year']==(year))]\n    return float(dd[name])\n\n\n\ndef get_gini(country, year):\n    dd = df[(df['country']==country) & (df['year']==(year))]\n    return float(dd[\"gini\"])\n\n\ndef get_series(country, year):\n    dd = df[(df['country']==country) & (df['year']==(year))]\n    avg_inc = float(dd['mean2011PPP'])\n    shares = [float(dd[f\"share{i}\"]) for i in range(1,11)]\n    income = [avg_inc*float(e)*10 for e in shares]\n    return shares, income\n    \n\n\nqts = [0.1*i for i in range(1,11)]\n\n\nget_series(\"France\", 2011)[1]\n\n[510.4986655176001,\n 727.3399498380002,\n 905.8840429176001,\n 1068.2271030276002,\n 1228.3058492892,\n 1399.0707211716003,\n 1598.4519968700001,\n 1862.1965167956002,\n 2298.2995205244,\n 4283.845316406]\n\n\n\nget_gini(\"France\", 2011)\n\nFrance\n\n\n0.33292484\n\n\n\ncountries = [\"France\", \"China\", \"United States\", \"United Kingdom\", \"Brazil\"]\nincome_per_quantile = {c: get_series(c, 2011)[1] for c in countries}\nshare_per_quantile = {c: get_series(c, 2011)[0] for c in countries}\n\n# Source Core Econ\n\nFrance\nChina\nUnited States\nUnited Kingdom\nBrazil\nFrance\nChina\nUnited States\nUnited Kingdom\nBrazil\n\n\n\nquantiles = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 , 0.8,  0.9, 1.0]\n\n\ninc = np.array(income_per_quantile['France'])\ncs = inc.cumsum()\n\ninc_US = np.array(income_per_quantile['United States'])\n# cs_US = inc.cumsum()\n\nfig = plt.figure(figsize=(8, 6))\nplt.bar([e-0.1 for e in quantiles], inc, width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5)\nplt.ylim(0)\nplt.xlim(-0.1,1.2)\nplt.grid( axis='x')\nplt.xlabel(\"Quantile\")\nplt.ylabel(\"Income\")\nplt.savefig(\"income_inequality_1.png\")\ndisplay(fig)\n\n\nfig = plt.figure(figsize=(8, 6))\nplt.bar([e-0.1 for e in quantiles], inc, width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5, label='France')\nplt.bar([e-0.1 for e in quantiles], inc_US, width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5, label= 'US')\nplt.ylim(0)\nplt.xlim(-0.1,1.2)\nplt.grid( axis='x')\nplt.xlabel(\"Quantile\")\nplt.ylabel(\"Income\")\nplt.legend(loc='upper left')\nplt.savefig(\"income_inequality_1_comparison.png\")\ndisplay(fig)\n\n\n\n\nfig = plt.figure(figsize=(8, 6))\nplt.bar([e-0. for e in quantiles], cs, width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5)\nplt.ylim(0)\nplt.xlim(-0.1,1.2)\nplt.grid( axis='x')\nplt.xlabel(\"Quantile\")\nplt.ylabel(\"Cumulated Income\")\nplt.savefig(\"income_inequality_2.png\")\ndisplay(fig)\n\n## inequality measure : top 10% over bottom 10%\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsh = cs/cs[-1]\nfig3 = plt.figure(figsize=(8, 6))\nplt.bar([e for e in quantiles],(cs/cs[-1]).tolist(), width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5)\nplt.plot([0.0]+quantiles,  [0.0]+ (cs/cs[-1]).tolist(), color='C1')\nplt.ylim(0, 1.1)\nplt.xlim(-0.1,1.2)\nplt.grid( axis='x')\nplt.xlabel(\"Quantile\")\nplt.ylabel(\"Cumulated Income\")\nplt.savefig(\"income_inequality_3.png\")\nfig3\n\n# we can read the 10% poorest have 3.1%\n# while the 10% richest earn 25%\n# inequality measure: top10% over top20% = \n\n\n\n\n\n\n\n\n\nsh = cs/cs[-1]\nfig3 = plt.figure(figsize=(8, 6))\n# plt.bar([e for e in quantiles],(cs/cs[-1]).tolist(), width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5)\nplt.plot([0.0]+quantiles,  [0.0]+quantiles, color='black', linestyle='--')\nplt.fill_between([0.0]+quantiles,  [e*0 for e in ([0.0]+quantiles)], [0.0]+quantiles, color='black', alpha=0.1)\nplt.plot([0.0]+quantiles,  [0.0]+ (cs/cs[-1]).tolist(), color='C1')\nplt.fill_between([0.0]+quantiles,  [e*0 for e in ([0.0]+quantiles)], [0.0]+ (cs/cs[-1]).tolist(), color='C1', alpha=0.2)\n\nplt.ylim(0, 1.1)\nplt.xlim(-0.1,1.2)\nplt.grid( axis='x')\nplt.xlabel(\"Quantile\")\nplt.ylabel(\"Cumulated Income\")\nplt.savefig(\"gini.png\")\nplt.text(0.55, 0.45, \"A\", fontdict={\"size\": 16})\nplt.text(0.7, 0.3, \"B\", fontdict={\"size\": 16})\nB = sum( [0.0]+ (cs/cs[-1]).tolist() )/1\nprint('Gini: ', (1-2*B ))\nprint(\"it should be 0.33\")\nfig3\n\n\nGini:  -6.757369935147398\nit should be 0.33\n\n\n\n\n\n\n\n\n\n\nincome_per_quantile\n\n{'France': [510.4986655176001,\n  727.3399498380002,\n  905.8840429176001,\n  1068.2271030276002,\n  1228.3058492892,\n  1399.0707211716003,\n  1598.4519968700001,\n  1862.1965167956002,\n  2298.2995205244,\n  4283.845316406],\n 'China': [45.92616406559999,\n  95.07738346080001,\n  147.76284945240002,\n  206.01037747679996,\n  272.8685765208,\n  353.4260517216,\n  457.32411165480005,\n  606.4540846728,\n  869.3027064227999,\n  1917.5676945516],\n 'United States': [350.7690341904,\n  619.9808561568001,\n  864.7120830168001,\n  1102.2915414408,\n  1347.5906722512002,\n  1618.1163159816003,\n  1941.5423451144002,\n  2375.6458925328006,\n  3093.4462178064005,\n  5603.425230684001],\n 'United Kingdom': [406.6649287554,\n  620.1000463248,\n  800.425416867,\n  966.9183441114001,\n  1132.6065687429,\n  1310.1921632253002,\n  1517.6133321312,\n  1790.3849683071003,\n  2232.0367535079,\n  3677.9274780270002],\n 'Brazil': [57.832885405439995,\n  116.12704198464,\n  164.25351435455997,\n  213.53656694976,\n  268.78778410175994,\n  335.4778012032,\n  422.87455794816,\n  551.49833850624,\n  785.9866597113601,\n  2050.47270082944]}\n\n\n\nplt.clf()\nfig3 = plt.figure(figsize=(8, 6))\nfor c in countries:\n    sh = np.array(share_per_quantile[c]).cumsum()\n    gini = get_gini(c, 2011)\n    plt.plot([0.0]+quantiles,  [0.0]+ sh.tolist(), label=f\"{c} | Gini: {gini:.2f}\")\n\n# plt.bar([e for e in quantiles],(cs/cs[-1]).tolist(), width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5)\nplt.plot([0, 1], [0, 1], color='black', linestyle='--')\n\nplt.ylim(0, 1.1)\nplt.xlim(-0.,1.)\nplt.grid( axis='x')\nplt.xlabel(\"Quantile\")\nplt.ylabel(\"Cumulated Income\")\nplt.legend(loc='upper left')\nplt.savefig(\"income_inequality_comparison.png\", transparent=True, bbox_inches='tight')\n\n&lt;Figure size 432x288 with 0 Axes&gt;\n\n\n\n\n\n\n\n\n\n\nsh9 = get_value(\"France\", 2010, \"share9\")\nsh10 = get_value(\"France\", 2010, 'share10')\nt5 = get_value(\"France\", 2010, 'sharetop5')\nt1 = get_value(\"France\", 2010, 'sharetop1')\n# get_value(\"France\", 2010, 'sharetop10')\n\nFrance\nFrance\nFrance\nFrance\n\n\n\ntotal = sh9 + sh10\n\n\nx = np.array([0.0, 10, 15, 19, 20])/20\ny = np.array([0.0, sh9/total, (sh10-t5)/total, (t5-t1)/total, t1/total])\nc = y.cumsum()\n\n\nsh = np.array(share_per_quantile[\"France\"]).cumsum()\nplt.plot([0.0]+quantiles,  [0.0]+ sh.tolist(), label=f\"Full Distribution\")\nplt.plot(x,c, label=\"Top 20%\")\nplt.legend(loc='upper left')\n\n\n\n\n\n\n\n\n\ndef get_all_gini(country):\n    dates = []\n    indices = []\n    for year in range(1900, 2020):\n        try:\n            gin = get_gini(country, year)\n            dates.append(year)\n            indices.append(gin)\n        except:\n            pass\n    return dates, indices\n\n\ndates0, indices0 = get_all_gini(\"France\")\ndates1, indices1 = get_all_gini(\"United States\")\n\n\nplt.plot(dates0, indices0)\nplt.plot(dates1, indices1)\nplt.xlim(1970)\n\n\n\n\n\n\n\n\nINSEE: Gini index\n\ngini_france = [[1970, 0.337],\n[1975, 0.323],\n[1979, 0.303],\n[1984, 0.297],\n[1990, 0.283],\n[1996, 0.282],\n[1997, 0.281],\n[1998, 0.279],\n[1999, 0.286],\n[2000, 0.289],\n[2001, 0.288],\n[2002, 0.284],\n[2003, 0.283],\n[2004, 0.283],\n[2005, 0.289],\n[2006, 0.293],\n[2007, 0.292],\n[2008, 0.292],\n[2009, 0.293],\n[2010, 0.302],\n[2011, 0.305],\n[2012, 0.302],\n[2013, 0.288],\n[2014, 0.289],\n[2015, 0.292],\n[2016, 0.288],\n[2017, 0.289]]\n\n\ndates, gini = [*zip(*gini_france)]\n\n\nginis_us = [[1974, 35.3],\n[1979, 34.6],\n[1986, 37.5],\n[1991, 38.2],\n[1994, 40.2],\n[1997, 40.7],\n[2000, 40.3],\n[2004, 40.5],\n[2007, 41.0],\n[2010, 40.3],\n[2013, 41.0],\n[2016, 41.4]]\ndates_us, gini_us = [*zip(*ginis_us)]\ngini_us  = np.array(gini_us)/100\n\n\nplt.figure(figsize=(12, 6))\nplt.plot(dates, gini, label='France')\nplt.plot(dates_us, gini_us, label='United states')\nplt.legend(loc='upper left')\nplt.savefig(\"gini_evolution.png\", transparent=True, bbox_inches='tight')"
   },
   {
     "objectID": "slides/session_1/handout.html",

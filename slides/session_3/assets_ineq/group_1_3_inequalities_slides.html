@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Pablo Winant">
 
-<title>Macro II - Fluctuations</title>
+<title>Macro II - Fluctuations - Introduction to Macroeconomics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,20 +24,18 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -52,70 +51,22 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
+</head><body class="nav-sidebar docked">\usepackage{textpos}
+\usepackage{pgfpages}
+\addtobeamertemplate{frametitle}{}{\begin{textblock*}{100mm}(1.5\textwidth,-1cm)\includegraphics[height=1cm,width=2cm]{logo_black.png}\end{textblock*}}
+\usepackage[sfdefault]{FiraSans}
+\theoremstyle{definition}
+\usepackage{soul}
+\usepackage{color}
+\definecolor{escpblue}{rgb}{0.18, 0.16, 0.47}
+\setbeamercolor{title separator}{fg=escpblue}
+\setbeamercolor{progress bar}{fg=escpblue}
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-sample-listings .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
+<link rel="stylesheet" href="../../../styles.css">
 
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-sample-listings'] = new List('listing-sample-listings', options);
 
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
 
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-</head>
-
-<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -138,7 +89,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Macro II - Fluctuations</a> 
+      <a href="../../../">Macro II - Fluctuations</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -154,13 +105,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/session_1/handout.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../slides/session_1/handout.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Solving DSGE models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/session_2/handout.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../slides/session_2/handout.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Small Open Economy Extension (IRBC)</span></a>
   </div>
 </li>
@@ -177,7 +128,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/session_1/problem.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tutorials/session_1/problem.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Intro to DSGE Model &amp; Julia Basics</span></a>
   </div>
 </li>
@@ -193,23 +144,50 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#schedule-wip" id="toc-schedule-wip" class="nav-link active" data-scroll-target="#schedule-wip">Schedule (WIP)</a></li>
+  <li><a href="#measurement-of-inequality" id="toc-measurement-of-inequality" class="nav-link active" data-scroll-target="#measurement-of-inequality">Measurement of Inequality</a>
+  <ul class="collapse">
+  <li><a href="#gdp" id="toc-gdp" class="nav-link" data-scroll-target="#gdp">GDP</a></li>
+  <li><a href="#income-inequality" id="toc-income-inequality" class="nav-link" data-scroll-target="#income-inequality">Income Inequality</a></li>
+  <li><a href="#how-did-it-evolve-over-time" id="toc-how-did-it-evolve-over-time" class="nav-link" data-scroll-target="#how-did-it-evolve-over-time">How did it evolve over time?</a></li>
+  </ul></li>
+  <li><a href="#other-dimensions-of-inequality" id="toc-other-dimensions-of-inequality" class="nav-link" data-scroll-target="#other-dimensions-of-inequality">Other Dimensions of Inequality</a>
+  <ul class="collapse">
+  <li><a href="#other-dimensions-of-inequality-measure" id="toc-other-dimensions-of-inequality-measure" class="nav-link" data-scroll-target="#other-dimensions-of-inequality-measure">Other Dimensions of Inequality (measure)</a></li>
+  <li><a href="#pre-tax-vs-post-tax-inequality" id="toc-pre-tax-vs-post-tax-inequality" class="nav-link" data-scroll-target="#pre-tax-vs-post-tax-inequality">Pre-tax vs post-tax inequality</a></li>
+  <li><a href="#consumption-inequality" id="toc-consumption-inequality" class="nav-link" data-scroll-target="#consumption-inequality">Consumption Inequality</a></li>
+  <li><a href="#other-dimensions-of-inequality-population" id="toc-other-dimensions-of-inequality-population" class="nav-link" data-scroll-target="#other-dimensions-of-inequality-population">Other Dimensions of Inequality (population)</a></li>
+  <li><a href="#can-we-bear-inequality" id="toc-can-we-bear-inequality" class="nav-link" data-scroll-target="#can-we-bear-inequality">Can we bear inequality ?</a></li>
+  <li><a href="#takeways" id="toc-takeways" class="nav-link" data-scroll-target="#takeways">Takeways</a></li>
+  </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.ipynb" download="index.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="group_1_3_inequalities_slides.ipynb" download="group_1_3_inequalities_slides.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Macro II - Fluctuations</h1>
+<h1 class="title">Introduction to Macroeconomics</h1>
+<p class="subtitle lead">Topic 1 - Measures of inequality</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Pablo Winant </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Invalid Date</p>
+    </div>
+  </div>
   
     
   </div>
@@ -219,100 +197,95 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-default callout-tip callout-titled" title="Resources for tutorials">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Resources for tutorials
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The notebooks for the tutorials can be downloaded from this website (click on the Jupyter icon).</p>
-<p>The following Julia environments can be used:</p>
+<section id="measurement-of-inequality" class="level1">
+<h1>Measurement of Inequality</h1>
+<section id="gdp" class="level2">
+<h2 class="anchored" data-anchor-id="gdp">GDP</h2>
+<hr>
+</section>
+<section id="income-inequality" class="level2">
+<h2 class="anchored" data-anchor-id="income-inequality">Income Inequality</h2>
+<hr>
+</section>
+<section id="how-did-it-evolve-over-time" class="level2">
+<h2 class="anchored" data-anchor-id="how-did-it-evolve-over-time">How did it evolve over time?</h2>
+<hr>
+</section>
+</section>
+<section id="other-dimensions-of-inequality" class="level1">
+<h1>Other Dimensions of Inequality</h1>
+<section id="other-dimensions-of-inequality-measure" class="level2">
+<h2 class="anchored" data-anchor-id="other-dimensions-of-inequality-measure">Other Dimensions of Inequality (measure)</h2>
 <ul>
-<li><a href="https://jupytercloud.idcs.polytechnique.fr/jupyter">candice server</a>
+<li>Measure:
 <ul>
-<li>choose the ENSAE in the list of schools, then “computational economics”</li>
-<li>it has Dynare preinstalled</li>
+<li>pre-tax income</li>
+<li>after-tax income</li>
+<li>consumption</li>
+<li>wealth</li>
 </ul></li>
-<li><a href="https://mybinder.org/v2/gh/albop/ae2e6_tutorials.git/HEAD">mybinder</a>
+<li>Population
 <ul>
-<li>a bit slow to run</li>
+<li>generational gap</li>
+<li>gender gap</li>
+<li>racial gap</li>
 </ul></li>
-<li>a local Julia installation (your own responsability)</li>
 </ul>
-<p>You can browse the dyno models at this <a href="https://www.mosphere.fr/ae2e6_models">address</a></p>
+<hr>
+</section>
+<section id="pre-tax-vs-post-tax-inequality" class="level2">
+<h2 class="anchored" data-anchor-id="pre-tax-vs-post-tax-inequality">Pre-tax vs post-tax inequality</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="gini_comparison_before_after_taxes.png" class="img-fluid figure-img"></p>
+<figcaption>Gini before and after taxes</figcaption>
+</figure>
 </div>
-</div>
-</div>
-<section id="schedule-wip" class="level2">
-<h2 class="anchored" data-anchor-id="schedule-wip">Schedule (WIP)</h2>
-<div id="listing-sample-listings" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Date
-</th>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1710889200000" data-listing-file-modified-sort="1711530752488" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1850" data-listing-title-sort="Solving DSGE models" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Mar 20, 2024</span>
-</td>
-<td>
-<a href="./slides/session_1/handout.html" class="title listing-title">Solving DSGE models</a>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1711494000000" data-listing-file-modified-sort="1712130970623" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1167" data-listing-title-sort="Small Open Economy Extension (IRBC)" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Mar 27, 2024</span>
-</td>
-<td>
-<a href="./slides/session_2/handout.html" class="title listing-title">Small Open Economy Extension (IRBC)</a>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1712095200000" data-listing-file-modified-sort="1712132012567" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1587" data-listing-title-sort="Intro to Heterogeneity" data-listing-filename-sort="index.qmd">
-<td>
-<span class="listing-date">Apr 3, 2024</span>
-</td>
-<td>
-<a href="./slides/session_3/handout.html" class="title listing-title">Intro to Heterogeneity</a>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1712095200000" data-listing-file-modified-sort="1710925575433" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3" data-listing-title-sort="Heterogenous Agents" data-listing-filename-sort="wip.qmd">
-<td>
-<span class="listing-date">Apr 3, 2024</span>
-</td>
-<td>
-<a href="./slides/prep_3/wip.html" class="title listing-title">Heterogenous Agents</a>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1712700000000" data-listing-file-modified-sort="1710925611688" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3" data-listing-title-sort="Green Transition" data-listing-filename-sort="wip.qmd">
-<td>
-<span class="listing-date">Apr 10, 2024</span>
-</td>
-<td>
-<a href="./slides/prep_4/index_handout.html" class="title listing-title">Green Transition</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
+<hr>
+</section>
+<section id="consumption-inequality" class="level2">
+<h2 class="anchored" data-anchor-id="consumption-inequality">Consumption Inequality</h2>
+<p>Consumption inequality much lower than income inequality.</p>
+<hr>
+</section>
+<section id="other-dimensions-of-inequality-population" class="level2">
+<h2 class="anchored" data-anchor-id="other-dimensions-of-inequality-population">Other Dimensions of Inequality (population)</h2>
+<ul>
+<li><p>Racial gap</p></li>
+<li><p>Gender gap</p>
+<ul>
+<li>EU: women get paid in average 15% less than men. 10% less for same work.</li>
+</ul></li>
+<li><p>Generational inequality (France)</p>
+<ul>
+<li>baby-boomers had rising income profiles and high pensions</li>
+<li>new generations have flatter income profiles and (expected) lower pensions</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="can-we-bear-inequality" class="level2">
+<h2 class="anchored" data-anchor-id="can-we-bear-inequality">Can we bear inequality ?</h2>
+<ul>
+<li>Yes if:
+<ul>
+<li>it is associated with higher economic efficiency (??)</li>
+<li>the economic cost of reducing inequality is important (??)</li>
+<li>it is associated with high social mobility (???)</li>
+</ul></li>
+<li>No if: reducing inequality is an objective per se</li>
+</ul>
+<hr>
+</section>
+<section id="takeways" class="level2">
+<h2 class="anchored" data-anchor-id="takeways">Takeways</h2>
+<ul>
+<li><p>Basic inequality measure: quantile ratios, gini coefficient</p></li>
+<li><p>Several dimensions of inequality</p></li>
+</ul>
 
 
-
+</section>
 </section>
 
 </main> <!-- /main -->

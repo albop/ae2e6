@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Pablo Winant">
+<meta name="dcterms.date" content="2024-04-03">
+
+<title>Macro II - Fluctuations - Intro to Heterogeneity</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Macro II - Fluctuations
+      </li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Macro II - Fluctuations</a> 
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides/session_1/handout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solving DSGE models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides/session_2/handout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Small Open Economy Extension (IRBC)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/session_1/problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to DSGE Model &amp; Julia Basics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#heterogeneity-in-models" id="toc-heterogeneity-in-models" class="nav-link active" data-scroll-target="#heterogeneity-in-models">Heterogeneity in models</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#representative-agent" id="toc-representative-agent" class="nav-link" data-scroll-target="#representative-agent">Representative Agent</a></li>
+  <li><a href="#example-with-the-neoclassical-model" id="toc-example-with-the-neoclassical-model" class="nav-link" data-scroll-target="#example-with-the-neoclassical-model">Example with the Neoclassical Model</a></li>
+  <li><a href="#heterogenous-agents" id="toc-heterogenous-agents" class="nav-link" data-scroll-target="#heterogenous-agents">Heterogenous Agents</a></li>
+  <li><a href="#mean-field-games-and-heterogenous-agents-models" id="toc-mean-field-games-and-heterogenous-agents-models" class="nav-link" data-scroll-target="#mean-field-games-and-heterogenous-agents-models">Mean Field Games and Heterogenous Agents Models</a></li>
+  <li><a href="#mean-field-games-and-heterogenous-agents-models-1" id="toc-mean-field-games-and-heterogenous-agents-models-1" class="nav-link" data-scroll-target="#mean-field-games-and-heterogenous-agents-models-1">Mean Field Games and Heterogenous Agents Models</a></li>
+  <li><a href="#hank-hank-hank" id="toc-hank-hank-hank" class="nav-link" data-scroll-target="#hank-hank-hank">HANK, HANK HANK, …</a></li>
+  <li><a href="#heterogenous-consumers" id="toc-heterogenous-consumers" class="nav-link" data-scroll-target="#heterogenous-consumers">Heterogenous consumers</a></li>
+  <li><a href="#wealthy-hand-to-mouth-agents" id="toc-wealthy-hand-to-mouth-agents" class="nav-link" data-scroll-target="#wealthy-hand-to-mouth-agents">Wealthy Hand to Mouth agents</a></li>
+  <li><a href="#how-do-we-model-differences-in-mpc" id="toc-how-do-we-model-differences-in-mpc" class="nav-link" data-scroll-target="#how-do-we-model-differences-in-mpc">How do we model differences in MPC?</a></li>
+  </ul></li>
+  <li><a href="#inequality-leverage-and-crisis" id="toc-inequality-leverage-and-crisis" class="nav-link" data-scroll-target="#inequality-leverage-and-crisis">Inequality, Leverage and Crisis</a>
+  <ul class="collapse">
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"></a></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a></li>
+  <li><a href="#endowments" id="toc-endowments" class="nav-link" data-scroll-target="#endowments">Endowments</a></li>
+  <li><a href="#top-earners" id="toc-top-earners" class="nav-link" data-scroll-target="#top-earners">Top Earners</a></li>
+  <li><a href="#preference-for-wealth" id="toc-preference-for-wealth" class="nav-link" data-scroll-target="#preference-for-wealth">Preference for Wealth</a></li>
+  <li><a href="#bottom-earners" id="toc-bottom-earners" class="nav-link" data-scroll-target="#bottom-earners">Bottom Earners</a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"></a></li>
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7"></a></li>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"></a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="slides.pdf"><i class="bi bi-file-pdf"></i>Beamer</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Intro to Heterogeneity</h1>
+<p class="subtitle lead">Macro II - Fluctuations - ENSAE, 2023-2024</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Pablo Winant </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 3, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="heterogeneity-in-models" class="level1">
+<h1>Heterogeneity in models</h1>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<p>DSGE models are often criticized for unrealistic assumptions</p>
+<p>. . .</p>
+<p>Example:</p>
+<ul>
+<li><p><a href="https://www.cairn.info/revue-de-l-ofce-2012-5-page-67.htm"><em>Macroeconomic Policy in DSGE and Agent-Based Models</em></a> from Revue de l’OFCE</p></li>
+<li><p><em>In that respect, the Great Recessions has revealed to be a natural experiment for economic analysis, showing the inadequacy of the predominant theoretical frameworks. Indeed, an increasing number of leading economists claim that the current ’’economic crisis is a crisis for economic theory’’ (Kirman, 2010; Colander et al., 2009; Krugman, 2009, 2011; Caballero, 2010; Stiglitz, 2011; Kay, 2011; Dosi, 2011; Delong, 2011). The basic assumptions of mainstream DSGE models, e.g.&nbsp;rational expectations, representative agents, perfect markets etc., prevent the understanding of basic phenomena underlying the current economic crisis</em></p></li>
+</ul>
+<p>. . .</p>
+<p>But:</p>
+<ul>
+<li><p>mainstream models typically incorporate many non classical elements. For instance New Keynesian models feature imperfect competition</p></li>
+<li><p>one must distinguish mainstream models from DSGE methodology</p>
+<ul>
+<li>today: DSGE model with rather radical conclusion</li>
+</ul></li>
+</ul>
+</section>
+<section id="representative-agent" class="level2">
+<h2 class="anchored" data-anchor-id="representative-agent">Representative Agent</h2>
+<p>&nbsp;&nbsp;</p>
+<p>Under the <strong>Representative agent</strong> assumption</p>
+<ul>
+<li>aggregate choices are made as the result of a single optimization problem</li>
+<li>☡ there might restrictions on what is internalized by the agent</li>
+</ul>
+<p>. . .</p>
+<p>&nbsp; Is it a simplifying assumption?</p>
+<p>. . .</p>
+<p>&nbsp;</p>
+<p>Or is it actually equivalent to the aggregation of many optimization problems?</p>
+<p>. . .</p>
+<p>&nbsp;&nbsp;</p>
+<p>For the latter one needs a theory of aggregation<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<ul>
+<li>… which quickly breaks down (for instance when utility fonction are heterogenous)</li>
+</ul>
+</section>
+<section id="example-with-the-neoclassical-model" class="level2">
+<h2 class="anchored" data-anchor-id="example-with-the-neoclassical-model">Example with the Neoclassical Model</h2>
+<p>Let’s consider three versions of the neoclassical model</p>
+<ul>
+<li>fully decentralized (many firms, many consumers)</li>
+<li>representative agent</li>
+<li>planner problem</li>
+</ul>
+<p>Note:</p>
+<ul>
+<li>for the neoclassical model, there is a theory of aggregation for the production sector (firms are Cobb-Douglas)</li>
+<li>two assumptions are needed to aggregate consumers: log-utility and no uncertainty</li>
+</ul>
+</section>
+<section id="heterogenous-agents" class="level2">
+<h2 class="anchored" data-anchor-id="heterogenous-agents">Heterogenous Agents</h2>
+<p>Some economists have recognized early the need to explicitly model heterogeneity.</p>
+<ul>
+<li><p><strong>1977: Bewley</strong></p>
+<ul>
+<li>idiosyncratic stochastic endowment</li>
+<li>consumption-savings model with borrowing constraints</li>
+<li>leads to <em>ex-post heterogeneity</em> (constrained/unconstrained) hence different reactions</li>
+</ul></li>
+<li><p><strong>Huggett Economy</strong> (1993)</p>
+<ul>
+<li>additional <em>ex-ante heterogeneity</em> in <em>idiosyncratic</em> income process</li>
+</ul></li>
+<li><p><strong>Ayiagari Model</strong> (1994)</p>
+<ul>
+<li>savings are invested to accumulate aggregate capital</li>
+<li>consumption-savings model with borrowing constraints</li>
+<li>idiosyncratic productivity shocks (salary)</li>
+</ul></li>
+<li><p><strong>Krussell Smith Model</strong> (1998)</p>
+<ul>
+<li>Ayagari + aggregate shocks</li>
+</ul></li>
+</ul>
+<p>Those models require special computational techniques and were poorly understood mathematically</p>
+</section>
+<section id="mean-field-games-and-heterogenous-agents-models" class="level2" data-auto-animate="true">
+<h2 data-auto-animate="true" class="anchored" data-anchor-id="mean-field-games-and-heterogenous-agents-models">Mean Field Games and Heterogenous Agents Models</h2>
+<p><strong>2012</strong> Ben Moll did a talk at IMA (UK)</p>
+<p>. . .</p>
+<p><img src="assets/ben_moll.png" class="img-fluid"></p>
+<p>. . .</p>
+<p>Economists and world class mathematicians exchanged on <em>mean field games</em></p>
+<ul>
+<li>a class of mathematical problems which encompasses heterogenous agents models</li>
+<li>a bit math intense (stochastic calculus, viscosity theory, …)</li>
+</ul>
+</section>
+<section id="mean-field-games-and-heterogenous-agents-models-1" class="level2" data-auto-animate="true">
+<h2 data-auto-animate="true" class="anchored" data-anchor-id="mean-field-games-and-heterogenous-agents-models-1">Mean Field Games and Heterogenous Agents Models</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><strong>2012</strong> Ben Moll did a talk at IMA (UK)</p>
+<p><img src="assets/ben_moll.png" class="img-fluid"></p>
+</div><div class="column">
+<p><strong>Result</strong>: a new stream of heterogenous agents papers</p>
+<ul>
+<li><p>PDE Models in Macroeconomics (2014) with Achdou, Bueary, Lasry, Lions</p></li>
+<li><p>The Dynamics of Inequality (2016) with Gabaix, Lasry, Lions</p></li>
+<li><p>Monetary Policy According to HANK (2018) with Kaplan and Violante</p>
+<ul>
+<li>that one was hugely successfull</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="hank-hank-hank" class="level2">
+<h2 class="anchored" data-anchor-id="hank-hank-hank">HANK, HANK HANK, …</h2>
+<ul>
+<li><p><em>Monetary Policy According to HANK</em> (2018), by Moll, Kaplan and Violante</p>
+<ul>
+<li>HANK: Heterogenous Agents New Keynesian</li>
+<li>study unequal consequences of monetary policies</li>
+<li>a new baseline model for <a href="https://www.imf.org/en/Publications/fandd/issues/2023/03/modern-monetary-policy-kaplan-moll-violante">central banks</a></li>
+</ul></li>
+</ul>
+<p>. . .</p>
+<div class="enumerate">
+<ul>
+<li><p>Stimulated a whole literature<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<ul>
+<li><em>Understanding HANK: Insights from a PRANK</em><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li><em>When HANK meets SAM</em></li>
+<li><em>HANK beyond FIRE</em></li>
+<li><em>Aggregate Demand: THANK (Tractable HANK) and TANK</em> by Florin Bilbiie
+<ul>
+<li>main point: you don’t need more than two agents to get the main insights</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="heterogenous-consumers" class="level2">
+<h2 class="anchored" data-anchor-id="heterogenous-consumers">Heterogenous consumers</h2>
+<p>Why does it matter to model consumer’s heterogeneity?</p>
+<p>. . .</p>
+<ul>
+<li>To reproduce realistic consumption decisions.</li>
+</ul>
+<p>. . .</p>
+<p>Classically, we make the difference between two kinds of agents:</p>
+<div class="columns">
+<div class="column">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ricardian Households
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Agents who can freely reallocate consumption intertemporally.</p>
+<p>They have a high marginal propensity to consume out of additional income.</p>
+</div>
+</div>
+<p>&nbsp;&nbsp;</p>
+<p>Ricardian households choose not to consume more today, in order to consume more tomorrow.</p>
+</div><div class="column">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Keynesian Households
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Agents whose consumption in the current period is limited by a binding credit constraint. Either they can’t borrow at all or the amount they can borrow is limited today.</p>
+<p>They have a high marginal propensity to consume out of additional income.</p>
+</div>
+</div>
+<p>Keynesian Households consume today as much as they can.</p>
+</div>
+</div>
+<p>. . .</p>
+<p>The representative agent assumes everyone is ricardian.</p>
+<p>What does the data say?</p>
+<hr>
+<p>Let’s have a look at the MPC distribution for France.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/mpc_1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Self-Reported MPC from Transitory Income Shock</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/mpc_2.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Average MPC by Cash-on-Hand Percentiles</figcaption>
+</figure>
+</div>
+<p>. . .</p>
+<p>Apparently MPC is well predicted by Cash-in-hand (amount of money left to household after having made all compulsory payments).</p>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/mpc_3.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Wealth distribution</figcaption>
+</figure>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/mpc_4.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Wealth decomposition</figcaption>
+</figure>
+</div>
+<p>. . .</p>
+<p>Agents in the middle of the wealth distribution have a mortgage, whose interests leaves very little to spend after payments. They have lower cash-in-hand hence higher marginal propensity to consume (than rich agents).</p>
+<hr>
+</section>
+<section id="wealthy-hand-to-mouth-agents" class="level2">
+<h2 class="anchored" data-anchor-id="wealthy-hand-to-mouth-agents">Wealthy Hand to Mouth agents</h2>
+<p>We have just seen that agents in the middle of the wealth distribution, hold a wider proportion of wealth in illiquid assets (housing)</p>
+<ul>
+<li>Their cash in hand (available for immediate purchase) is reduced. A sizable fraction of ther income goes into repaying their loan…).</li>
+<li>They have higher MPC</li>
+<li>They also react to interest rates changes (notably those who have floating interest rates)</li>
+<li>“Monetary Policy According to HANK”, 2018, Kaplan, Moll and Violante, stress out the role of “wealthy hand to mouth” and the need to take their existence to evaluate the influence of monetary policies.</li>
+</ul>
+<hr>
+</section>
+<section id="how-do-we-model-differences-in-mpc" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-we-model-differences-in-mpc">How do we model differences in MPC?</h2>
+<div class="incremental">
+<ul class="incremental">
+<li><p>Specify several kinds of agents:</p>
+<ul class="incremental">
+<li>ricardians</li>
+<li>hand to mouth (consumption = income)</li>
+<li><em>ex-ante</em> heterogeneity</li>
+</ul></li>
+<li><p>By endogenizing borrowing constraint with borrowing constraint</p>
+<ul class="incremental">
+<li>requires nonlinear solution</li>
+<li><em>ex-post</em> heterogeneity</li>
+<li>with potential idiosyncratic parameters like time-discount (<em>ex-ante</em> heterogeneity)</li>
+</ul></li>
+<li><p>By using preference for wealth</p>
+<ul class="incremental">
+<li>coming next</li>
+</ul></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="inequality-leverage-and-crisis" class="level1">
+<h1>Inequality, Leverage and Crisis</h1>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<div class="columns">
+<div class="column">
+<p><img src="assets/ranciere.jpg" class="img-fluid"></p>
+</div><div class="column">
+<p><img src="assets/kumhof.jpg" class="img-fluid"></p>
+</div>
+</div>
+<p><a href="papers/leverage_and_crisis.pdf"><em>Inequality, Leverage and Crisis</em></a>, Kumhof, Rancière, Winant (2015)</p>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The 2007 financial crisis, was initially as <em>subprime mortgage crisis</em></p>
+<div class="incremental">
+<ul class="incremental">
+<li>high indebtedness from low income households</li>
+<li>fueled by easy credit (low i.r.) and high house prices</li>
+<li>debt-securitization
+<ul class="incremental">
+<li>even for high risk debt (<em>subprimes</em>)</li>
+<li>of which 90% had variable interest rates and/or balloon payments</li>
+</ul></li>
+<li>(moderate) rise in interest rates
+<ul class="incremental">
+<li>bursting of the housing buble</li>
+<li>households were unable to refinance their loans</li>
+<li>… and defaulted</li>
+</ul></li>
+<li>mbs market collapsed…</li>
+<li>… and with it the whole financial sector</li>
+</ul>
+</div>
+<p>. . .</p>
+<p>Ok, but from a macro perspective, what fueled such high levels of borrowing?</p>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/debt_inequality.png" class="img-fluid figure-img"></p>
+<figcaption>Leverage and Inequality</figcaption>
+</figure>
+</div>
+<p>A similar pattern emerged before the great recession and before the great depression:<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<ul>
+<li>parallel increases in <em>income inequality</em> and debt over income ratios</li>
+</ul>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/wealth_inequality.png" class="img-fluid figure-img"></p>
+<figcaption>Wealth Inequality</figcaption>
+</figure>
+</div>
+<p>Increase in <em>wealth inequality</em> is consistent.</p>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4"></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/crisis_probability.png" class="img-fluid figure-img"></p>
+<figcaption>Crisis Probability</figcaption>
+</figure>
+</div>
+<p>Econometric measures of household default risk <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> rose consistently.</p>
+<!-- ##
+
+![Crisis Probability](assets/crisis_probability.png)
+
+##
+
+![Sensitivity](assets/sensitivity.png) -->
+</section>
+<section id="model" class="level2">
+<h2 class="anchored" data-anchor-id="model">Model</h2>
+<p>What could link rising income inequality to increased borrowing by bottom-earners?</p>
+<p>Intuition:</p>
+<ul>
+<li>top-earners have higher marginal propensity to save</li>
+<li>when their income increases they lend to bottom earners</li>
+<li>and rising debt increases the risk of default</li>
+</ul>
+<p>Let’s see how to model that in DSGE fashion (ommiting default risk for the sake of simplicity)</p>
+</section>
+<section id="endowments" class="level2">
+<h2 class="anchored" data-anchor-id="endowments">Endowments</h2>
+<p>We consider and endowment economy:</p>
+<ul>
+<li>Total output</li>
+</ul>
+<p><span class="math display">\[y_t = (1-\rho_y) \overline{y} + \rho_y y_{t-1} + \epsilon_{y,t}\]</span></p>
+<ul>
+<li>Inequality shock</li>
+</ul>
+<p><span class="math display">\[z_t = (1-\rho_z) \overline{z} + \rho_z z_{t-1} + \epsilon_{z,t}\]</span></p>
+<p>Comments:</p>
+<ul>
+<li><p><span class="math inline">\(z_t\)</span> is the fraction of the total output that is received by top-earners. The rest is received by bottom earners.</p></li>
+<li><p>We assume there is a faction <span class="math inline">\(\chi\)</span> of top earners.</p></li>
+<li><p>our goal is to study the effect of a persistent inequality shock (with <span class="math inline">\(\rho_z=1\)</span>)</p>
+<ul>
+<li>we need a way to model nonzero marginal propensity to save out of a persistent income shock</li>
+</ul></li>
+</ul>
+</section>
+<section id="top-earners" class="level2">
+<h2 class="anchored" data-anchor-id="top-earners">Top Earners</h2>
+<p>We choose the following utility function for top earners: <span class="math display">\[U_t = E_t \sum_{k\geq0}^{\infty} \beta^k_{\tau} \left\{ \frac{\left(c^{\tau}_{t+k}\right)^ {1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}} + \varphi \frac{\left( 1+b_{t+k}\frac{1-\chi}{\chi}\right)^{1-\frac{1}{\eta}}}{1-\frac{1}{\eta}} \right\}\]</span></p>
+<p>. . .</p>
+<p>Consumption: <span class="math display">\[c^{\tau}_t = y_t z_t \frac{1}{\chi} + \left(b_{t-1}-b_t p_t\right)\frac{1-\chi}{\chi}\]</span> where <span class="math inline">\(b_t\)</span> is debt holdings and <span class="math inline">\(p_t\)</span> the price of it <span class="math inline">\(1/r_t\)</span></p>
+<p>. . .</p>
+<p>Optimality condition from <span class="math inline">\(\max U_t\)</span></p>
+<p><span class="math display">\[p_t = \beta_{\tau} E_t\left[ \left( \frac{c^{\tau}_{t+1}}{c^{\tau}_t}\right)^ {-\frac{1}{\sigma}}\right] + \varphi \frac{\left(1+b_t \frac{1-\chi}{\chi}\right)^ {-\frac{1}{\eta}}}{\left(c_t^{\tau}\right)^ {-\frac{1}{\sigma}}}\]</span></p>
+</section>
+<section id="preference-for-wealth" class="level2">
+<h2 class="anchored" data-anchor-id="preference-for-wealth">Preference for Wealth</h2>
+<p>The preference for wealth can be justified as:</p>
+<ul>
+<li>a preference for social status</li>
+<li>capitalist spirit</li>
+</ul>
+<p>It implies a steady-state supply of lending for any income level:</p>
+<div class="columns">
+<div class="column">
+<p><img src="assets/steady-state.png" class="img-fluid"></p>
+</div><div class="column">
+<p><img src="assets/supply.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Which in turn implies non-zero marginal propensity to save from a permanent income shock (in the short and the long run)</p>
+<p>Parameters <span class="math inline">\(\eta\)</span> and <span class="math inline">\(\varphi\)</span> are not observed, but can be chosen in order to match real world MPC (50% for top earners).</p>
+</section>
+<section id="bottom-earners" class="level2">
+<h2 class="anchored" data-anchor-id="bottom-earners">Bottom Earners</h2>
+<p>Bottom earners are standard:</p>
+<p><span class="math display">\[V_t = E_t \sum_{k \geq 0}^{\infty} \beta^k_b \left( \frac{\left(c_{t+k}^b\right)^ {1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}} \right)\]</span></p>
+<p>Budget constraint:</p>
+<p><span class="math display">\[c^b_t = y_t(1-z_t)\frac{1}{1-\chi} + \left(b_t p_t - b_{t-1}\right)\]</span></p>
+<p>Optimality condition from <span class="math inline">\(\max V_t\)</span></p>
+<p><span class="math display">\[p_t = \beta^b E_t \left[ \left( \frac{c_{t+1}^b}{c_t^b}\right)^{-\frac{1}{\sigma}} \right]\]</span></p>
+</section>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5"></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/calibration.png" class="img-fluid figure-img"></p>
+<figcaption>Calibration</figcaption>
+</figure>
+</div>
+</section>
+<section id="section-6" class="level2">
+<h2 class="anchored" data-anchor-id="section-6"></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/inequality_shock.png" class="img-fluid figure-img"></p>
+<figcaption>Inequality Shock</figcaption>
+</figure>
+</div>
+</section>
+<section id="section-7" class="level2" data-auto-animate="true">
+<h2 data-auto-animate="true" class="anchored" data-anchor-id="section-7"></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/baseline.png" class="img-fluid figure-img"></p>
+<figcaption>Pseudo-Historical Simulation</figcaption>
+</figure>
+</div>
+</section>
+<section id="section-8" class="level2" data-auto-animate="true">
+<h2 data-auto-animate="true" class="anchored" data-anchor-id="section-8"></h2>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/baseline.png" class="img-fluid figure-img"></p>
+<figcaption>Pseudo-Historical Simulation</figcaption>
+</figure>
+</div>
+</div><div class="column">
+<p>In the simulation we use historical values for the driving shocks (output and inequality).</p>
+<p>What is the predictive power of the model:</p>
+<ul>
+<li>we match <em>one</em> moment: the evolution of debt/gdep from 1983 to 2010</li>
+</ul>
+</div>
+</div>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>check <a href="https://www.sciencedirect.com/science/article/pii/S0014292123001265">Household heterogeneity in macroeconomic models: A historical perspective</a> (or an older <a href="https://beatricecherrier.wordpress.com/2018/11/28/heterogeneous-agent-macroeconomics-has-a-long-history-and-it-raises-many-questions/">blog</a>) for history of heterogenous agents<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>the ones in the list are not necessary the most representative<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>pseudo representative new-keynesian model<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>From <u>From Fiscal Policy and MPC Heterogeneity</u>, Tullio Jappelli and Luigi Pistaferri, American Economic Journal: Macroeconomics, 2014<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>inequality data from Saez and Zucman<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>From Schularick and Taylor (2014)<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
