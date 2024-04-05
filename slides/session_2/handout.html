@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.533">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -150,6 +150,12 @@ window.Quarto = {
  <span class="menu-text">Intro to DSGE Model &amp; Julia Basics</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/session_2/problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">First steps with Dynare and moment matching.</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -265,7 +271,7 @@ window.Quarto = {
 </section>
 <section id="irbc-facts" class="level2" data-auto-animate="true">
 <h2 data-auto-animate="true" class="anchored" data-anchor-id="irbc-facts">IRBC Facts</h2>
-<div class="quarto-figure quarto-figure-center">
+<div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/moments.png" class="img-fluid figure-img"></p>
 <figcaption>Moments</figcaption>
@@ -277,14 +283,14 @@ window.Quarto = {
 <h2 data-auto-animate="true" class="anchored" data-anchor-id="irbc-facts-1">IRBC Facts</h2>
 <div class="columns">
 <div class="column" style="width:20%;">
-<div class="quarto-figure quarto-figure-center">
+<div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/moments.png" class="img-fluid figure-img"></p>
 <figcaption>Moments</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:80%;">
-<div class="quarto-figure quarto-figure-center">
+<div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/comovements.png" class="img-fluid figure-img"></p>
 <figcaption>Comoments</figcaption>
@@ -297,13 +303,13 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="stylized-facts">Stylized Facts</h2>
 <div class="columns">
 <div class="column" style="width:20%;">
-<div class="quarto-figure quarto-figure-center">
+<div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/moments.png" class="img-fluid figure-img"></p>
 <figcaption>Moments</figcaption>
 </figure>
 </div>
-<div class="quarto-figure quarto-figure-center">
+<div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/comovements.png" class="img-fluid figure-img"></p>
 <figcaption>Comoments</figcaption>
@@ -475,7 +481,7 @@ The immediate adjustment of capital provides an upper bound on the gains from fi
 <h2 class="anchored" data-anchor-id="a-benchmark-small-open-economy-model-1">A benchmark Small Open Economy Model</h2>
 <div class="columns">
 <div class="column">
-<div class="quarto-figure quarto-figure-center">
+<div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/economics-grohe.jpg" class="img-fluid figure-img"></p>
 <figcaption>Stephanie Schmitt Grohe and Martin Uribe</figcaption>
@@ -814,12 +820,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
+      return note.innerHTML;
     }
   }
   for (var i=0; i<xrefs.length; i++) {

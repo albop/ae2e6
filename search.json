@@ -1,68 +1,5 @@
 [
   {
-    "objectID": "tutorials/session_1/index_correction.html",
-    "href": "tutorials/session_1/index_correction.html",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "",
-    "text": "Objectives\n\n\n\n\n\n\nIntroduce Julia environment\n\nrun cells\nbasic types: numbers, strings, vectors, matrices\nfunctions\nsimple plots\n\nSimulate AR1 models\n\nimpulse response functions\nstochastic simulations\n\nconditional / unconditional moments\n\ndevelop intuition about eigenvalues / ergodic distributions\n\nLearn the Dyno mini-interface\n\ncheck the steady-state\nunderstand the meaning of shocks (exogenous variables, innovations)\nunderstand the outputs (decision rule, simulation, graphs)\ninterpret IRFs (persistence, magnitude, …)"
-  },
-  {
-    "objectID": "tutorials/session_1/index_correction.html#why-julia",
-    "href": "tutorials/session_1/index_correction.html#why-julia",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Why Julia?",
-    "text": "Why Julia?\nDevelopped at MIT on top of opensource technologies\n\nlinux / git / llvm\n\nSyntax inspired by Matlab but:\n\nmore consistent\nlots of features from high level languages\n\nEverything is JIT-compiled\n\nno interpreted vs compiled treadeoff -&gt; very fast\nmost of the base library is written in Julia\n\nOpensource/free + vibrant community"
-  },
-  {
-    "objectID": "tutorials/session_1/index_correction.html#numbers",
-    "href": "tutorials/session_1/index_correction.html#numbers",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Numbers",
-    "text": "Numbers\n\n# numbers (usual operations usual)\n(1.0+(2.0+3.0*(4.0+5.0)))/30\n\n1.0\n\n\n\n# exponentials are denoted by ^\n2^8\n\n256"
-  },
-  {
-    "objectID": "tutorials/session_1/index_correction.html#variables-assignments-comparisons",
-    "href": "tutorials/session_1/index_correction.html#variables-assignments-comparisons",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Variables / assignments / comparisons",
-    "text": "Variables / assignments / comparisons\n\n# variable assignment\nx = 10\n\n10\n\n\n\n# Variable names can have Unicode characters\n# To get ϵ in the REPL, type \\epsilon&lt;TAB&gt;\na = 20\nσ = 34\nϵ = 1e-4\n\n0.0001\n\n\n\n# comparison \n2 == 3\n\nfalse\n\n\n\n3&lt;=3\n\ntrue"
-  },
-  {
-    "objectID": "tutorials/session_1/index_correction.html#strings",
-    "href": "tutorials/session_1/index_correction.html#strings",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Strings",
-    "text": "Strings\n\n# Strings can also contain Unicode characters\nfancy_str = \"α is a string\"\n\n\"α is a string\"\n\n\n\n# double quotes define a character, not a string\n'c' \n\n'c': ASCII/Unicode U+0063 (category Ll: Letter, lowercase)\n\n\n\n# string interpolation (1/2)\nhe_who_must_not_be_named = \"Voldemort\"\n\"Welcome $(he_who_must_not_be_named)!\"\n\n\"Welcome Voldemort!\"\n\n\n\n# string interpolation (2/2)\nn = 1999999\nprintln(\"Iteration \", n, \" is still running...\")\n\nIteration 1999999 is still running..."
-  },
-  {
-    "objectID": "tutorials/session_1/index_correction.html#arrays",
-    "href": "tutorials/session_1/index_correction.html#arrays",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Arrays",
-    "text": "Arrays\n\n# vectors\nv = [1,2,3]\n\n3-element Vector{Int64}:\n 1\n 2\n 3\n\n\n\n# matrices \nM = [1 2 3 ; 4 5 6 ; 7 8 9]\n\n3×3 Matrix{Int64}:\n 1  2  3\n 4  5  6\n 7  8  9\n\n\n\n# matrix multiplication\nM*v\n\n3-element Vector{Int64}:\n 14\n 32\n 50\n\n\n\n# mutating vectors\nx = [\"One\"]\npush!(x, \"Two\")\npush!(x, \"Three\")\npush!(x, \"Four\")\npush!(x, \"Five\")\n\n# Note how the type of the vector is different from above\n# Vectors in Julia hold homoegenous types\n\n# Also note the exclation mark in `push!`: it is a reminder\n# of the fact that `push!` mutates its first argument\n\n5-element Vector{String}:\n \"One\"\n \"Two\"\n \"Three\"\n \"Four\"\n \"Five\"\n\n\n\n# access elements in a vector\nv[1]\n\n1\n\n\n\n# access elements in a matrix\nM[1,2]\n\n2\n\n\n\n\n\n\n\n\nWarning\n\n\n\nIndexing in Julia is 1-based. First element of a collection is denoted by 1.\n\n\n\n# slice matrices\nprintln(M)\n\n# keep first line\nprintln(\"First line\")\nprintln(M[1,:])\n\n# keep second column\nprintln(\"Second column\")\nprintln(M[:,2])\n\n# extract a submatrix\nprintln(M[1:2,1:2])\n\n[1 2 3; 4 5 6; 7 8 9]\nFirst line\n[1, 2, 3]\nSecond column\n[2, 5, 8]\n[1 2; 4 5]\n\n\n\n# concatenate vectors (horizontally)\nvcat( [1,2], [3,4])\n\n4-element Vector{Int64}:\n 1\n 2\n 3\n 4\n\n\n\n# concatenate vectors\nhcat( [1,2], [3,4])\n\n2×2 Matrix{Int64}:\n 1  3\n 2  4\n\n\n\n# transpose matrix\nhcat( [1,2], [3,4])'\n\n2×2 adjoint(::Matrix{Int64}) with eltype Int64:\n 1  2\n 3  4"
-  },
-  {
-    "objectID": "tutorials/session_1/index_correction.html#tuples",
-    "href": "tutorials/session_1/index_correction.html#tuples",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Tuples",
-    "text": "Tuples\n\n# like in python\n# tuples can hold heterogenous data\nt = (\"This\", \"is\", 1, \"tuple\")\n\n(\"This\", \"is\", 1, \"tuple\")\n\n\n\n# access elements in a tuple (still 1-based)\nt[3]\n\n1\n\n\n\n# tuples are `immutable`\n# The following should raise an exception\npush!(t, \"not a vector\")\n\nMethodError: MethodError: no method matching push!(::Tuple{String, String, Int64, String}, ::String)\n\nClosest candidates are:\n  push!(::Any, ::Any, !Matched::Any)\n   @ Base abstractarray.jl:3389\n  push!(::Any, ::Any, !Matched::Any, !Matched::Any...)\n   @ Base abstractarray.jl:3390\n  push!(!Matched::Set, ::Any)\n   @ Base set.jl:103\n  ..."
-  },
-  {
-    "objectID": "tutorials/session_1/index_correction.html#loops",
-    "href": "tutorials/session_1/index_correction.html#loops",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Loops",
-    "text": "Loops\n\n# loop over any iterable (like in python)\nfor i in 1:5\n    println(\"Iteration \", i)\nend\n# note how 1 and 5 are both included.\n\nIteration 1\nIteration 2\nIteration 3\nIteration 4\nIteration 5\n\n\n\nfor i ∈ [\"Paris\", \"New-York\", \"Bogota\"]\n    println(\"City: \", i)\nend\n\nCity: Paris\nCity: New-York\nCity: Bogota\n\n\n\n# Vector comprehensions (like in python)\n# enumerate all squares of even numbers (% computes modulo)\n[i^2 for i=1:10 if i%2==1]\n\n5-element Vector{Int64}:\n  1\n  9\n 25\n 49\n 81"
-  },
-  {
-    "objectID": "tutorials/session_1/index_correction.html#functions",
-    "href": "tutorials/session_1/index_correction.html#functions",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Functions",
-    "text": "Functions\n\n# matlab like syntax\n# with positional and keyword arguments separated by `;`\n\nfunction fun(a,b; c=3)\n    z = a+b*c\n    return z\nend\n\nfun (generic function with 1 method)\n\n\n\nfun(1,2)\n\n7\n\n\n\nfun(1,2; c=4)\n\n9"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Macro II - Fluctuations",
@@ -75,6 +12,550 @@
     "title": "Macro II - Fluctuations",
     "section": "Schedule (WIP)",
     "text": "Schedule (WIP)\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nMar 20, 2024\n\n\nSolving DSGE models\n\n\n\n\nMar 27, 2024\n\n\nSmall Open Economy Extension (IRBC)\n\n\n\n\nApr 3, 2024\n\n\nIntro to Heterogeneity\n\n\n\n\nApr 3, 2024\n\n\nHeterogenous Agents\n\n\n\n\nApr 10, 2024\n\n\nGreen Transition\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "slides/session_1/index.html#section",
+    "href": "slides/session_1/index.html#section",
+    "title": "Solving DSGE models",
+    "section": "",
+    "text": "What is the main specificity of economic modeling?\n\nIn (macro)economics, we model the behaviour of economic agents by specifying:\n\ntheir objective \\[\\max_{c_t} E_t \\sum_{s\\geq t} \\beta^s U(c_s)\\] \\[\\max \\pi_t\\] \\[\\cdots\\]\ntheir constraints (budget constraint, econ. environment…)\n\n\n\n\n\n\n\n\nThis has important implications:\n\nmacro models are forward looking\nmacro models need to be solved\n\n\n\nIn many cases, there is not closed form for the solution -&gt; we need numerical techniques"
+  },
+  {
+    "objectID": "slides/session_1/index.html#dynare",
+    "href": "slides/session_1/index.html#dynare",
+    "title": "Solving DSGE models",
+    "section": "Dynare",
+    "text": "Dynare\n\n\n\n\n1996: Michel Juillard created an opensource software to solve DSGE models\n\nDSGE: Dynamic Stochastic General Equilibrium\nusually solved around a steady-state\n\nNow about 10 contributors.\n\n\n\n\nIt has been widely adopted:\n\nearly version in Gauss\nthen Matlab/Octave/Scilab\nlatest version in Julia\n\n\n\n\n\n\n\nMichel Juillard"
+  },
+  {
+    "objectID": "slides/session_1/index.html#dsge-models-in-institutions",
+    "href": "slides/session_1/index.html#dsge-models-in-institutions",
+    "title": "Solving DSGE models",
+    "section": "DSGE Models in institutions",
+    "text": "DSGE Models in institutions\nNowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)\n\nthey are usually based on the midsize model from Smets & Wouters (10 equations)\nbut have grown up a lot (&gt;&gt;100 equations)\n\n\nInstitutions (led by researchers) are (slowly) diversifying their model\n\nComputational General Equilibrium Models\nAgent-based\nSemi-structural models\nHeterogenous Agents Models"
+  },
+  {
+    "objectID": "slides/session_1/index.html#model",
+    "href": "slides/session_1/index.html#model",
+    "title": "Solving DSGE models",
+    "section": "Model",
+    "text": "Model\nA very concise representation of a model\n\\[\\mathbb{E}_t \\left[ f(y_{t+1}, y_t, y_{t-1}, \\epsilon_t) \\right]= 0\\]\n\n\n\nThe problem:\n\n\\(y_t\\in\\mathbb{R}^n\\): the vector of endogenous variables\n\\(\\epsilon_t\\in\\mathbb{R}^{n_e}\\): the vector of exogenous variables\n\nwe assume that \\(\\epsilon_t\\) is a zero-mean gaussian process\n\n\\(f: \\mathbb{R}^n\\rightarrow \\mathbb{R}^n\\): the model equations\n\n\n\n\nThe solution:\n\n\\(g\\) such that \\[\\forall t, y_t = g(y_{t-1},\\epsilon_t)\\]\n\n\n\n\n\nThe situation is different when one is making a perfect foresight simulation."
+  },
+  {
+    "objectID": "slides/session_1/index.html#the-timing-of-the-equations",
+    "href": "slides/session_1/index.html#the-timing-of-the-equations",
+    "title": "Solving DSGE models",
+    "section": "The timing of the equations",
+    "text": "The timing of the equations\n\n\n\n\n\n\nTip\n\n\nIn dynare the model equations are coded in the model; ... ; end; block.\n\n\n\nNew information arrives with the innovations \\(\\epsilon_t\\).\nAt date \\(t\\), the information set is spanned by \\(\\mathcal{F}_t = \\mathcal{F} (\\cdots, \\epsilon_{t-3}, \\epsilon_{t-2}, \\epsilon_{t-1}, \\epsilon_t)\\)\nBy convention an endogenous variable has a subscript \\(t\\) if it is known first at date \\(t\\)."
+  },
+  {
+    "objectID": "slides/session_1/index.html#example",
+    "href": "slides/session_1/index.html#example",
+    "title": "Solving DSGE models",
+    "section": "Example",
+    "text": "Example\nThe timing of equations\nUsing Dynare’s timing conventions:\n\nWrite the production function in the RBC\nWrite the law of motion for capital \\(k\\), with a depreciation rate \\(\\delta\\) and investment \\(i\\)\n\nwhen is capital known?\nwhen is investment known?\n\nAdd a multiplicative investment efficiency shock \\(\\chi_t\\). Assume it is an \\(AR1\\) driven by innovation \\(\\eta_t\\) and autocorrelation \\(\\rho_{\\chi}\\)"
+  },
+  {
+    "objectID": "slides/session_1/index.html#steady-state",
+    "href": "slides/session_1/index.html#steady-state",
+    "title": "Solving DSGE models",
+    "section": "Steady-state",
+    "text": "Steady-state\nThe deterministic steady-state satisfies:\n\\[ f(\\overline{y},\\overline{y}, \\overline{y}, 0)= 0\\]\nOften, there is a closed-form solution.\nOtherwise, one must resort to a numerical solver to solve\n\\[\\overline{y}\\rightarrow f(\\overline{y},\\overline{y}, \\overline{y}, 0)\\]\n\n\n\n\n\n\nTip\n\n\nIn dynare the steady-state values are provided in the steadystate_model; ... ; end; block. One can check they are correct using the check; statement.\nTo find numerically the steady-state: steady;."
+  },
+  {
+    "objectID": "slides/session_1/index.html#the-implicit-system",
+    "href": "slides/session_1/index.html#the-implicit-system",
+    "title": "Solving DSGE models",
+    "section": "The implicit system",
+    "text": "The implicit system\nReplacing the solution \\[y_t = g(y_{t-1},\\epsilon_t)\\] in the system \\[\\mathbb{E}_t \\left[ f(y_{t+1}, y_t, y_{t-1}, \\epsilon_t) \\right]= 0\\]\nwe obtain:\n\\[\\mathbb{E}_t \\left[ f(g(g(y_{t-1},\\epsilon_{t}),\\epsilon_{t+1}), g(y_{t-1},\\epsilon_t), y_{t-1}, \\epsilon_t) \\right]= 0\\]\nIt is an equation defining implicitly the function \\(g()\\)"
+  },
+  {
+    "objectID": "slides/session_1/index.html#the-state-space",
+    "href": "slides/session_1/index.html#the-state-space",
+    "title": "Solving DSGE models",
+    "section": "The state-space",
+    "text": "The state-space\n\\[\\mathbb{E}_t \\left[ f(g(g(y_{t-1},\\epsilon_{t}),\\epsilon_{t+1}), g(y_{t-1},\\epsilon_t), y_{t-1}, \\epsilon_t) \\right]= 0\\]\nIn this expression, \\(y_{t-1},\\epsilon_t\\) is the state-space.\n\nDropping the time subscripts, the equation must be satisfied for any realization of \\((y,\\epsilon)\\) \\[\\forall (y,\\epsilon)\\  \\Phi(g)(y,\\epsilon) = \\mathbb{E}_{\\epsilon'} \\left[ f(g(g(y,\\epsilon),\\epsilon'), g(y,\\epsilon), y, \\epsilon) \\right]= 0\\]\nIt is a functional equation \\(\\Phi(g)=0\\)"
+  },
+  {
+    "objectID": "slides/session_1/index.html#expected-shocks",
+    "href": "slides/session_1/index.html#expected-shocks",
+    "title": "Solving DSGE models",
+    "section": "Expected shocks",
+    "text": "Expected shocks\nFirst order approximation:\n\nAssume \\(|y_t-\\overline{y}|&lt;&lt;1\\),\\(|\\epsilon|&lt;&lt;1\\),\\(|\\epsilon'|&lt;&lt;1\\)\n\nPerform a Taylor expansion with respect to future shock:\n\\[\\begin{align}\n& & \\mathbb{E}_{\\epsilon'} \\left[ f(g(g(y,\\epsilon),\\epsilon'), g(y,\\epsilon), y, \\epsilon) \\right]  \\\\\n= & &  \\mathbb{E}_{\\epsilon'}\\left[ f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) \\right] \\\\\n  & & +  \\mathbb{E}_{\\epsilon'} \\left[ f^{\\prime}_{y_{t+1}}(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) g^{\\prime}_{\\epsilon} \\epsilon^\\prime\\right] + o(\\epsilon^{\\prime}) \\\\\n\\approx & & f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon)\n\\end{align}\\]\n\nThis uses the fact that \\(\\mathbb{E}\\left[ \\epsilon^{\\prime}\\right] = 0\\).\nAt first order, expected shocks play no role.\nTo capture precautionary behaviour (like risk premia), we would need to increase the approximation order."
+  },
+  {
+    "objectID": "slides/session_1/index.html#first-order-perturbation",
+    "href": "slides/session_1/index.html#first-order-perturbation",
+    "title": "Solving DSGE models",
+    "section": "First order perturbation",
+    "text": "First order perturbation\nWe are left with the system:\n\\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe can now use a variant of the implicit function theorem to recover a first approximation of \\(g\\) as: \\[g(y,\\epsilon) = \\overline{y} + g^{\\prime}_{y} (y-\\overline{y}) + g^{\\prime}_e \\epsilon_t \\]\n\nWe can obtain the unknown quantities \\(g^{\\prime}_y\\), and \\(g^{\\prime}_e\\) using the method of undeterminate coefficients:\nPlug the first approximation into the system and write the conditions \\[F^{\\prime}_y(\\overline{y}, 0) = 0\\] \\[F^{\\prime}_\\epsilon(\\overline{y}, 0) = 0\\]"
+  },
+  {
+    "objectID": "slides/session_1/index.html#computing-gprime_y",
+    "href": "slides/session_1/index.html#computing-gprime_y",
+    "title": "Solving DSGE models",
+    "section": "Computing \\(g^{\\prime}_y\\)",
+    "text": "Computing \\(g^{\\prime}_y\\)\nRecall the system: \\[F(y,\\epsilon) = f(g(g(y,0),\\epsilon), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe have \\[F^{\\prime}_y(\\overline{y}, 0) = f^{\\prime}_{y_{t+1}} g^{\\prime}_y g^{\\prime}_y + f^{\\prime}_{y_{t}} g^{\\prime}_y + f^{\\prime}_{y_{t-1}} = 0 \\]\n\nThis is a specific Riccatti equation \\[A X^2 + B X + C\\] where \\(A,B,C\\) and \\(X=g^{\\prime}_y\\) are square matrices \\(\\in \\mathbb{R}^n \\times \\mathbb{R}^n\\)"
+  },
+  {
+    "objectID": "slides/session_1/index.html#first-order-deterministic-model",
+    "href": "slides/session_1/index.html#first-order-deterministic-model",
+    "title": "Solving DSGE models",
+    "section": "First Order Deterministic Model",
+    "text": "First Order Deterministic Model\nLet’s pause a minute to observe the first order deterministic model: \\[A X^2 + B X + C\\]\nFrom our intuition in dimension 1, we know there must be multiple solutions\n\nhow do we find them?\nhow do we select the right ones?\n\nI the absence of shocks the dynamics of the model are given by \\[y_t = X y_{t-1}\\]\nWhat is the condition for the model to be stationary?\n\n-&gt; the biggest eigenvalue of \\(X\\) should be smaller than 1\n\nDevelop intuition in dimension 1."
+  },
+  {
+    "objectID": "slides/session_1/index.html#multiplicity-of-solution",
+    "href": "slides/session_1/index.html#multiplicity-of-solution",
+    "title": "Solving DSGE models",
+    "section": "Multiplicity of solution",
+    "text": "Multiplicity of solution\nIt is possible to show that the system is associated with \\(2 n\\) generalized eigenvalues:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{2 n}|\\]\nFor each choice \\(C\\) of \\(n\\) eigenvalues (\\(|C|=n\\)), a specific recursive solution \\(X_C\\) can be constructed. It has eigenvalues \\(C\\).\n\nThis yields at least \\(\\left(\\begin{matrix} 2 n \\\\ n \\end{matrix}\\right)\\) different combinations.\n\n\nA model is well defined when there is exactly one solution that is non divergent.\nThis is equivalent to:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{n}| \\leq 1 &lt; |\\lambda_{n+1}| \\leq \\cdots \\leq |\\lambda_{2 n}|\\]"
+  },
+  {
+    "objectID": "slides/session_1/index.html#example-1",
+    "href": "slides/session_1/index.html#example-1",
+    "title": "Solving DSGE models",
+    "section": "Example 1",
+    "text": "Example 1\nForward looking inflation:\n\\[\\pi_t = \\alpha \\pi_{t+1}\\] with \\(\\alpha&lt;1\\).\nIs it well defined?\n\nWe can rewrite the system as:\n\\[\\alpha \\pi_{t+1} - \\pi_t + 0 \\pi_{t-1}  = 0\\]\nor\n\\[\\pi_{t+1} - (\\frac{1}{\\alpha} + 0 )\\pi_t + \\left(\\frac{1}{\\alpha} 0\\right) \\pi_{t-1} = 0\\]\n\n\nThe generalized eigenvalues are \\(0\\leq 1 &lt; \\frac{1}{\\alpha}\\).\n\n\nThe unique stable solution is \\(\\pi_t=0 \\pi_{t-1}\\)"
+  },
+  {
+    "objectID": "slides/session_1/index.html#example-2",
+    "href": "slides/session_1/index.html#example-2",
+    "title": "Solving DSGE models",
+    "section": "Example 2",
+    "text": "Example 2\nDebt accumulation equation by a rational agent:\n\\[b_{t+1} - (1+\\frac{1}{\\beta}) b_t + \\frac{1}{\\beta} b_{t-1} = 0\\]\nIs it well-defined?\n\nTwo generalized eigenvalues \\(\\lambda_1=1 &lt; \\lambda_2=\\frac{1}{\\beta}\\)\n\n\nThe unique non-diverging solution is \\(b_t = b_{t-1}\\).\n\nit is a unit-root: any initial deviation in \\(b_{t-1}\\) has persistent effects"
+  },
+  {
+    "objectID": "slides/session_1/index.html#example-3",
+    "href": "slides/session_1/index.html#example-3",
+    "title": "Solving DSGE models",
+    "section": "Example 3",
+    "text": "Example 3\nProductivity process: \\[z_t = \\rho z_{t-1}\\] with \\(\\rho&lt;1\\): well defined\n\nIn that case there is a hidden infinite eigenvalue \\(\\infty\\) associated to \\(z_{t+1}\\).\n\n\nTo see why consider the system associated with eigenvalues \\(m\\) and \\(\\rho\\): \\[z_{t+1} - (m+\\rho) z_t + m \\rho z_{t-1} = 0\\]\n\\[\\frac{1}{m} z_{t+1} - (1+\\frac{\\rho}{m}) z_t + \\rho z_{t-1} = 0\\]\nWhich corresponds to the initial model when \\(m=\\infty\\)\n\n\nThe generalized eigenvalues are \\(\\lambda_1 = \\rho \\leq 1 &lt; \\lambda_2 = \\infty\\)\nMore generally, any variable that does not appear in \\(t+1\\) creates one infinite generalized eigenvalue."
+  },
+  {
+    "objectID": "slides/session_1/index.html#a-criterium-for-well-definedness",
+    "href": "slides/session_1/index.html#a-criterium-for-well-definedness",
+    "title": "Solving DSGE models",
+    "section": "A criterium for well-definedness",
+    "text": "A criterium for well-definedness\nLooking again at the list of eigenvalues we set aside the infinite ones.\nThe model is well specified iff we can sort the eigenvalues as:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{n}| \\leq 1 &lt; |\\lambda_{n+1}| \\leq \\cdots  |\\lambda_{n+k}| \\leq \\underbrace{|\\lambda_{n+k+1}| \\cdots \\leq |\\lambda_{2 n}|}_{\\text{infinite eigenvalues}}\\]\n\n\n\n\n\n\nBlanchard-Kahn criterium\n\n\nThe model satisfies the Blanchard-Kahn criterium if the number of eigenvalues greater than one, is exactly equal to the number of variables appearing in \\(t+1\\).\nIn that case the model is well-defined."
+  },
+  {
+    "objectID": "slides/session_1/index.html#computing-the-solution",
+    "href": "slides/session_1/index.html#computing-the-solution",
+    "title": "Solving DSGE models",
+    "section": "Computing the solution",
+    "text": "Computing the solution\nThere are several classical methods to compute the solution to the algebraic Riccatti equation: \\[A X^2+ B X + C=0\\]\n\nqz decomposition\n\ntraditionnally used in the DSGE literature since Chris Sims\na little bit unintuitive\n\ncyclic reduction\n\nnew default in dynare, more adequate for big models\n\nlinear time iteration cf @sec:linear_time_iteration\n\nconceptually very simple"
+  },
+  {
+    "objectID": "slides/session_1/index.html#computing-gprime_e",
+    "href": "slides/session_1/index.html#computing-gprime_e",
+    "title": "Solving DSGE models",
+    "section": "Computing \\(g^{\\prime}_{e}\\)",
+    "text": "Computing \\(g^{\\prime}_{e}\\)\nNow we have \\(g^{\\prime}_y\\), how do we get \\(g^{\\prime}_{e}\\)?\nRecall: \\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe have \\[F^{\\prime}_e(\\overline{y}, 0) =  f^{\\prime}_{y_{t+1}}  g^{\\prime}_y  g^{\\prime}_e + f^{\\prime}_{y_{t}} g^{\\prime}_e + f^{\\prime}_{\\epsilon_t} = 0 \\]\nNow this is easy:\n\\[g^{\\prime}_e = - (f^{\\prime}_{y_{t+1}}  g^{\\prime}_y + f^{\\prime}_{y_{t}} )^{-1}  f^{\\prime}_{\\epsilon_t} = 0 \\]"
+  },
+  {
+    "objectID": "slides/session_1/index.html#the-model-solution",
+    "href": "slides/session_1/index.html#the-model-solution",
+    "title": "Solving DSGE models",
+    "section": "The model solution",
+    "text": "The model solution\nThe result of the model solution: \\[y_t = g_y y_{t-1} + g_e \\epsilon_t\\]\nIt is an AR1, driven by exogenous shock \\(\\epsilon_t\\).\n\nBecause it is a well known structure, one can investigate the model with\n\nimpulse response functions\nstochastic simulations\n\n\n\nThen to compare the model to the data we compute\n\nimplied moments:\n\ncovariances, autocorrelation\n\nlikelihood\n\nOptimizing the fit to the data is called model estimation"
+  },
+  {
+    "objectID": "slides/session_1/index.html#what-can-you-do-with-the-solution",
+    "href": "slides/session_1/index.html#what-can-you-do-with-the-solution",
+    "title": "Solving DSGE models",
+    "section": "What can you do with the solution",
+    "text": "What can you do with the solution\nThe solution of a model found by Dynare has an especially simple form: an AR1\n\n\\(y_t = X y_{t-1} + Y \\epsilon_t\\)\nwhere the covariances \\(\\Sigma\\) of \\(\\epsilon_t\\) can be chosen by the modeler\n\n\nWith this solution we can (cf next TD)\n\ncompute (conditional and unconditional) moments\nperform stochastic simulations, impulse response function"
+  },
+  {
+    "objectID": "slides/session_1/index.html#going-further",
+    "href": "slides/session_1/index.html#going-further",
+    "title": "Solving DSGE models",
+    "section": "Going Further",
+    "text": "Going Further\nTaking the model to the data with Dynare\n\n“estimate” the model: compute the likelihood of a solution and maximize it by choosing the right parameters\n“identify” shocks in the data\n\nOther functions\n\nhigher order approximation\n(noninear) perfect foresight simulations\nramsey plan\ndiscretionary policy\n…"
+  },
+  {
+    "objectID": "slides/session_1/index.html#coming-next",
+    "href": "slides/session_1/index.html#coming-next",
+    "title": "Solving DSGE models",
+    "section": "Coming Next",
+    "text": "Coming Next\n\nMany models"
+  },
+  {
+    "objectID": "slides/session_1/index.html#linear-time-iteration",
+    "href": "slides/session_1/index.html#linear-time-iteration",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration",
+    "text": "Linear Time Iteration\nRecall the system to solve: \\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nbut now assume the decision rules today and tomorrow are different:\n\ntoday: \\(y_t = g(y_{t-1}, \\epsilon_t) = \\overline{y} + X y_{t-1} + g_y \\epsilon_t\\)\ntomorrow: \\(y_{t+1} = \\tilde{g}(y_t, \\epsilon_{t+1}) = \\overline{y} + \\tilde{X} y_{t-1} + \\tilde{g}_y \\epsilon_t\\)\n\nThen the Ricatti equation is written:\n\\[A \\tilde{X} X + B X + C = 0\\]"
+  },
+  {
+    "objectID": "slides/session_1/index.html#linear-time-iteration-2",
+    "href": "slides/session_1/index.html#linear-time-iteration-2",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (2)",
+    "text": "Linear Time Iteration (2)\nThe linear time iteration algorithm consists in solving the decision rule \\(X\\) today as a function of decision rule tomorrow \\(\\tilde{X}\\).\nThis corresponds to the simple formula:\n\\[X = -(A\\tilde{X} + B)^{-1} C\\]\nAnd the full algorithm can be described as:\n\nchoose \\(X_0\\)\nfor any \\(X_n\\), compute \\(X_{n+1} = T(X_n) = -(A X_n + B)^{-1} C\\)\n\nrepeat until convergence"
+  },
+  {
+    "objectID": "slides/session_1/index.html#linear-time-iteration-3",
+    "href": "slides/session_1/index.html#linear-time-iteration-3",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (3)",
+    "text": "Linear Time Iteration (3)\nIt can be shown that, starting from a random initial guess, the linear time-iteration algorithm converges to the solution \\(X\\) with the smallest modulus:\n\\[\\underbrace{|\\lambda_1| \\leq \\cdots  \\leq |\\lambda_n|}_{\\text{Selected eigenvalues}} \\leq |\\lambda_{n+1}|\\cdots \\leq |\\lambda_{2n}|\\]\nIn other words, it finds the right solution when the model is well specified.\nHow do you check it is well specified?\n\n\\(\\lambda_n\\) is the biggest eigenvalue of solution \\(X\\)\nwhat about \\(\\lambda_{n+1}\\)?\n\n\\(\\frac{1}{\\lambda_{n+1}}\\) is the biggest eigenvalue of \\((AX+B)^{-1}A\\)"
+  },
+  {
+    "objectID": "slides/session_1/index.html#linear-time-iteration-4",
+    "href": "slides/session_1/index.html#linear-time-iteration-4",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (4)",
+    "text": "Linear Time Iteration (4)\nDefine \\[M(\\lambda) = A\\lambda^2 + B \\lambda + C\\]\nFor any solution \\(X\\), \\(M(\\lambda)\\) can be factorized as: 1\n\\[M(\\lambda)=(\\lambda A + A X + B)(\\lambda I -X)\\]\nand\n\\[det(M(\\lambda)) = \\underbrace{det(\\lambda A + A X + B)}_{Q(\\lambda)}det(\\lambda I -X)\\]\nBy construction \\(Q(\\lambda)\\) is a polynomial whose roots are those that are not selected by the solution i.e. \\(\\Lambda\\setminus Sp(X)\\).\nSpecial case of Bezout theorem. Easy to check in that case"
+  },
+  {
+    "objectID": "slides/session_1/index.html#linear-time-iteration-5",
+    "href": "slides/session_1/index.html#linear-time-iteration-5",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (5)",
+    "text": "Linear Time Iteration (5)\nFor \\(\\lambda \\neq 0\\) we have:\n\\[\\lambda \\in Sp((A X +B )^{-1} A)\\] \\[\\iff  det( (A X +B )^{-1})A - I\\lambda )=0\\] \\[\\iff  det( \\frac{1}{\\lambda} A - I (A X +B )  )=0\\] \\[\\iff Q(\\frac{1}{\\lambda})=0\\] \\[\\iff \\frac{1}{\\lambda} \\in G \\setminus Sp(X)\\]\nIn words, \\((AX+B)^{-1}\\) contains all the eigenvalues that have been rejected by the selection of \\(X\\).\nIn particular, \\(\\rho((AX+B)^{-1})A)=1/\\min(G\\setminus Sp(X))\\)"
+  },
+  {
+    "objectID": "slides/session_1/handout.html",
+    "href": "slides/session_1/handout.html",
+    "title": "Solving DSGE models",
+    "section": "",
+    "text": "What is the main specificity of economic modeling?\n\nIn (macro)economics, we model the behaviour of economic agents by specifying:\n\ntheir objective \\[\\max_{c_t} E_t \\sum_{s\\geq t} \\beta^s U(c_s)\\] \\[\\max \\pi_t\\] \\[\\cdots\\]\ntheir constraints (budget constraint, econ. environment…)\n\n\n\n\n\n\n. . .\n\nThis has important implications:\n\nmacro models are forward looking\nmacro models need to be solved\n\n\n\nIn many cases, there is not closed form for the solution -&gt; we need numerical techniques\n\n\n\n\n\n\n\n\n1996: Michel Juillard created an opensource software to solve DSGE models\n\nDSGE: Dynamic Stochastic General Equilibrium\nusually solved around a steady-state\n\nNow about 10 contributors.\n\n\n\n\nIt has been widely adopted:\n\nearly version in Gauss\nthen Matlab/Octave/Scilab\nlatest version in Julia\n\n\n\n\n\n\n\nMichel Juillard\n\n\n\n\n\n\n\nNowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)\n\nthey are usually based on the midsize model from Smets & Wouters (10 equations)\nbut have grown up a lot (&gt;&gt;100 equations)\n\n. . .\nInstitutions (led by researchers) are (slowly) diversifying their model\n\nComputational General Equilibrium Models\nAgent-based\nSemi-structural models\nHeterogenous Agents Models",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#section",
+    "href": "slides/session_1/handout.html#section",
+    "title": "Solving DSGE models",
+    "section": "",
+    "text": "What is the main specificity of economic modeling?\n\nIn (macro)economics, we model the behaviour of economic agents by specifying:\n\ntheir objective \\[\\max_{c_t} E_t \\sum_{s\\geq t} \\beta^s U(c_s)\\] \\[\\max \\pi_t\\] \\[\\cdots\\]\ntheir constraints (budget constraint, econ. environment…)\n\n\n\n\n\n\n. . .\n\nThis has important implications:\n\nmacro models are forward looking\nmacro models need to be solved\n\n\n\nIn many cases, there is not closed form for the solution -&gt; we need numerical techniques",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#dynare",
+    "href": "slides/session_1/handout.html#dynare",
+    "title": "Solving DSGE models",
+    "section": "",
+    "text": "1996: Michel Juillard created an opensource software to solve DSGE models\n\nDSGE: Dynamic Stochastic General Equilibrium\nusually solved around a steady-state\n\nNow about 10 contributors.\n\n\n\n\nIt has been widely adopted:\n\nearly version in Gauss\nthen Matlab/Octave/Scilab\nlatest version in Julia\n\n\n\n\n\n\n\nMichel Juillard",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#dsge-models-in-institutions",
+    "href": "slides/session_1/handout.html#dsge-models-in-institutions",
+    "title": "Solving DSGE models",
+    "section": "",
+    "text": "Nowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)\n\nthey are usually based on the midsize model from Smets & Wouters (10 equations)\nbut have grown up a lot (&gt;&gt;100 equations)\n\n. . .\nInstitutions (led by researchers) are (slowly) diversifying their model\n\nComputational General Equilibrium Models\nAgent-based\nSemi-structural models\nHeterogenous Agents Models",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#model",
+    "href": "slides/session_1/handout.html#model",
+    "title": "Solving DSGE models",
+    "section": "Model",
+    "text": "Model\nA very concise representation of a model\n\\[\\mathbb{E}_t \\left[ f(y_{t+1}, y_t, y_{t-1}, \\epsilon_t) \\right]= 0\\]\n\n\n\nThe problem:\n\n\\(y_t\\in\\mathbb{R}^n\\): the vector of endogenous variables\n\\(\\epsilon_t\\in\\mathbb{R}^{n_e}\\): the vector of exogenous variables\n\nwe assume that \\(\\epsilon_t\\) is a zero-mean gaussian process\n\n\\(f: \\mathbb{R}^n\\rightarrow \\mathbb{R}^n\\): the model equations\n\n\n\n\nThe solution:\n\n\\(g\\) such that \\[\\forall t, y_t = g(y_{t-1},\\epsilon_t)\\]\n\n\n\n\n\nThe situation is different when one is making a perfect foresight simulation.",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#the-timing-of-the-equations",
+    "href": "slides/session_1/handout.html#the-timing-of-the-equations",
+    "title": "Solving DSGE models",
+    "section": "The timing of the equations",
+    "text": "The timing of the equations\n\n\n\n\n\n\nTip\n\n\n\nIn dynare the model equations are coded in the model; ... ; end; block.\n\n\nNew information arrives with the innovations \\(\\epsilon_t\\).\nAt date \\(t\\), the information set is spanned by \\(\\mathcal{F}_t = \\mathcal{F} (\\cdots, \\epsilon_{t-3}, \\epsilon_{t-2}, \\epsilon_{t-1}, \\epsilon_t)\\)\nBy convention an endogenous variable has a subscript \\(t\\) if it is known first at date \\(t\\).",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#example",
+    "href": "slides/session_1/handout.html#example",
+    "title": "Solving DSGE models",
+    "section": "Example",
+    "text": "Example\nThe timing of equations\nUsing Dynare’s timing conventions:\n\nWrite the production function in the RBC\nWrite the law of motion for capital \\(k\\), with a depreciation rate \\(\\delta\\) and investment \\(i\\)\n\nwhen is capital known?\nwhen is investment known?\n\nAdd a multiplicative investment efficiency shock \\(\\chi_t\\). Assume it is an \\(AR1\\) driven by innovation \\(\\eta_t\\) and autocorrelation \\(\\rho_{\\chi}\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#steady-state",
+    "href": "slides/session_1/handout.html#steady-state",
+    "title": "Solving DSGE models",
+    "section": "Steady-state",
+    "text": "Steady-state\nThe deterministic steady-state satisfies:\n\\[ f(\\overline{y},\\overline{y}, \\overline{y}, 0)= 0\\]\nOften, there is a closed-form solution.\nOtherwise, one must resort to a numerical solver to solve\n\\[\\overline{y}\\rightarrow f(\\overline{y},\\overline{y}, \\overline{y}, 0)\\]\n\n\n\n\n\n\nTip\n\n\n\n\n\nIn dynare the steady-state values are provided in the steadystate_model; ... ; end; block. One can check they are correct using the check; statement.\nTo find numerically the steady-state: steady;.",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#the-implicit-system",
+    "href": "slides/session_1/handout.html#the-implicit-system",
+    "title": "Solving DSGE models",
+    "section": "The implicit system",
+    "text": "The implicit system\nReplacing the solution \\[y_t = g(y_{t-1},\\epsilon_t)\\] in the system \\[\\mathbb{E}_t \\left[ f(y_{t+1}, y_t, y_{t-1}, \\epsilon_t) \\right]= 0\\]\nwe obtain:\n\\[\\mathbb{E}_t \\left[ f(g(g(y_{t-1},\\epsilon_{t}),\\epsilon_{t+1}), g(y_{t-1},\\epsilon_t), y_{t-1}, \\epsilon_t) \\right]= 0\\]\nIt is an equation defining implicitly the function \\(g()\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#the-state-space",
+    "href": "slides/session_1/handout.html#the-state-space",
+    "title": "Solving DSGE models",
+    "section": "The state-space",
+    "text": "The state-space\n\\[\\mathbb{E}_t \\left[ f(g(g(y_{t-1},\\epsilon_{t}),\\epsilon_{t+1}), g(y_{t-1},\\epsilon_t), y_{t-1}, \\epsilon_t) \\right]= 0\\]\nIn this expression, \\(y_{t-1},\\epsilon_t\\) is the state-space.\n. . .\nDropping the time subscripts, the equation must be satisfied for any realization of \\((y,\\epsilon)\\) \\[\\forall (y,\\epsilon)\\  \\Phi(g)(y,\\epsilon) = \\mathbb{E}_{\\epsilon'} \\left[ f(g(g(y,\\epsilon),\\epsilon'), g(y,\\epsilon), y, \\epsilon) \\right]= 0\\]\nIt is a functional equation \\(\\Phi(g)=0\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#expected-shocks",
+    "href": "slides/session_1/handout.html#expected-shocks",
+    "title": "Solving DSGE models",
+    "section": "Expected shocks",
+    "text": "Expected shocks\nFirst order approximation:\n\nAssume \\(|y_t-\\overline{y}|&lt;&lt;1\\),\\(|\\epsilon|&lt;&lt;1\\),\\(|\\epsilon'|&lt;&lt;1\\)\n\nPerform a Taylor expansion with respect to future shock:\n\\[\\begin{align}\n& & \\mathbb{E}_{\\epsilon'} \\left[ f(g(g(y,\\epsilon),\\epsilon'), g(y,\\epsilon), y, \\epsilon) \\right]  \\\\\n= & &  \\mathbb{E}_{\\epsilon'}\\left[ f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) \\right] \\\\\n  & & +  \\mathbb{E}_{\\epsilon'} \\left[ f^{\\prime}_{y_{t+1}}(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) g^{\\prime}_{\\epsilon} \\epsilon^\\prime\\right] + o(\\epsilon^{\\prime}) \\\\\n\\approx & & f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon)\n\\end{align}\\]\n. . .\nThis uses the fact that \\(\\mathbb{E}\\left[ \\epsilon^{\\prime}\\right] = 0\\).\nAt first order, expected shocks play no role.\nTo capture precautionary behaviour (like risk premia), we would need to increase the approximation order.",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#first-order-perturbation",
+    "href": "slides/session_1/handout.html#first-order-perturbation",
+    "title": "Solving DSGE models",
+    "section": "First order perturbation",
+    "text": "First order perturbation\nWe are left with the system:\n\\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe can now use a variant of the implicit function theorem to recover a first approximation of \\(g\\) as: \\[g(y,\\epsilon) = \\overline{y} + g^{\\prime}_{y} (y-\\overline{y}) + g^{\\prime}_e \\epsilon_t \\]\n. . .\nWe can obtain the unknown quantities \\(g^{\\prime}_y\\), and \\(g^{\\prime}_e\\) using the method of undeterminate coefficients:\nPlug the first approximation into the system and write the conditions \\[F^{\\prime}_y(\\overline{y}, 0) = 0\\] \\[F^{\\prime}_\\epsilon(\\overline{y}, 0) = 0\\]",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#computing-gprime_y",
+    "href": "slides/session_1/handout.html#computing-gprime_y",
+    "title": "Solving DSGE models",
+    "section": "Computing \\(g^{\\prime}_y\\)",
+    "text": "Computing \\(g^{\\prime}_y\\)\nRecall the system: \\[F(y,\\epsilon) = f(g(g(y,0),\\epsilon), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe have \\[F^{\\prime}_y(\\overline{y}, 0) = f^{\\prime}_{y_{t+1}} g^{\\prime}_y g^{\\prime}_y + f^{\\prime}_{y_{t}} g^{\\prime}_y + f^{\\prime}_{y_{t-1}} = 0 \\]\n. . .\nThis is a specific Riccatti equation \\[A X^2 + B X + C\\] where \\(A,B,C\\) and \\(X=g^{\\prime}_y\\) are square matrices \\(\\in \\mathbb{R}^n \\times \\mathbb{R}^n\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#first-order-deterministic-model",
+    "href": "slides/session_1/handout.html#first-order-deterministic-model",
+    "title": "Solving DSGE models",
+    "section": "First Order Deterministic Model",
+    "text": "First Order Deterministic Model\nLet’s pause a minute to observe the first order deterministic model: \\[A X^2 + B X + C\\]\nFrom our intuition in dimension 1, we know there must be multiple solutions\n\nhow do we find them?\nhow do we select the right ones?\n\nI the absence of shocks the dynamics of the model are given by \\[y_t = X y_{t-1}\\]\nWhat is the condition for the model to be stationary?\n. . .\n-&gt; the biggest eigenvalue of \\(X\\) should be smaller than 1\n\nDevelop intuition in dimension 1.",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#multiplicity-of-solution",
+    "href": "slides/session_1/handout.html#multiplicity-of-solution",
+    "title": "Solving DSGE models",
+    "section": "Multiplicity of solution",
+    "text": "Multiplicity of solution\nIt is possible to show that the system is associated with \\(2 n\\) generalized eigenvalues:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{2 n}|\\]\nFor each choice \\(C\\) of \\(n\\) eigenvalues (\\(|C|=n\\)), a specific recursive solution \\(X_C\\) can be constructed. It has eigenvalues \\(C\\).\n. . .\nThis yields at least \\(\\left(\\begin{matrix} 2 n \\\\ n \\end{matrix}\\right)\\) different combinations.\n. . .\nA model is well defined when there is exactly one solution that is non divergent.\nThis is equivalent to:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{n}| \\leq 1 &lt; |\\lambda_{n+1}| \\leq \\cdots \\leq |\\lambda_{2 n}|\\]",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#example-1",
+    "href": "slides/session_1/handout.html#example-1",
+    "title": "Solving DSGE models",
+    "section": "Example 1",
+    "text": "Example 1\nForward looking inflation:\n\\[\\pi_t = \\alpha \\pi_{t+1}\\] with \\(\\alpha&lt;1\\).\nIs it well defined?\n. . .\nWe can rewrite the system as:\n\\[\\alpha \\pi_{t+1} - \\pi_t + 0 \\pi_{t-1}  = 0\\]\nor\n\\[\\pi_{t+1} - (\\frac{1}{\\alpha} + 0 )\\pi_t + \\left(\\frac{1}{\\alpha} 0\\right) \\pi_{t-1} = 0\\]\n. . .\nThe generalized eigenvalues are \\(0\\leq 1 &lt; \\frac{1}{\\alpha}\\).\n. . .\nThe unique stable solution is \\(\\pi_t=0 \\pi_{t-1}\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#example-2",
+    "href": "slides/session_1/handout.html#example-2",
+    "title": "Solving DSGE models",
+    "section": "Example 2",
+    "text": "Example 2\nDebt accumulation equation by a rational agent:\n\\[b_{t+1} - (1+\\frac{1}{\\beta}) b_t + \\frac{1}{\\beta} b_{t-1} = 0\\]\nIs it well-defined?\n. . .\nTwo generalized eigenvalues \\(\\lambda_1=1 &lt; \\lambda_2=\\frac{1}{\\beta}\\)\n. . .\nThe unique non-diverging solution is \\(b_t = b_{t-1}\\).\n\nit is a unit-root: any initial deviation in \\(b_{t-1}\\) has persistent effects",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#example-3",
+    "href": "slides/session_1/handout.html#example-3",
+    "title": "Solving DSGE models",
+    "section": "Example 3",
+    "text": "Example 3\nProductivity process: \\[z_t = \\rho z_{t-1}\\] with \\(\\rho&lt;1\\): well defined\n. . .\nIn that case there is a hidden infinite eigenvalue \\(\\infty\\) associated to \\(z_{t+1}\\).\n. . .\nTo see why consider the system associated with eigenvalues \\(m\\) and \\(\\rho\\): \\[z_{t+1} - (m+\\rho) z_t + m \\rho z_{t-1} = 0\\]\n\\[\\frac{1}{m} z_{t+1} - (1+\\frac{\\rho}{m}) z_t + \\rho z_{t-1} = 0\\]\nWhich corresponds to the initial model when \\(m=\\infty\\)\n. . .\nThe generalized eigenvalues are \\(\\lambda_1 = \\rho \\leq 1 &lt; \\lambda_2 = \\infty\\)\nMore generally, any variable that does not appear in \\(t+1\\) creates one infinite generalized eigenvalue.",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#a-criterium-for-well-definedness",
+    "href": "slides/session_1/handout.html#a-criterium-for-well-definedness",
+    "title": "Solving DSGE models",
+    "section": "A criterium for well-definedness",
+    "text": "A criterium for well-definedness\nLooking again at the list of eigenvalues we set aside the infinite ones.\nThe model is well specified iff we can sort the eigenvalues as:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{n}| \\leq 1 &lt; |\\lambda_{n+1}| \\leq \\cdots  |\\lambda_{n+k}| \\leq \\underbrace{|\\lambda_{n+k+1}| \\cdots \\leq |\\lambda_{2 n}|}_{\\text{infinite eigenvalues}}\\]\n\n\n\n\n\n\nBlanchard-Kahn criterium\n\n\n\nThe model satisfies the Blanchard-Kahn criterium if the number of eigenvalues greater than one, is exactly equal to the number of variables appearing in \\(t+1\\).\nIn that case the model is well-defined.",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#computing-the-solution",
+    "href": "slides/session_1/handout.html#computing-the-solution",
+    "title": "Solving DSGE models",
+    "section": "Computing the solution",
+    "text": "Computing the solution\nThere are several classical methods to compute the solution to the algebraic Riccatti equation: \\[A X^2+ B X + C=0\\]\n\nqz decomposition\n\ntraditionnally used in the DSGE literature since Chris Sims\na little bit unintuitive\n\ncyclic reduction\n\nnew default in dynare, more adequate for big models\n\nlinear time iteration cf @sec:linear_time_iteration\n\nconceptually very simple",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#computing-gprime_e",
+    "href": "slides/session_1/handout.html#computing-gprime_e",
+    "title": "Solving DSGE models",
+    "section": "Computing \\(g^{\\prime}_{e}\\)",
+    "text": "Computing \\(g^{\\prime}_{e}\\)\nNow we have \\(g^{\\prime}_y\\), how do we get \\(g^{\\prime}_{e}\\)?\nRecall: \\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe have \\[F^{\\prime}_e(\\overline{y}, 0) =  f^{\\prime}_{y_{t+1}}  g^{\\prime}_y  g^{\\prime}_e + f^{\\prime}_{y_{t}} g^{\\prime}_e + f^{\\prime}_{\\epsilon_t} = 0 \\]\nNow this is easy:\n\\[g^{\\prime}_e = - (f^{\\prime}_{y_{t+1}}  g^{\\prime}_y + f^{\\prime}_{y_{t}} )^{-1}  f^{\\prime}_{\\epsilon_t} = 0 \\]",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#the-model-solution",
+    "href": "slides/session_1/handout.html#the-model-solution",
+    "title": "Solving DSGE models",
+    "section": "The model solution",
+    "text": "The model solution\nThe result of the model solution: \\[y_t = g_y y_{t-1} + g_e \\epsilon_t\\]\nIt is an AR1, driven by exogenous shock \\(\\epsilon_t\\).\n. . .\nBecause it is a well known structure, one can investigate the model with\n\nimpulse response functions\nstochastic simulations\n\n. . .\nThen to compare the model to the data we compute\n\nimplied moments:\n\ncovariances, autocorrelation\n\nlikelihood\n\nOptimizing the fit to the data is called model estimation",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#what-can-you-do-with-the-solution",
+    "href": "slides/session_1/handout.html#what-can-you-do-with-the-solution",
+    "title": "Solving DSGE models",
+    "section": "What can you do with the solution",
+    "text": "What can you do with the solution\nThe solution of a model found by Dynare has an especially simple form: an AR1\n\n\\(y_t = X y_{t-1} + Y \\epsilon_t\\)\nwhere the covariances \\(\\Sigma\\) of \\(\\epsilon_t\\) can be chosen by the modeler\n\n. . .\nWith this solution we can (cf next TD)\n\ncompute (conditional and unconditional) moments\nperform stochastic simulations, impulse response function\n\n. . .",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#going-further",
+    "href": "slides/session_1/handout.html#going-further",
+    "title": "Solving DSGE models",
+    "section": "Going Further",
+    "text": "Going Further\nTaking the model to the data with Dynare\n\n“estimate” the model: compute the likelihood of a solution and maximize it by choosing the right parameters\n“identify” shocks in the data\n\nOther functions\n\nhigher order approximation\n(noninear) perfect foresight simulations\nramsey plan\ndiscretionary policy\n…",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#coming-next",
+    "href": "slides/session_1/handout.html#coming-next",
+    "title": "Solving DSGE models",
+    "section": "Coming Next",
+    "text": "Coming Next\n\nMany models",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#linear-time-iteration",
+    "href": "slides/session_1/handout.html#linear-time-iteration",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration",
+    "text": "Linear Time Iteration\nRecall the system to solve: \\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nbut now assume the decision rules today and tomorrow are different:\n\ntoday: \\(y_t = g(y_{t-1}, \\epsilon_t) = \\overline{y} + X y_{t-1} + g_y \\epsilon_t\\)\ntomorrow: \\(y_{t+1} = \\tilde{g}(y_t, \\epsilon_{t+1}) = \\overline{y} + \\tilde{X} y_{t-1} + \\tilde{g}_y \\epsilon_t\\)\n\nThen the Ricatti equation is written:\n\\[A \\tilde{X} X + B X + C = 0\\]",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#linear-time-iteration-2",
+    "href": "slides/session_1/handout.html#linear-time-iteration-2",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (2)",
+    "text": "Linear Time Iteration (2)\nThe linear time iteration algorithm consists in solving the decision rule \\(X\\) today as a function of decision rule tomorrow \\(\\tilde{X}\\).\nThis corresponds to the simple formula:\n\\[X = -(A\\tilde{X} + B)^{-1} C\\]\nAnd the full algorithm can be described as:\n\nchoose \\(X_0\\)\nfor any \\(X_n\\), compute \\(X_{n+1} = T(X_n) = -(A X_n + B)^{-1} C\\)\n\nrepeat until convergence",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#linear-time-iteration-3",
+    "href": "slides/session_1/handout.html#linear-time-iteration-3",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (3)",
+    "text": "Linear Time Iteration (3)\nIt can be shown that, starting from a random initial guess, the linear time-iteration algorithm converges to the solution \\(X\\) with the smallest modulus:\n\\[\\underbrace{|\\lambda_1| \\leq \\cdots  \\leq |\\lambda_n|}_{\\text{Selected eigenvalues}} \\leq |\\lambda_{n+1}|\\cdots \\leq |\\lambda_{2n}|\\]\nIn other words, it finds the right solution when the model is well specified.\nHow do you check it is well specified?\n\n\\(\\lambda_n\\) is the biggest eigenvalue of solution \\(X\\)\nwhat about \\(\\lambda_{n+1}\\)?\n\n\\(\\frac{1}{\\lambda_{n+1}}\\) is the biggest eigenvalue of \\((AX+B)^{-1}A\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#linear-time-iteration-4",
+    "href": "slides/session_1/handout.html#linear-time-iteration-4",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (4)",
+    "text": "Linear Time Iteration (4)\nDefine \\[M(\\lambda) = A\\lambda^2 + B \\lambda + C\\]\nFor any solution \\(X\\), \\(M(\\lambda)\\) can be factorized as: 1\n\\[M(\\lambda)=(\\lambda A + A X + B)(\\lambda I -X)\\]\nand\n\\[det(M(\\lambda)) = \\underbrace{det(\\lambda A + A X + B)}_{Q(\\lambda)}det(\\lambda I -X)\\]\nBy construction \\(Q(\\lambda)\\) is a polynomial whose roots are those that are not selected by the solution i.e. \\(\\Lambda\\setminus Sp(X)\\).",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#linear-time-iteration-5",
+    "href": "slides/session_1/handout.html#linear-time-iteration-5",
+    "title": "Solving DSGE models",
+    "section": "Linear Time Iteration (5)",
+    "text": "Linear Time Iteration (5)\nFor \\(\\lambda \\neq 0\\) we have:\n\\[\\lambda \\in Sp((A X +B )^{-1} A)\\] \\[\\iff  det( (A X +B )^{-1})A - I\\lambda )=0\\] \\[\\iff  det( \\frac{1}{\\lambda} A - I (A X +B )  )=0\\] \\[\\iff Q(\\frac{1}{\\lambda})=0\\] \\[\\iff \\frac{1}{\\lambda} \\in G \\setminus Sp(X)\\]\nIn words, \\((AX+B)^{-1}\\) contains all the eigenvalues that have been rejected by the selection of \\(X\\).\nIn particular, \\(\\rho((AX+B)^{-1})A)=1/\\min(G\\setminus Sp(X))\\)",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
+  },
+  {
+    "objectID": "slides/session_1/handout.html#footnotes",
+    "href": "slides/session_1/handout.html#footnotes",
+    "title": "Solving DSGE models",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nSpecial case of Bezout theorem. Easy to check in that case↩︎",
+    "crumbs": [
+      "lectures",
+      "Solving DSGE models"
+    ]
   },
   {
     "objectID": "slides/session_3/index.html#section",
@@ -427,53 +908,184 @@
     "text": "Footnotes\n\n\ncheck Household heterogeneity in macroeconomic models: A historical perspective (or an older blog) for history of heterogenous agents↩︎\nthe ones in the list are not necessary the most representative↩︎\npseudo representative new-keynesian model↩︎\nFrom From Fiscal Policy and MPC Heterogeneity, Tullio Jappelli and Luigi Pistaferri, American Economic Journal: Macroeconomics, 2014↩︎\ninequality data from Saez and Zucman↩︎\nFrom Schularick and Taylor (2014)↩︎"
   },
   {
-    "objectID": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#other-dimensions-of-inequality-measure",
-    "href": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#other-dimensions-of-inequality-measure",
-    "title": "Introduction to Macroeconomics",
-    "section": "Other Dimensions of Inequality (measure)",
-    "text": "Other Dimensions of Inequality (measure)\n\nMeasure:\n\npre-tax income\nafter-tax income\nconsumption\nwealth\n\nPopulation\n\ngenerational gap\ngender gap\nracial gap"
-  },
-  {
-    "objectID": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#pre-tax-vs-post-tax-inequality",
-    "href": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#pre-tax-vs-post-tax-inequality",
-    "title": "Introduction to Macroeconomics",
-    "section": "Pre-tax vs post-tax inequality",
-    "text": "Pre-tax vs post-tax inequality\n\n\n\nGini before and after taxes"
-  },
-  {
-    "objectID": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#consumption-inequality",
-    "href": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#consumption-inequality",
-    "title": "Introduction to Macroeconomics",
-    "section": "Consumption Inequality",
-    "text": "Consumption Inequality\nConsumption inequality much lower than income inequality."
-  },
-  {
-    "objectID": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#other-dimensions-of-inequality-population",
-    "href": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#other-dimensions-of-inequality-population",
-    "title": "Introduction to Macroeconomics",
-    "section": "Other Dimensions of Inequality (population)",
-    "text": "Other Dimensions of Inequality (population)\n\nRacial gap\nGender gap\n\nEU: women get paid in average 15% less than men. 10% less for same work.\n\nGenerational inequality (France)\n\nbaby-boomers had rising income profiles and high pensions\nnew generations have flatter income profiles and (expected) lower pensions"
-  },
-  {
-    "objectID": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#can-we-bear-inequality",
-    "href": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#can-we-bear-inequality",
-    "title": "Introduction to Macroeconomics",
-    "section": "Can we bear inequality ?",
-    "text": "Can we bear inequality ?\n\nYes if:\n\nit is associated with higher economic efficiency (??)\nthe economic cost of reducing inequality is important (??)\nit is associated with high social mobility (???)\n\nNo if: reducing inequality is an objective per se"
-  },
-  {
-    "objectID": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#takeways",
-    "href": "slides/session_3/assets_ineq/group_1_3_inequalities_slides.html#takeways",
-    "title": "Introduction to Macroeconomics",
-    "section": "Takeways",
-    "text": "Takeways\n\nBasic inequality measure: quantile ratios, gini coefficient\nSeveral dimensions of inequality"
-  },
-  {
-    "objectID": "slides/prep_4/index_handout.html",
-    "href": "slides/prep_4/index_handout.html",
-    "title": "Green Transition",
+    "objectID": "tutorials/session_1/index_correction.html",
+    "href": "tutorials/session_1/index_correction.html",
+    "title": "Intro to DSGE Model & Julia Basics",
     "section": "",
-    "text": "Come back later!."
+    "text": "Objectives\n\n\n\n\n\n\nIntroduce Julia environment\n\nrun cells\nbasic types: numbers, strings, vectors, matrices\nfunctions\nsimple plots\n\nSimulate AR1 models\n\nimpulse response functions\nstochastic simulations\n\nconditional / unconditional moments\n\ndevelop intuition about eigenvalues / ergodic distributions\n\nLearn the Dyno mini-interface\n\ncheck the steady-state\nunderstand the meaning of shocks (exogenous variables, innovations)\nunderstand the outputs (decision rule, simulation, graphs)\ninterpret IRFs (persistence, magnitude, …)"
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#why-julia",
+    "href": "tutorials/session_1/index_correction.html#why-julia",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Why Julia?",
+    "text": "Why Julia?\nDevelopped at MIT on top of opensource technologies\n\nlinux / git / llvm\n\nSyntax inspired by Matlab but:\n\nmore consistent\nlots of features from high level languages\n\nEverything is JIT-compiled\n\nno interpreted vs compiled treadeoff -&gt; very fast\nmost of the base library is written in Julia\n\nOpensource/free + vibrant community"
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#numbers",
+    "href": "tutorials/session_1/index_correction.html#numbers",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Numbers",
+    "text": "Numbers\n\n# numbers (usual operations usual)\n(1.0+(2.0+3.0*(4.0+5.0)))/30\n\n1.0\n\n\n\n# exponentials are denoted by ^\n2^8\n\n256"
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#variables-assignments-comparisons",
+    "href": "tutorials/session_1/index_correction.html#variables-assignments-comparisons",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Variables / assignments / comparisons",
+    "text": "Variables / assignments / comparisons\n\n# variable assignment\nx = 10\n\n10\n\n\n\n# Variable names can have Unicode characters\n# To get ϵ in the REPL, type \\epsilon&lt;TAB&gt;\na = 20\nσ = 34\nϵ = 1e-4\n\n0.0001\n\n\n\n# comparison \n2 == 3\n\nfalse\n\n\n\n3&lt;=3\n\ntrue"
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#strings",
+    "href": "tutorials/session_1/index_correction.html#strings",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Strings",
+    "text": "Strings\n\n# Strings can also contain Unicode characters\nfancy_str = \"α is a string\"\n\n\"α is a string\"\n\n\n\n# double quotes define a character, not a string\n'c' \n\n'c': ASCII/Unicode U+0063 (category Ll: Letter, lowercase)\n\n\n\n# string interpolation (1/2)\nhe_who_must_not_be_named = \"Voldemort\"\n\"Welcome $(he_who_must_not_be_named)!\"\n\n\"Welcome Voldemort!\"\n\n\n\n# string interpolation (2/2)\nn = 1999999\nprintln(\"Iteration \", n, \" is still running...\")\n\nIteration 1999999 is still running..."
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#arrays",
+    "href": "tutorials/session_1/index_correction.html#arrays",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Arrays",
+    "text": "Arrays\n\n# vectors\nv = [1,2,3]\n\n3-element Vector{Int64}:\n 1\n 2\n 3\n\n\n\n# matrices \nM = [1 2 3 ; 4 5 6 ; 7 8 9]\n\n3×3 Matrix{Int64}:\n 1  2  3\n 4  5  6\n 7  8  9\n\n\n\n# matrix multiplication\nM*v\n\n3-element Vector{Int64}:\n 14\n 32\n 50\n\n\n\n# mutating vectors\nx = [\"One\"]\npush!(x, \"Two\")\npush!(x, \"Three\")\npush!(x, \"Four\")\npush!(x, \"Five\")\n\n# Note how the type of the vector is different from above\n# Vectors in Julia hold homoegenous types\n\n# Also note the exclation mark in `push!`: it is a reminder\n# of the fact that `push!` mutates its first argument\n\n5-element Vector{String}:\n \"One\"\n \"Two\"\n \"Three\"\n \"Four\"\n \"Five\"\n\n\n\n# access elements in a vector\nv[1]\n\n1\n\n\n\n# access elements in a matrix\nM[1,2]\n\n2\n\n\n\n\n\n\n\n\nWarning\n\n\n\nIndexing in Julia is 1-based. First element of a collection is denoted by 1.\n\n\n\n# slice matrices\nprintln(M)\n\n# keep first line\nprintln(\"First line\")\nprintln(M[1,:])\n\n# keep second column\nprintln(\"Second column\")\nprintln(M[:,2])\n\n# extract a submatrix\nprintln(M[1:2,1:2])\n\n[1 2 3; 4 5 6; 7 8 9]\nFirst line\n[1, 2, 3]\nSecond column\n[2, 5, 8]\n[1 2; 4 5]\n\n\n\n# concatenate vectors (horizontally)\nvcat( [1,2], [3,4])\n\n4-element Vector{Int64}:\n 1\n 2\n 3\n 4\n\n\n\n# concatenate vectors\nhcat( [1,2], [3,4])\n\n2×2 Matrix{Int64}:\n 1  3\n 2  4\n\n\n\n# transpose matrix\nhcat( [1,2], [3,4])'\n\n2×2 adjoint(::Matrix{Int64}) with eltype Int64:\n 1  2\n 3  4"
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#tuples",
+    "href": "tutorials/session_1/index_correction.html#tuples",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Tuples",
+    "text": "Tuples\n\n# like in python\n# tuples can hold heterogenous data\nt = (\"This\", \"is\", 1, \"tuple\")\n\n(\"This\", \"is\", 1, \"tuple\")\n\n\n\n# access elements in a tuple (still 1-based)\nt[3]\n\n1\n\n\n\n# tuples are `immutable`\n# The following should raise an exception\npush!(t, \"not a vector\")\n\nMethodError: MethodError: no method matching push!(::Tuple{String, String, Int64, String}, ::String)\n\nClosest candidates are:\n  push!(::Any, ::Any, !Matched::Any)\n   @ Base abstractarray.jl:3389\n  push!(::Any, ::Any, !Matched::Any, !Matched::Any...)\n   @ Base abstractarray.jl:3390\n  push!(!Matched::Set, ::Any)\n   @ Base set.jl:103\n  ..."
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#loops",
+    "href": "tutorials/session_1/index_correction.html#loops",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Loops",
+    "text": "Loops\n\n# loop over any iterable (like in python)\nfor i in 1:5\n    println(\"Iteration \", i)\nend\n# note how 1 and 5 are both included.\n\nIteration 1\nIteration 2\nIteration 3\nIteration 4\nIteration 5\n\n\n\nfor i ∈ [\"Paris\", \"New-York\", \"Bogota\"]\n    println(\"City: \", i)\nend\n\nCity: Paris\nCity: New-York\nCity: Bogota\n\n\n\n# Vector comprehensions (like in python)\n# enumerate all squares of even numbers (% computes modulo)\n[i^2 for i=1:10 if i%2==1]\n\n5-element Vector{Int64}:\n  1\n  9\n 25\n 49\n 81"
+  },
+  {
+    "objectID": "tutorials/session_1/index_correction.html#functions",
+    "href": "tutorials/session_1/index_correction.html#functions",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Functions",
+    "text": "Functions\n\n# matlab like syntax\n# with positional and keyword arguments separated by `;`\n\nfunction fun(a,b; c=3)\n    z = a+b*c\n    return z\nend\n\nfun (generic function with 1 method)\n\n\n\nfun(1,2)\n\n7\n\n\n\nfun(1,2; c=4)\n\n9"
+  },
+  {
+    "objectID": "tutorials/session_2/problem_correction.html",
+    "href": "tutorials/session_2/problem_correction.html",
+    "title": "First steps with Dynare and moment matching.",
+    "section": "",
+    "text": "Objectives\n\n\n\n\n\nUsing Dynare:\n\nget familiar with the structure of a modfile\ninterpret results\n\ncompare moments with the data\n\nedit a model\n\nfix steady-state\nextend a model (in particular recheck/rederive first order conditions)\n\n\n\n\n\nUncomment the following lines to install needed packages (if not already present).\n\n# uncomment the next lines, the first time you run\n# import Pkg; Pkg.add([\"DBnomics\", \"Dynare\", \"DataFrames\"])\n# import Pkg; Pkg.add(url=\"https://github.com/sdBrinkmann/HPFilter.jl\") # we install hpfilter from github\n\n\nUsing Dynare\n\nusing Dynare\n\nOpen the RBC model and solve the model. Fix the mistakes in the modfile if any.\n\ncontext = @dynare \"rbc.mod\";\n# ; mutes the output\n# graphs and other outputs are stored in subdirectory `rbc`\n# the structure `context contains all the results.`\n\nDynare version: 0.9.7\n2024-04-05T11:27:52.783: Starting @dynare rbc.mod\n[\"rbc.mod\", \"language=julia\", \"json=compute\", \"dr = qz\"]\nDynare preprocessor version: 6.4.0+0\n\n\nUnknown option: dr = qz\nDynare usage: dynare mod_file [debug] [noclearall] [onlyclearglobals] [savemacro[=macro_file]] [onlymacro] [linemacro] [notmpterms] [nolog] [warn_uninit] [console] [nograph] [nointeractive] [parallel[=cluster_name]] [conffile=parallel_config_path_and_filename] [parallel_follower_open_mode] [parallel_test] [parallel_use_psexec=true|false] [-D&lt;variable&gt;[=&lt;value&gt;]] [-I/path] [nostrict] [stochastic] [fast] [minimal_workspace] [compute_xrefs] [output=second|third] [language=matlab|julia] [params_derivs_order=0|1|2] [transform_unary_ops] [exclude_eqs=&lt;equation_tag_list_or_file&gt;] [include_eqs=&lt;equation_tag_list_or_file&gt;] [json=parse|check|transform|compute] [jsonstdout] [onlyjson] [jsonderivsimple] [nopathchange] [nopreprocessoroutput] [mexext=&lt;extension&gt;] [matlabroot=&lt;path&gt;] [onlymodel] [notime] [use_dll] [nocommutativity]\n\n\nAny[]\n\n\n\n# correction:\n# two mistakes:\n# - wrong timing in production function\n# - wrong steady-state for Euler equation\n\ncontext = @dynare \"rbc_fixed.mod\";\n# ; mutes the output\n# the structure `context contains all the results.`\n\nDynare version: 0.9.7\n2024-04-05T11:30:02.631: Starting @dynare rbc_fixed.mod\n[\"rbc_fixed.mod\", \"language=julia\", \"json=compute\"]\nDynare preprocessor version: 6.4.0+0\n\n\nStarting preprocessing of the model file ...\nERROR: rbc_fixed.mod: line 48, cols 44-45: syntax error, unexpected NAME, expecting INT_NUMBER\n\n\nAny[]\n\n\nInspect the various elements of the solution (decision rule, unconditional moments, simulations).\nInterpret the effect of a productivity shock. How does it depend on the productivity?\nBonus: open the same model with Dyno (see link on the course webpage). Compare the results.\n\n\nComputing moments in the data\nDownload US time series from the world bank for: real gdp, investment, consumption, hours worked.\n\nusing Plots\nusing DBnomics\nusing DataFrames\nusing HPFilter: HP\nusing Statistics: cor, std\n\n\n# google OECD\ndf_ = rdb(ids = [\n    \"OECD/QNA/USA.P5.LNBQRSA.Q\", # investment\n    \"OECD/QNA/USA.B1_GS1.LNBQRSA.Q\", # GDP\n    \"OECD/QNA/USA.P3.LNBQRSA.Q\"\n\n]);\n\n\n# keep only the relevant data, in long format\ndf_long = df_[!,[\"Subject\",\"period\",\"value\"]]\n\n740×3 DataFrame715 rows omitted\n\n\n\nRow\nSubject\nperiod\nvalue\n\n\n\nString\nDate\nFloat64\n\n\n\n\n1\nGross capital formation\n1970-01-01\n2.15688e5\n\n\n2\nGross capital formation\n1970-04-01\n2.14743e5\n\n\n3\nGross capital formation\n1970-07-01\n217739.0\n\n\n4\nGross capital formation\n1970-10-01\n2.08844e5\n\n\n5\nGross capital formation\n1971-01-01\n2.23069e5\n\n\n6\nGross capital formation\n1971-04-01\n2.27366e5\n\n\n7\nGross capital formation\n1971-07-01\n2.29696e5\n\n\n8\nGross capital formation\n1971-10-01\n2.23591e5\n\n\n9\nGross capital formation\n1972-01-01\n2.34297e5\n\n\n10\nGross capital formation\n1972-04-01\n2.45149e5\n\n\n11\nGross capital formation\n1972-07-01\n2.4584e5\n\n\n12\nGross capital formation\n1972-10-01\n249080.0\n\n\n13\nGross capital formation\n1973-01-01\n2.62822e5\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n729\nFinal consumption expenditure\n2021-01-01\n4.31553e6\n\n\n730\nFinal consumption expenditure\n2021-04-01\n4.42287e6\n\n\n731\nFinal consumption expenditure\n2021-07-01\n4.44763e6\n\n\n732\nFinal consumption expenditure\n2021-10-01\n4.48373e6\n\n\n733\nFinal consumption expenditure\n2022-01-01\n4.47788e6\n\n\n734\nFinal consumption expenditure\n2022-04-01\n4.49347e6\n\n\n735\nFinal consumption expenditure\n2022-07-01\n4.51199e6\n\n\n736\nFinal consumption expenditure\n2022-10-01\n4.52916e6\n\n\n737\nFinal consumption expenditure\n2023-01-01\n4.5728e6\n\n\n738\nFinal consumption expenditure\n2023-04-01\n4.5821e6\n\n\n739\nFinal consumption expenditure\n2023-07-01\n4.61965e6\n\n\n740\nFinal consumption expenditure\n2023-10-01\n4.65017e6\n\n\n\n\n\n\n\ndf = unstack(df_long,:period, :Subject,:value);\n\n\ndf = dropmissing(sort(df))\n\n216×4 DataFrame191 rows omitted\n\n\n\nRow\nperiod\nGross capital formation\nGross domestic product\nFinal consumption expenditure\n\n\n\nDate\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\n1970-01-01\n2.15688e5\n1.32516e6\n1.13697e6\n\n\n2\n1970-04-01\n2.14743e5\n1.32704e6\n1.13882e6\n\n\n3\n1970-07-01\n217739.0\n1.33927e6\n1.14738e6\n\n\n4\n1970-10-01\n2.08844e5\n1.32492e6\n1.14562e6\n\n\n5\n1971-01-01\n2.23069e5\n1.3609e6\n1.1627e6\n\n\n6\n1971-04-01\n2.27366e5\n1.36826e6\n1.17093e6\n\n\n7\n1971-07-01\n2.29696e5\n1.37952e6\n1.17765e6\n\n\n8\n1971-10-01\n2.23591e5\n1.38276e6\n1.19219e6\n\n\n9\n1972-01-01\n2.34297e5\n1.40816e6\n1.2072e6\n\n\n10\n1972-04-01\n2.45149e5\n1.44012e6\n1.22563e6\n\n\n11\n1972-07-01\n2.4584e5\n1.45371e6\n1.2364e6\n\n\n12\n1972-10-01\n249080.0\n1.47806e6\n1.25882e6\n\n\n13\n1973-01-01\n2.62822e5\n1.51464e6\n1.2765e6\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n205\n2021-01-01\n1.14623e6\n5.24764e6\n4.31553e6\n\n\n206\n2021-04-01\n1.12988e6\n5.32739e6\n4.42287e6\n\n\n207\n2021-07-01\n1.16292e6\n5.37077e6\n4.44763e6\n\n\n208\n2021-10-01\n1.22444e6\n5.4619e6\n4.48373e6\n\n\n209\n2022-01-01\n1.239e6\n5.43472e6\n4.47788e6\n\n\n210\n2022-04-01\n1.20802e6\n5.42704e6\n4.49347e6\n\n\n211\n2022-07-01\n1.1905e6\n5.46278e6\n4.51199e6\n\n\n212\n2022-10-01\n1.20503e6\n5.4975e6\n4.52916e6\n\n\n213\n2023-01-01\n1.18421e6\n5.52808e6\n4.5728e6\n\n\n214\n2023-04-01\n1.20309e6\n5.55634e6\n4.5821e6\n\n\n215\n2023-07-01\n1.23273e6\n5.62267e6\n4.61965e6\n\n\n216\n2023-10-01\n1.2424e6\n5.66821e6\n4.65017e6\n\n\n\n\n\n\n\nrename!(df,[:period, :investment, :gdp, :consumption])\n\n216×4 DataFrame191 rows omitted\n\n\n\nRow\nperiod\ninvestment\ngdp\nconsumption\n\n\n\nDate\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\n1970-01-01\n2.15688e5\n1.32516e6\n1.13697e6\n\n\n2\n1970-04-01\n2.14743e5\n1.32704e6\n1.13882e6\n\n\n3\n1970-07-01\n217739.0\n1.33927e6\n1.14738e6\n\n\n4\n1970-10-01\n2.08844e5\n1.32492e6\n1.14562e6\n\n\n5\n1971-01-01\n2.23069e5\n1.3609e6\n1.1627e6\n\n\n6\n1971-04-01\n2.27366e5\n1.36826e6\n1.17093e6\n\n\n7\n1971-07-01\n2.29696e5\n1.37952e6\n1.17765e6\n\n\n8\n1971-10-01\n2.23591e5\n1.38276e6\n1.19219e6\n\n\n9\n1972-01-01\n2.34297e5\n1.40816e6\n1.2072e6\n\n\n10\n1972-04-01\n2.45149e5\n1.44012e6\n1.22563e6\n\n\n11\n1972-07-01\n2.4584e5\n1.45371e6\n1.2364e6\n\n\n12\n1972-10-01\n249080.0\n1.47806e6\n1.25882e6\n\n\n13\n1973-01-01\n2.62822e5\n1.51464e6\n1.2765e6\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n205\n2021-01-01\n1.14623e6\n5.24764e6\n4.31553e6\n\n\n206\n2021-04-01\n1.12988e6\n5.32739e6\n4.42287e6\n\n\n207\n2021-07-01\n1.16292e6\n5.37077e6\n4.44763e6\n\n\n208\n2021-10-01\n1.22444e6\n5.4619e6\n4.48373e6\n\n\n209\n2022-01-01\n1.239e6\n5.43472e6\n4.47788e6\n\n\n210\n2022-04-01\n1.20802e6\n5.42704e6\n4.49347e6\n\n\n211\n2022-07-01\n1.1905e6\n5.46278e6\n4.51199e6\n\n\n212\n2022-10-01\n1.20503e6\n5.4975e6\n4.52916e6\n\n\n213\n2023-01-01\n1.18421e6\n5.52808e6\n4.5728e6\n\n\n214\n2023-04-01\n1.20309e6\n5.55634e6\n4.5821e6\n\n\n215\n2023-07-01\n1.23273e6\n5.62267e6\n4.61965e6\n\n\n216\n2023-10-01\n1.2424e6\n5.66821e6\n4.65017e6\n\n\n\n\n\n\n\npl1 = plot(df[!,:period], df[!,:investment],label=\"investment\")\npl2 = plot(df[!,:period], df[!,:gdp],label=\"gdp\")\npl3 = plot(df[!,:period], df[!,:consumption],label=\"consumption\")\n\nplot(pl1,pl2,pl3;size=(800,800))\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDetrend all series.\n\n# detrend the consumption series \nseries = df[!,:consumption]\ntrend = HP(series, 1600)\ncycle = (series - trend)./trend\ndf[!,:consumption_trend] = trend\ndf[!,:consumption_cycle] = cycle\n\n216-element Vector{Float64}:\n  0.004921239693897835\n -0.0017405918975162745\n -0.002459911113794866\n -0.012076212448307519\n -0.005425398507858047\n -0.006389082958760007\n -0.008598880958294896\n -0.004214240470637636\n  0.0005320498500710477\n  0.008093295704558174\n  ⋮\n  0.015708693905631812\n  0.007839576295370073\n  0.004847389048168777\n  0.002533066000795362\n -5.671756883673398e-5\n  0.0031878118520193397\n -0.0010974339047034598\n  0.0007883113900202381\n  0.0011366662632812513\n\n\n\npl1 = plot(series, title=\"consumption\")\nplot!(pl1, trend, label=\"consumption\")\npl2 = plot(cycle, title=\"consumption (cycle)\")\nplot(pl1, pl2)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n# detrend gdp\n\n# write your code here\n\n\n# detrend the gdp series \nseries = df[!,:gdp]\ntrend = HP(series, 1600)\ncycle = (series - trend)./trend\ndf[!,:gdp_trend] = trend\ndf[!,:gdp_cycle] = cycle\n\n216-element Vector{Float64}:\n  0.006326408043290849\n -0.0016579835739767607\n -0.0017839481393023447\n -0.021543391005958437\n -0.004114939366513576\n -0.0077572468905708755\n -0.008519342516754118\n -0.014941144939406634\n -0.005540427361526195\n  0.008377140677044604\n  ⋮\n  0.016741892167605705\n  0.005860006509383165\n -0.0013563236003414235\n -0.0005875997023190351\n -5.024047158770715e-5\n -0.00029246668733133856\n -0.0009712652882525901\n  0.005152605926527802\n  0.007505819207899578\n\n\n\n# detrend the investment series \nseries = df[!,:investment]\ntrend = HP(series, 1600)\ncycle = (series - trend)./trend\ndf[!,:investment_trend] = trend\ndf[!,:investment_cycle] = cycle\n\n216-element Vector{Float64}:\n -0.0018606137881208413\n -0.01674152467038029\n -0.013454280246489132\n -0.06354302282254841\n -0.00995981313572981\n -0.0009943779114452427\n -0.0006041895613935476\n -0.036365515133338036\n  0.0005976180640234724\n  0.03788348149510286\n  ⋮\n  0.040974476752839294\n  0.04671968974481541\n  0.014225667878649014\n -0.006591473375644182\n -0.0005504770981619203\n -0.023706783650240714\n -0.014067809934634629\n  0.0042144206982180485\n  0.006102963185676252\n\n\nCompute the correlations between the detrended series. Compute the ratios \\(\\frac{\\sigma(investment)}{\\sigma(gdp)}\\) and \\(\\frac{\\sigma (consumption)}{\\sigma (gdp)}\\). Compare with the RBC model and comment.\n\n# compute the correlation\ncor(Matrix(df[:,[:gdp_cycle,:consumption_cycle,:investment_cycle]]))\n\n3×3 Matrix{Float64}:\n 1.0       0.850059  0.909062\n 0.850059  1.0       0.650094\n 0.909062  0.650094  1.0\n\n\n\nstd(df[:,:consumption_cycle])/std(df[:,:gdp_cycle])\n\n0.6950802322318318\n\n\n\nstd(df[:,:investment_cycle])/std(df[:,:gdp_cycle])\n\n3.3208282679766574\n\n\n\n## comment.\n\n\n\nSmall Open Economy\nAssume the representative agent can save \\(b^{\\star}_t\\) as foreign assets, remunerated at a constant interest rate \\(r^{\\star}-1\\).\nWrite the new budget constraint for the representative household.\nWrite the new optimality condition.\nWhat is the long run constraint on interest rate \\(r^{\\star}\\)?\nUpdate the modfile (set \\(\\overline{b^{\\star}}=0\\))\nPrint theoretical moments. Comment.\nPrint eigenvalues. Simulate the model over 100 periods. Comment.\nAssume the foreign interest rate depends on the amount of foreign assets\n\\[r^{\\star}=\\frac{1}{\\beta} + exp(-\\kappa b^{\\star}_t) - 1\\]\nwith \\(\\kappa=0.01\\). How do you interpret the equation for \\(r^{\\star}_t\\). How should you modify the model equations?\nUpdate the modfile and comment on the generated moments. Do they depend on the choice of \\(\\kappa\\)?"
+  },
+  {
+    "objectID": "tutorials/session_2/problem.html",
+    "href": "tutorials/session_2/problem.html",
+    "title": "First steps with Dynare and moment matching.",
+    "section": "",
+    "text": "Objectives\n\n\n\n\n\nUsing Dynare:\n\nget familiar with the structure of a modfile\ninterpret results\n\ncompare moments with the data\n\nedit a model\n\nfix steady-state\nextend a model (in particular recheck/rederive first order conditions)\n\n\n\n\n\nUncomment the following lines to install needed packages (if not already present).\n\n# uncomment the next lines, the first time you run\n# import Pkg; Pkg.add([\"DBnomics\", \"Dynare\", \"DataFrames\"])\n# import Pkg; Pkg.add(url=\"https://github.com/sdBrinkmann/HPFilter.jl\") # we install hpfilter from github\n\n\nUsing Dynare\n\nusing Dynare\n\nOpen the RBC model and solve the model. Fix the mistakes in the modfile if any.\n\ncontext = @dynare \"rbc.mod\";\n# ; mutes the output\n# graphs and other outputs are stored in subdirectory `rbc`\n# the structure `context contains all the results.`\n\nInspect the various elements of the solution (decision rule, unconditional moments, simulations).\nInterpret the effect of a productivity shock. How does it depend on the productivity?\nBonus: open the same model with Dyno (see link on the course webpage). Compare the results.\n\n\nComputing moments in the data\nDownload US time series from the world bank for: real gdp, investment, consumption, hours worked.\n\nusing Plots\nusing DBnomics\nusing DataFrames\nusing HPFilter: HP\nusing Statistics: cor, std\n\n\n# google OECD\ndf_ = rdb(ids = [\n    \"OECD/QNA/USA.P5.LNBQRSA.Q\", # investment\n    \"OECD/QNA/USA.B1_GS1.LNBQRSA.Q\", # GDP\n    \"OECD/QNA/USA.P3.LNBQRSA.Q\"\n\n]);\n\n\n# keep only the relevant data, in long format\ndf_long = df_[!,[\"Subject\",\"period\",\"value\"]]\n\n740×3 DataFrame715 rows omitted\n\n\n\nRow\nSubject\nperiod\nvalue\n\n\n\nString\nDate\nFloat64\n\n\n\n\n1\nGross capital formation\n1970-01-01\n2.15688e5\n\n\n2\nGross capital formation\n1970-04-01\n2.14743e5\n\n\n3\nGross capital formation\n1970-07-01\n217739.0\n\n\n4\nGross capital formation\n1970-10-01\n2.08844e5\n\n\n5\nGross capital formation\n1971-01-01\n2.23069e5\n\n\n6\nGross capital formation\n1971-04-01\n2.27366e5\n\n\n7\nGross capital formation\n1971-07-01\n2.29696e5\n\n\n8\nGross capital formation\n1971-10-01\n2.23591e5\n\n\n9\nGross capital formation\n1972-01-01\n2.34297e5\n\n\n10\nGross capital formation\n1972-04-01\n2.45149e5\n\n\n11\nGross capital formation\n1972-07-01\n2.4584e5\n\n\n12\nGross capital formation\n1972-10-01\n249080.0\n\n\n13\nGross capital formation\n1973-01-01\n2.62822e5\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n729\nFinal consumption expenditure\n2021-01-01\n4.31553e6\n\n\n730\nFinal consumption expenditure\n2021-04-01\n4.42287e6\n\n\n731\nFinal consumption expenditure\n2021-07-01\n4.44763e6\n\n\n732\nFinal consumption expenditure\n2021-10-01\n4.48373e6\n\n\n733\nFinal consumption expenditure\n2022-01-01\n4.47788e6\n\n\n734\nFinal consumption expenditure\n2022-04-01\n4.49347e6\n\n\n735\nFinal consumption expenditure\n2022-07-01\n4.51199e6\n\n\n736\nFinal consumption expenditure\n2022-10-01\n4.52916e6\n\n\n737\nFinal consumption expenditure\n2023-01-01\n4.5728e6\n\n\n738\nFinal consumption expenditure\n2023-04-01\n4.5821e6\n\n\n739\nFinal consumption expenditure\n2023-07-01\n4.61965e6\n\n\n740\nFinal consumption expenditure\n2023-10-01\n4.65017e6\n\n\n\n\n\n\n\ndf = unstack(df_long,:period, :Subject,:value);\n\n\ndf = dropmissing(sort(df))\n\n216×4 DataFrame191 rows omitted\n\n\n\nRow\nperiod\nGross capital formation\nGross domestic product\nFinal consumption expenditure\n\n\n\nDate\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\n1970-01-01\n2.15688e5\n1.32516e6\n1.13697e6\n\n\n2\n1970-04-01\n2.14743e5\n1.32704e6\n1.13882e6\n\n\n3\n1970-07-01\n217739.0\n1.33927e6\n1.14738e6\n\n\n4\n1970-10-01\n2.08844e5\n1.32492e6\n1.14562e6\n\n\n5\n1971-01-01\n2.23069e5\n1.3609e6\n1.1627e6\n\n\n6\n1971-04-01\n2.27366e5\n1.36826e6\n1.17093e6\n\n\n7\n1971-07-01\n2.29696e5\n1.37952e6\n1.17765e6\n\n\n8\n1971-10-01\n2.23591e5\n1.38276e6\n1.19219e6\n\n\n9\n1972-01-01\n2.34297e5\n1.40816e6\n1.2072e6\n\n\n10\n1972-04-01\n2.45149e5\n1.44012e6\n1.22563e6\n\n\n11\n1972-07-01\n2.4584e5\n1.45371e6\n1.2364e6\n\n\n12\n1972-10-01\n249080.0\n1.47806e6\n1.25882e6\n\n\n13\n1973-01-01\n2.62822e5\n1.51464e6\n1.2765e6\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n205\n2021-01-01\n1.14623e6\n5.24764e6\n4.31553e6\n\n\n206\n2021-04-01\n1.12988e6\n5.32739e6\n4.42287e6\n\n\n207\n2021-07-01\n1.16292e6\n5.37077e6\n4.44763e6\n\n\n208\n2021-10-01\n1.22444e6\n5.4619e6\n4.48373e6\n\n\n209\n2022-01-01\n1.239e6\n5.43472e6\n4.47788e6\n\n\n210\n2022-04-01\n1.20802e6\n5.42704e6\n4.49347e6\n\n\n211\n2022-07-01\n1.1905e6\n5.46278e6\n4.51199e6\n\n\n212\n2022-10-01\n1.20503e6\n5.4975e6\n4.52916e6\n\n\n213\n2023-01-01\n1.18421e6\n5.52808e6\n4.5728e6\n\n\n214\n2023-04-01\n1.20309e6\n5.55634e6\n4.5821e6\n\n\n215\n2023-07-01\n1.23273e6\n5.62267e6\n4.61965e6\n\n\n216\n2023-10-01\n1.2424e6\n5.66821e6\n4.65017e6\n\n\n\n\n\n\n\nrename!(df,[:period, :investment, :gdp, :consumption])\n\n216×4 DataFrame191 rows omitted\n\n\n\nRow\nperiod\ninvestment\ngdp\nconsumption\n\n\n\nDate\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\n1970-01-01\n2.15688e5\n1.32516e6\n1.13697e6\n\n\n2\n1970-04-01\n2.14743e5\n1.32704e6\n1.13882e6\n\n\n3\n1970-07-01\n217739.0\n1.33927e6\n1.14738e6\n\n\n4\n1970-10-01\n2.08844e5\n1.32492e6\n1.14562e6\n\n\n5\n1971-01-01\n2.23069e5\n1.3609e6\n1.1627e6\n\n\n6\n1971-04-01\n2.27366e5\n1.36826e6\n1.17093e6\n\n\n7\n1971-07-01\n2.29696e5\n1.37952e6\n1.17765e6\n\n\n8\n1971-10-01\n2.23591e5\n1.38276e6\n1.19219e6\n\n\n9\n1972-01-01\n2.34297e5\n1.40816e6\n1.2072e6\n\n\n10\n1972-04-01\n2.45149e5\n1.44012e6\n1.22563e6\n\n\n11\n1972-07-01\n2.4584e5\n1.45371e6\n1.2364e6\n\n\n12\n1972-10-01\n249080.0\n1.47806e6\n1.25882e6\n\n\n13\n1973-01-01\n2.62822e5\n1.51464e6\n1.2765e6\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n205\n2021-01-01\n1.14623e6\n5.24764e6\n4.31553e6\n\n\n206\n2021-04-01\n1.12988e6\n5.32739e6\n4.42287e6\n\n\n207\n2021-07-01\n1.16292e6\n5.37077e6\n4.44763e6\n\n\n208\n2021-10-01\n1.22444e6\n5.4619e6\n4.48373e6\n\n\n209\n2022-01-01\n1.239e6\n5.43472e6\n4.47788e6\n\n\n210\n2022-04-01\n1.20802e6\n5.42704e6\n4.49347e6\n\n\n211\n2022-07-01\n1.1905e6\n5.46278e6\n4.51199e6\n\n\n212\n2022-10-01\n1.20503e6\n5.4975e6\n4.52916e6\n\n\n213\n2023-01-01\n1.18421e6\n5.52808e6\n4.5728e6\n\n\n214\n2023-04-01\n1.20309e6\n5.55634e6\n4.5821e6\n\n\n215\n2023-07-01\n1.23273e6\n5.62267e6\n4.61965e6\n\n\n216\n2023-10-01\n1.2424e6\n5.66821e6\n4.65017e6\n\n\n\n\n\n\n\npl1 = plot(df[!,:period], df[!,:investment],label=\"investment\")\npl2 = plot(df[!,:period], df[!,:gdp],label=\"gdp\")\npl3 = plot(df[!,:period], df[!,:consumption],label=\"consumption\")\n\nplot(pl1,pl2,pl3;size=(800,800))\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDetrend all series.\n\n# detrend the consumption series \nseries = df[!,:consumption]\ntrend = HP(series, 1600)\ncycle = (series - trend)./trend\ndf[!,:consumption_trend] = trend\ndf[!,:consumption_cycle] = cycle\n\n216-element Vector{Float64}:\n  0.004921239693897835\n -0.0017405918975162745\n -0.002459911113794866\n -0.012076212448307519\n -0.005425398507858047\n -0.006389082958760007\n -0.008598880958294896\n -0.004214240470637636\n  0.0005320498500710477\n  0.008093295704558174\n  ⋮\n  0.015708693905631812\n  0.007839576295370073\n  0.004847389048168777\n  0.002533066000795362\n -5.671756883673398e-5\n  0.0031878118520193397\n -0.0010974339047034598\n  0.0007883113900202381\n  0.0011366662632812513\n\n\n\npl1 = plot(series, title=\"consumption\")\nplot!(pl1, trend, label=\"consumption\")\npl2 = plot(cycle, title=\"consumption (cycle)\")\nplot(pl1, pl2)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n# detrend gdp\n\n# write your code here\n\n\n# detrend the investment series \n\n# write your code here\n\n216-element Vector{Float64}:\n -0.0018606137881208413\n -0.01674152467038029\n -0.013454280246489132\n -0.06354302282254841\n -0.00995981313572981\n -0.0009943779114452427\n -0.0006041895613935476\n -0.036365515133338036\n  0.0005976180640234724\n  0.03788348149510286\n  ⋮\n  0.040974476752839294\n  0.04671968974481541\n  0.014225667878649014\n -0.006591473375644182\n -0.0005504770981619203\n -0.023706783650240714\n -0.014067809934634629\n  0.0042144206982180485\n  0.006102963185676252\n\n\nCompute the correlations between the detrended series. Compute the ratios \\(\\frac{\\sigma(investment)}{\\sigma(gdp)}\\) and \\(\\frac{\\sigma (consumption)}{\\sigma (gdp)}\\). Compare with the RBC model and comment.\n\n\nSmall Open Economy\nAssume the representative agent can save \\(b^{\\star}_t\\) as foreign assets, remunerated at a constant interest rate \\(r^{\\star}-1\\).\nWrite the new budget constraint for the representative household.\nWrite the new optimality condition.\nWhat is the long run constraint on interest rate \\(r^{\\star}\\)?\nUpdate the modfile (set \\(\\overline{b^{\\star}}=0\\))\nPrint theoretical moments. Comment.\nSimulate the model over 100 periods. Comment.\nAssume the foreign interest rate depends on the amount of foreign assets\n\\[r^{\\star}=\\frac{1}{\\beta} + exp(-\\kappa b^{\\star}_t) - 1\\]\nwith \\(\\kappa=0.01\\). How do you interpret the equation for \\(r^{\\star}_t\\). How should you modify the model equations?\nUpdate the modfile and comment on the generated moments. Do they depend on the choice of \\(\\kappa\\)?",
+    "crumbs": [
+      "tutorials",
+      "First steps with Dynare and moment matching."
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html",
+    "href": "tutorials/session_1/problem.html",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "",
+    "text": "Objectives\n\n\n\n\n\n\nIntroduce Julia environment\n\nrun cells\nbasic types: numbers, strings, vectors, matrices\nfunctions\nsimple plots\n\nSimulate AR1 models\n\nimpulse response functions\nstochastic simulations\n\nconditional / unconditional moments\n\ndevelop intuition about eigenvalues / ergodic distributions",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#why-julia",
+    "href": "tutorials/session_1/problem.html#why-julia",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Why Julia?",
+    "text": "Why Julia?\nDevelopped at MIT on top of opensource technologies\n\nlinux / git / llvm\n\nSyntax inspired by Matlab but:\n\nmore consistent\nlots of features from high level languages\n\nEverything is JIT-compiled\n\nno interpreted vs compiled treadeoff -&gt; very fast\nmost of the base library is written in Julia\n\nOpensource/free + vibrant community",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#numbers",
+    "href": "tutorials/session_1/problem.html#numbers",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Numbers",
+    "text": "Numbers\n\n# numbers (usual operations usual)\n(1.0+(2.0+3.0*(4.0+5.0)))/30\n\n1.0\n\n\n\n# exponentials are denoted by ^\n2^8\n\n256",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#variables-assignments-comparisons",
+    "href": "tutorials/session_1/problem.html#variables-assignments-comparisons",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Variables / assignments / comparisons",
+    "text": "Variables / assignments / comparisons\n\n# variable assignment\nx = 10\n\n10\n\n\n\n# Variable names can have Unicode characters\n# To get ϵ in the REPL, type \\epsilon&lt;TAB&gt;\na = 20\nσ = 34\nϵ = 1e-4\n\n0.0001\n\n\n\n# comparison \n2 == 3\n\nfalse\n\n\n\n3&lt;=3\n\ntrue",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#strings",
+    "href": "tutorials/session_1/problem.html#strings",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Strings",
+    "text": "Strings\n\n# Strings can also contain Unicode characters\nfancy_str = \"α is a string\"\n\n\"α is a string\"\n\n\n\n# double quotes define a character, not a string\n'c' \n\n'c': ASCII/Unicode U+0063 (category Ll: Letter, lowercase)\n\n\n\n# string interpolation (1/2)\nhe_who_must_not_be_named = \"Voldemort\"\n\"Welcome $(he_who_must_not_be_named)!\"\n\n\"Welcome Voldemort!\"\n\n\n\n# string interpolation (2/2)\nn = 1999999\nprintln(\"Iteration \", n, \" is still running...\")\n\nIteration 1999999 is still running...",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#arrays",
+    "href": "tutorials/session_1/problem.html#arrays",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Arrays",
+    "text": "Arrays\n\n# vectors\nv = [1,2,3]\n\n3-element Vector{Int64}:\n 1\n 2\n 3\n\n\n\n# matrices \nM = [1 2 3 ; 4 5 6 ; 7 8 9]\n\n3×3 Matrix{Int64}:\n 1  2  3\n 4  5  6\n 7  8  9\n\n\n\n# matrix multiplication\nM*v\n\n3-element Vector{Int64}:\n 14\n 32\n 50\n\n\n\n# mutating vectors\nx = [\"One\"]\npush!(x, \"Two\")\npush!(x, \"Three\")\npush!(x, \"Four\")\npush!(x, \"Five\")\n\n# Note how the type of the vector is different from above\n# Vectors in Julia hold homoegenous types\n\n# Also note the exclation mark in `push!`: it is a reminder\n# of the fact that `push!` mutates its first argument\n\n5-element Vector{String}:\n \"One\"\n \"Two\"\n \"Three\"\n \"Four\"\n \"Five\"\n\n\n\n# access elements in a vector\nv[1]\n\n1\n\n\n\n# access elements in a matrix\nM[1,2]\n\n2\n\n\n\n\n\n\n\n\nWarning\n\n\n\nIndexing in Julia is 1-based. First element of a collection is denoted by 1.\n\n\n\n# slice matrices\nprintln(M)\n\n# keep first line\nprintln(\"First line\")\nprintln(M[1,:])\n\n# keep second column\nprintln(\"Second column\")\nprintln(M[:,2])\n\n# extract a submatrix\nprintln(M[1:2,1:2])\n\n[1 2 3; 4 5 6; 7 8 9]\nFirst line\n[1, 2, 3]\nSecond column\n[2, 5, 8]\n[1 2; 4 5]\n\n\n\n# concatenate vectors (horizontally)\nvcat( [1,2], [3,4])\n\n4-element Vector{Int64}:\n 1\n 2\n 3\n 4\n\n\n\n# concatenate vectors\nhcat( [1,2], [3,4])\n\n2×2 Matrix{Int64}:\n 1  3\n 2  4\n\n\n\n# transpose matrix\nhcat( [1,2], [3,4])'\n\n2×2 adjoint(::Matrix{Int64}) with eltype Int64:\n 1  2\n 3  4",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#tuples",
+    "href": "tutorials/session_1/problem.html#tuples",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Tuples",
+    "text": "Tuples\n\n# like in python\n# tuples can hold heterogenous data\nt = (\"This\", \"is\", 1, \"tuple\")\n\n(\"This\", \"is\", 1, \"tuple\")\n\n\n\n# access elements in a tuple (still 1-based)\nt[3]\n\n1\n\n\n\n# tuples are `immutable`\n# The following should raise an exception\npush!(t, \"not a vector\")\n\nMethodError: MethodError: no method matching push!(::Tuple{String, String, Int64, String}, ::String)\n\nClosest candidates are:\n  push!(::Any, ::Any, !Matched::Any)\n   @ Base abstractarray.jl:3389\n  push!(::Any, ::Any, !Matched::Any, !Matched::Any...)\n   @ Base abstractarray.jl:3390\n  push!(!Matched::Set, ::Any)\n   @ Base set.jl:103\n  ...",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#loops",
+    "href": "tutorials/session_1/problem.html#loops",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Loops",
+    "text": "Loops\n\n# loop over any iterable (like in python)\nfor i in 1:5\n    println(\"Iteration \", i)\nend\n# note how 1 and 5 are both included.\n\nIteration 1\nIteration 2\nIteration 3\nIteration 4\nIteration 5\n\n\n\nfor i ∈ [\"Paris\", \"New-York\", \"Bogota\"]\n    println(\"City: \", i)\nend\n\nCity: Paris\nCity: New-York\nCity: Bogota\n\n\n\n# Vector comprehensions (like in python)\n# enumerate all squares of even numbers (% computes modulo)\n[i^2 for i=1:10 if i%2==1]\n\n5-element Vector{Int64}:\n  1\n  9\n 25\n 49\n 81",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
+  },
+  {
+    "objectID": "tutorials/session_1/problem.html#functions",
+    "href": "tutorials/session_1/problem.html#functions",
+    "title": "Intro to DSGE Model & Julia Basics",
+    "section": "Functions",
+    "text": "Functions\n\n# matlab like syntax\n# with positional and keyword arguments separated by `;`\n\nfunction fun(a,b; c=3)\n    z = a+b*c\n    return z\nend\n\nfun (generic function with 1 method)\n\n\n\nfun(1,2)\n\n7\n\n\n\nfun(1,2; c=4)\n\n9",
+    "crumbs": [
+      "tutorials",
+      "Intro to DSGE Model & Julia Basics"
+    ]
   },
   {
     "objectID": "slides/session_2/handout.html",
@@ -883,653 +1495,10 @@
     "text": "Conclusions\n\nThe model matches unconditional correlations fairly well\n\nThe stationarization device has little effect on the moments\n\nUnconditional correlations are not that great\n\na limitation of the moment matching method?\n\nCorrelation of consumption with output is too high\n\nand probably cross-correlation of consumption too low\nstill the Backus-Kehoe-Kydland puzzle…"
   },
   {
-    "objectID": "slides/session_3/assets_ineq/inequalities.html",
-    "href": "slides/session_3/assets_ineq/inequalities.html",
-    "title": "Macro II - Fluctuations",
+    "objectID": "slides/prep_4/index_handout.html",
+    "href": "slides/prep_4/index_handout.html",
+    "title": "Green Transition",
     "section": "",
-    "text": "import dbnomics\nfrom matplotlib import pyplot as plt\nplt.style.use('ggplot')\nplt.rcParams['axes.facecolor']='w'\nplt.rcParams.update({\"axes.grid\" : True, \"grid.color\": \"grey\"})\nimport pandas as pd\nimport numpy as np\n\n\n\nls gid-excel-2018\n\ngid-codebook.txt  gid-previewexcel.csv  __MACOSX/\n\n\n\nimport pandas as pd\n\n\nfilename =\"gid-excel-2018/gid-previewexcel.csv\"\n\n\ndf = pd.read_csv(filename, engine=\"python\")\n\n\nimport altair as alt\n\n\ndf.columns\n\nIndex(['country', 'coun3', 'year', 'atkinson2', 'gini', 'm2mratio',\n       'palmaratio', 'income1', 'income2', 'income3', 'income4', 'income5',\n       'income6', 'income7', 'income8', 'income9', 'income10', 'incomeatperc1',\n       'incomeatperc10', 'incomeatperc20', 'incomeatperc30', 'incomeatperc40',\n       'incomeatperc50', 'incomeatperc60', 'incomeatperc70', 'incomeatperc80',\n       'incomeatperc90', 'incomeatperc95', 'incomeatperc99', 'incomeatperc100',\n       'mean', 'mean2011PPP', 'mld', 'ratio90to10levels', 'share1', 'share2',\n       'share3', 'share4', 'share5', 'share6', 'share7', 'share8', 'share9',\n       'share10', 'growthrate', 'incdefn', 'population', 'databasesource',\n       'sharetop1', 'sharetop5', 'source1', 'sqcoeffvariation',\n       'surveysource2', 'surveyyears', 'consumptionsurvey', 'theil'],\n      dtype='object')\n\n\n\ndef get_value(country, year, name):\n    dd = df[(df['country']==country) & (df['year']==(year))]\n    return float(dd[name])\n\n\n\ndef get_gini(country, year):\n    dd = df[(df['country']==country) & (df['year']==(year))]\n    return float(dd[\"gini\"])\n\n\ndef get_series(country, year):\n    dd = df[(df['country']==country) & (df['year']==(year))]\n    avg_inc = float(dd['mean2011PPP'])\n    shares = [float(dd[f\"share{i}\"]) for i in range(1,11)]\n    income = [avg_inc*float(e)*10 for e in shares]\n    return shares, income\n    \n\n\nqts = [0.1*i for i in range(1,11)]\n\n\nget_series(\"France\", 2011)[1]\n\n[510.4986655176001,\n 727.3399498380002,\n 905.8840429176001,\n 1068.2271030276002,\n 1228.3058492892,\n 1399.0707211716003,\n 1598.4519968700001,\n 1862.1965167956002,\n 2298.2995205244,\n 4283.845316406]\n\n\n\nget_gini(\"France\", 2011)\n\nFrance\n\n\n0.33292484\n\n\n\ncountries = [\"France\", \"China\", \"United States\", \"United Kingdom\", \"Brazil\"]\nincome_per_quantile = {c: get_series(c, 2011)[1] for c in countries}\nshare_per_quantile = {c: get_series(c, 2011)[0] for c in countries}\n\n# Source Core Econ\n\nFrance\nChina\nUnited States\nUnited Kingdom\nBrazil\nFrance\nChina\nUnited States\nUnited Kingdom\nBrazil\n\n\n\nquantiles = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 , 0.8,  0.9, 1.0]\n\n\ninc = np.array(income_per_quantile['France'])\ncs = inc.cumsum()\n\ninc_US = np.array(income_per_quantile['United States'])\n# cs_US = inc.cumsum()\n\nfig = plt.figure(figsize=(8, 6))\nplt.bar([e-0.1 for e in quantiles], inc, width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5)\nplt.ylim(0)\nplt.xlim(-0.1,1.2)\nplt.grid( axis='x')\nplt.xlabel(\"Quantile\")\nplt.ylabel(\"Income\")\nplt.savefig(\"income_inequality_1.png\")\ndisplay(fig)\n\n\nfig = plt.figure(figsize=(8, 6))\nplt.bar([e-0.1 for e in quantiles], inc, width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5, label='France')\nplt.bar([e-0.1 for e in quantiles], inc_US, width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5, label= 'US')\nplt.ylim(0)\nplt.xlim(-0.1,1.2)\nplt.grid( axis='x')\nplt.xlabel(\"Quantile\")\nplt.ylabel(\"Income\")\nplt.legend(loc='upper left')\nplt.savefig(\"income_inequality_1_comparison.png\")\ndisplay(fig)\n\n\n\n\nfig = plt.figure(figsize=(8, 6))\nplt.bar([e-0. for e in quantiles], cs, width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5)\nplt.ylim(0)\nplt.xlim(-0.1,1.2)\nplt.grid( axis='x')\nplt.xlabel(\"Quantile\")\nplt.ylabel(\"Cumulated Income\")\nplt.savefig(\"income_inequality_2.png\")\ndisplay(fig)\n\n## inequality measure : top 10% over bottom 10%\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsh = cs/cs[-1]\nfig3 = plt.figure(figsize=(8, 6))\nplt.bar([e for e in quantiles],(cs/cs[-1]).tolist(), width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5)\nplt.plot([0.0]+quantiles,  [0.0]+ (cs/cs[-1]).tolist(), color='C1')\nplt.ylim(0, 1.1)\nplt.xlim(-0.1,1.2)\nplt.grid( axis='x')\nplt.xlabel(\"Quantile\")\nplt.ylabel(\"Cumulated Income\")\nplt.savefig(\"income_inequality_3.png\")\nfig3\n\n# we can read the 10% poorest have 3.1%\n# while the 10% richest earn 25%\n# inequality measure: top10% over top20% = \n\n\n\n\n\n\n\n\n\nsh = cs/cs[-1]\nfig3 = plt.figure(figsize=(8, 6))\n# plt.bar([e for e in quantiles],(cs/cs[-1]).tolist(), width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5)\nplt.plot([0.0]+quantiles,  [0.0]+quantiles, color='black', linestyle='--')\nplt.fill_between([0.0]+quantiles,  [e*0 for e in ([0.0]+quantiles)], [0.0]+quantiles, color='black', alpha=0.1)\nplt.plot([0.0]+quantiles,  [0.0]+ (cs/cs[-1]).tolist(), color='C1')\nplt.fill_between([0.0]+quantiles,  [e*0 for e in ([0.0]+quantiles)], [0.0]+ (cs/cs[-1]).tolist(), color='C1', alpha=0.2)\n\nplt.ylim(0, 1.1)\nplt.xlim(-0.1,1.2)\nplt.grid( axis='x')\nplt.xlabel(\"Quantile\")\nplt.ylabel(\"Cumulated Income\")\nplt.savefig(\"gini.png\")\nplt.text(0.55, 0.45, \"A\", fontdict={\"size\": 16})\nplt.text(0.7, 0.3, \"B\", fontdict={\"size\": 16})\nB = sum( [0.0]+ (cs/cs[-1]).tolist() )/1\nprint('Gini: ', (1-2*B ))\nprint(\"it should be 0.33\")\nfig3\n\n\nGini:  -6.757369935147398\nit should be 0.33\n\n\n\n\n\n\n\n\n\n\nincome_per_quantile\n\n{'France': [510.4986655176001,\n  727.3399498380002,\n  905.8840429176001,\n  1068.2271030276002,\n  1228.3058492892,\n  1399.0707211716003,\n  1598.4519968700001,\n  1862.1965167956002,\n  2298.2995205244,\n  4283.845316406],\n 'China': [45.92616406559999,\n  95.07738346080001,\n  147.76284945240002,\n  206.01037747679996,\n  272.8685765208,\n  353.4260517216,\n  457.32411165480005,\n  606.4540846728,\n  869.3027064227999,\n  1917.5676945516],\n 'United States': [350.7690341904,\n  619.9808561568001,\n  864.7120830168001,\n  1102.2915414408,\n  1347.5906722512002,\n  1618.1163159816003,\n  1941.5423451144002,\n  2375.6458925328006,\n  3093.4462178064005,\n  5603.425230684001],\n 'United Kingdom': [406.6649287554,\n  620.1000463248,\n  800.425416867,\n  966.9183441114001,\n  1132.6065687429,\n  1310.1921632253002,\n  1517.6133321312,\n  1790.3849683071003,\n  2232.0367535079,\n  3677.9274780270002],\n 'Brazil': [57.832885405439995,\n  116.12704198464,\n  164.25351435455997,\n  213.53656694976,\n  268.78778410175994,\n  335.4778012032,\n  422.87455794816,\n  551.49833850624,\n  785.9866597113601,\n  2050.47270082944]}\n\n\n\nplt.clf()\nfig3 = plt.figure(figsize=(8, 6))\nfor c in countries:\n    sh = np.array(share_per_quantile[c]).cumsum()\n    gini = get_gini(c, 2011)\n    plt.plot([0.0]+quantiles,  [0.0]+ sh.tolist(), label=f\"{c} | Gini: {gini:.2f}\")\n\n# plt.bar([e for e in quantiles],(cs/cs[-1]).tolist(), width=0.09, align='center', tick_label=[f'{e*100:.0f}%' for e in quantiles], alpha=0.5)\nplt.plot([0, 1], [0, 1], color='black', linestyle='--')\n\nplt.ylim(0, 1.1)\nplt.xlim(-0.,1.)\nplt.grid( axis='x')\nplt.xlabel(\"Quantile\")\nplt.ylabel(\"Cumulated Income\")\nplt.legend(loc='upper left')\nplt.savefig(\"income_inequality_comparison.png\", transparent=True, bbox_inches='tight')\n\n&lt;Figure size 432x288 with 0 Axes&gt;\n\n\n\n\n\n\n\n\n\n\nsh9 = get_value(\"France\", 2010, \"share9\")\nsh10 = get_value(\"France\", 2010, 'share10')\nt5 = get_value(\"France\", 2010, 'sharetop5')\nt1 = get_value(\"France\", 2010, 'sharetop1')\n# get_value(\"France\", 2010, 'sharetop10')\n\nFrance\nFrance\nFrance\nFrance\n\n\n\ntotal = sh9 + sh10\n\n\nx = np.array([0.0, 10, 15, 19, 20])/20\ny = np.array([0.0, sh9/total, (sh10-t5)/total, (t5-t1)/total, t1/total])\nc = y.cumsum()\n\n\nsh = np.array(share_per_quantile[\"France\"]).cumsum()\nplt.plot([0.0]+quantiles,  [0.0]+ sh.tolist(), label=f\"Full Distribution\")\nplt.plot(x,c, label=\"Top 20%\")\nplt.legend(loc='upper left')\n\n\n\n\n\n\n\n\n\ndef get_all_gini(country):\n    dates = []\n    indices = []\n    for year in range(1900, 2020):\n        try:\n            gin = get_gini(country, year)\n            dates.append(year)\n            indices.append(gin)\n        except:\n            pass\n    return dates, indices\n\n\ndates0, indices0 = get_all_gini(\"France\")\ndates1, indices1 = get_all_gini(\"United States\")\n\n\nplt.plot(dates0, indices0)\nplt.plot(dates1, indices1)\nplt.xlim(1970)\n\n\n\n\n\n\n\n\nINSEE: Gini index\n\ngini_france = [[1970, 0.337],\n[1975, 0.323],\n[1979, 0.303],\n[1984, 0.297],\n[1990, 0.283],\n[1996, 0.282],\n[1997, 0.281],\n[1998, 0.279],\n[1999, 0.286],\n[2000, 0.289],\n[2001, 0.288],\n[2002, 0.284],\n[2003, 0.283],\n[2004, 0.283],\n[2005, 0.289],\n[2006, 0.293],\n[2007, 0.292],\n[2008, 0.292],\n[2009, 0.293],\n[2010, 0.302],\n[2011, 0.305],\n[2012, 0.302],\n[2013, 0.288],\n[2014, 0.289],\n[2015, 0.292],\n[2016, 0.288],\n[2017, 0.289]]\n\n\ndates, gini = [*zip(*gini_france)]\n\n\nginis_us = [[1974, 35.3],\n[1979, 34.6],\n[1986, 37.5],\n[1991, 38.2],\n[1994, 40.2],\n[1997, 40.7],\n[2000, 40.3],\n[2004, 40.5],\n[2007, 41.0],\n[2010, 40.3],\n[2013, 41.0],\n[2016, 41.4]]\ndates_us, gini_us = [*zip(*ginis_us)]\ngini_us  = np.array(gini_us)/100\n\n\nplt.figure(figsize=(12, 6))\nplt.plot(dates, gini, label='France')\nplt.plot(dates_us, gini_us, label='United states')\nplt.legend(loc='upper left')\nplt.savefig(\"gini_evolution.png\", transparent=True, bbox_inches='tight')"
-  },
-  {
-    "objectID": "slides/session_1/handout.html",
-    "href": "slides/session_1/handout.html",
-    "title": "Solving DSGE models",
-    "section": "",
-    "text": "What is the main specificity of economic modeling?\n\nIn (macro)economics, we model the behaviour of economic agents by specifying:\n\ntheir objective \\[\\max_{c_t} E_t \\sum_{s\\geq t} \\beta^s U(c_s)\\] \\[\\max \\pi_t\\] \\[\\cdots\\]\ntheir constraints (budget constraint, econ. environment…)\n\n\n\n\n\n\n. . .\n\nThis has important implications:\n\nmacro models are forward looking\nmacro models need to be solved\n\n\n\nIn many cases, there is not closed form for the solution -&gt; we need numerical techniques\n\n\n\n\n\n\n\n\n1996: Michel Juillard created an opensource software to solve DSGE models\n\nDSGE: Dynamic Stochastic General Equilibrium\nusually solved around a steady-state\n\nNow about 10 contributors.\n\n\n\n\nIt has been widely adopted:\n\nearly version in Gauss\nthen Matlab/Octave/Scilab\nlatest version in Julia\n\n\n\n\n\n\n\nMichel Juillard\n\n\n\n\n\n\n\nNowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)\n\nthey are usually based on the midsize model from Smets & Wouters (10 equations)\nbut have grown up a lot (&gt;&gt;100 equations)\n\n. . .\nInstitutions (led by researchers) are (slowly) diversifying their model\n\nComputational General Equilibrium Models\nAgent-based\nSemi-structural models\nHeterogenous Agents Models",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#section",
-    "href": "slides/session_1/handout.html#section",
-    "title": "Solving DSGE models",
-    "section": "",
-    "text": "What is the main specificity of economic modeling?\n\nIn (macro)economics, we model the behaviour of economic agents by specifying:\n\ntheir objective \\[\\max_{c_t} E_t \\sum_{s\\geq t} \\beta^s U(c_s)\\] \\[\\max \\pi_t\\] \\[\\cdots\\]\ntheir constraints (budget constraint, econ. environment…)\n\n\n\n\n\n\n. . .\n\nThis has important implications:\n\nmacro models are forward looking\nmacro models need to be solved\n\n\n\nIn many cases, there is not closed form for the solution -&gt; we need numerical techniques",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#dynare",
-    "href": "slides/session_1/handout.html#dynare",
-    "title": "Solving DSGE models",
-    "section": "",
-    "text": "1996: Michel Juillard created an opensource software to solve DSGE models\n\nDSGE: Dynamic Stochastic General Equilibrium\nusually solved around a steady-state\n\nNow about 10 contributors.\n\n\n\n\nIt has been widely adopted:\n\nearly version in Gauss\nthen Matlab/Octave/Scilab\nlatest version in Julia\n\n\n\n\n\n\n\nMichel Juillard",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#dsge-models-in-institutions",
-    "href": "slides/session_1/handout.html#dsge-models-in-institutions",
-    "title": "Solving DSGE models",
-    "section": "",
-    "text": "Nowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)\n\nthey are usually based on the midsize model from Smets & Wouters (10 equations)\nbut have grown up a lot (&gt;&gt;100 equations)\n\n. . .\nInstitutions (led by researchers) are (slowly) diversifying their model\n\nComputational General Equilibrium Models\nAgent-based\nSemi-structural models\nHeterogenous Agents Models",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#model",
-    "href": "slides/session_1/handout.html#model",
-    "title": "Solving DSGE models",
-    "section": "Model",
-    "text": "Model\nA very concise representation of a model\n\\[\\mathbb{E}_t \\left[ f(y_{t+1}, y_t, y_{t-1}, \\epsilon_t) \\right]= 0\\]\n\n\n\nThe problem:\n\n\\(y_t\\in\\mathbb{R}^n\\): the vector of endogenous variables\n\\(\\epsilon_t\\in\\mathbb{R}^{n_e}\\): the vector of exogenous variables\n\nwe assume that \\(\\epsilon_t\\) is a zero-mean gaussian process\n\n\\(f: \\mathbb{R}^n\\rightarrow \\mathbb{R}^n\\): the model equations\n\n\n\n\nThe solution:\n\n\\(g\\) such that \\[\\forall t, y_t = g(y_{t-1},\\epsilon_t)\\]\n\n\n\n\n\nThe situation is different when one is making a perfect foresight simulation.",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#the-timing-of-the-equations",
-    "href": "slides/session_1/handout.html#the-timing-of-the-equations",
-    "title": "Solving DSGE models",
-    "section": "The timing of the equations",
-    "text": "The timing of the equations\n\n\n\n\n\n\nTip\n\n\n\nIn dynare the model equations are coded in the model; ... ; end; block.\n\n\nNew information arrives with the innovations \\(\\epsilon_t\\).\nAt date \\(t\\), the information set is spanned by \\(\\mathcal{F}_t = \\mathcal{F} (\\cdots, \\epsilon_{t-3}, \\epsilon_{t-2}, \\epsilon_{t-1}, \\epsilon_t)\\)\nBy convention an endogenous variable has a subscript \\(t\\) if it is known first at date \\(t\\).",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#example",
-    "href": "slides/session_1/handout.html#example",
-    "title": "Solving DSGE models",
-    "section": "Example",
-    "text": "Example\nThe timing of equations\nUsing Dynare’s timing conventions:\n\nWrite the production function in the RBC\nWrite the law of motion for capital \\(k\\), with a depreciation rate \\(\\delta\\) and investment \\(i\\)\n\nwhen is capital known?\nwhen is investment known?\n\nAdd a multiplicative investment efficiency shock \\(\\chi_t\\). Assume it is an \\(AR1\\) driven by innovation \\(\\eta_t\\) and autocorrelation \\(\\rho_{\\chi}\\)",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#steady-state",
-    "href": "slides/session_1/handout.html#steady-state",
-    "title": "Solving DSGE models",
-    "section": "Steady-state",
-    "text": "Steady-state\nThe deterministic steady-state satisfies:\n\\[ f(\\overline{y},\\overline{y}, \\overline{y}, 0)= 0\\]\nOften, there is a closed-form solution.\nOtherwise, one must resort to a numerical solver to solve\n\\[\\overline{y}\\rightarrow f(\\overline{y},\\overline{y}, \\overline{y}, 0)\\]\n\n\n\n\n\n\nTip\n\n\n\n\n\nIn dynare the steady-state values are provided in the steadystate_model; ... ; end; block. One can check they are correct using the check; statement.\nTo find numerically the steady-state: steady;.",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#the-implicit-system",
-    "href": "slides/session_1/handout.html#the-implicit-system",
-    "title": "Solving DSGE models",
-    "section": "The implicit system",
-    "text": "The implicit system\nReplacing the solution \\[y_t = g(y_{t-1},\\epsilon_t)\\] in the system \\[\\mathbb{E}_t \\left[ f(y_{t+1}, y_t, y_{t-1}, \\epsilon_t) \\right]= 0\\]\nwe obtain:\n\\[\\mathbb{E}_t \\left[ f(g(g(y_{t-1},\\epsilon_{t}),\\epsilon_{t+1}), g(y_{t-1},\\epsilon_t), y_{t-1}, \\epsilon_t) \\right]= 0\\]\nIt is an equation defining implicitly the function \\(g()\\)",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#the-state-space",
-    "href": "slides/session_1/handout.html#the-state-space",
-    "title": "Solving DSGE models",
-    "section": "The state-space",
-    "text": "The state-space\n\\[\\mathbb{E}_t \\left[ f(g(g(y_{t-1},\\epsilon_{t}),\\epsilon_{t+1}), g(y_{t-1},\\epsilon_t), y_{t-1}, \\epsilon_t) \\right]= 0\\]\nIn this expression, \\(y_{t-1},\\epsilon_t\\) is the state-space.\n. . .\nDropping the time subscripts, the equation must be satisfied for any realization of \\((y,\\epsilon)\\) \\[\\forall (y,\\epsilon)\\  \\Phi(g)(y,\\epsilon) = \\mathbb{E}_{\\epsilon'} \\left[ f(g(g(y,\\epsilon),\\epsilon'), g(y,\\epsilon), y, \\epsilon) \\right]= 0\\]\nIt is a functional equation \\(\\Phi(g)=0\\)",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#expected-shocks",
-    "href": "slides/session_1/handout.html#expected-shocks",
-    "title": "Solving DSGE models",
-    "section": "Expected shocks",
-    "text": "Expected shocks\nFirst order approximation:\n\nAssume \\(|y_t-\\overline{y}|&lt;&lt;1\\),\\(|\\epsilon|&lt;&lt;1\\),\\(|\\epsilon'|&lt;&lt;1\\)\n\nPerform a Taylor expansion with respect to future shock:\n\\[\\begin{align}\n& & \\mathbb{E}_{\\epsilon'} \\left[ f(g(g(y,\\epsilon),\\epsilon'), g(y,\\epsilon), y, \\epsilon) \\right]  \\\\\n= & &  \\mathbb{E}_{\\epsilon'}\\left[ f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) \\right] \\\\\n  & & +  \\mathbb{E}_{\\epsilon'} \\left[ f^{\\prime}_{y_{t+1}}(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) g^{\\prime}_{\\epsilon} \\epsilon^\\prime\\right] + o(\\epsilon^{\\prime}) \\\\\n\\approx & & f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon)\n\\end{align}\\]\n. . .\nThis uses the fact that \\(\\mathbb{E}\\left[ \\epsilon^{\\prime}\\right] = 0\\).\nAt first order, expected shocks play no role.\nTo capture precautionary behaviour (like risk premia), we would need to increase the approximation order.",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#first-order-perturbation",
-    "href": "slides/session_1/handout.html#first-order-perturbation",
-    "title": "Solving DSGE models",
-    "section": "First order perturbation",
-    "text": "First order perturbation\nWe are left with the system:\n\\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe can now use a variant of the implicit function theorem to recover a first approximation of \\(g\\) as: \\[g(y,\\epsilon) = \\overline{y} + g^{\\prime}_{y} (y-\\overline{y}) + g^{\\prime}_e \\epsilon_t \\]\n. . .\nWe can obtain the unknown quantities \\(g^{\\prime}_y\\), and \\(g^{\\prime}_e\\) using the method of undeterminate coefficients:\nPlug the first approximation into the system and write the conditions \\[F^{\\prime}_y(\\overline{y}, 0) = 0\\] \\[F^{\\prime}_\\epsilon(\\overline{y}, 0) = 0\\]",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#computing-gprime_y",
-    "href": "slides/session_1/handout.html#computing-gprime_y",
-    "title": "Solving DSGE models",
-    "section": "Computing \\(g^{\\prime}_y\\)",
-    "text": "Computing \\(g^{\\prime}_y\\)\nRecall the system: \\[F(y,\\epsilon) = f(g(g(y,0),\\epsilon), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe have \\[F^{\\prime}_y(\\overline{y}, 0) = f^{\\prime}_{y_{t+1}} g^{\\prime}_y g^{\\prime}_y + f^{\\prime}_{y_{t}} g^{\\prime}_y + f^{\\prime}_{y_{t-1}} = 0 \\]\n. . .\nThis is a specific Riccatti equation \\[A X^2 + B X + C\\] where \\(A,B,C\\) and \\(X=g^{\\prime}_y\\) are square matrices \\(\\in \\mathbb{R}^n \\times \\mathbb{R}^n\\)",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#first-order-deterministic-model",
-    "href": "slides/session_1/handout.html#first-order-deterministic-model",
-    "title": "Solving DSGE models",
-    "section": "First Order Deterministic Model",
-    "text": "First Order Deterministic Model\nLet’s pause a minute to observe the first order deterministic model: \\[A X^2 + B X + C\\]\nFrom our intuition in dimension 1, we know there must be multiple solutions\n\nhow do we find them?\nhow do we select the right ones?\n\nI the absence of shocks the dynamics of the model are given by \\[y_t = X y_{t-1}\\]\nWhat is the condition for the model to be stationary?\n. . .\n-&gt; the biggest eigenvalue of \\(X\\) should be smaller than 1\n\nDevelop intuition in dimension 1.",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#multiplicity-of-solution",
-    "href": "slides/session_1/handout.html#multiplicity-of-solution",
-    "title": "Solving DSGE models",
-    "section": "Multiplicity of solution",
-    "text": "Multiplicity of solution\nIt is possible to show that the system is associated with \\(2 n\\) generalized eigenvalues:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{2 n}|\\]\nFor each choice \\(C\\) of \\(n\\) eigenvalues (\\(|C|=n\\)), a specific recursive solution \\(X_C\\) can be constructed. It has eigenvalues \\(C\\).\n. . .\nThis yields at least \\(\\left(\\begin{matrix} 2 n \\\\ n \\end{matrix}\\right)\\) different combinations.\n. . .\nA model is well defined when there is exactly one solution that is non divergent.\nThis is equivalent to:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{n}| \\leq 1 &lt; |\\lambda_{n+1}| \\leq \\cdots \\leq |\\lambda_{2 n}|\\]",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#example-1",
-    "href": "slides/session_1/handout.html#example-1",
-    "title": "Solving DSGE models",
-    "section": "Example 1",
-    "text": "Example 1\nForward looking inflation:\n\\[\\pi_t = \\alpha \\pi_{t+1}\\] with \\(\\alpha&lt;1\\).\nIs it well defined?\n. . .\nWe can rewrite the system as:\n\\[\\alpha \\pi_{t+1} - \\pi_t + 0 \\pi_{t-1}  = 0\\]\nor\n\\[\\pi_{t+1} - (\\frac{1}{\\alpha} + 0 )\\pi_t + \\left(\\frac{1}{\\alpha} 0\\right) \\pi_{t-1} = 0\\]\n. . .\nThe generalized eigenvalues are \\(0\\leq 1 &lt; \\frac{1}{\\alpha}\\).\n. . .\nThe unique stable solution is \\(\\pi_t=0 \\pi_{t-1}\\)",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#example-2",
-    "href": "slides/session_1/handout.html#example-2",
-    "title": "Solving DSGE models",
-    "section": "Example 2",
-    "text": "Example 2\nDebt accumulation equation by a rational agent:\n\\[b_{t+1} - (1+\\frac{1}{\\beta}) b_t + \\frac{1}{\\beta} b_{t-1} = 0\\]\nIs it well-defined?\n. . .\nTwo generalized eigenvalues \\(\\lambda_1=1 &lt; \\lambda_2=\\frac{1}{\\beta}\\)\n. . .\nThe unique non-diverging solution is \\(b_t = b_{t-1}\\).\n\nit is a unit-root: any initial deviation in \\(b_{t-1}\\) has persistent effects",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#example-3",
-    "href": "slides/session_1/handout.html#example-3",
-    "title": "Solving DSGE models",
-    "section": "Example 3",
-    "text": "Example 3\nProductivity process: \\[z_t = \\rho z_{t-1}\\] with \\(\\rho&lt;1\\): well defined\n. . .\nIn that case there is a hidden infinite eigenvalue \\(\\infty\\) associated to \\(z_{t+1}\\).\n. . .\nTo see why consider the system associated with eigenvalues \\(m\\) and \\(\\rho\\): \\[z_{t+1} - (m+\\rho) z_t + m \\rho z_{t-1} = 0\\]\n\\[\\frac{1}{m} z_{t+1} - (1+\\frac{\\rho}{m}) z_t + \\rho z_{t-1} = 0\\]\nWhich corresponds to the initial model when \\(m=\\infty\\)\n. . .\nThe generalized eigenvalues are \\(\\lambda_1 = \\rho \\leq 1 &lt; \\lambda_2 = \\infty\\)\nMore generally, any variable that does not appear in \\(t+1\\) creates one infinite generalized eigenvalue.",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#a-criterium-for-well-definedness",
-    "href": "slides/session_1/handout.html#a-criterium-for-well-definedness",
-    "title": "Solving DSGE models",
-    "section": "A criterium for well-definedness",
-    "text": "A criterium for well-definedness\nLooking again at the list of eigenvalues we set aside the infinite ones.\nThe model is well specified iff we can sort the eigenvalues as:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{n}| \\leq 1 &lt; |\\lambda_{n+1}| \\leq \\cdots  |\\lambda_{n+k}| \\leq \\underbrace{|\\lambda_{n+k+1}| \\cdots \\leq |\\lambda_{2 n}|}_{\\text{infinite eigenvalues}}\\]\n\n\n\n\n\n\nBlanchard-Kahn criterium\n\n\n\nThe model satisfies the Blanchard-Kahn criterium if the number of eigenvalues greater than one, is exactly equal to the number of variables appearing in \\(t+1\\).\nIn that case the model is well-defined.",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#computing-the-solution",
-    "href": "slides/session_1/handout.html#computing-the-solution",
-    "title": "Solving DSGE models",
-    "section": "Computing the solution",
-    "text": "Computing the solution\nThere are several classical methods to compute the solution to the algebraic Riccatti equation: \\[A X^2+ B X + C=0\\]\n\nqz decomposition\n\ntraditionnally used in the DSGE literature since Chris Sims\na little bit unintuitive\n\ncyclic reduction\n\nnew default in dynare, more adequate for big models\n\nlinear time iteration cf @sec:linear_time_iteration\n\nconceptually very simple",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#computing-gprime_e",
-    "href": "slides/session_1/handout.html#computing-gprime_e",
-    "title": "Solving DSGE models",
-    "section": "Computing \\(g^{\\prime}_{e}\\)",
-    "text": "Computing \\(g^{\\prime}_{e}\\)\nNow we have \\(g^{\\prime}_y\\), how do we get \\(g^{\\prime}_{e}\\)?\nRecall: \\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe have \\[F^{\\prime}_e(\\overline{y}, 0) =  f^{\\prime}_{y_{t+1}}  g^{\\prime}_y  g^{\\prime}_e + f^{\\prime}_{y_{t}} g^{\\prime}_e + f^{\\prime}_{\\epsilon_t} = 0 \\]\nNow this is easy:\n\\[g^{\\prime}_e = - (f^{\\prime}_{y_{t+1}}  g^{\\prime}_y + f^{\\prime}_{y_{t}} )^{-1}  f^{\\prime}_{\\epsilon_t} = 0 \\]",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#the-model-solution",
-    "href": "slides/session_1/handout.html#the-model-solution",
-    "title": "Solving DSGE models",
-    "section": "The model solution",
-    "text": "The model solution\nThe result of the model solution: \\[y_t = g_y y_{t-1} + g_e \\epsilon_t\\]\nIt is an AR1, driven by exogenous shock \\(\\epsilon_t\\).\n. . .\nBecause it is a well known structure, one can investigate the model with\n\nimpulse response functions\nstochastic simulations\n\n. . .\nThen to compare the model to the data we compute\n\nimplied moments:\n\ncovariances, autocorrelation\n\nlikelihood\n\nOptimizing the fit to the data is called model estimation",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#what-can-you-do-with-the-solution",
-    "href": "slides/session_1/handout.html#what-can-you-do-with-the-solution",
-    "title": "Solving DSGE models",
-    "section": "What can you do with the solution",
-    "text": "What can you do with the solution\nThe solution of a model found by Dynare has an especially simple form: an AR1\n\n\\(y_t = X y_{t-1} + Y \\epsilon_t\\)\nwhere the covariances \\(\\Sigma\\) of \\(\\epsilon_t\\) can be chosen by the modeler\n\n. . .\nWith this solution we can (cf next TD)\n\ncompute (conditional and unconditional) moments\nperform stochastic simulations, impulse response function\n\n. . .",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#going-further",
-    "href": "slides/session_1/handout.html#going-further",
-    "title": "Solving DSGE models",
-    "section": "Going Further",
-    "text": "Going Further\nTaking the model to the data with Dynare\n\n“estimate” the model: compute the likelihood of a solution and maximize it by choosing the right parameters\n“identify” shocks in the data\n\nOther functions\n\nhigher order approximation\n(noninear) perfect foresight simulations\nramsey plan\ndiscretionary policy\n…",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#coming-next",
-    "href": "slides/session_1/handout.html#coming-next",
-    "title": "Solving DSGE models",
-    "section": "Coming Next",
-    "text": "Coming Next\n\nMany models",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#linear-time-iteration",
-    "href": "slides/session_1/handout.html#linear-time-iteration",
-    "title": "Solving DSGE models",
-    "section": "Linear Time Iteration",
-    "text": "Linear Time Iteration\nRecall the system to solve: \\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nbut now assume the decision rules today and tomorrow are different:\n\ntoday: \\(y_t = g(y_{t-1}, \\epsilon_t) = \\overline{y} + X y_{t-1} + g_y \\epsilon_t\\)\ntomorrow: \\(y_{t+1} = \\tilde{g}(y_t, \\epsilon_{t+1}) = \\overline{y} + \\tilde{X} y_{t-1} + \\tilde{g}_y \\epsilon_t\\)\n\nThen the Ricatti equation is written:\n\\[A \\tilde{X} X + B X + C = 0\\]",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#linear-time-iteration-2",
-    "href": "slides/session_1/handout.html#linear-time-iteration-2",
-    "title": "Solving DSGE models",
-    "section": "Linear Time Iteration (2)",
-    "text": "Linear Time Iteration (2)\nThe linear time iteration algorithm consists in solving the decision rule \\(X\\) today as a function of decision rule tomorrow \\(\\tilde{X}\\).\nThis corresponds to the simple formula:\n\\[X = -(A\\tilde{X} + B)^{-1} C\\]\nAnd the full algorithm can be described as:\n\nchoose \\(X_0\\)\nfor any \\(X_n\\), compute \\(X_{n+1} = T(X_n) = -(A X_n + B)^{-1} C\\)\n\nrepeat until convergence",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#linear-time-iteration-3",
-    "href": "slides/session_1/handout.html#linear-time-iteration-3",
-    "title": "Solving DSGE models",
-    "section": "Linear Time Iteration (3)",
-    "text": "Linear Time Iteration (3)\nIt can be shown that, starting from a random initial guess, the linear time-iteration algorithm converges to the solution \\(X\\) with the smallest modulus:\n\\[\\underbrace{|\\lambda_1| \\leq \\cdots  \\leq |\\lambda_n|}_{\\text{Selected eigenvalues}} \\leq |\\lambda_{n+1}|\\cdots \\leq |\\lambda_{2n}|\\]\nIn other words, it finds the right solution when the model is well specified.\nHow do you check it is well specified?\n\n\\(\\lambda_n\\) is the biggest eigenvalue of solution \\(X\\)\nwhat about \\(\\lambda_{n+1}\\)?\n\n\\(\\frac{1}{\\lambda_{n+1}}\\) is the biggest eigenvalue of \\((AX+B)^{-1}A\\)",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#linear-time-iteration-4",
-    "href": "slides/session_1/handout.html#linear-time-iteration-4",
-    "title": "Solving DSGE models",
-    "section": "Linear Time Iteration (4)",
-    "text": "Linear Time Iteration (4)\nDefine \\[M(\\lambda) = A\\lambda^2 + B \\lambda + C\\]\nFor any solution \\(X\\), \\(M(\\lambda)\\) can be factorized as: 1\n\\[M(\\lambda)=(\\lambda A + A X + B)(\\lambda I -X)\\]\nand\n\\[det(M(\\lambda)) = \\underbrace{det(\\lambda A + A X + B)}_{Q(\\lambda)}det(\\lambda I -X)\\]\nBy construction \\(Q(\\lambda)\\) is a polynomial whose roots are those that are not selected by the solution i.e. \\(\\Lambda\\setminus Sp(X)\\).",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#linear-time-iteration-5",
-    "href": "slides/session_1/handout.html#linear-time-iteration-5",
-    "title": "Solving DSGE models",
-    "section": "Linear Time Iteration (5)",
-    "text": "Linear Time Iteration (5)\nFor \\(\\lambda \\neq 0\\) we have:\n\\[\\lambda \\in Sp((A X +B )^{-1} A)\\] \\[\\iff  det( (A X +B )^{-1})A - I\\lambda )=0\\] \\[\\iff  det( \\frac{1}{\\lambda} A - I (A X +B )  )=0\\] \\[\\iff Q(\\frac{1}{\\lambda})=0\\] \\[\\iff \\frac{1}{\\lambda} \\in G \\setminus Sp(X)\\]\nIn words, \\((AX+B)^{-1}\\) contains all the eigenvalues that have been rejected by the selection of \\(X\\).\nIn particular, \\(\\rho((AX+B)^{-1})A)=1/\\min(G\\setminus Sp(X))\\)",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/handout.html#footnotes",
-    "href": "slides/session_1/handout.html#footnotes",
-    "title": "Solving DSGE models",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nSpecial case of Bezout theorem. Easy to check in that case↩︎",
-    "crumbs": [
-      "lectures",
-      "Solving DSGE models"
-    ]
-  },
-  {
-    "objectID": "slides/session_1/index.html#section",
-    "href": "slides/session_1/index.html#section",
-    "title": "Solving DSGE models",
-    "section": "",
-    "text": "What is the main specificity of economic modeling?\n\nIn (macro)economics, we model the behaviour of economic agents by specifying:\n\ntheir objective \\[\\max_{c_t} E_t \\sum_{s\\geq t} \\beta^s U(c_s)\\] \\[\\max \\pi_t\\] \\[\\cdots\\]\ntheir constraints (budget constraint, econ. environment…)\n\n\n\n\n\n\n\n\nThis has important implications:\n\nmacro models are forward looking\nmacro models need to be solved\n\n\n\nIn many cases, there is not closed form for the solution -&gt; we need numerical techniques"
-  },
-  {
-    "objectID": "slides/session_1/index.html#dynare",
-    "href": "slides/session_1/index.html#dynare",
-    "title": "Solving DSGE models",
-    "section": "Dynare",
-    "text": "Dynare\n\n\n\n\n1996: Michel Juillard created an opensource software to solve DSGE models\n\nDSGE: Dynamic Stochastic General Equilibrium\nusually solved around a steady-state\n\nNow about 10 contributors.\n\n\n\n\nIt has been widely adopted:\n\nearly version in Gauss\nthen Matlab/Octave/Scilab\nlatest version in Julia\n\n\n\n\n\n\n\nMichel Juillard"
-  },
-  {
-    "objectID": "slides/session_1/index.html#dsge-models-in-institutions",
-    "href": "slides/session_1/index.html#dsge-models-in-institutions",
-    "title": "Solving DSGE models",
-    "section": "DSGE Models in institutions",
-    "text": "DSGE Models in institutions\nNowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)\n\nthey are usually based on the midsize model from Smets & Wouters (10 equations)\nbut have grown up a lot (&gt;&gt;100 equations)\n\n\nInstitutions (led by researchers) are (slowly) diversifying their model\n\nComputational General Equilibrium Models\nAgent-based\nSemi-structural models\nHeterogenous Agents Models"
-  },
-  {
-    "objectID": "slides/session_1/index.html#model",
-    "href": "slides/session_1/index.html#model",
-    "title": "Solving DSGE models",
-    "section": "Model",
-    "text": "Model\nA very concise representation of a model\n\\[\\mathbb{E}_t \\left[ f(y_{t+1}, y_t, y_{t-1}, \\epsilon_t) \\right]= 0\\]\n\n\n\nThe problem:\n\n\\(y_t\\in\\mathbb{R}^n\\): the vector of endogenous variables\n\\(\\epsilon_t\\in\\mathbb{R}^{n_e}\\): the vector of exogenous variables\n\nwe assume that \\(\\epsilon_t\\) is a zero-mean gaussian process\n\n\\(f: \\mathbb{R}^n\\rightarrow \\mathbb{R}^n\\): the model equations\n\n\n\n\nThe solution:\n\n\\(g\\) such that \\[\\forall t, y_t = g(y_{t-1},\\epsilon_t)\\]\n\n\n\n\n\nThe situation is different when one is making a perfect foresight simulation."
-  },
-  {
-    "objectID": "slides/session_1/index.html#the-timing-of-the-equations",
-    "href": "slides/session_1/index.html#the-timing-of-the-equations",
-    "title": "Solving DSGE models",
-    "section": "The timing of the equations",
-    "text": "The timing of the equations\n\n\n\n\n\n\nTip\n\n\nIn dynare the model equations are coded in the model; ... ; end; block.\n\n\n\nNew information arrives with the innovations \\(\\epsilon_t\\).\nAt date \\(t\\), the information set is spanned by \\(\\mathcal{F}_t = \\mathcal{F} (\\cdots, \\epsilon_{t-3}, \\epsilon_{t-2}, \\epsilon_{t-1}, \\epsilon_t)\\)\nBy convention an endogenous variable has a subscript \\(t\\) if it is known first at date \\(t\\)."
-  },
-  {
-    "objectID": "slides/session_1/index.html#example",
-    "href": "slides/session_1/index.html#example",
-    "title": "Solving DSGE models",
-    "section": "Example",
-    "text": "Example\nThe timing of equations\nUsing Dynare’s timing conventions:\n\nWrite the production function in the RBC\nWrite the law of motion for capital \\(k\\), with a depreciation rate \\(\\delta\\) and investment \\(i\\)\n\nwhen is capital known?\nwhen is investment known?\n\nAdd a multiplicative investment efficiency shock \\(\\chi_t\\). Assume it is an \\(AR1\\) driven by innovation \\(\\eta_t\\) and autocorrelation \\(\\rho_{\\chi}\\)"
-  },
-  {
-    "objectID": "slides/session_1/index.html#steady-state",
-    "href": "slides/session_1/index.html#steady-state",
-    "title": "Solving DSGE models",
-    "section": "Steady-state",
-    "text": "Steady-state\nThe deterministic steady-state satisfies:\n\\[ f(\\overline{y},\\overline{y}, \\overline{y}, 0)= 0\\]\nOften, there is a closed-form solution.\nOtherwise, one must resort to a numerical solver to solve\n\\[\\overline{y}\\rightarrow f(\\overline{y},\\overline{y}, \\overline{y}, 0)\\]\n\n\n\n\n\n\nTip\n\n\nIn dynare the steady-state values are provided in the steadystate_model; ... ; end; block. One can check they are correct using the check; statement.\nTo find numerically the steady-state: steady;."
-  },
-  {
-    "objectID": "slides/session_1/index.html#the-implicit-system",
-    "href": "slides/session_1/index.html#the-implicit-system",
-    "title": "Solving DSGE models",
-    "section": "The implicit system",
-    "text": "The implicit system\nReplacing the solution \\[y_t = g(y_{t-1},\\epsilon_t)\\] in the system \\[\\mathbb{E}_t \\left[ f(y_{t+1}, y_t, y_{t-1}, \\epsilon_t) \\right]= 0\\]\nwe obtain:\n\\[\\mathbb{E}_t \\left[ f(g(g(y_{t-1},\\epsilon_{t}),\\epsilon_{t+1}), g(y_{t-1},\\epsilon_t), y_{t-1}, \\epsilon_t) \\right]= 0\\]\nIt is an equation defining implicitly the function \\(g()\\)"
-  },
-  {
-    "objectID": "slides/session_1/index.html#the-state-space",
-    "href": "slides/session_1/index.html#the-state-space",
-    "title": "Solving DSGE models",
-    "section": "The state-space",
-    "text": "The state-space\n\\[\\mathbb{E}_t \\left[ f(g(g(y_{t-1},\\epsilon_{t}),\\epsilon_{t+1}), g(y_{t-1},\\epsilon_t), y_{t-1}, \\epsilon_t) \\right]= 0\\]\nIn this expression, \\(y_{t-1},\\epsilon_t\\) is the state-space.\n\nDropping the time subscripts, the equation must be satisfied for any realization of \\((y,\\epsilon)\\) \\[\\forall (y,\\epsilon)\\  \\Phi(g)(y,\\epsilon) = \\mathbb{E}_{\\epsilon'} \\left[ f(g(g(y,\\epsilon),\\epsilon'), g(y,\\epsilon), y, \\epsilon) \\right]= 0\\]\nIt is a functional equation \\(\\Phi(g)=0\\)"
-  },
-  {
-    "objectID": "slides/session_1/index.html#expected-shocks",
-    "href": "slides/session_1/index.html#expected-shocks",
-    "title": "Solving DSGE models",
-    "section": "Expected shocks",
-    "text": "Expected shocks\nFirst order approximation:\n\nAssume \\(|y_t-\\overline{y}|&lt;&lt;1\\),\\(|\\epsilon|&lt;&lt;1\\),\\(|\\epsilon'|&lt;&lt;1\\)\n\nPerform a Taylor expansion with respect to future shock:\n\\[\\begin{align}\n& & \\mathbb{E}_{\\epsilon'} \\left[ f(g(g(y,\\epsilon),\\epsilon'), g(y,\\epsilon), y, \\epsilon) \\right]  \\\\\n= & &  \\mathbb{E}_{\\epsilon'}\\left[ f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) \\right] \\\\\n  & & +  \\mathbb{E}_{\\epsilon'} \\left[ f^{\\prime}_{y_{t+1}}(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) g^{\\prime}_{\\epsilon} \\epsilon^\\prime\\right] + o(\\epsilon^{\\prime}) \\\\\n\\approx & & f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon)\n\\end{align}\\]\n\nThis uses the fact that \\(\\mathbb{E}\\left[ \\epsilon^{\\prime}\\right] = 0\\).\nAt first order, expected shocks play no role.\nTo capture precautionary behaviour (like risk premia), we would need to increase the approximation order."
-  },
-  {
-    "objectID": "slides/session_1/index.html#first-order-perturbation",
-    "href": "slides/session_1/index.html#first-order-perturbation",
-    "title": "Solving DSGE models",
-    "section": "First order perturbation",
-    "text": "First order perturbation\nWe are left with the system:\n\\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe can now use a variant of the implicit function theorem to recover a first approximation of \\(g\\) as: \\[g(y,\\epsilon) = \\overline{y} + g^{\\prime}_{y} (y-\\overline{y}) + g^{\\prime}_e \\epsilon_t \\]\n\nWe can obtain the unknown quantities \\(g^{\\prime}_y\\), and \\(g^{\\prime}_e\\) using the method of undeterminate coefficients:\nPlug the first approximation into the system and write the conditions \\[F^{\\prime}_y(\\overline{y}, 0) = 0\\] \\[F^{\\prime}_\\epsilon(\\overline{y}, 0) = 0\\]"
-  },
-  {
-    "objectID": "slides/session_1/index.html#computing-gprime_y",
-    "href": "slides/session_1/index.html#computing-gprime_y",
-    "title": "Solving DSGE models",
-    "section": "Computing \\(g^{\\prime}_y\\)",
-    "text": "Computing \\(g^{\\prime}_y\\)\nRecall the system: \\[F(y,\\epsilon) = f(g(g(y,0),\\epsilon), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe have \\[F^{\\prime}_y(\\overline{y}, 0) = f^{\\prime}_{y_{t+1}} g^{\\prime}_y g^{\\prime}_y + f^{\\prime}_{y_{t}} g^{\\prime}_y + f^{\\prime}_{y_{t-1}} = 0 \\]\n\nThis is a specific Riccatti equation \\[A X^2 + B X + C\\] where \\(A,B,C\\) and \\(X=g^{\\prime}_y\\) are square matrices \\(\\in \\mathbb{R}^n \\times \\mathbb{R}^n\\)"
-  },
-  {
-    "objectID": "slides/session_1/index.html#first-order-deterministic-model",
-    "href": "slides/session_1/index.html#first-order-deterministic-model",
-    "title": "Solving DSGE models",
-    "section": "First Order Deterministic Model",
-    "text": "First Order Deterministic Model\nLet’s pause a minute to observe the first order deterministic model: \\[A X^2 + B X + C\\]\nFrom our intuition in dimension 1, we know there must be multiple solutions\n\nhow do we find them?\nhow do we select the right ones?\n\nI the absence of shocks the dynamics of the model are given by \\[y_t = X y_{t-1}\\]\nWhat is the condition for the model to be stationary?\n\n-&gt; the biggest eigenvalue of \\(X\\) should be smaller than 1\n\nDevelop intuition in dimension 1."
-  },
-  {
-    "objectID": "slides/session_1/index.html#multiplicity-of-solution",
-    "href": "slides/session_1/index.html#multiplicity-of-solution",
-    "title": "Solving DSGE models",
-    "section": "Multiplicity of solution",
-    "text": "Multiplicity of solution\nIt is possible to show that the system is associated with \\(2 n\\) generalized eigenvalues:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{2 n}|\\]\nFor each choice \\(C\\) of \\(n\\) eigenvalues (\\(|C|=n\\)), a specific recursive solution \\(X_C\\) can be constructed. It has eigenvalues \\(C\\).\n\nThis yields at least \\(\\left(\\begin{matrix} 2 n \\\\ n \\end{matrix}\\right)\\) different combinations.\n\n\nA model is well defined when there is exactly one solution that is non divergent.\nThis is equivalent to:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{n}| \\leq 1 &lt; |\\lambda_{n+1}| \\leq \\cdots \\leq |\\lambda_{2 n}|\\]"
-  },
-  {
-    "objectID": "slides/session_1/index.html#example-1",
-    "href": "slides/session_1/index.html#example-1",
-    "title": "Solving DSGE models",
-    "section": "Example 1",
-    "text": "Example 1\nForward looking inflation:\n\\[\\pi_t = \\alpha \\pi_{t+1}\\] with \\(\\alpha&lt;1\\).\nIs it well defined?\n\nWe can rewrite the system as:\n\\[\\alpha \\pi_{t+1} - \\pi_t + 0 \\pi_{t-1}  = 0\\]\nor\n\\[\\pi_{t+1} - (\\frac{1}{\\alpha} + 0 )\\pi_t + \\left(\\frac{1}{\\alpha} 0\\right) \\pi_{t-1} = 0\\]\n\n\nThe generalized eigenvalues are \\(0\\leq 1 &lt; \\frac{1}{\\alpha}\\).\n\n\nThe unique stable solution is \\(\\pi_t=0 \\pi_{t-1}\\)"
-  },
-  {
-    "objectID": "slides/session_1/index.html#example-2",
-    "href": "slides/session_1/index.html#example-2",
-    "title": "Solving DSGE models",
-    "section": "Example 2",
-    "text": "Example 2\nDebt accumulation equation by a rational agent:\n\\[b_{t+1} - (1+\\frac{1}{\\beta}) b_t + \\frac{1}{\\beta} b_{t-1} = 0\\]\nIs it well-defined?\n\nTwo generalized eigenvalues \\(\\lambda_1=1 &lt; \\lambda_2=\\frac{1}{\\beta}\\)\n\n\nThe unique non-diverging solution is \\(b_t = b_{t-1}\\).\n\nit is a unit-root: any initial deviation in \\(b_{t-1}\\) has persistent effects"
-  },
-  {
-    "objectID": "slides/session_1/index.html#example-3",
-    "href": "slides/session_1/index.html#example-3",
-    "title": "Solving DSGE models",
-    "section": "Example 3",
-    "text": "Example 3\nProductivity process: \\[z_t = \\rho z_{t-1}\\] with \\(\\rho&lt;1\\): well defined\n\nIn that case there is a hidden infinite eigenvalue \\(\\infty\\) associated to \\(z_{t+1}\\).\n\n\nTo see why consider the system associated with eigenvalues \\(m\\) and \\(\\rho\\): \\[z_{t+1} - (m+\\rho) z_t + m \\rho z_{t-1} = 0\\]\n\\[\\frac{1}{m} z_{t+1} - (1+\\frac{\\rho}{m}) z_t + \\rho z_{t-1} = 0\\]\nWhich corresponds to the initial model when \\(m=\\infty\\)\n\n\nThe generalized eigenvalues are \\(\\lambda_1 = \\rho \\leq 1 &lt; \\lambda_2 = \\infty\\)\nMore generally, any variable that does not appear in \\(t+1\\) creates one infinite generalized eigenvalue."
-  },
-  {
-    "objectID": "slides/session_1/index.html#a-criterium-for-well-definedness",
-    "href": "slides/session_1/index.html#a-criterium-for-well-definedness",
-    "title": "Solving DSGE models",
-    "section": "A criterium for well-definedness",
-    "text": "A criterium for well-definedness\nLooking again at the list of eigenvalues we set aside the infinite ones.\nThe model is well specified iff we can sort the eigenvalues as:\n\\[|\\lambda_1| \\leq \\cdots \\leq |\\lambda_{n}| \\leq 1 &lt; |\\lambda_{n+1}| \\leq \\cdots  |\\lambda_{n+k}| \\leq \\underbrace{|\\lambda_{n+k+1}| \\cdots \\leq |\\lambda_{2 n}|}_{\\text{infinite eigenvalues}}\\]\n\n\n\n\n\n\nBlanchard-Kahn criterium\n\n\nThe model satisfies the Blanchard-Kahn criterium if the number of eigenvalues greater than one, is exactly equal to the number of variables appearing in \\(t+1\\).\nIn that case the model is well-defined."
-  },
-  {
-    "objectID": "slides/session_1/index.html#computing-the-solution",
-    "href": "slides/session_1/index.html#computing-the-solution",
-    "title": "Solving DSGE models",
-    "section": "Computing the solution",
-    "text": "Computing the solution\nThere are several classical methods to compute the solution to the algebraic Riccatti equation: \\[A X^2+ B X + C=0\\]\n\nqz decomposition\n\ntraditionnally used in the DSGE literature since Chris Sims\na little bit unintuitive\n\ncyclic reduction\n\nnew default in dynare, more adequate for big models\n\nlinear time iteration cf @sec:linear_time_iteration\n\nconceptually very simple"
-  },
-  {
-    "objectID": "slides/session_1/index.html#computing-gprime_e",
-    "href": "slides/session_1/index.html#computing-gprime_e",
-    "title": "Solving DSGE models",
-    "section": "Computing \\(g^{\\prime}_{e}\\)",
-    "text": "Computing \\(g^{\\prime}_{e}\\)\nNow we have \\(g^{\\prime}_y\\), how do we get \\(g^{\\prime}_{e}\\)?\nRecall: \\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nWe have \\[F^{\\prime}_e(\\overline{y}, 0) =  f^{\\prime}_{y_{t+1}}  g^{\\prime}_y  g^{\\prime}_e + f^{\\prime}_{y_{t}} g^{\\prime}_e + f^{\\prime}_{\\epsilon_t} = 0 \\]\nNow this is easy:\n\\[g^{\\prime}_e = - (f^{\\prime}_{y_{t+1}}  g^{\\prime}_y + f^{\\prime}_{y_{t}} )^{-1}  f^{\\prime}_{\\epsilon_t} = 0 \\]"
-  },
-  {
-    "objectID": "slides/session_1/index.html#the-model-solution",
-    "href": "slides/session_1/index.html#the-model-solution",
-    "title": "Solving DSGE models",
-    "section": "The model solution",
-    "text": "The model solution\nThe result of the model solution: \\[y_t = g_y y_{t-1} + g_e \\epsilon_t\\]\nIt is an AR1, driven by exogenous shock \\(\\epsilon_t\\).\n\nBecause it is a well known structure, one can investigate the model with\n\nimpulse response functions\nstochastic simulations\n\n\n\nThen to compare the model to the data we compute\n\nimplied moments:\n\ncovariances, autocorrelation\n\nlikelihood\n\nOptimizing the fit to the data is called model estimation"
-  },
-  {
-    "objectID": "slides/session_1/index.html#what-can-you-do-with-the-solution",
-    "href": "slides/session_1/index.html#what-can-you-do-with-the-solution",
-    "title": "Solving DSGE models",
-    "section": "What can you do with the solution",
-    "text": "What can you do with the solution\nThe solution of a model found by Dynare has an especially simple form: an AR1\n\n\\(y_t = X y_{t-1} + Y \\epsilon_t\\)\nwhere the covariances \\(\\Sigma\\) of \\(\\epsilon_t\\) can be chosen by the modeler\n\n\nWith this solution we can (cf next TD)\n\ncompute (conditional and unconditional) moments\nperform stochastic simulations, impulse response function"
-  },
-  {
-    "objectID": "slides/session_1/index.html#going-further",
-    "href": "slides/session_1/index.html#going-further",
-    "title": "Solving DSGE models",
-    "section": "Going Further",
-    "text": "Going Further\nTaking the model to the data with Dynare\n\n“estimate” the model: compute the likelihood of a solution and maximize it by choosing the right parameters\n“identify” shocks in the data\n\nOther functions\n\nhigher order approximation\n(noninear) perfect foresight simulations\nramsey plan\ndiscretionary policy\n…"
-  },
-  {
-    "objectID": "slides/session_1/index.html#coming-next",
-    "href": "slides/session_1/index.html#coming-next",
-    "title": "Solving DSGE models",
-    "section": "Coming Next",
-    "text": "Coming Next\n\nMany models"
-  },
-  {
-    "objectID": "slides/session_1/index.html#linear-time-iteration",
-    "href": "slides/session_1/index.html#linear-time-iteration",
-    "title": "Solving DSGE models",
-    "section": "Linear Time Iteration",
-    "text": "Linear Time Iteration\nRecall the system to solve: \\[F(y,\\epsilon) = f(g(g(y,\\epsilon),0), g(y,\\epsilon), y, \\epsilon) = 0\\]\nbut now assume the decision rules today and tomorrow are different:\n\ntoday: \\(y_t = g(y_{t-1}, \\epsilon_t) = \\overline{y} + X y_{t-1} + g_y \\epsilon_t\\)\ntomorrow: \\(y_{t+1} = \\tilde{g}(y_t, \\epsilon_{t+1}) = \\overline{y} + \\tilde{X} y_{t-1} + \\tilde{g}_y \\epsilon_t\\)\n\nThen the Ricatti equation is written:\n\\[A \\tilde{X} X + B X + C = 0\\]"
-  },
-  {
-    "objectID": "slides/session_1/index.html#linear-time-iteration-2",
-    "href": "slides/session_1/index.html#linear-time-iteration-2",
-    "title": "Solving DSGE models",
-    "section": "Linear Time Iteration (2)",
-    "text": "Linear Time Iteration (2)\nThe linear time iteration algorithm consists in solving the decision rule \\(X\\) today as a function of decision rule tomorrow \\(\\tilde{X}\\).\nThis corresponds to the simple formula:\n\\[X = -(A\\tilde{X} + B)^{-1} C\\]\nAnd the full algorithm can be described as:\n\nchoose \\(X_0\\)\nfor any \\(X_n\\), compute \\(X_{n+1} = T(X_n) = -(A X_n + B)^{-1} C\\)\n\nrepeat until convergence"
-  },
-  {
-    "objectID": "slides/session_1/index.html#linear-time-iteration-3",
-    "href": "slides/session_1/index.html#linear-time-iteration-3",
-    "title": "Solving DSGE models",
-    "section": "Linear Time Iteration (3)",
-    "text": "Linear Time Iteration (3)\nIt can be shown that, starting from a random initial guess, the linear time-iteration algorithm converges to the solution \\(X\\) with the smallest modulus:\n\\[\\underbrace{|\\lambda_1| \\leq \\cdots  \\leq |\\lambda_n|}_{\\text{Selected eigenvalues}} \\leq |\\lambda_{n+1}|\\cdots \\leq |\\lambda_{2n}|\\]\nIn other words, it finds the right solution when the model is well specified.\nHow do you check it is well specified?\n\n\\(\\lambda_n\\) is the biggest eigenvalue of solution \\(X\\)\nwhat about \\(\\lambda_{n+1}\\)?\n\n\\(\\frac{1}{\\lambda_{n+1}}\\) is the biggest eigenvalue of \\((AX+B)^{-1}A\\)"
-  },
-  {
-    "objectID": "slides/session_1/index.html#linear-time-iteration-4",
-    "href": "slides/session_1/index.html#linear-time-iteration-4",
-    "title": "Solving DSGE models",
-    "section": "Linear Time Iteration (4)",
-    "text": "Linear Time Iteration (4)\nDefine \\[M(\\lambda) = A\\lambda^2 + B \\lambda + C\\]\nFor any solution \\(X\\), \\(M(\\lambda)\\) can be factorized as: 1\n\\[M(\\lambda)=(\\lambda A + A X + B)(\\lambda I -X)\\]\nand\n\\[det(M(\\lambda)) = \\underbrace{det(\\lambda A + A X + B)}_{Q(\\lambda)}det(\\lambda I -X)\\]\nBy construction \\(Q(\\lambda)\\) is a polynomial whose roots are those that are not selected by the solution i.e. \\(\\Lambda\\setminus Sp(X)\\).\nSpecial case of Bezout theorem. Easy to check in that case"
-  },
-  {
-    "objectID": "slides/session_1/index.html#linear-time-iteration-5",
-    "href": "slides/session_1/index.html#linear-time-iteration-5",
-    "title": "Solving DSGE models",
-    "section": "Linear Time Iteration (5)",
-    "text": "Linear Time Iteration (5)\nFor \\(\\lambda \\neq 0\\) we have:\n\\[\\lambda \\in Sp((A X +B )^{-1} A)\\] \\[\\iff  det( (A X +B )^{-1})A - I\\lambda )=0\\] \\[\\iff  det( \\frac{1}{\\lambda} A - I (A X +B )  )=0\\] \\[\\iff Q(\\frac{1}{\\lambda})=0\\] \\[\\iff \\frac{1}{\\lambda} \\in G \\setminus Sp(X)\\]\nIn words, \\((AX+B)^{-1}\\) contains all the eigenvalues that have been rejected by the selection of \\(X\\).\nIn particular, \\(\\rho((AX+B)^{-1})A)=1/\\min(G\\setminus Sp(X))\\)"
-  },
-  {
-    "objectID": "tutorials/session_1/problem.html",
-    "href": "tutorials/session_1/problem.html",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "",
-    "text": "Objectives\n\n\n\n\n\n\nIntroduce Julia environment\n\nrun cells\nbasic types: numbers, strings, vectors, matrices\nfunctions\nsimple plots\n\nSimulate AR1 models\n\nimpulse response functions\nstochastic simulations\n\nconditional / unconditional moments\n\ndevelop intuition about eigenvalues / ergodic distributions\n\nLearn the Dyno mini-interface\n\ncheck the steady-state\nunderstand the meaning of shocks (exogenous variables, innovations)\nunderstand the outputs (decision rule, simulation, graphs)\ninterpret IRFs (persistence, magnitude, …)",
-    "crumbs": [
-      "tutorials",
-      "Intro to DSGE Model & Julia Basics"
-    ]
-  },
-  {
-    "objectID": "tutorials/session_1/problem.html#why-julia",
-    "href": "tutorials/session_1/problem.html#why-julia",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Why Julia?",
-    "text": "Why Julia?\nDevelopped at MIT on top of opensource technologies\n\nlinux / git / llvm\n\nSyntax inspired by Matlab but:\n\nmore consistent\nlots of features from high level languages\n\nEverything is JIT-compiled\n\nno interpreted vs compiled treadeoff -&gt; very fast\nmost of the base library is written in Julia\n\nOpensource/free + vibrant community",
-    "crumbs": [
-      "tutorials",
-      "Intro to DSGE Model & Julia Basics"
-    ]
-  },
-  {
-    "objectID": "tutorials/session_1/problem.html#numbers",
-    "href": "tutorials/session_1/problem.html#numbers",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Numbers",
-    "text": "Numbers\n\n# numbers (usual operations usual)\n(1.0+(2.0+3.0*(4.0+5.0)))/30\n\n1.0\n\n\n\n# exponentials are denoted by ^\n2^8\n\n256",
-    "crumbs": [
-      "tutorials",
-      "Intro to DSGE Model & Julia Basics"
-    ]
-  },
-  {
-    "objectID": "tutorials/session_1/problem.html#variables-assignments-comparisons",
-    "href": "tutorials/session_1/problem.html#variables-assignments-comparisons",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Variables / assignments / comparisons",
-    "text": "Variables / assignments / comparisons\n\n# variable assignment\nx = 10\n\n10\n\n\n\n# Variable names can have Unicode characters\n# To get ϵ in the REPL, type \\epsilon&lt;TAB&gt;\na = 20\nσ = 34\nϵ = 1e-4\n\n0.0001\n\n\n\n# comparison \n2 == 3\n\nfalse\n\n\n\n3&lt;=3\n\ntrue",
-    "crumbs": [
-      "tutorials",
-      "Intro to DSGE Model & Julia Basics"
-    ]
-  },
-  {
-    "objectID": "tutorials/session_1/problem.html#strings",
-    "href": "tutorials/session_1/problem.html#strings",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Strings",
-    "text": "Strings\n\n# Strings can also contain Unicode characters\nfancy_str = \"α is a string\"\n\n\"α is a string\"\n\n\n\n# double quotes define a character, not a string\n'c' \n\n'c': ASCII/Unicode U+0063 (category Ll: Letter, lowercase)\n\n\n\n# string interpolation (1/2)\nhe_who_must_not_be_named = \"Voldemort\"\n\"Welcome $(he_who_must_not_be_named)!\"\n\n\"Welcome Voldemort!\"\n\n\n\n# string interpolation (2/2)\nn = 1999999\nprintln(\"Iteration \", n, \" is still running...\")\n\nIteration 1999999 is still running...",
-    "crumbs": [
-      "tutorials",
-      "Intro to DSGE Model & Julia Basics"
-    ]
-  },
-  {
-    "objectID": "tutorials/session_1/problem.html#arrays",
-    "href": "tutorials/session_1/problem.html#arrays",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Arrays",
-    "text": "Arrays\n\n# vectors\nv = [1,2,3]\n\n3-element Vector{Int64}:\n 1\n 2\n 3\n\n\n\n# matrices \nM = [1 2 3 ; 4 5 6 ; 7 8 9]\n\n3×3 Matrix{Int64}:\n 1  2  3\n 4  5  6\n 7  8  9\n\n\n\n# matrix multiplication\nM*v\n\n3-element Vector{Int64}:\n 14\n 32\n 50\n\n\n\n# mutating vectors\nx = [\"One\"]\npush!(x, \"Two\")\npush!(x, \"Three\")\npush!(x, \"Four\")\npush!(x, \"Five\")\n\n# Note how the type of the vector is different from above\n# Vectors in Julia hold homoegenous types\n\n# Also note the exclation mark in `push!`: it is a reminder\n# of the fact that `push!` mutates its first argument\n\n5-element Vector{String}:\n \"One\"\n \"Two\"\n \"Three\"\n \"Four\"\n \"Five\"\n\n\n\n# access elements in a vector\nv[1]\n\n1\n\n\n\n# access elements in a matrix\nM[1,2]\n\n2\n\n\n\n\n\n\n\n\nWarning\n\n\n\nIndexing in Julia is 1-based. First element of a collection is denoted by 1.\n\n\n\n# slice matrices\nprintln(M)\n\n# keep first line\nprintln(\"First line\")\nprintln(M[1,:])\n\n# keep second column\nprintln(\"Second column\")\nprintln(M[:,2])\n\n# extract a submatrix\nprintln(M[1:2,1:2])\n\n[1 2 3; 4 5 6; 7 8 9]\nFirst line\n[1, 2, 3]\nSecond column\n[2, 5, 8]\n[1 2; 4 5]\n\n\n\n# concatenate vectors (horizontally)\nvcat( [1,2], [3,4])\n\n4-element Vector{Int64}:\n 1\n 2\n 3\n 4\n\n\n\n# concatenate vectors\nhcat( [1,2], [3,4])\n\n2×2 Matrix{Int64}:\n 1  3\n 2  4\n\n\n\n# transpose matrix\nhcat( [1,2], [3,4])'\n\n2×2 adjoint(::Matrix{Int64}) with eltype Int64:\n 1  2\n 3  4",
-    "crumbs": [
-      "tutorials",
-      "Intro to DSGE Model & Julia Basics"
-    ]
-  },
-  {
-    "objectID": "tutorials/session_1/problem.html#tuples",
-    "href": "tutorials/session_1/problem.html#tuples",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Tuples",
-    "text": "Tuples\n\n# like in python\n# tuples can hold heterogenous data\nt = (\"This\", \"is\", 1, \"tuple\")\n\n(\"This\", \"is\", 1, \"tuple\")\n\n\n\n# access elements in a tuple (still 1-based)\nt[3]\n\n1\n\n\n\n# tuples are `immutable`\n# The following should raise an exception\npush!(t, \"not a vector\")\n\nMethodError: MethodError: no method matching push!(::Tuple{String, String, Int64, String}, ::String)\n\nClosest candidates are:\n  push!(::Any, ::Any, !Matched::Any)\n   @ Base abstractarray.jl:3389\n  push!(::Any, ::Any, !Matched::Any, !Matched::Any...)\n   @ Base abstractarray.jl:3390\n  push!(!Matched::Set, ::Any)\n   @ Base set.jl:103\n  ...",
-    "crumbs": [
-      "tutorials",
-      "Intro to DSGE Model & Julia Basics"
-    ]
-  },
-  {
-    "objectID": "tutorials/session_1/problem.html#loops",
-    "href": "tutorials/session_1/problem.html#loops",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Loops",
-    "text": "Loops\n\n# loop over any iterable (like in python)\nfor i in 1:5\n    println(\"Iteration \", i)\nend\n# note how 1 and 5 are both included.\n\nIteration 1\nIteration 2\nIteration 3\nIteration 4\nIteration 5\n\n\n\nfor i ∈ [\"Paris\", \"New-York\", \"Bogota\"]\n    println(\"City: \", i)\nend\n\nCity: Paris\nCity: New-York\nCity: Bogota\n\n\n\n# Vector comprehensions (like in python)\n# enumerate all squares of even numbers (% computes modulo)\n[i^2 for i=1:10 if i%2==1]\n\n5-element Vector{Int64}:\n  1\n  9\n 25\n 49\n 81",
-    "crumbs": [
-      "tutorials",
-      "Intro to DSGE Model & Julia Basics"
-    ]
-  },
-  {
-    "objectID": "tutorials/session_1/problem.html#functions",
-    "href": "tutorials/session_1/problem.html#functions",
-    "title": "Intro to DSGE Model & Julia Basics",
-    "section": "Functions",
-    "text": "Functions\n\n# matlab like syntax\n# with positional and keyword arguments separated by `;`\n\nfunction fun(a,b; c=3)\n    z = a+b*c\n    return z\nend\n\nfun (generic function with 1 method)\n\n\n\nfun(1,2)\n\n7\n\n\n\nfun(1,2; c=4)\n\n9",
-    "crumbs": [
-      "tutorials",
-      "Intro to DSGE Model & Julia Basics"
-    ]
+    "text": "Come back later!."
   }
 ]
