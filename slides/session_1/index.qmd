@@ -434,7 +434,7 @@ There are several classical methods to compute the solution to the algebraic Ric
     - a little bit unintuitive
 - cyclic reduction
     - new default in dynare, more adequate for big models
-- linear time iteration
+- linear time iteration cf @sec:linear_time_iteration
     - conceptually very simple
 
 ## Computing $g^{\prime}_{e}$
@@ -470,10 +470,61 @@ Because it is a well known structure, one can investigate the model with
 
 Then to compare the model to the data we compute
 
-- implied moments
+- implied moments:
+    - covariances, autocorrelation
 - likelihood
 
 Optimizing the fit to the data is called *model* estimation
+
+
+
+# Conclusion {#sec-conclusion}
+
+## What can you do with the solution
+
+The solution of a model found by Dynare has an especially simple form: an AR1
+
+- $y_t = X y_{t-1} + Y \epsilon_t$
+- where the covariances $\Sigma$ of $\epsilon_t$ can be chosen by the modeler
+
+. . .
+
+With this solution we can (cf next TD)
+
+- compute (conditional and unconditional) moments
+- perform stochastic simulations, impulse response function
+
+. . .
+
+
+
+## Going Further
+
+Taking the model to the data with Dynare
+
+- "estimate" the model: compute the likelihood of a solution and maximize it by choosing the right parameters
+- "identify" shocks in the data
+
+Other functions
+
+- higher order approximation
+- (noninear) perfect foresight simulations
+- ramsey plan
+- discretionary policy
+- ...
+
+## Coming Next
+
+
+![](assets/ea0.jpg)
+
+
+Many models
+
+
+
+# Appendix: Linear Time Iteration  {#sec:linear_time_iteration}
+
 
 
 ## Linear Time Iteration
@@ -518,9 +569,8 @@ How do you check it is well specified?
 - $\lambda_n$ is the biggest eigenvalue of solution $X$
 - what about $\lambda_{n+1}$?
     - $\frac{1}{\lambda_{n+1}}$ is the biggest eigenvalue of $(AX+B)^{-1}A$
-    - jump to @sec-conclusion
  
-## Linear Time Iteration (4)  {background-color="lightgrey"}
+## Linear Time Iteration (4) 
 
 Define $$M(\lambda) = A\lambda^2 + B \lambda + C$$
 
@@ -536,7 +586,7 @@ $$det(M(\lambda)) = \underbrace{det(\lambda A + A X + B)}_{Q(\lambda)}det(\lambd
 
 By construction $Q(\lambda)$ is a polynomial whose roots are those that are not selected by the solution i.e. $\Lambda\setminus Sp(X)$.
 
-## Linear Time Iteration (5)  {background-color="lightgrey"}
+## Linear Time Iteration (5) 
 
 For $\lambda \neq 0$ we have:
 
@@ -549,46 +599,3 @@ $$\iff \frac{1}{\lambda} \in G \setminus Sp(X)$$
 In words, $(AX+B)^{-1}$ contains all the eigenvalues that have been rejected by the selection of $X$.
 
 In particular, $\rho((AX+B)^{-1})A)=1/\min(G\setminus Sp(X))$
-
-
-# Conclusion {#sec-conclusion}
-
-## What can you do with the solution
-
-The solution of a model found by Dynare has an especially simple form: an AR1
-
-- $y_t = X y_{t-1} + Y \epsilon_t$
-- where the covariances $\Sigma$ of $\epsilon_t$ can be chosen by the modeler
-
-. . .
-
-With this solution we can (cf next TD)
-
-- compute (conditional and unconditional) moments
-- perform stochastic simulations, impulse response function
-
-. . .
-
-
-
-## Going Further
-
-Taking the model to the data with Dynare
-
-- "estimate" the model: compute the likelihood of a solution and maximize it by choosing the right parameters
-- "identify" shocks in the data
-
-Other functions
-
-- higher order approximation
-- ramsey plan
-- discretionary policy
-- ...
-
-## Coming Next
-
-
-![](assets/ea0.jpg)
-
-
-Many models

@@ -36,59 +36,96 @@ What are the classical reasons to open economy to trade
 
 :::
 
-<!-- There are many 
-    complete financial market? what does it mean
-    riskfree bond -->
 
 ## From RBC to IRBC
 
 After the success of RBC models to match business cycles it didn't take long before the same methodology was applied to International Business Cycles
 
-- Most famous: Backus, Kehoe, Kydland (1992) (freshwater economists)
+. . .
+
+Seminal Paper: 
+
+- [*International Real Business Cycles*](papers/Backus-InternationalRealBusiness-1992.pdf), Backus, Kehoe, Kydland (1992) (freshwater economists)
 
 Very successful methodology:
 
 - facts at odd with theoretical predictions have been called "puzzles"
 
 
-## Moments
+## IRBC Facts {auto-animate="true"}
 
-![Business Cycles](assets/moments.png)
+![Moments](assets/moments.png)
 
 From Kehoe,Kydland (1995)
 
 
-## Comovements
+## IRBC Facts {auto-animate="true"}
 
-![](assets/comovements.png)
+::: columns
+:::: {.column width=20%}
+
+![Moments](assets/moments.png)
+
+::::
+:::: {.column width=80%}
+
+![Comoments](assets/comovements.png)
+
+::::
+:::
 
 ## Stylized Facts
 
-::: incremental
+::: columns
+:::: {.column width=20%}
 
-- Domestically:
-    - output more variable than consumption
-    - output highly correlated
-    - productivity strongly procyclical
-    - trade balance strongly countercyclcal
-    - positive comovements in output
-- Internationally:
-    - smaller comovements in consumption
-        - Backus-Kehoe-Kydland puzzle
+![Moments](assets/moments.png)
+
+![Comoments](assets/comovements.png)
 
 ::::
+
+:::: {.column width=80%}
+
+
+::::: incremental
+
+Domestically:
+
+:::::: {.fragment}
+
+- output more variable than consumption
+- output autocorrelated
+- productivity strongly procyclical
+- trade balance strongly countercyclcal
+- positive comovements in output
+
+::::::
+:::::: {.fragment}
+
+Internationally:
+
+- smaller comovements in consumption
+    - Backus-Kehoe-Kydland puzzle
+
+::::::
+
+:::::
+
+::::
+:::
 
 # Modeling a Small Open Econmomy
 
 ## Endowment model
 
-Take an endowment economy: $(y_t)_t$ is exogenously given.
+Take an endowment economy: income $(y_t)_t$ is exogenously given. We assume it is deterministic
 
 $$\max_{c_t} \sum_{t=0}^{\infty} \beta^t u(c_t)$$
 
 $$c_t+a_{t+1} \leq y_t + (1+r) a_t$$
 
-Country takes as given world interest rate $r$.
+Country takes world interest rate $r$ as given 
 
 - a small open economy doesn't affect world prices
 
@@ -102,7 +139,16 @@ We solve this problem with the terminal conditions:
 
     - *no-ponzi* condition
 
-## Endowment Model (3)
+. . .
+
+The no-ponzi condition will in effect eliminate diverging solutions. In a first order approximation, it selects the right eigenvalues.
+
+## Endowment model (3)
+
+We get the lagrangian:
+
+$$\mathcal{L}= \sum_{t=0}^{\infty} \beta^t u(c_t) + \sum_{t=0}^{\infty} \beta^t \lambda_t \left(y_t + (1+r) a_t - c_t-a_{t+1} \right)$$
+
 
 First order conditions:
 
@@ -121,16 +167,34 @@ $$c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}
 - problem isomorphic to consumption-savings decisions
 - consumption is determined by permanent income
 
-## Intertemporal approach to the current account
+## Current Account
 
-Observe the formula:
-$$c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}$$
 
-What does it tell us about the current account?
+::: {.callout-tip title="Reminders on Current Account"}
+
+The __trade balance__ is exports-imports (here $y_t-c_t$)
+
+
+The __current account__ is trade balance + net factor payments (here $y_t-c_t+r a_t$)
+
+Positive __current account__: additional lending to the rest of the world.
+
+:::
 
 . . .
 
-- trade balance responds positively to temporary shock in $y_t$
+
+Using the formula from before
+
+$$CA_0 =  a_0 r + (1-\frac{r}{1+r}) y_0 - \frac{r}{1+r}\left\{ \sum_{t\geq1}^{\infty} \frac{y_t}{(1+r)^t}\right\}$$
+
+
+
+How does the current account reacts to income shocks?
+
+
+- current account responds positively to *temporary* shock in income
+
 - and to news about future income shocks:
     - This is the *intertemporal approach* to the current account
 
@@ -143,8 +207,8 @@ $$c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}
 What is the effect of an increase in $a_0$?
 
 - consumption rises permanently
-    - by small amount $r$ corresponding to interests
-- there is a unit root
+    - by small amount $r$ corresponding to interests paid forever on $a_0$
+- this will correspond to a unit root in the solution
 
 ## Exercise
 
@@ -166,12 +230,13 @@ We add capital and production to our endowment economy:
 $$y_t = z_t k_t^\alpha$$
 $$k_t = (1-\delta) k_{t-1} + i_{t-1}$$
 
-The aggregate resource constraint:
+The aggregate resource constraint becomes:
 
-$$a_{t+1} + c_t + i_t = (1+r) a_t + z_t$$
+$$a_{t+1} + c_t + i_t = (1+r) a_t + y_t$$
 
+Now maximize $\sum_t \beta^ t U(c_t)$
 
-## Adding capital: optimality conditions
+. . .
 
 We get first order conditions
 
@@ -180,15 +245,24 @@ $$\lambda_t = \beta \lambda_{t+1}\left[ (1-\delta) + z_{t+1} f^{\prime}(k_{t+1})
 
 where $\lambda_t$ is lagrange multiplier associated to budget constraint.
 
-## Adding capital: first order conditions
+
+## Adding capital: optimality conditions
+
 
 Since $\lambda_t$ (constraint is always binding), we get:
-$$k_{t+1} = \left( \frac{r+\delta}{a z_{t+1}}\right)^{\frac{1}{\alpha-1}}$$
 
-and investment $$i_t = \left( \frac{r+\delta}{a z_{t+1}}\right)^{\frac{1}{\alpha-1}}- (1-\delta)\left( \frac{r+\delta}{a z_{t}}\right)^{\frac{1}{\alpha-1}}$$
+$$(1-\delta) + z_{t+1} f^{\prime}(k_{t+1}) = 1+r$$
+
+$$k_{t+1} = \left( \frac{r+\delta}{\alpha z_{t+1}}\right)^{\frac{1}{\alpha-1}}$$
+
+and investment $$i_t = \left( \frac{r+\delta}{\alpha z_{t+1}}\right)^{\frac{1}{\alpha-1}}- (1-\delta)\left( \frac{r+\delta}{\alpha z_{t}}\right)^{\frac{1}{\alpha-1}}$$
 
 
-Since investment comoves one to one with productivity shock (conditionnally on $z_{t-1}$), it is way too volatile.
+. . .
+
+Here investment is fully determined by productivity shocks
+
+- too simple: no international dependence
 
 <!-- 
 ## The elusive gains of financial integration
@@ -204,17 +278,66 @@ The immediate adjustment of capital provides an upper bound on the gains from fi
 
 A possible solution: change the resource constraint such that adjusting capital is costly
 
-$$a_{t+1} + c_t + i_t + \frac{\omega}{2}\frac{(i_t-\delta k^{\star})}{k_t} = (1+r)a_t + z f(k_t)$$
+For instance:
+
+$$a_{t+1} + c_t + i_t + \frac{\omega}{2}\frac{(k_{t+1}-k_t)^ 2}{k_t} = (1+r)a_t + z f(k_t)$$
 
 $$k_{t+1} = (1-\delta) k_t + i_t$$
 
 where $\omega$ is an adjustment friction. Typically, $\omega$ is chosen so that the model replicates $\frac{Var(i_t)}{Var(y_t)}$ from the data.
 
+. . .
+
+🔜 Cf tutorial.
+
+
+
+# A benchmark Small Open Economy Model
+
+## A benchmark Small Open Economy Model
+
+::: columns
+
+:::: column
+
+![Stephanie Schmitt Grohe and Martin Uribe](assets/economics-grohe.jpg)
+
+
+::::
+
+:::: column
+
+[*Closing Small Economy Models*](papers/1-s2.0-S0022199602000569-main.pdf), Schmitt Grohe and Uribe (2003), JIE
+
+- small open economy model with production, consumption-leisure tradeoff and capital adjustment costs
+    - = RBC+open+adj costs
+- perform some moments matching
+- compare different ways of stationarizing the model
+
+::::
+:::
+
+## The model
+
+$$\max_{c_t, n_t} \sum_{t=0}^{\infty} \beta^t u(c_t)$$
+
+$$c_t + k_{t+1} + a_{t+1} = y_t + g_t - \frac{\omega}{2}(k_{t+1}-k_t)^2 +(1-\delta) k_t + (1+r^{\star}+\pi(a_t))a_t$$
+$$y_t = f(k_t, n_t, z_t)$$
+
+$$z_{t+1} = \rho z_t + \epsilon_{t+1}$$
+
+and $u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^{1-\psi}
+)\right)^{1-\sigma}$
+
+
 
 ## How to make the distribution stationary?
 
-Unit root (see time series VAR for more details)
+The solution of the model exhibits a unit root:
+
 $$a_t = a_{t-1} + ... \text{other variables in t-1} + \text{shocks in t}$$
+
+. . .
 
 Problem:
 
@@ -223,12 +346,15 @@ Problem:
 
 This raises practical issues (notably for estimation) for the *linear* model.
 
+- no unconditional moments
 
 ## How to get rid of the unit root?
 
-General idea: introduce a force that pulls the level of foreign assets towards equilibrium
+*General idea*:
 
-Schmitt Grohe and Uribe (2004) consider many options:
+- introduce a force that pulls the level of foreign assets towards equilibrium
+
+Schmitt Grohe and Uribe (2003) consider many options:
 
 ::: r-stack
 
@@ -255,26 +381,6 @@ Schmitt Grohe and Uribe (2004) consider many options:
 
 SGU show that the choice of the stationarization device has little effect for the dynamics (moments) of most variables
 
-# A benchmark Small Open Economy Model
-
-## A benchmark Small Open Economy Model
-
-*Closing Small Economy Models*, Schmitt Grohe and Uribe (2003), JIE
-
-- small open economy model with production, consumption-leisure tradeoff and capital adjustment costs
-- RBC+open+adj costs
-
-## The model
-
-$$\max_{c_t, n_t} \sum_{t=0}^{\infty} \beta^t u(c_t)$$
-
-$$c_t + k_{t+1} + a_{t+1} = y_t + g_t - \frac{\omega}{2}(k_{t+1}-k_t)^2 +(1-\delta) k_t + (1+r^{\star}+\pi(a_t))a_t$$
-$$y_t = f(k_t, n_t, z_t)$$
-
-$$z_{t+1} = \rho z_t + \epsilon_{t+1}$$
-
-and $u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^{1-\psi}
-)\right)^{1-\sigma}$
 
 ## Calibration
 
@@ -304,11 +410,13 @@ and $u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^{1-\psi}
 ::::
 :::
 
-## Results (1/2)
 
-![Impulse Response Function](assets/irf.png){height=60%}
 
-## Results (2/2)
+## Results
+
+![Impulse Response Function](assets/sgu_irf.png){height=60%}
+
+##
 
 ![Moments (from SGU)](assets/sgu_moments.png){height=60%}
 
@@ -319,4 +427,5 @@ and $u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^{1-\psi}
 - Unconditional correlations are not that great
     - a limitation of the moment matching method?
 - Correlation of consumption with output is too high
-    - what part of the model would you change?
+    - and probably cross-correlation of consumption too low
+    - still the Backus-Kehoe-Kydland puzzle...

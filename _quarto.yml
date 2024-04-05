@@ -14,6 +14,7 @@ website:
         - section: tutorials
           contents:
             - tutorials/session_1/index.ipynb
+            - tutorials/session_2/index.ipynb
 
 format:
   html:

@@ -12,6 +12,25 @@ listing:
   fields: [date, title]
 ---
 
+::: {.callout-tip title="Resources for tutorials" collapse="true"}
+
+The notebooks for the tutorials can be downloaded from this website (click on the Jupyter icon).
+
+The following Julia environments can be used:
+
+- [candice server](https://jupytercloud.idcs.polytechnique.fr/jupyter)
+  - choose the ENSAE in the list of schools, then "computational economics"
+  - it has Dynare preinstalled
+- [mybinder](https://mybinder.org/v2/gh/albop/ae2e6_tutorials.git/HEAD)
+  - a bit slow to run
+- a local Julia installation (your own responsability)
+
+You can browse the dyno models at this [address](https://www.mosphere.fr/ae2e6_models)
+
+
+
+:::
+
 ## Schedule (WIP)
 
 ::: {#sample-listings}
