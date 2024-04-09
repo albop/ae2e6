@@ -1,0 +1,25 @@
+bayesian estimation
+banks and financially constrained households and firms.
+
+basic model + richer version
+
+questions:
+- disruption from redistribution (default)
+- credit standards -> cycle
+- asset prices for business fluctuations
+
+
+model = RBC + 
+financial frictions on banks, households, firms
+
+estimation:
+differentiate between
+    - usual shock
+    - new *financial* shocks (redistribution, credit squeezes asset price shocks)
+fin shocks explain recessions
+
+idea: busimess cycles are financial rather than real
+
+literature: banks as intermediaries between savers and borrowers. Recent contributions include Brunnermeier and Sannikov
+(2014), Angeloni and Faia (2013), Gerali et al. (2010), Kiley and Sim (2011), Kollmann et al. (2011), Meh and Moran (2010),
+Williamson (2012), and Van den Heuvel (2008). T

@@ -16,6 +16,9 @@ website:
             - tutorials/session_1/index.ipynb
             - tutorials/session_2/index.ipynb
 
+resources:
+  - tutorials/session_2/*.md
+
 format:
   html:
     theme: default

@@ -1,22 +1,228 @@
 ---
 title: "Financial Intermediation"
 date: 2024/04/10
-subtitle: Topics in Economics, ESCP, 2023-2024
+subtitle: "Macro II - Fluctuations - ENSAE, 2023-2024"
 author: Pablo Winant
 format:
-  revealjs:
-    menu:
-      side: left
-      width: normal
-  html:
-    output-file: index_handout.html
+    revealjs:
+        navigation-mode: linear
+        layout: wide
+        toc: true
+        toc-depth: 1
+        toc-title: Plan
+        width: 1920
+        height: 1080
+    beamer:
+        output-file: slides.pdf
+    html:
+        output-file: handout.html
 
 ---
 
 
 
+# The Model
 
-My research (Bernanke, 2018) finds that variables that measure the course of the
-panic (e.g., bank funding costs) predict variables like output, employment, and
-consumption better than do measures of the financial health of borrowers (e.g.,
-mortgage delinquencies).
+discrete-time economy. The economy features three agents: households, bankers, and entrepreneurs.
+
+## Summary
+
+I consider a discrete-time economy. The economy features three agents: households, bankers, and entrepreneurs. Each agent has a unit mass.4 Households work, consume and buy real estate, and make one-period deposits into a bank. The household sector in the aggregate is net saver. Entrepreneurs accumulate real estate, hire households, and borrow from banks. In between the households and the entrepreneurs, bankers intermediate funds. The nature of the banking activity implies that bankers are borrowers when it comes to their relationship with households, and are lenders when it comes to their relationship with the credit-dependent sector – the entrepreneurs. I design preferences in a way that two frictions coexist and interact in the model’s equilibrium: first, bankers are credit constrained in how much they can borrow from the
+patient savers; second, entrepreneurs are credit constrained in how much they can borrow from bankers.
+
+## Households
+
+Representative agent chooses housing $H_{H,t}$, consumption $C_{T,t}$ and time spent working $N_{H,t}$ to solve
+
+$$\max E_t \sum_{t=0}^{\infty} \beta^t_H \left( \log C_{H,t} + j \log H_{H,t} + \tau \log(1-N_{H,t}) \right)$$
+
+where $\beta_{H,t}$ is the discount factor
+
+. . .
+ 
+Budget constraint:
+
+$C_{H,t} + D_t + q_t \left( H_{H,t}- H_{H,t-1} \right) = R_{H,t-1} D_{t-1} + W_{H,t} N_{H,t} + \epsilon_t$
+
+where:
+
+- $D_t$: bank deposits earning gross return $R_{H,t}$
+- $q_t$: price of housing
+- $W_t$: wage rate
+- $\epsilon_t$: is a redistributive shock
+
+## Households: Optimality conditions
+
+$$\frac{1}{C_{H,t}} = \beta_H E_t \left( \frac{1}{C_{H,t+1}} R_{H,t} \right)$$
+$$\frac{q_t}{C_{H,t}} = \frac{j}{H_{H,t}} + \beta_H E_t \left( \frac{q_{t+1}}{C_{H,t+1}}  \right)$$
+$$\frac{W_{H,t}}{C_{H,t}} = \frac{\tau}{1-N_{H,t}}$$
+
+
+## Entrepreneurs
+
+The representative entrepreneur chooses consumption $C_{E,t}$, housing $H_{H,t}$, produces $Y_t$ by remunerating $N_{H,t}$ hours from workers.
+
+$$\max E_0 \sum_{t=0}^{\infty} \beta^t_E \log C_{E,t}$$
+
+subject to:
+
+$$C_{E,t} + q_t \left( H_{E,t} - H_{E,t-1} \right) + R_{E,t} L_{E,t-1} + W_{H,t} N_{H,t} + a c_{EE,t} = Y_t + L_{E,t}$$
+
+$$Y_t = H^{\nu}_{E,t-1} N^{1-\nu}_{H,t}$$
+
+$$
+L_{E,t} \leq m_H E_t \left( \frac{q_{t+1}}{R_{E,t+1}}H_{E,t} \right) - m_N W_{H,t} N_{H,t}
+$$ {#eq-borrowing-constraint}
+
+- $L_{E,t}$ are loans to the entrepreneur with gross return $R_{E,t}$
+
+- $c_{EE,t}=\frac{\phi_{EE}}{2}\frac{\left(L_{E,t}-L_{E,t-1}\right)}{L_E}$ with $L_E$ the steady-state of $L_{E,t}$ [^external_1]
+  - captures the fact that loans change slowly
+
+[^external_1]: the quadratic adjustment cost is assumed to be *external* to the banker
+
+@eq-borrowing-constraint: borrowing constraint
+
+- entrepreneurs cannot borrow more than a fraction $m_H$ of the expected value of their real estate stock
+- a fraction $m_N$ of the wage bill must be paid in advance
+
+Assumption: entrepreneurs discount future more than housholds and bankers 
+
+$$\beta_E < \frac{1}{\gamma_E \frac{1}{\beta_H} + (1-\gamma_E)\frac{1}{\beta_B}}$$ with $\gamma_E\in[0,1]$$
+
+__Remarks?__
+
+## Intepretation on the lagrange multiplier?//
+
+
+## Bankers
+
+The representative banker maximizes private consumption $C_{B,t}$ 
+
+$$\max E_0 \sum_{t=0}^{\infty} \beta^t_B \log C_{B,t}$$
+
+subject to:
+
+$$C_{B,t} + R_{H,t-1} D_{t-1} + L_{E,t} + a c_{EB,t} = D_t + R_{E,t} L_{E,t-1} - \epsilon_t$$
+
+where:
+
+- $D_t$: households deposits
+- $L_{E,t}$: loans to entrepreneurs
+- $a c_{EB,t} = \frac{\phi_{EB}}{2} \frac{(L_{E,t-L_{E,t-1}})^2}{L_E}$ is quadratic adjustment cost[^external_2]
+
+- the ability convert deposits into loans is limited by a capital to assets ratio yielding a borrowing constraint[^capital]
+
+$$D_t \leq \gamma_E \left( L_{E,t} - E_t \epsilon_{t+1} \right)$$
+
+[^external_2]: the quadratic adjustment cost is assumed to be *external* to the banker
+[^capital]: here capital ratio is $D_t \leq \gamma_E \left( L_{E,t} - E_t \epsilon_{t+1} \right)$
+
+
+## Bankers (optimality)
+
+Denote:
+
+- $m_{B,t} = \beta_B E_t \left( \frac{C_{B,t}}{C_{B,t+1}}\right)$: the stochastic discount factor of the banker
+- $\lambda_{B,t}$: multiplier on the capital adequacy constraint *normalized by marginal utiliy of consumption*
+
+Optimality conditions:
+
+$$1-\lambda_{B,t} = E_t \left( m_{B,t} R_{H,t} \right)$$ {#eq-foc-banker-1}
+
+$$1-\gamma_{E} \lambda_{B,t} + \frac{\partial ac_{EB,t}}{\partial L_{E,t}} = E_t \left( m_{B,t} R_{E,t+1} \right)$$ {#eq-foc-banker-2}
+
+These two equations explain the spread between the deposit rate and the lending rate (aka the intermediation premium)
+
+## Bankers (temp)
+
+![](assets/explanations.png)
+
+## Market clearing
+
+Total supply of housing $H_{E,t} + H_{H,t} = 1$
+
+Market clearing conditions for goods and housing:
+
+$$H_{E,t} + H_{H,t} = 1$$
+
+
+## Steady state properties
+
+
+For the household:
+
+$$R_H=\frac{1}{\beta_H}$$
+
+For the banker:
+
+@eq-foc-banker-1 and @eq-foc-banker-2 imply that as long as $\beta_B<\beta_H$, the bankers are credit constrained
+
+With $\gamma_{E}$ smaller than one, there is a spread between return on loans and return on deposits:
+
+$$\lambda_B = 1-\beta_B R_H = 1-\frac{\beta_B}{\beta_H}>0$$
+
+$$R_E = \frac{1}{\beta_B} - \gamma_E \left( \frac{1}{\beta_B} - \frac{1}{\beta_H} \right)>R_H$$
+
+
+For entrepreneurs
+
+Entrepreneurs are constrained if $\beta_E R_E<1$.
+that is equivalent to $$\frac{1}{\beta_E}=\gamma_E \frac{1}{\beta_H} + (1-\gamma_E) \frac{1}{\beta_B}$$
+
+Effect:
+
+- banker's credit constraint and entrepreneur credit constraint create a wedge amd reduce steady-state output
+
+## Calibration
+
+Time period: 1 quarter
+
+Time discounts:
+- households: $\beta_H=0.9925$
+- bankers: $\beta_B=0.945$
+- entrepreneurs: $\beta_E=0.94$
+
+Choice of leverage parameters such that $R_H=3%$ and $R_E=5%$.
+
+Adjustment costs: $\phi_{EE}=\phi_{EB}=0.25$
+
+Wieght of leisure: $\tau=2$ (active time spent=1/2 and Frisch elasticity close to 1).
+
+Share of housing in production: $\nu=0.05$
+
+Preference parameter for housing $j=0.075$: ration of real estate wealth to output 3.1 (0.8 commercial, 2.3 residential)
+
+Leverage:
+- $m_N=1$: all labour paid in advance
+- $m_H=0.9$: entrepreneur loan-to-value (LTV)
+- $\gamma_E=0.9$: bank leverage (close to historical capital asset ratios close to 1)
+
+
+## Dynamics
+
+Intuition
+
+$$E_t \left( R_{E,t+1} \right) - R_H,t = \frac{\lambda_{B,t}}{m_{B,t}}(1-\gamma_E)$$
+
+- price side: 
+
+When the multiplier on the banker's constraint becomes larger the spread increases
+
+- quantity side:
+
+## Simulation
+
+Shock $\epsilon_t$ calibrated on historical loan losses (amounts of debt writedowns)
+
+$$Follows $\epsilon_t = 0.9 \epsilon_{t-1} + \iota_t$$
+
+...details about the shock
+
+- increase by 0.38% of gdp each quarter during 12 quarters
+- losses to financial system rise from zero to 2.8$ after 2 years
+- return gradually to zero
+
+## Simulation
+
+![](assets/simulation.png)
