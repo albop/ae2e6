@@ -1,0 +1,22 @@
+---
+title: "Financial Intermediation"
+date: 2024/04/10
+subtitle: Topics in Economics, ESCP, 2023-2024
+author: Pablo Winant
+format:
+  revealjs:
+    menu:
+      side: left
+      width: normal
+  html:
+    output-file: index_handout.html
+
+---
+
+
+
+
+My research (Bernanke, 2018) finds that variables that measure the course of the
+panic (e.g., bank funding costs) predict variables like output, employment, and
+consumption better than do measures of the financial health of borrowers (e.g.,
+mortgage delinquencies).
