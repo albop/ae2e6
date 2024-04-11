@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.533">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -261,7 +261,7 @@ Objectives
 </div>
 </div>
 <p>Uncomment the following lines to install needed packages (if not already present).</p>
-<div id="cell-3" class="cell" data-execution_count="2">
+<div id="cell-3" class="cell" data-execution_count="102">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># uncomment the next lines, the first time you run</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># import Pkg; Pkg.add(["DBnomics", "Dynare", "DataFrames"])</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import Pkg; Pkg.add(url="https://github.com/sdBrinkmann/HPFilter.jl") # we install hpfilter from github</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -269,15 +269,256 @@ Objectives
 <section id="using-dynare" class="level1">
 <h1>Using Dynare</h1>
 <p>Download the <a href="rbc.mod">rbc</a> modfile.</p>
-<div id="cell-5" class="cell" data-execution_count="99">
+<div id="cell-5" class="cell" data-execution_count="103">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dynare</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Open the RBC model and solve the model. Fix the mistakes in the modfile if any.</strong></p>
-<div id="cell-7" class="cell">
+<div id="cell-7" class="cell" data-execution_count="104">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>context <span class="op">=</span> <span class="pp">@dynare</span> <span class="st">"rbc.mod"</span>;</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ; mutes the output</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># graphs and other outputs are stored in subdirectory `rbc`</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the structure `context contains all the results.`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Dynare version: 0.9.7
+2024-04-05T12:02:23.496: Starting @dynare rbc.mod
+["rbc.mod", "language=julia", "json=compute"]
+Dynare preprocessor version: 6.4.0+0
+2024-04-05T12:02:23.501: End of preprocessing
+2024-04-05T12:02:23.505: Start parse_statements!
+2024-04-05T12:02:23.506: End parser</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting preprocessing of the model file ...
+Found 8 equation(s).
+Evaluating expressions...
+Computing static model derivatives (order 1).
+Normalizing the static model...
+Finding the optimal block decomposition of the static model...
+2 block(s) found:
+  1 recursive block(s) and 1 simultaneous block(s).
+  the largest simultaneous block has 7 equation(s)
+                                 and 5 feedback variable(s).
+Computing dynamic model derivatives (order 1).
+Normalizing the dynamic model...
+Finding the optimal block decomposition of the dynamic model...
+2 block(s) found:
+  1 recursive block(s) and 1 simultaneous block(s).
+  the largest simultaneous block has 7 equation(s)
+                                 and 5 feedback variable(s).
+JSON written after Computing step.
+Preprocessing completed.
+
+
+The steady_state_model block does'nt solve the static model
+Equation Residuals
+1       -14.162228531019625
+2       -0.06989283463448975
+ErrorException("The steady_state_model block doesn't solve the static model!")
+longname: c
+texname: c
+symboltype: Endogenous
+orderintype: 6
+longname: r
+texname: r
+symboltype: Endogenous
+orderintype: 7
+longname: khi
+texname: khi
+symboltype: Parameter
+orderintype: 5
+longname: a
+texname: a
+symboltype: Endogenous
+orderintype: 4
+longname: delta
+texname: delta
+symboltype: Parameter
+orderintype: 2
+longname: nss
+texname: nss
+symboltype: Parameter
+orderintype: 4
+longname: y
+texname: y
+symboltype: Endogenous
+orderintype: 3
+longname: i
+texname: i
+symboltype: Endogenous
+orderintype: 2
+longname: w
+texname: w
+symboltype: Endogenous
+orderintype: 8
+longname: k
+texname: k
+symboltype: Endogenous
+orderintype: 1
+endogenous_nbr: 8
+exogenous_nbr: 1
+lagged_exogenous_nbr: 0
+exogenous_deterministic_nbr: 0
+parameter_nbr: 7
+original_endogenous_nbr: 8
+lead_lag_incidence: [1 0 0 2 0 0 0 0; 3 4 5 6 7 8 9 10; 0 0 0 0 0 11 12 0]
+n_static: 4
+n_fwrd: 2
+n_bkwrd: 2
+n_both: 0
+n_states: 2
+DErows1: [1, 2, 3, 4]
+DErows2: Int64[]
+n_dyn: 4
+i_static: [2, 3, 5, 8]
+i_dyn: [1, 4, 6, 7]
+i_bkwrd: [1, 4]
+i_bkwrd_b: [1, 4]
+i_bkwrd_ns: [1, 2]
+i_fwrd: [6, 7]
+i_fwrd_b: [6, 7]
+i_fwrd_ns: [3, 4]
+i_both: Int64[]
+i_non_states: [2, 3, 5, 6, 7, 8]
+p_static: [4, 5, 7, 10]
+p_bkwrd: [1, 2]
+p_bkwrd_b: [1, 2]
+p_fwrd: [11, 12]
+p_fwrd_b: [11, 12]
+p_both_b: Int64[]
+p_both_f: Int64[]
+i_current: [1, 2, 3, 4, 5, 6, 7, 8]
+p_current: [3, 4, 5, 6, 7, 8, 9, 10]
+n_current: 8
+i_current_ns: [1, 2, 3, 4]
+p_current_ns: [3, 6, 8, 9]
+n_current_ns: 4
+icolsD: [1, 2, 3, 4]
+jcolsD: [3, 6, 11, 12]
+icolsE: [1, 2, 3, 4]
+jcolsE: [1, 2, 8, 9]
+colsUD: Int64[]
+colsUE: Int64[]
+i_cur_fwrd: [1, 2]
+n_cur_fwrd: 2
+p_cur_fwrd: [8, 9]
+i_cur_bkwrd: [1, 2]
+n_cur_bkwrd: 2
+p_cur_bkwrd: [3, 6]
+i_cur_both: Int64[]
+n_cur_both: 0
+p_cur_both: Int64[]
+gx_rows: [3, 4]
+hx_rows: [1, 2]
+i_current_exogenous: [13]
+i_lagged_exogenous: Int64[]
+serially_correlated_exogenous: Int64[]
+Sigma_e: [8.099999999999999e-5;;]
+maximum_endo_lag: 1
+maximum_endo_lead: 1
+maximum_exo_lag: 0
+maximum_exo_lead: 0
+maximum_exo_det_lag: 0
+maximum_exo_det_lead: 0
+maximum_lag: 1
+maximum_lead: 1
+orig_maximum_endo_lag: 1
+orig_maximum_endo_lead: 1
+orig_maximum_exo_lag: 0
+orig_maximum_exo_lead: 0
+orig_maximum_exo_det_lag: 0
+orig_maximum_exo_det_lead: 0
+orig_maximum_lag: 1
+orig_maximum_lead: 1
+dynamic_indices: [1, 4, 6, 7]
+current_dynamic_indices: [1, 4, 6, 7]
+forward_indices_d: [3, 4]
+backward_indices_d: [1, 2]
+current_dynamic_indices_d: [1, 2, 3, 4]
+exogenous_indices: [13]
+NNZDerivatives: [25, -1, -1]
+auxiliary_variables: Dict{String, Any}[]
+mcps: Tuple{Int64, Int64, String, String}[]
+dynamic_g1_sparse_rowval: [3, 7, 5, 3, 4, 3, 8, 4, 6, 7, 8, 4, 5, 2, 4, 6, 1, 2, 8, 7, 2, 6, 1, 1, 5]
+dynamic_g1_sparse_colptr: [1, 3, 3, 3, 4, 4, 4, 4, 4, 6, 8, 12, 14, 17, 20, 21, 23, 23, 23, 23, 23, 23, 24, 25, 25, 26]
+dynamic_g2_sparse_indices: Vector{Int64}[]
+static_g1_sparse_rowval: [3, 4, 7, 3, 8, 4, 6, 7, 8, 4, 5, 2, 4, 6, 1, 2, 8, 1, 7, 2, 6]
+static_g1_sparse_colptr: [1, 4, 6, 10, 12, 15, 18, 20, 22]
+dynamic_tmp_nbr: [3, 0, 0, 0]
+static_tmp_nbr: [3, 0, 0, 0]
+ids: LinearRationalExpectations.Indices([1, 2, 3, 4, 5, 6, 7, 8], [6, 7], [6, 7], [1, 4], Int64[], [2, 3, 5, 6, 7, 8], [2, 3, 5, 8], [1, 4, 6, 7], [1, 4, 6, 7], [1, 2, 3, 4], [3, 4], [1, 2], [3, 6, 8, 9], [4, 5, 7, 10], [13], 8, (D = [1, 2, 3, 4], jacobian = [3, 6, 11, 12]), (E = [1, 2, 3, 4], jacobian = [1, 2, 8, 9]), Int64[], Int64[])
+endval_is_reset: false
+has_auxiliary_variables: false
+has_calib_smoother: false
+has_check: false
+has_deterministic_trend: false
+has_dynamic_file: true
+has_endval: false
+has_histval: false
+has_histval_file: false
+has_initval: false
+has_initval_file: false
+has_planner_objective: false
+has_perfect_foresight_setup: false
+has_perfect_foresight_solver: false
+has_ramsey_model: false
+has_shocks: true
+has_static_file: true
+has_steadystate_file: true
+has_stoch_simul: false
+has_trends: false
+initval_is_reset: false
+modfilepath: rbc
+irfs: Dict{Symbol, AxisArrayTables.AxisArrayTable}()
+endogenous_steady_state: [0.022581576622354327, 0.0005645394155588582, 0.13618938092923508, 1.0, 0.33, 0.1356248415136762, 1.990228426395939, 0.27650571279571967]
+endogenous_terminal_steady_state: Float64[]
+endogenous_linear_trend: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+endogenous_quadratic_trend: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+exogenous_steady_state: [0.0]
+exogenous_terminal_steady_state: Float64[]
+exogenous_linear_trend: [0.0]
+exogenous_quadratic_trend: [0.0]
+exogenous_det_steady_state: Float64[]
+exogenous_det_terminal_steady_state: Float64[]
+exogenous_det_linear_trend: Float64[]
+exogenous_det_quadratic_trend: Float64[]
+trends: 
+stationary_variables: Bool[0, 0, 0, 0, 0, 0, 0, 0]
+estimation: Dynare.EstimationResults(Any[], Any[], Any[], Any[], Matrix{Any}(undef, 0, 0), Matrix{Any}(undef, 0, 0), 0)
+filter: 
+forecast: AxisArrayTables.AxisArrayTable[]
+initial_smoother: 
+linearrationalexpectations: LinearRationalExpectations.LinearRationalExpectationsResults(ComplexF64[], [0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0], [0.0 0.0; 0.0 0.0], [0.0; 0.0;;], [0.0 0.0; 0.0 0.0; 0.0 0.0; 0.0 0.0; 0.0 0.0; 0.0 0.0], [0.0; 0.0; 0.0; 0.0; 0.0; 0.0;;], [0.0 0.0; 0.0 0.0; 0.0 0.0; 0.0 0.0; 0.0 0.0; 0.0 0.0; 0.0 0.0; 0.0 0.0], [0.0; 0.0; 0.0; 0.0; 0.0; 0.0; 0.0; 0.0;;], [0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0], Bool[0, 0, 0, 0, 0, 0, 0, 0])
+simulations: Simulation[]
+smoother: 
+solution_derivatives: Matrix{Float64}[]
+analytical_steadystate_variables: [1, 2, 3, 4, 5, 6, 7, 8]
+data: 
+datafile: 
+params: [0.985, 0.025, 0.33, 0.33, 1.7112427501331826, 1.0, 0.95]
+residuals: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+dynamic_variables: [5.0e-324, 5.0e-324, 6.28283230142393e-310, 6.2828203864151e-310, 1.0e-323, 1.5e-323, 6.2828323014271e-310, 6.28283230143026e-310, 2.0e-323, 4.0e-323, 6.2828323014334e-310, 6.2828323014366e-310]
+exogenous_variables: [0.0, 0.0, 0.0]
+observed_variables: String[]
+Sigma_m: Matrix{Float64}(undef, 0, 0)
+jacobian: Matrix{Float64}(undef, 0, 0)
+qr_jacobian: Matrix{Float64}(undef, 0, 0)
+model_has_trend: Bool[0]
+histval: Matrix{Union{Missing, Float64}}(undef, 0, 0)
+homotopy_setup: @NamedTuple{name::Symbol, type::SymbolType, index::Int64, endvalue::Float64, startvalue::Union{Missing, Float64}}[]
+initval_endogenous: Matrix{Union{Missing, Float64}}(undef, 0, 0)
+initval_exogenous: Matrix{Union{Missing, Float64}}(undef, 0, 0)
+initval_exogenous_deterministic: Matrix{Union{Missing, Float64}}(undef, 0, 0)
+endval_endogenous: Matrix{Union{Missing, Float64}}(undef, 0, 0)
+endval_exogenous: Matrix{Union{Missing, Float64}}(undef, 0, 0)
+endval_exogenous_deterministic: Matrix{Union{Missing, Float64}}(undef, 0, 0)
+scenario: Dict{Union{Int64, Dates.UTInstant}, Dict{Union{Int64, Dates.UTInstant}, Dict{Symbol, Pair{Float64, Symbol}}}}()
+shocks: Float64[]
+perfect_foresight_setup: Dict{String, Any}("periods" =&gt; 0, "datafile" =&gt; "")
+estimated_parameters: Dynare.EstimatedParameters(Union{Int64, Pair{Int64, Int64}}[], Union{Missing, Float64}[], Float64[], Union{Pair{String, String}, String}[], Dynare.EstimatedParameterType[], Float64[], Float64[], Float64[], Float64[], Float64[], Float64[], Distributions.Distribution[])</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>Context(Dict{String, DynareSymbol}("c" =&gt; , "r" =&gt; , "khi" =&gt; , "a" =&gt; , "delta" =&gt; , "nss" =&gt; , "y" =&gt; , "i" =&gt; , "w" =&gt; , "k" =&gt; …), Model[], , Results(ModelResults[]), , Dict{Any, Any}())</code></pre>
+</div>
 </div>
 <p>(if needed, download the correct model <a href="rbc_fixed.mod">here</a> )</p>
 <p><strong>Inspect the various elements of the solution (decision rule, unconditional moments, simulations).</strong></p>
@@ -288,24 +529,24 @@ Objectives
 <h1>Computing moments in the data</h1>
 <p><strong>Download US time series from the world bank for: real gdp, investment, consumption, hours worked.</strong></p>
 <div id="cell-16" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DBnomics</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">HPFilter</span>: HP</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Statistics</span>: cor, std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DBnomics</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">HPFilter</span>: HP</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Statistics</span>: cor, std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-17" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># google OECD</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_ <span class="op">=</span> <span class="fu">rdb</span>(ids <span class="op">=</span> [</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.P5.LNBQRSA.Q"</span>, <span class="co"># investment</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.B1_GS1.LNBQRSA.Q"</span>, <span class="co"># GDP</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.P3.LNBQRSA.Q"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>]);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># google OECD</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_ <span class="op">=</span> <span class="fu">rdb</span>(ids <span class="op">=</span> [</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.P5.LNBQRSA.Q"</span>, <span class="co"># investment</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.B1_GS1.LNBQRSA.Q"</span>, <span class="co"># GDP</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.P3.LNBQRSA.Q"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>]);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-18" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keep only the relevant data, in long format</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_long <span class="op">=</span> df_[!,[<span class="st">"Subject"</span>,<span class="st">"period"</span>,<span class="st">"value"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keep only the relevant data, in long format</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_long <span class="op">=</span> df_[!,[<span class="st">"Subject"</span>,<span class="st">"period"</span>,<span class="st">"value"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div><div style="float: left;"><span>740×3 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">715 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
 <table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
@@ -486,10 +727,10 @@ Objectives
 </div>
 </div>
 <div id="cell-19" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">unstack</span>(df_long,<span class="op">:</span>period, <span class="op">:</span>Subject,<span class="op">:</span>value);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">unstack</span>(df_long,<span class="op">:</span>period, <span class="op">:</span>Subject,<span class="op">:</span>value);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-20" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">dropmissing</span>(<span class="fu">sort</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">dropmissing</span>(<span class="fu">sort</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div><div style="float: left;"><span>216×4 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">191 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
 <table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
@@ -698,7 +939,7 @@ Objectives
 </div>
 </div>
 <div id="cell-21" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rename!</span>(df,[<span class="op">:</span>period, <span class="op">:</span>investment, <span class="op">:</span>gdp, <span class="op">:</span>consumption])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rename!</span>(df,[<span class="op">:</span>period, <span class="op">:</span>investment, <span class="op">:</span>gdp, <span class="op">:</span>consumption])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div><div style="float: left;"><span>216×4 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">191 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
 <table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
@@ -907,11 +1148,11 @@ Objectives
 </div>
 </div>
 <div id="cell-22" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pl1 <span class="op">=</span> <span class="fu">plot</span>(df[!,<span class="op">:</span>period], df[!,<span class="op">:</span>investment],label<span class="op">=</span><span class="st">"investment"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pl2 <span class="op">=</span> <span class="fu">plot</span>(df[!,<span class="op">:</span>period], df[!,<span class="op">:</span>gdp],label<span class="op">=</span><span class="st">"gdp"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pl3 <span class="op">=</span> <span class="fu">plot</span>(df[!,<span class="op">:</span>period], df[!,<span class="op">:</span>consumption],label<span class="op">=</span><span class="st">"consumption"</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pl1,pl2,pl3;size<span class="op">=</span>(<span class="fl">800</span>,<span class="fl">800</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pl1 <span class="op">=</span> <span class="fu">plot</span>(df[!,<span class="op">:</span>period], df[!,<span class="op">:</span>investment],label<span class="op">=</span><span class="st">"investment"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pl2 <span class="op">=</span> <span class="fu">plot</span>(df[!,<span class="op">:</span>period], df[!,<span class="op">:</span>gdp],label<span class="op">=</span><span class="st">"gdp"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>pl3 <span class="op">=</span> <span class="fu">plot</span>(df[!,<span class="op">:</span>period], df[!,<span class="op">:</span>consumption],label<span class="op">=</span><span class="st">"consumption"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pl1,pl2,pl3;size<span class="op">=</span>(<span class="fl">800</span>,<span class="fl">800</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="800" height="800" viewbox="0 0 3200 3200">
@@ -1029,12 +1270,12 @@ Objectives
 </div>
 <p><strong>Detrend all series.</strong></p>
 <div id="cell-24" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detrend the consumption series </span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> df[!,<span class="op">:</span>consumption]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>trend <span class="op">=</span> <span class="fu">HP</span>(series, <span class="fl">1600</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>cycle <span class="op">=</span> (series <span class="op">-</span> trend)<span class="op">./</span>trend</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>df[!,<span class="op">:</span>consumption_trend] <span class="op">=</span> trend</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>df[!,<span class="op">:</span>consumption_cycle] <span class="op">=</span> cycle</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detrend the consumption series </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> df[!,<span class="op">:</span>consumption]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>trend <span class="op">=</span> <span class="fu">HP</span>(series, <span class="fl">1600</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>cycle <span class="op">=</span> (series <span class="op">-</span> trend)<span class="op">./</span>trend</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>df[!,<span class="op">:</span>consumption_trend] <span class="op">=</span> trend</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>df[!,<span class="op">:</span>consumption_cycle] <span class="op">=</span> cycle</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>216-element Vector{Float64}:
   0.004921239693897835
@@ -1060,10 +1301,10 @@ Objectives
 </div>
 </div>
 <div id="cell-25" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pl1 <span class="op">=</span> <span class="fu">plot</span>(series, title<span class="op">=</span><span class="st">"consumption"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(pl1, trend, label<span class="op">=</span><span class="st">"consumption"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>pl2 <span class="op">=</span> <span class="fu">plot</span>(cycle, title<span class="op">=</span><span class="st">"consumption (cycle)"</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pl1, pl2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pl1 <span class="op">=</span> <span class="fu">plot</span>(series, title<span class="op">=</span><span class="st">"consumption"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(pl1, trend, label<span class="op">=</span><span class="st">"consumption"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>pl2 <span class="op">=</span> <span class="fu">plot</span>(cycle, title<span class="op">=</span><span class="st">"consumption (cycle)"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pl1, pl2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <!--?xml version="1.0" encoding="utf-8"?-->
 <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="600" height="400" viewbox="0 0 2400 1600">
@@ -1152,14 +1393,14 @@ Objectives
 </div>
 </div>
 <div id="cell-26" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detrend gdp</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># write your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detrend gdp</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># write your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-27" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detrend the investment series </span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># write your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detrend the investment series </span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># write your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>216-element Vector{Float64}:
  -0.0018606137881208413
@@ -1188,7 +1429,7 @@ Objectives
 </section>
 <section id="small-open-economy" class="level1">
 <h1>Small Open Economy</h1>
-<p>Assume the representative agent can save <span class="math inline">\(b^{\star}_t\)</span> as foreign assets, remunerated at a constant interest rate <span class="math inline">\(r^{\star}-1\)</span>.</p>
+<p>Start from the same rbc <a href="rbc_fixed.mod">model</a>. Assume the representative agent can save <span class="math inline">\(b^{\star}_t\)</span> as foreign assets, remunerated at a constant interest rate <span class="math inline">\(r^{\star}-1\)</span>.</p>
 <p><strong>Write the new budget constraint for the representative household.</strong></p>
 <p><strong>Write the new optimality condition.</strong></p>
 <p><strong>What is the long run constraint on interest rate <span class="math inline">\(r^{\star}\)</span>?</strong></p>
@@ -1365,7 +1606,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {

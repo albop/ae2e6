@@ -8,11 +8,9 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.533">
+  <meta name="generator" content="quarto-1.4.549">
 
-  <meta name="author" content="Pablo Winant">
-  <meta name="dcterms.date" content="2024-03-27">
-  <title>Macro II - Fluctuations - Small Open Economy Extension (IRBC)</title>
+  <title>Macro II - Fluctuations - Heterogeneity and DSGE</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -327,370 +325,55 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Small Open Economy Extension (IRBC)</h1>
-  <p class="subtitle">Macro II - Fluctuations - ENSAE, 2023-2024</p>
+  <h1 class="title">Heterogeneity and DSGE</h1>
 
 <div class="quarto-title-authors">
-<div class="quarto-title-author">
-<div class="quarto-title-author-name">
-Pablo Winant 
-</div>
-</div>
 </div>
 
-  <p class="date">2024-03-27</p>
-</section><section id="TOC">
-<nav role="doc-toc"> 
-<h2 id="toc-title">Plan</h2>
-<ul>
-<li><a href="#/introduction-and-basic-facts" id="/toc-introduction-and-basic-facts">Introduction and Basic Facts</a></li>
-<li><a href="#/modeling-a-small-open-econmomy" id="/toc-modeling-a-small-open-econmomy">Modeling a Small Open Econmomy</a></li>
-<li><a href="#/a-benchmark-small-open-economy-model" id="/toc-a-benchmark-small-open-economy-model">A benchmark Small Open Economy Model</a></li>
-</ul>
-</nav>
 </section>
-<section>
-<section id="introduction-and-basic-facts" class="title-slide slide level1 center">
-<h1>Introduction and Basic Facts</h1>
+<section class="slide level2">
 
-</section>
-<section id="why-a-small-open-economy" class="slide level2">
-<h2>Why a small open economy?</h2>
-<p>What are the classical reasons to open economy to trade</p>
-<div>
+<p>Points:</p>
 <ul>
-<li class="fragment">trade integration
+<li><p>RBC’s stories</p></li>
+<li><p>many RBC are more heterogenous than we think</p>
 <ul>
-<li class="fragment">taste for variety</li>
-<li class="fragment">comparative advantage</li>
+<li>microfounded using aggregation properties
+<ul>
+<li>cobb-douglas competitive sector
+<ul>
+<li>? combien de firmes dans le modèle ?</li>
 </ul></li>
-<li class="fragment">financial integration
+<li>representative agent
 <ul>
-<li class="fragment">smooth shock / insurance</li>
-</ul></li>
-</ul>
-</div>
-<!-- There are many 
-    complete financial market? what does it mean
-    riskfree bond -->
-</section>
-<section id="from-rbc-to-irbc" class="slide level2">
-<h2>From RBC to IRBC</h2>
-<p>After the success of RBC models to match business cycles it didn’t take long before the same methodology was applied to International Business Cycles</p>
-<ul>
-<li>Most famous: Backus, Kehoe, Kydland (1992) (freshwater economists)</li>
-</ul>
-<p>Very successful methodology:</p>
-<ul>
-<li>facts at odd with theoretical predictions have been called “puzzles”</li>
-</ul>
-</section>
-<section id="moments" class="slide level2">
-<h2>Moments</h2>
-
-<img data-src="assets/moments.png" class="r-stretch quarto-figure-center"><p class="caption">Business Cycles</p><p>From Kehoe,Kydland (1995)</p>
-</section>
-<section id="comovements" class="slide level2">
-<h2>Comovements</h2>
-
-<img data-src="assets/comovements.png" class="r-stretch"></section>
-<section id="stylized-facts" class="slide level2">
-<h2>Stylized Facts</h2>
-<div>
-<ul>
-<li class="fragment">Domestically:
-<ul>
-<li class="fragment">output more variable than consumption</li>
-<li class="fragment">output highly correlated</li>
-<li class="fragment">productivity strongly procyclical</li>
-<li class="fragment">trade balance strongly countercyclcal</li>
-<li class="fragment">positive comovements in output</li>
-</ul></li>
-<li class="fragment">Internationally:
-<ul>
-<li class="fragment">smaller comovements in consumption
-<ul>
-<li class="fragment">Backus-Kehoe-Kydland puzzle</li>
+<li>if complete markets…</li>
 </ul></li>
 </ul></li>
-</ul>
-</div>
-</section></section>
-<section>
-<section id="modeling-a-small-open-econmomy" class="title-slide slide level1 center">
-<h1>Modeling a Small Open Econmomy</h1>
-
-</section>
-<section id="endowment-model" class="slide level2">
-<h2>Endowment model</h2>
-<p>Take an endowment economy: <span class="math inline">\((y_t)_t\)</span> is exogenously given.</p>
-<p><span class="math display">\[\max_{c_t} \sum_{t=0}^{\infty} \beta^t u(c_t)\]</span></p>
-<p><span class="math display">\[c_t+a_{t+1} \leq y_t + (1+r) a_t\]</span></p>
-<p>Country takes as given world interest rate <span class="math inline">\(r\)</span>.</p>
-<ul>
-<li>a small open economy doesn’t affect world prices</li>
-</ul>
-</section>
-<section id="endowment-model-2" class="slide level2">
-<h2>Endowment model (2)</h2>
-<p>We solve this problem with the terminal conditions:</p>
-<ul>
-<li><p><span class="math inline">\(a_0\)</span> given</p></li>
-<li><p><span class="math inline">\(\lim_{T\rightarrow\infty} \frac{a_{T+1}}{(1+r)^T}\geq0\)</span></p>
-<ul>
-<li><em>no-ponzi</em> condition</li>
 </ul></li>
-</ul>
-</section>
-<section id="endowment-model-3" class="slide level2">
-<h2>Endowment Model (3)</h2>
-<p>First order conditions:</p>
-<p><span class="math display">\[\begin{align}
-u^{\prime}(c_t)&amp; =&amp; \lambda_t \\
-\lambda_t &amp;=&amp; \beta (1+r) \lambda_{t+1}
-\end{align}\]</span></p>
-<p>Under the <em>technical assumption</em> <span class="math inline">\(\beta (1+r)=1\)</span> we get:</p>
-<p><span class="math display">\[c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
-<div class="fragment">
+<li><p>then who is the representative agent?</p></li>
+<li><p>two agents equilibrium with endowments</p>
 <ul>
-<li>problem isomorphic to consumption-savings decisions</li>
-<li>consumption is determined by permanent income</li>
-</ul>
-</div>
-</section>
-<section id="intertemporal-approach-to-the-current-account" class="slide level2">
-<h2>Intertemporal approach to the current account</h2>
-<p>Observe the formula: <span class="math display">\[c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
-<p>What does it tell us about the current account?</p>
-<div class="fragment">
-<ul>
-<li>trade balance responds positively to temporary shock in <span class="math inline">\(y_t\)</span></li>
-<li>and to news about future income shocks:
-<ul>
-<li>This is the <em>intertemporal approach</em> to the current account</li>
+<li>definition of equilibrium</li>
+<li>walrasian prices</li>
+<li>unit root</li>
 </ul></li>
-</ul>
-</div>
-</section>
-<section id="unit-root" class="slide level2">
-<h2>Unit root</h2>
-<p>Still with the same formula: <span class="math display">\[c_0 = \frac{r}{1+r}\left\{ (1+r) a_0 + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
-<p>What is the effect of an increase in <span class="math inline">\(a_0\)</span>?</p>
+<li><p>consumption-savings and the marginal propensity to consume</p></li>
+<li></li>
+<li><p>consumer heterogeneity</p>
 <ul>
-<li>consumption rises permanently
-<ul>
-<li>by small amount <span class="math inline">\(r\)</span> corresponding to interests</li>
+<li>the ayiagari model</li>
+<li>HANK, TANK, PRANK</li>
 </ul></li>
-<li>there is a unit root</li>
-</ul>
-</section>
-<section id="exercise" class="slide level2">
-<h2>Exercise</h2>
-<p>From the first order conditions</p>
-<p><span class="math display">\[\begin{align}
-u^{\prime}(c_t) &amp; = &amp; \lambda_t \\
-\lambda_t &amp; = &amp;  \beta (1+r) \lambda_{t+1}
-\end{align}\]</span></p>
-<p>assuming <span class="math inline">\(u(c_t) = \log (c_t)\)</span>, can you get the equation for the law of motion of <span class="math inline">\(a_t\)</span> and show the presence of a unit root?</p>
-</section>
-<section id="adding-capital" class="slide level2">
-<h2>Adding capital</h2>
-<p>We add capital and production to our endowment economy: <span class="math display">\[y_t = z_t k_t^\alpha\]</span> <span class="math display">\[k_t = (1-\delta) k_{t-1} + i_{t-1}\]</span></p>
-<p>The aggregate resource constraint:</p>
-<p><span class="math display">\[a_{t+1} + c_t + i_t = (1+r) a_t + z_t\]</span></p>
-</section>
-<section id="adding-capital-optimality-conditions" class="slide level2">
-<h2>Adding capital: optimality conditions</h2>
-<p>We get first order conditions</p>
-<p><span class="math display">\[\lambda_t = \beta \lambda_{t+1} (1+r)\]</span> <span class="math display">\[\lambda_t = \beta \lambda_{t+1}\left[ (1-\delta) + z_{t+1} f^{\prime}(k_{t+1}) \right]\]</span></p>
-<p>where <span class="math inline">\(\lambda_t\)</span> is lagrange multiplier associated to budget constraint.</p>
-</section>
-<section id="adding-capital-first-order-conditions" class="slide level2">
-<h2>Adding capital: first order conditions</h2>
-<p>Since <span class="math inline">\(\lambda_t\)</span> (constraint is always binding), we get: <span class="math display">\[k_{t+1} = \left( \frac{r+\delta}{a z_{t+1}}\right)^{\frac{1}{\alpha-1}}\]</span></p>
-<p>and investment <span class="math display">\[i_t = \left( \frac{r+\delta}{a z_{t+1}}\right)^{\frac{1}{\alpha-1}}- (1-\delta)\left( \frac{r+\delta}{a z_{t}}\right)^{\frac{1}{\alpha-1}}\]</span></p>
-<p>Since investment comoves one to one with productivity shock (conditionnally on <span class="math inline">\(z_{t-1}\)</span>), it is way too volatile.</p>
-<!-- 
-## The elusive gains of financial integration
-
-Side note:
-
-Cf: Gourinchas and Jeanne *The elusive gains from financial integration.
-The immediate adjustment of capital provides an upper bound on the gains from financial integration.
- -->
-</section>
-<section id="add-friction-to-the-investment" class="slide level2">
-<h2>Add friction to the investment</h2>
-<p>A possible solution: change the resource constraint such that adjusting capital is costly</p>
-<p><span class="math display">\[a_{t+1} + c_t + i_t + \frac{\omega}{2}\frac{(i_t-\delta k^{\star})}{k_t} = (1+r)a_t + z f(k_t)\]</span></p>
-<p><span class="math display">\[k_{t+1} = (1-\delta) k_t + i_t\]</span></p>
-<p>where <span class="math inline">\(\omega\)</span> is an adjustment friction. Typically, <span class="math inline">\(\omega\)</span> is chosen so that the model replicates <span class="math inline">\(\frac{Var(i_t)}{Var(y_t)}\)</span> from the data.</p>
-</section>
-<section id="how-to-make-the-distribution-stationary" class="slide level2">
-<h2>How to make the distribution stationary?</h2>
-<p>Unit root (see time series VAR for more details) <span class="math display">\[a_t = a_{t-1} + ... \text{other variables in t-1} + \text{shocks in t}\]</span></p>
-<p>Problem:</p>
-<ul>
-<li>there isn’t a unique deterministic steady-state</li>
-<li>the ergodic distribution of the model variables is not defined</li>
-</ul>
-<p>This raises practical issues (notably for estimation) for the <em>linear</em> model.</p>
-</section>
-<section id="how-to-get-rid-of-the-unit-root" class="slide level2">
-<h2>How to get rid of the unit root?</h2>
-<p>General idea: introduce a force that pulls the level of foreign assets towards equilibrium</p>
-<p>Schmitt Grohe and Uribe (2004) consider many options:</p>
-<div class="r-stack">
-<div class="fragment current-visible">
-<ul>
-<li>debt-elastic interest rate: <span class="math display">\[1+r = 1+r^{\star} + \pi(a_d)\]</span>
-<ul>
-<li>with <span class="math inline">\(\pi(0)=0\)</span> and <span class="math inline">\(\pi^{\prime}(0)&gt;0\)</span></li>
-<li><span class="math inline">\(\pi\)</span> can be understood as a risk premium on rising debt</li>
-</ul></li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>endogenous time-discount (aka Usawa preferences) <span class="math display">\[\beta(c_t) = (1+c_t)^{-\chi}\]</span></li>
-<li>costs of adjustment for international portfolios</li>
-</ul>
-</div>
-</div>
-<div class="fragment">
-<p>SGU show that the choice of the stationarization device has little effect for the dynamics (moments) of most variables</p>
-</div>
-</section></section>
-<section>
-<section id="a-benchmark-small-open-economy-model" class="title-slide slide level1 center">
-<h1>A benchmark Small Open Economy Model</h1>
-
-</section>
-<section id="a-benchmark-small-open-economy-model-1" class="slide level2">
-<h2>A benchmark Small Open Economy Model</h2>
-<p><em>Closing Small Economy Models</em>, Schmitt Grohe and Uribe (2003), JIE</p>
-<ul>
-<li>small open economy model with production, consumption-leisure tradeoff and capital adjustment costs</li>
-<li>RBC+open+adj costs</li>
-</ul>
-</section>
-<section id="the-model" class="slide level2">
-<h2>The model</h2>
-<p><span class="math display">\[\max_{c_t, n_t} \sum_{t=0}^{\infty} \beta^t u(c_t)\]</span></p>
-<p><span class="math display">\[c_t + k_{t+1} + a_{t+1} = y_t + g_t - \frac{\omega}{2}(k_{t+1}-k_t)^2 +(1-\delta) k_t + (1+r^{\star}+\pi(a_t))a_t\]</span> <span class="math display">\[y_t = f(k_t, n_t, z_t)\]</span></p>
-<p><span class="math display">\[z_{t+1} = \rho z_t + \epsilon_{t+1}\]</span></p>
-<p>and <span class="math inline">\(u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^{1-\psi}
-)\right)^{1-\sigma}\)</span></p>
-</section>
-<section id="calibration" class="slide level2">
-<h2>Calibration</h2>
-<div class="columns">
-<div class="column">
-<table>
-<thead>
-<tr class="header">
-<th>Parameters</th>
-<th>Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(σ\)</span></td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(ψ\)</span></td>
-<td>1.45</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(α\)</span></td>
-<td>0.32</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(ω\)</span></td>
-<td>0.028</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(r\)</span></td>
-<td>0.04</td>
-</tr>
-</tbody>
-</table>
-</div><div class="column">
-<table>
-<thead>
-<tr class="header">
-<th>Parameters</th>
-<th>Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(δ\)</span></td>
-<td>0.1</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(ρ\)</span></td>
-<td>0.42</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(σ²\)</span></td>
-<td>0.0129</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(A^{\star}\)</span></td>
-<td>-0.7442</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(χ\)</span></td>
-<td>0.000742</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="results-12" class="slide level2">
-<h2>Results (1/2)</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/irf.png" style="height:60.0%"></p>
-<figcaption>Impulse Response Function</figcaption>
-</figure>
-</div>
-</section>
-<section id="results-22" class="slide level2">
-<h2>Results (2/2)</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/sgu_moments.png" style="height:60.0%"></p>
-<figcaption>Moments (from SGU)</figcaption>
-</figure>
-</div>
-</section>
-<section id="conclusions" class="slide level2">
-<h2>Conclusions</h2>
-<ul>
-<li>The model matches unconditional correlations fairly well
-<ul>
-<li>The stationarization device has little effect on the moments</li>
-</ul></li>
-<li>Unconditional correlations are not that great
-<ul>
-<li>a limitation of the moment matching method?</li>
-</ul></li>
-<li>Correlation of consumption with output is too high
-<ul>
-<li>what part of the model would you change?</li>
-</ul></li>
+<li><p>what are they used for ?</p></li>
+<li><p>hétérogénéité vs</p></li>
 </ul>
 
-
-</section><div class="quarto-auto-generated-content">
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
-</div></section>
+</div>
+</section>
     </div>
   </div>
 
@@ -783,7 +466,7 @@ The immediate adjustment of capital provides an upper bound on the gains from fi
         rtl: false,
 
         // see https://revealjs.com/vertical-slides/#navigation-mode
-        navigationMode: 'linear',
+        navigationMode: 'grid',
 
         // Randomizes the order of slides each time the presentation loads
         shuffle: false,
@@ -867,9 +550,9 @@ The immediate adjustment of capital provides an upper bound on the gains from fi
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1920,
+        width: 1050,
 
-        height: 1080,
+        height: 700,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,

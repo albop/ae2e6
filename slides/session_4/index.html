@@ -8,11 +8,11 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.533">
+  <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="Pablo Winant">
-  <meta name="dcterms.date" content="2024-03-27">
-  <title>Macro II - Fluctuations - Open Economy</title>
+  <meta name="dcterms.date" content="2024-04-10">
+  <title>Macro II - Fluctuations - Financial Intermediation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -327,7 +327,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Open Economy</h1>
+  <h1 class="title">Financial Intermediation</h1>
   <p class="subtitle">Macro II - Fluctuations - ENSAE, 2023-2024</p>
 
 <div class="quarto-title-authors">
@@ -338,20 +338,534 @@ Pablo Winant
 </div>
 </div>
 
-  <p class="date">2024-03-27</p>
+  <p class="date">2024-04-10</p>
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Plan</h2>
+<ul>
+<li><a href="#/the-importance-of-financial-intermediaries" id="/toc-the-importance-of-financial-intermediaries">The Importance of Financial Intermediaries</a></li>
+<li><a href="#/financial-business-cycles" id="/toc-financial-business-cycles">Financial Business Cycles</a></li>
+<li><a href="#/appendix" id="/toc-appendix">Appendix</a></li>
+</ul>
+</nav>
 </section>
-<section class="slide level2">
-
-
-<img data-src="wip.png" class="r-stretch"><p>Come back later!.</p>
-
+<section>
+<section id="the-importance-of-financial-intermediaries" class="title-slide slide level1 center">
+<h1>The Importance of Financial Intermediaries</h1>
 
 </section>
-    <div class="quarto-auto-generated-content">
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/bernanke.png"></p>
+<figcaption>Ben Bernanke: Nobel Prize Winner in 2022</figcaption>
+</figure>
+</div>
+</div><div class="column">
+<p><strong>Ben Bernanke</strong></p>
+<div>
+<ul>
+<li class="fragment">chairman of the Fed (2006-2014) succeeding Alan Greenspan</li>
+<li class="fragment">aka Helicopter Ben</li>
+<li class="fragment">was an expert of the Great Depression…
+<ul>
+<li class="fragment">gvt/cb should have printed more money</li>
+</ul></li>
+<li class="fragment">…and had to face the Great Recession
+<ul>
+<li class="fragment">gvt/cb should have been more careful about the state of financial intermediaries</li>
+</ul></li>
+<li class="fragment">received the Nobel Prize in 2022 with Diamond and Dybvig
+<ul>
+<li class="fragment">for their work on banks and their necessary bailouts during financial crises</li>
+<li class="fragment">bernanke (and others) incorporated realistic models of banks (from D&amp;D) in DSGE models</li>
+</ul></li>
+<li class="fragment">His acceptance speech is <a href="https://www.nobelprize.org/prizes/economic-sciences/2022/bernanke/biographical/">online</a></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="credit-markets" class="slide level2">
+<h2>Credit Markets</h2>
+<p>Credit markets are crucial to understand:</p>
+<ul>
+<li>financial crises</li>
+<li>the persistence of “garden-variety” recessions</li>
+<li>monetary policy</li>
+<li>financial regulation and prudential policies
+<ul>
+<li>now part of “macropru”, which takes a big mindshare in central banks</li>
+</ul></li>
+</ul>
+</section>
+<section id="issues-with-credit" class="slide level2">
+<h2>Issues with Credit</h2>
+<div>
+<ul>
+<li class="fragment">Imperfect and asymmetric information
+<ul>
+<li class="fragment">borrowers know more about their financial capacity</li>
+</ul></li>
+<li class="fragment">-&gt; Moral hazard: no incentive to behave in a way to make payment</li>
+<li class="fragment">-&gt; Adverse selection problem
+<ul>
+<li class="fragment">riskier borrowers have more incentives to apply for funds</li>
+</ul></li>
+<li class="fragment">Banks and other Lenders deal with these problems with various tools:
+<ul>
+<li class="fragment">long-term relationship</li>
+<li class="fragment">screening</li>
+<li class="fragment">monitoring</li>
+<li class="fragment">restrictions on lenders (covenant<sup>1</sup>)</li>
+<li class="fragment">collateral</li>
+</ul></li>
+</ul>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>From Wikipedia: <em>A loan covenant is a condition in a commercial loan or bond issue that requires the borrower to fulfill certain conditions or which forbids the borrower from undertaking certain actions, or which possibly restricts certain activities to circumstances when other conditions are met</em></p></li></ol></aside></section>
+<section id="external-finance-premium" class="slide level2">
+<h2>External Finance Premium</h2>
+<div title="External Finance Premium">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>External Finance Premium</strong></p>
+</div>
+<div class="callout-content">
+<p>All-in cost of a loan for a given borrower (including costs created by covenants and collateral requirements, etc.), less the safe rate of interest (for example, yields on government securities).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div>
+<ul>
+<li class="fragment">The external finance premium is the <em>cost</em> of intermediation
+<ul>
+<li class="fragment">it is a <em>distortion</em> that has macro implications</li>
+</ul></li>
+<li class="fragment">It is different for each borrower
+<ul>
+<li class="fragment">depends on size/risk</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="fragment">
+<p>A key insight from the literature on financial intermediation</p>
+<ul>
+<li>EFP is determined the net worth of <em>both</em> borrowers and lenders</li>
+</ul>
+<!-- cf Groucho Marx "I wouldn't want to belong to a club that would have me as a member" -->
+</div>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p><strong>Financial accelerator</strong><sup>1</sup>:</p>
+<ul>
+<li>higher EFP: tighter credit standard, less lending, slows the economy</li>
+<li>weaker economy reduces financial health of lenders/borrowers, raises EFP</li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/gz_spread.png"></p>
+<figcaption>Measure of External Finance Premium<sup>2</sup></figcaption>
+</figure>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>The financial accelerator in macroeconomics is the process by which adverse shocks to the economy may be amplified by worsening financial market conditions.</p></li><li id="fn3"><p>methodology from Gilchrst and Zakrajsek (2012)</p></li></ol></aside></section>
+<section id="the-great-recession" class="slide level2">
+<h2>The Great Recession</h2>
+<p>i::: {.incremental}</p>
+<ul>
+<li>Great Recession Resulted from “credit disruptions”</li>
+<li>A large fraction of intermediaries were <em>shadow banks</em> (investment banks, mortgage companies, money market funds, …) which
+<ul>
+<li>did not have access for federal reserve loans like banks</li>
+<li>relied on short-term funding</li>
+<li>were <em>vulnerable</em> to bank runs</li>
+</ul></li>
+<li>Bernanke (2018) show that during the crisis, measures of financial panic (funding costs) predicted very well <em>real</em> quantities</li>
+</ul>
+<p>:::</p>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+
+<img data-src="assets/deliquency.png" class="r-stretch"></section></section>
+<section>
+<section id="financial-business-cycles" class="title-slide slide level1 center">
+<h1>Financial Business Cycles</h1>
+
+</section>
+<section id="financial-business-cycles-1" class="slide level2">
+<h2>Financial Business Cycles</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/iacoviello.jpg"></p>
+<figcaption>Matteo Iacoviello</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:60%;">
+<div>
+<ul>
+<li class="fragment">Matteo Iacoviello
+<ul>
+<li class="fragment">works at Federal Reserve Board</li>
+<li class="fragment">specialized in macro modeling especially on the housing market</li>
+</ul></li>
+<li class="fragment"><a href="assets/FBC.pdf">Financial business cycles</a>, Review of Economic Dynamics 2015
+<ul>
+<li class="fragment">DSGE model with a financial sector and financial shocks</li>
+<li class="fragment">model is estimated</li>
+<li class="fragment">result: recessions (cycles) are triggered by credit shocks</li>
+</ul></li>
+<li class="fragment">Model is rather simple in terms of microfoundations
+<ul>
+<li class="fragment">… explains why it is underpublished</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="summary" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Summary</h2>
+<p>I consider a discrete-time economy.</p>
+<p>The economy features three agents: households, bankers, and entrepreneurs. Each agent has a unit mass.</p>
+<p>Households work, consume and buy real estate, and make one-period deposits into a bank. The household sector in the aggregate is net saver.</p>
+<p>Entrepreneurs accumulate real estate, hire households, and borrow from banks.</p>
+<p>In between the households and the entrepreneurs, bankers intermediate funds. The nature of the banking activity implies that bankers are borrowers when it comes to their relationship with households, and are lenders when it comes to their relationship with the credit-dependent sector – the entrepreneurs.</p>
+<p>I design preferences in a way that two frictions coexist and interact in the model’s equilibrium: first, bankers are credit constrained in how much they can borrow from the patient savers; second, entrepreneurs are credit constrained in how much they can borrow from bankers.</p>
+</section>
+<section id="summary-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Summary</h2>
+<p>I consider a discrete-time economy.</p>
+<p>The economy features three agents: <mark>households</mark>, <mark>bankers</mark>, and <mark>entrepreneurs</mark>. Each agent has a unit mass.</p>
+<p>Households work, consume and buy <mark>real estate</mark>, and make one-period deposits into a bank. The <mark>household</mark> sector in the aggregate is <mark>net saver</mark>.</p>
+<p>Entrepreneurs accumulate real estate, hire households, and borrow from banks.</p>
+<p>In between the households and the entrepreneurs, <mark>bankers intermediate funds</mark>. The nature of the banking activity implies that bankers are borrowers when it comes to their relationship with households, and are lenders when it comes to their relationship with the credit-dependent sector – the entrepreneurs.</p>
+<p>I design preferences in a way that two frictions coexist and interact in the model’s equilibrium: first, <mark>bankers are credit constrained</mark> in how much they can borrow from the patient savers; second, <mark>entrepreneurs</mark> are credit constrained in how much they can borrow from bankers.</p>
+</section>
+<section id="households" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Households</h2>
+<p>Representative agent chooses housing <span class="math inline">\(H_{H,t}\)</span>, consumption <span class="math inline">\(C_{T,t}\)</span> and time spent working <span class="math inline">\(N_{H,t}\)</span> to solve</p>
+<p><span class="math display">\[\max E_t \sum_{t=0}^{\infty} \beta^t_H \left( \log C_{H,t} + j \log H_{H,t} + \tau \log(1-N_{H,t}) \right)\]</span></p>
+<p>where <span class="math inline">\(\beta_{H,t}\)</span> is the discount factor and <span class="math inline">\(j,\tau\)</span> two preference parameters.</p>
+<div class="fragment">
+<p>subject to the <strong>Budget constraint</strong>:</p>
+<p><span class="math display">\[C_{H,t} + D_t + q_t \left( H_{H,t}- H_{H,t-1} \right) = R_{H,t-1} D_{t-1} + W_{H,t} N_{H,t} + \epsilon_t\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(D_t\)</span>: bank deposits earning gross return <span class="math inline">\(R_{H,t}\)</span></li>
+<li><span class="math inline">\(q_t\)</span>: price of housing</li>
+<li><span class="math inline">\(W_t\)</span>: wage rate</li>
+<li><span class="math inline">\(\epsilon_t\)</span>: a redistributive shock (proxy for default)</li>
+</ul>
+</div>
+</section>
+<section id="households-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Households:</h2>
+<div class="columns">
+<div class="column">
+<p>Representative agent chooses housing <span class="math inline">\(H_{H,t}\)</span>, consumption <span class="math inline">\(C_{T,t}\)</span> and time spent working <span class="math inline">\(N_{H,t}\)</span> to solve</p>
+<p><span class="math display">\[\max E_t \sum_{t=0}^{\infty} \beta^t_H \left( \log C_{H,t} + j \log H_{H,t} + \tau \log(1-N_{H,t}) \right)\]</span></p>
+<p>where <span class="math inline">\(\beta_{H,t}\)</span> is the discount factor and <span class="math inline">\(j,\tau\)</span> two preference parameters.</p>
+<p>subject to the <strong>Budget constraint</strong>:</p>
+<p><span class="math display">\[C_{H,t} + D_t + q_t \left( H_{H,t}- H_{H,t-1} \right) = R_{H,t-1} D_{t-1} + W_{H,t} N_{H,t} + \epsilon_t\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(D_t\)</span>: bank deposits earning gross return <span class="math inline">\(R_{H,t}\)</span></li>
+<li><span class="math inline">\(q_t\)</span>: price of housing</li>
+<li><span class="math inline">\(W_t\)</span>: wage rate</li>
+<li><span class="math inline">\(\epsilon_t\)</span>: a redistributive shock (proxy for default)</li>
+</ul>
+</div><div class="column">
+<p>We can derive the following optimality conditions:</p>
+<p><span class="math display">\[\frac{1}{C_{H,t}} = \beta_H E_t \left( \frac{1}{C_{H,t+1}} R_{H,t} \right)\]</span> <span class="math display">\[\frac{q_t}{C_{H,t}} = \frac{j}{H_{H,t}} + \beta_H E_t \left( \frac{q_{t+1}}{C_{H,t+1}}  \right)\]</span> <span class="math display">\[\frac{W_{H,t}}{C_{H,t}} = \frac{\tau}{1-N_{H,t}}\]</span></p>
+</div>
+</div>
+</section>
+<section id="entrepreneurs" class="slide level2">
+<h2>Entrepreneurs</h2>
+<p>The representative entrepreneur chooses consumption <span class="math inline">\(C_{E,t}\)</span>, housing <span class="math inline">\(H_{H,t}\)</span>, production <span class="math inline">\(Y_t\)</span>, worker’s time <span class="math inline">\(N_{H,t}\)</span> <span class="math display">\[\max E_0 \sum_{t=0}^{\infty} \beta^t_E \log C_{E,t}\]</span></p>
+<p>subject to:</p>
+<p><span class="math display">\[C_{E,t} + q_t \left( H_{E,t} - H_{E,t-1} \right) + R_{E,t} L_{E,t-1} + W_{H,t} N_{H,t} + a c_{EE,t} = Y_t + L_{E,t}\]</span></p>
+<p><span class="math display">\[Y_t = H^{\nu}_{E,t-1} N^{1-\nu}_{H,t}\]</span></p>
+<p><span id="eq-borrowing-constraint"><span class="math display">\[
+L_{E,t} \leq m_H E_t \left( \frac{q_{t+1}}{R_{E,t+1}}H_{E,t} \right) - m_N W_{H,t} N_{H,t}
+\qquad(1)\]</span></span></p>
+<ul>
+<li><p><span class="math inline">\(L_{E,t}\)</span> are loans to the entrepreneur with gross return <span class="math inline">\(R_{E,t}\)</span></p></li>
+<li><p><span class="math inline">\(c_{EE,t}=\frac{\phi_{EE}}{2}\frac{\left(L_{E,t}-L_{E,t-1}\right)}{L_E}\)</span> with <span class="math inline">\(L_E\)</span> the steady-state of <span class="math inline">\(L_{E,t}\)</span> <sup>1</sup></p>
+<ul>
+<li>captures the fact that loans change slowly</li>
+</ul></li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn4"><p>the quadratic adjustment cost is assumed to be <em>external</em> to the banker</p></li></ol></aside></section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p>Borrowing constraint:</p>
+<p><span id="eq-borrowing-constraint"><span class="math display">\[
+L_{E,t} \leq m_H E_t \left( \frac{q_{t+1}}{R_{E,t+1}}H_{E,t} \right) - m_N W_{H,t} N_{H,t}
+\qquad(2)\]</span></span></p>
+<ul>
+<li>entrepreneurs cannot borrow more than a fraction <span class="math inline">\(m_H\)</span> of the expected value of their real estate stock</li>
+<li>a fraction <span class="math inline">\(m_N\)</span> of the wage bill must be paid in advance
+<ul>
+<li>entrepreneurs can’t borrow to cover it</li>
+</ul></li>
+</ul>
+<p>Assumption: entrepreneurs discount future more than housholds and bankers</p>
+<p><span class="math display">\[\beta_E &lt; \frac{1}{\gamma_E \frac{1}{\beta_H} + (1-\gamma_E)\frac{1}{\beta_B}}\]</span> with <span class="math inline">\(\gamma_E\in[0,1]\)</span></p>
+</section>
+<section id="entrepreneurs-optimality-conditions" class="slide level2">
+<h2>Entrepreneurs: optimality conditions</h2>
+<p>We get the following optimality conditions</p>
+<p><span class="math display">\[\left( 1- \lambda_{E,t} - \frac{\partial ac_{LE,t}}{\partial L_{E,t}}\right) \frac{1}{c_{E,t}} = \beta_E E_t \left( R_{E,t+1} \frac{1}{c_{E,t+11}}\right)\]</span></p>
+<p><span class="math display">\[\left(
+  q_t- \lambda_{E,t} m_H E_t \left( \frac{q_{t+1}}{R_{E,t+1}} \right)
+\right)\frac{1}{c_{E,t}} = \beta_E E_t \left(
+  \left(q_{t+1} + \frac{\nu Y_{t+1}}{H_{E,t}}
+  \right)
+  \frac{1}{c_{E,t+1}}\right)
+  \]</span></p>
+<p><span class="math display">\[\frac{(1-\nu)Y_t}{1+m_N \lambda_{E,t}}=W_{H,t} N_{H,t}\]</span></p>
+<p><strong>Comment</strong>: credit constraint introduces a wedge between the cost of factors and their marginal product.</p>
+<ul>
+<li>a distortion like a tax</li>
+</ul>
+</section>
+<section id="bankers" class="slide level2">
+<h2>Bankers</h2>
+<p>The representative banker maximizes private consumption <span class="math inline">\(C_{B,t}\)</span></p>
+<p><span class="math display">\[\max E_0 \sum_{t=0}^{\infty} \beta^t_B \log C_{B,t}\]</span></p>
+<p><span class="math display">\[C_{B,t} + R_{H,t-1} D_{t-1} + L_{E,t} + a c_{EB,t} = D_t + R_{E,t} L_{E,t-1} - \epsilon_t\]</span></p>
+<p>where:</p>
+<ul>
+<li><p><span class="math inline">\(D_t\)</span>: households deposits</p></li>
+<li><p><span class="math inline">\(L_{E,t}\)</span>: loans to entrepreneurs</p></li>
+<li><p><span class="math inline">\(a c_{EB,t} = \frac{\phi_{EB}}{2} \frac{(L_{E,t-L_{E,t-1}})^2}{L_E}\)</span> is quadratic adjustment cost<sup>1</sup></p></li>
+<li><p>the ability to convert deposits into loans is limited by a borrowing constraint<sup>2</sup></p></li>
+</ul>
+<p><span class="math display">\[D_t \leq \gamma_E \left( L_{E,t} - E_t \epsilon_{t+1} \right)\]</span></p>
+<aside><ol class="aside-footnotes"><li id="fn5"><p>the quadratic adjustment cost is assumed to be <em>external</em> to the banker</p></li><li id="fn6"><p>here it is equivalent to a more realistic restriction on the capital ratio</p></li></ol></aside></section>
+<section id="bankers-optimality" class="slide level2">
+<h2>Bankers (optimality)</h2>
+<p>Denote:</p>
+<ul>
+<li><span class="math inline">\(m_{B,t} = \beta_B E_t \left( \frac{C_{B,t}}{C_{B,t+1}}\right)\)</span>: the stochastic discount factor of the banker</li>
+<li><span class="math inline">\(\lambda_{B,t}\)</span>: multiplier on the capital adequacy constraint <em>normalized by marginal utiliy of consumption</em></li>
+</ul>
+<p>Optimality conditions:</p>
+<p><span id="eq-foc-banker-1"><span class="math display">\[1-\lambda_{B,t} = E_t \left( m_{B,t} R_{H,t} \right) \qquad(3)\]</span></span></p>
+<p><span id="eq-foc-banker-2"><span class="math display">\[1-\gamma_{E} \lambda_{B,t} + \frac{\partial ac_{EB,t}}{\partial L_{E,t}} = E_t \left( m_{B,t} R_{E,t+1} \right) \qquad(4)\]</span></span></p>
+<p>These two equations explain the spread between the deposit rate and the lending rate (aka the intermediation premium)</p>
+</section>
+<section id="bankers-optimality-1" class="slide level2">
+<h2>Bankers (optimality)</h2>
+<p><span class="math display">\[1-\lambda_{B,t} = E_t \left( m_{B,t} R_{H,t} \right)\]</span></p>
+<p><span class="math display">\[1-\gamma_{E} \lambda_{B,t} + \frac{\partial ac_{EB,t}}{\partial L_{E,t}} = E_t \left( m_{B,t} R_{E,t+1} \right)\]</span></p>
+<p><strong>Interpretation</strong>:</p>
+<ul>
+<li>the banker can consume more by borrowing from the household to fuel consumption
+<ul>
+<li>tightens its credit constraint</li>
+<li>reduces the value of an extra deposit by <span class="math inline">\(\lambda_{B,t}\)</span></li>
+</ul></li>
+<li>the banker can consume more by reducing loans
+<ul>
+<li>it also tightens its credit constraint (reduces equity)</li>
+<li>effect stronger if collateral requirement is higher</li>
+</ul></li>
+</ul>
+</section>
+<section id="market-clearing" class="slide level2">
+<h2>Market clearing</h2>
+<p>Total supply of housing <span class="math inline">\(H_{E,t} + H_{H,t} = 1\)</span></p>
+<p>Market clearing conditions for goods and housing:</p>
+<p><span class="math display">\[H_{E,t} + H_{H,t} = 1\]</span></p>
+</section>
+<section id="steady-state-properties" class="slide level2">
+<h2>Steady state properties</h2>
+<div class="columns">
+<div class="column">
+<p>For the <strong>household</strong>:</p>
+<p><span class="math display">\[R_H=\frac{1}{\beta_H}\]</span></p>
+<p>For the <strong>banker</strong>:</p>
+<p><a href="#/bankers-optimality" class="quarto-xref">Equation&nbsp;3</a> and <a href="#/bankers-optimality" class="quarto-xref">Equation&nbsp;4</a> imply that as long as <span class="math inline">\(\beta_B&lt;\beta_H\)</span>, the bankers are credit constrained</p>
+<p>With <span class="math inline">\(\gamma_{E}\)</span> smaller than one, there is a spread between return on loans and return on deposits:</p>
+<p><span class="math display">\[\lambda_B = 1-\beta_B R_H = 1-\frac{\beta_B}{\beta_H}&gt;0\]</span></p>
+<p><span class="math display">\[R_E = \frac{1}{\beta_B} - \gamma_E \left( \frac{1}{\beta_B} - \frac{1}{\beta_H} \right)&gt;R_H\]</span></p>
+</div><div class="column">
+<p>For <strong>entrepreneurs</strong></p>
+<p>Entrepreneurs are constrained if <span class="math inline">\(\beta_E R_E&lt;1\)</span>. that is equivalent to <span class="math display">\[\frac{1}{\beta_E}=\gamma_E \frac{1}{\beta_H} + (1-\gamma_E) \frac{1}{\beta_B}\]</span></p>
+<p><strong>Effect</strong>:</p>
+<ul>
+<li>banker’s credit constraint and entrepreneur credit constraint create a wedge and reduce steady-state output</li>
+</ul>
+<p><strong>Technical assumption</strong>: at the steady-state, constraints are binding. Iacoviello assume there remain binding in a neighborhood of the steady-state.</p>
+</div>
+</div>
+</section>
+<section id="calibration" class="slide level2">
+<h2>Calibration</h2>
+<div class="columns">
+<div class="column">
+<p>Time period: 1 quarter</p>
+<p>Time discounts:</p>
+<ul>
+<li>households: <span class="math inline">\(\beta_H=0.9925\)</span></li>
+<li>bankers: <span class="math inline">\(\beta_B=0.945\)</span></li>
+<li>entrepreneurs: <span class="math inline">\(\beta_E=0.94\)</span></li>
+</ul>
+<p>Choice of leverage parameters such that <span class="math inline">\(R_H=3%\)</span> and <span class="math inline">\(R_E=5%\)</span>.</p>
+</div><div class="column">
+<p>Adjustment costs: <span class="math inline">\(\phi_{EE}=\phi_{EB}=0.25\)</span></p>
+<p>Weight of leisure in utility: <span class="math inline">\(\tau=2\)</span> (active time spent=1/2 and Frisch elasticity<sup>1</sup> close to 1).</p>
+<p>Share of housing in production: <span class="math inline">\(\nu=0.05\)</span></p>
+<p>Preference parameter for housing <span class="math inline">\(j=0.075\)</span>: ratio of real estate wealth to output 3.1 (0.8 commercial, 2.3 residential)</p>
+<p>Leverage:</p>
+<ul>
+<li><span class="math inline">\(m_N=1\)</span>: all labour paid in advance</li>
+<li><span class="math inline">\(m_H=0.9\)</span>: entrepreneur loan-to-value (LTV)</li>
+<li><span class="math inline">\(\gamma_E=0.9\)</span>: bank leverage (close to historical capital asset ratios close to 1)</li>
+</ul>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn7"><p>Frisch measures the response of hours worked to wage changes</p></li></ol></aside></section>
+<section id="dynamics" class="slide level2">
+<h2>Dynamics</h2>
+<p>Dynamics of intermediation spread</p>
+<p><span class="math display">\[E_t \left( R_{E,t+1} \right) - R_H,t = \frac{\lambda_{B,t}}{m_{B,t}}(1-\gamma_E)\]</span></p>
+</section>
+<section id="first-simulation" class="slide level2">
+<h2>First simulation</h2>
+<p>Shock <span class="math inline">\(\epsilon_t\)</span> is calibrated on historical loan losses (amounts of debt writedowns)</p>
+<p>Follows <span class="math display">\[\epsilon_t = 0.9 \epsilon_{t-1} + \iota_t\]</span></p>
+<p>The exogenous deviation is the following</p>
+<ul>
+<li>increase by 0.38% of gdp each quarter during 12 quarters</li>
+<li>losses to financial system rise from zero to 2.8$ after 2 years</li>
+<li>gradual return to zero</li>
+</ul>
+</section>
+<section id="first-simulation-1" class="slide level2">
+<h2>First Simulation</h2>
+
+<img data-src="assets/simulation.png" class="r-stretch"></section>
+<section id="extended-model" class="slide level2">
+<h2>Extended Model</h2>
+<p>The full model contains:</p>
+<ul>
+<li>two househods:
+<ul>
+<li>patient: lend to banks</li>
+<li>impatient:
+<ul>
+<li>credit constrained: borrow from the bank</li>
+<li>redistributive shocks banks-impatient household</li>
+</ul></li>
+</ul></li>
+<li>habits in consumption + preference shocks <span class="math display">\[\max E_t\sum_t \beta_t \log(C_t -\eta C_{H,t-1}) + j A_{j,t} \log(H_{H,t}) + \tau \log(1-N_{H,t})\]</span></li>
+<li>shocks to all borrowing capacities</li>
+<li>shocks to investment efficiency + tfp shocks</li>
+</ul>
+<p>Model estimated with a bayesian approach from 1985 to 2010 - 8 shocks in total - 8 observable variables</p>
+</section>
+<section id="calibration-1" class="slide level2">
+<h2>Calibration</h2>
+
+<img data-src="assets/full_model_parameters.png" class="r-stretch"></section>
+<section id="estimation-results" class="slide level2">
+<h2>Estimation Results</h2>
+
+<img data-src="assets/estimation_results_1.png" class="r-stretch"></section>
+<section id="estimation-results-1" class="slide level2">
+<h2>Estimation Results</h2>
+
+<img data-src="assets/estimation_results_2.png" class="r-stretch"></section>
+<section id="identification" class="slide level2">
+<h2>Identification</h2>
+
+<img data-src="assets/identification.png" class="r-stretch"><div class="fragment">
+<p>An estimated model can be used to <em>identify</em> shocks.</p>
+<ul>
+<li>most of the change in house prices / loan volumes can be attributed to financial shocks</li>
+<li>a good fraction of output and investment shocks too</li>
+</ul>
+</div>
+</section>
+<section id="predictive-power-of-the-model" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Predictive Power of the Model</h2>
+
+<img data-src="assets/predicted_series.png" class="r-stretch"></section>
+<section id="predictive-power-of-the-model-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Predictive Power of the Model</h2>
+<div class="columns">
+<div class="column">
+<p><img data-src="assets/predicted_series.png"></p>
+</div><div class="column">
+<p>The model predicts other moments that were not targeted:</p>
+<ul>
+<li>i.r. spreads</li>
+<li>capacity utilization</li>
+<li>corporate profits <span class="math inline">\(\approx\)</span> banker’s consumption</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<p>The FBC model shows that financial shocks were likely a driver of the financial crisis (🤔)</p>
+<p>&nbsp;&nbsp;&nbsp;</p>
+<div class="fragment">
+<p>But it is missing:</p>
+<div>
+<ul>
+<li class="fragment">a realistically, microfounded model of banks</li>
+<li class="fragment">a role for the central bank and money creation
+<ul>
+<li class="fragment">especially money creation by banks…</li>
+</ul></li>
+<li class="fragment">a more realistic macro environment
+<ul>
+<li class="fragment">in particular, capital</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section></section>
+<section>
+<section id="appendix" class="title-slide slide level1 center">
+<h1>Appendix</h1>
+
+</section>
+<section id="irf-of-the-full-model-1" class="slide level2">
+<h2>IRF of the full model (1)</h2>
+
+<img data-src="assets/full_irfs.png" class="r-stretch"></section>
+<section id="irf-of-the-full-model-2" class="slide level2">
+<h2>IRF of the full model (2)</h2>
+
+
+<img data-src="assets/default_irf.png" class="r-stretch"><div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
-</div></div>
+</div>
+</section></section>
+
+    </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
@@ -443,7 +957,7 @@ Pablo Winant
         rtl: false,
 
         // see https://revealjs.com/vertical-slides/#navigation-mode
-        navigationMode: 'grid',
+        navigationMode: 'linear',
 
         // Randomizes the order of slides each time the presentation loads
         shuffle: false,
