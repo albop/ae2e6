@@ -1,6 +1,5 @@
 CREDIT MARKET STRESS AND THE ECONOMY
-At times, banking and credit markets become stressed, increasing the cost of
-borrowing and reducing the availability of credit.
+At times, banking and credit markets become stressed, increasing the cost of borrowing and reducing the availability of credit.
 Credit market stress has macroeconomic consequences:
 • Contributed importantly to the Great Depression of the 1930s
 • Helps explain why the recession that followed the global financial crisis of 2007-
@@ -19,7 +18,7 @@ Banks and other lenders specialize in overcoming information problems through
 longer-term relationships, screening, monitoring, imposing restrictions on borrowers (covenants), and requiring collateral. 
 
 
-The external finance premium (EFP) is the all-in cost of a loan for a given borrower (including costs created by covenants and collateral requirements, etc.), less the safe rate of interest (for example, yields on government securities).
+The external finance premium (EFP) is the all-in cost of a loan for a given borrower    (including costs created by covenants and collateral requirements, etc.), less the safe rate of interest (for example, yields on government securities).
 The EFP reflects the lender’s cost of credit intermediation for that borrower. EFPs typically differ by borrower: A small business will have a higher EFP than a financially strong corporation.
 However, EFPs tend to move together as the economy changes. When we talk about
 “the EFP,” we mean the typical or average EFP across the economy. A higher EFP
@@ -27,7 +26,8 @@ corresponds to more stressed credit markets.
 
 Banks also must borrow from ultimate savers. For reasons explored by laureates
 Diamond and Dybvig, banks typically rely on short-term funds (deposits, uninsured
-commercial paper, or repurchase agreements). Lenders to banks like the liquidity (easy conversion to cash) of their short-term loans.
+commercial paper, or repurchase agreements). Lenders to banks like the liquidity (easy
+ conversion to cash) of their short-term loans.
 However, reliance on short-term funding makes banks vulnerable to panics (runs), in which (uninsured) providers of short-term funding lose confidence and rush to withdraw their funds.
 Panics, or the threat of panics, make lenders more cautious (the flight to quality).
 They become less willing or able to use their accumulated information, relationships, etc. to extend credit to otherwise trustworthy borrowers.
