@@ -59,8 +59,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -86,35 +84,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-mod-listings .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-filename',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-filename","listing-file-modified"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-mod-listings'] = new List('listing-mod-listings', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -161,7 +130,9 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/session_1/problem.html">tutorials</a></li><li class="breadcrumb-item"><a href="../../tutorials/session_2/problem.html">First steps with Dynare and moment matching.</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Macro II - Fluctuations
+      </li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -218,7 +189,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/session_2/problem.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../tutorials/session_2/problem.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">First steps with Dynare and moment matching.</span></a>
   </div>
 </li>
@@ -238,12 +209,12 @@ window.Quarto = {
   <li><a href="#computing-moments-in-the-data" id="toc-computing-moments-in-the-data" class="nav-link" data-scroll-target="#computing-moments-in-the-data">Computing moments in the data</a></li>
   <li><a href="#small-open-economy" id="toc-small-open-economy" class="nav-link" data-scroll-target="#small-open-economy">Small Open Economy</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.out.ipynb" download="index.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index_correction.out.ipynb" download="index_correction.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../tutorials/session_1/problem.html">tutorials</a></li><li class="breadcrumb-item"><a href="../../tutorials/session_2/problem.html">First steps with Dynare and moment matching.</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">First steps with Dynare and moment matching.</h1>
 <p class="subtitle lead">Business Cycles and Fluctuations - AE2E6</p>
@@ -291,66 +262,8 @@ Objectives
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Modfiles">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Modfiles
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div id="listing-mod-listings" class="quarto-listing quarto-listing-container-default">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1712913471349">
-<div class="body">
-
-</div>
-<div class="metadata">
-<p><a href="../../tutorials/session_2/rbc.mod" class="no-external"></a></p><a href="../../tutorials/session_2/rbc.mod" class="no-external">
-<div class="metadata-value listing-filename">
-rbc.mod
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1712913471369">
-<div class="body">
-
-</div>
-<div class="metadata">
-<p><a href="../../tutorials/session_2/rbc_fixed.mod" class="no-external"></a></p><a href="../../tutorials/session_2/rbc_fixed.mod" class="no-external">
-<div class="metadata-value listing-filename">
-rbc_fixed.mod
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1712913632396">
-<div class="body">
-
-</div>
-<div class="metadata">
-<p><a href="../../tutorials/session_2/rbc_open.mod" class="no-external"></a></p><a href="../../tutorials/session_2/rbc_open.mod" class="no-external">
-<div class="metadata-value listing-filename">
-rbc_open.mod
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</div>
-</div>
-</div>
 <p>Uncomment the following lines to install needed packages (if not already present).</p>
-<div id="cell-4" class="cell" data-execution_count="102">
+<div id="cell-3" class="cell" data-execution_count="102">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># uncomment the next lines, the first time you run</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># import Pkg; Pkg.add(["DBnomics", "Dynare", "DataFrames"])</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import Pkg; Pkg.add(url="https://github.com/sdBrinkmann/HPFilter.jl") # we install hpfilter from github</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -358,11 +271,11 @@ No matching items
 <section id="using-dynare" class="level1">
 <h1>Using Dynare</h1>
 <p>Download the <a href="rbc.mod">rbc</a> modfile.</p>
-<div id="cell-6" class="cell" data-execution_count="103">
+<div id="cell-5" class="cell" data-execution_count="103">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dynare</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Open the RBC model and solve the model. Fix the mistakes in the modfile if any.</strong></p>
-<div id="cell-8" class="cell" data-execution_count="104">
+<div id="cell-7" class="cell" data-execution_count="104">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>context <span class="op">=</span> <span class="pp">@dynare</span> <span class="st">"rbc.mod"</span>;</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ; mutes the output</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># graphs and other outputs are stored in subdirectory `rbc`</span></span>
@@ -617,14 +530,14 @@ estimated_parameters: Dynare.EstimatedParameters(Union{Int64, Pair{Int64, Int64}
 <section id="computing-moments-in-the-data" class="level1">
 <h1>Computing moments in the data</h1>
 <p><strong>Download US time series from the world bank for: real gdp, investment, consumption, hours worked.</strong></p>
-<div id="cell-17" class="cell" data-execution_count="36">
+<div id="cell-16" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DBnomics</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">HPFilter</span>: HP</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Statistics</span>: cor, std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-18" class="cell" data-execution_count="8">
+<div id="cell-17" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># google OECD</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_ <span class="op">=</span> <span class="fu">rdb</span>(ids <span class="op">=</span> [</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.P5.LNBQRSA.Q"</span>, <span class="co"># investment</span></span>
@@ -633,7 +546,7 @@ estimated_parameters: Dynare.EstimatedParameters(Union{Int64, Pair{Int64, Int64}
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>]);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-19" class="cell" data-execution_count="9">
+<div id="cell-18" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keep only the relevant data, in long format</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_long <span class="op">=</span> df_[!,[<span class="st">"Subject"</span>,<span class="st">"period"</span>,<span class="st">"value"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -815,10 +728,10 @@ estimated_parameters: Dynare.EstimatedParameters(Union{Int64, Pair{Int64, Int64}
 </div>
 </div>
 </div>
-<div id="cell-20" class="cell" data-execution_count="10">
+<div id="cell-19" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">unstack</span>(df_long,<span class="op">:</span>period, <span class="op">:</span>Subject,<span class="op">:</span>value);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-21" class="cell" data-execution_count="11">
+<div id="cell-20" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">dropmissing</span>(<span class="fu">sort</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div><div style="float: left;"><span>216×4 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">191 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
@@ -1027,7 +940,7 @@ estimated_parameters: Dynare.EstimatedParameters(Union{Int64, Pair{Int64, Int64}
 </div>
 </div>
 </div>
-<div id="cell-22" class="cell" data-execution_count="12">
+<div id="cell-21" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rename!</span>(df,[<span class="op">:</span>period, <span class="op">:</span>investment, <span class="op">:</span>gdp, <span class="op">:</span>consumption])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div><div style="float: left;"><span>216×4 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">191 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
@@ -1236,7 +1149,7 @@ estimated_parameters: Dynare.EstimatedParameters(Union{Int64, Pair{Int64, Int64}
 </div>
 </div>
 </div>
-<div id="cell-23" class="cell" data-execution_count="13">
+<div id="cell-22" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pl1 <span class="op">=</span> <span class="fu">plot</span>(df[!,<span class="op">:</span>period], df[!,<span class="op">:</span>investment],label<span class="op">=</span><span class="st">"investment"</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pl2 <span class="op">=</span> <span class="fu">plot</span>(df[!,<span class="op">:</span>period], df[!,<span class="op">:</span>gdp],label<span class="op">=</span><span class="st">"gdp"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>pl3 <span class="op">=</span> <span class="fu">plot</span>(df[!,<span class="op">:</span>period], df[!,<span class="op">:</span>consumption],label<span class="op">=</span><span class="st">"consumption"</span>)</span>
@@ -1358,7 +1271,7 @@ estimated_parameters: Dynare.EstimatedParameters(Union{Int64, Pair{Int64, Int64}
 </div>
 </div>
 <p><strong>Detrend all series.</strong></p>
-<div id="cell-25" class="cell" data-execution_count="29">
+<div id="cell-24" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detrend the consumption series </span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> df[!,<span class="op">:</span>consumption]</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>trend <span class="op">=</span> <span class="fu">HP</span>(series, <span class="fl">1600</span>)</span>
@@ -1389,7 +1302,7 @@ estimated_parameters: Dynare.EstimatedParameters(Union{Int64, Pair{Int64, Int64}
   0.0011366662632812513</code></pre>
 </div>
 </div>
-<div id="cell-26" class="cell" data-execution_count="30">
+<div id="cell-25" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pl1 <span class="op">=</span> <span class="fu">plot</span>(series, title<span class="op">=</span><span class="st">"consumption"</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(pl1, trend, label<span class="op">=</span><span class="st">"consumption"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>pl2 <span class="op">=</span> <span class="fu">plot</span>(cycle, title<span class="op">=</span><span class="st">"consumption (cycle)"</span>)</span>
@@ -1481,12 +1394,12 @@ estimated_parameters: Dynare.EstimatedParameters(Union{Int64, Pair{Int64, Int64}
 <path clip-path="url(#clip170)" d="M1600.86 1408.86 Q1599.05 1413.49 1597.34 1414.9 Q1595.62 1416.32 1592.75 1416.32 L1589.35 1416.32 L1589.35 1412.75 L1591.85 1412.75 Q1593.61 1412.75 1594.58 1411.92 Q1595.55 1411.08 1596.73 1407.98 L1597.5 1406.04 L1587.01 1380.53 L1591.53 1380.53 L1599.63 1400.81 L1607.73 1380.53 L1612.24 1380.53 L1600.86 1408.86 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip170)" d="M1619.54 1402.52 L1627.17 1402.52 L1627.17 1376.15 L1618.86 1377.82 L1618.86 1373.56 L1627.13 1371.9 L1631.8 1371.9 L1631.8 1402.52 L1639.44 1402.52 L1639.44 1406.46 L1619.54 1406.46 L1619.54 1402.52 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path></svg>
 </div>
 </div>
-<div id="cell-27" class="cell" data-execution_count="31">
+<div id="cell-26" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detrend gdp</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># write your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-28" class="cell" data-execution_count="33">
+<div id="cell-27" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detrend the investment series </span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># write your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1520,16 +1433,25 @@ estimated_parameters: Dynare.EstimatedParameters(Union{Int64, Pair{Int64, Int64}
 <h1>Small Open Economy</h1>
 <p>Start from the same rbc <a href="rbc_fixed.mod">model</a>. Assume the representative agent can save <span class="math inline">\(b^{\star}_t\)</span> as foreign assets, remunerated at a constant interest rate <span class="math inline">\(r^{\star}-1\)</span>.</p>
 <p><strong>Write the new budget constraint for the representative household.</strong></p>
+<p>À une date donnée t, le ménage épargne b?t sous forme de titres étrangers et reçoit le remboursement de son épargne de la période précédente b?t−1 plus les intérêts afférents (r? − 1)b?t−1 . Par rapport au modèle de base, la contrainte budgétaire en t devient donc :</p>
+<p><span class="math display">\[c_t + i_t + b^ {\star}_t \leq w_t n_t + r_t k_{t-1} + r^ {\star} b^{\star}_{t-1}\]</span></p>
+<p>and the lagrangian is:</p>
 <p><strong>Write the new optimality condition.</strong></p>
+<p>Il faut ajouter au modèle la condition d’optimalité par rapport à <span class="math inline">\(b^{\star}_t\)</span> : le ménage représentatif choisit le niveau d’épargne en titres étrangers qui maximise son utilité intertemporelle sous contrainte. On trouve :</p>
 <p><strong>What is the long run constraint on interest rate <span class="math inline">\(r^{\star}\)</span>?</strong></p>
+<p>À l’état stationnaire, cette équation implique <span class="math inline">\(r^{\star}= \frac{1}{\beta}\)</span> . Bien que <span class="math inline">\(r^{\star}\)</span> représente un taux d’intérêt décidé à l’étranger, <span class="math inline">\(\frac{1}{\beta}\)</span> est sa seule valeur compatible avec l’existence d’un équilibre de long terme dans le modèle. En effet, il ne peut pas y avoir d’opportunité d’arbitrage à l’équilibre : tous les placements ont la même rentabilité.</p>
 <p><strong>Update the modfile (set <span class="math inline">\(\overline{b^{\star}}=0\)</span>)</strong></p>
+<p>Pour mettre à jour le fichier .mod, il faut déclarer la nouvelle variable b? et le nouveau paramètre r? en lui donnant la valeur β1 . Il faut ajouter au modèle la condition d’optimalité ci-dessus et mettre à jour l’équation donnant l’équilibre sur le marché des biens. En effet, cette équation est obtenue en équilibre général à partir de la contrainte budgétaire du ménage. En petite économie ouverte, on a :</p>
+<p><span class="math display">\[c_t + i_t + b^{\star}_t = w_t n_t + r_t k_{t-1} + r^{\star} b^{\star}_{t-1}\]</span></p>
+<p>Or l’entreprise, supposée en concurrence parfaite, ne fait pas de profit. Donc <span class="math inline">\(y_t = w_t n_t + r_t k_{t−1}\)</span> et :</p>
+<p><span class="math display">\[c_t + i_t + b^{\star}_t - r^{\star} b^{\star}_{t-1} = y_t\]</span></p>
+<p>Ensuite, on remarque que le modèle statique ne détermine pas le niveau de <span class="math inline">\(b^{\star}\)</span> à l’état stationnaire ; on choisit de le fixer à 0 de sorte que l’état stationnaire des autres variables du modèle ne soit pas affecté. On ajoute donc <span class="math inline">\(b^{\star}=0\)</span> dans le bloc steady_state_model;.</p>
 <p><strong>Print theoretical moments. Comment.</strong></p>
 <p><strong>Simulate the model over 100 periods. Comment.</strong></p>
 <p><strong>Assume the foreign interest rate depends on the amount of foreign assets</strong></p>
 <p><span class="math display">\[r^{\star}=\frac{1}{\beta} + exp(-\kappa b^{\star}_t) - 1\]</span></p>
 <p><strong>with <span class="math inline">\(\kappa=0.01\)</span>. How do you interpret the equation for <span class="math inline">\(r^{\star}_t\)</span>. How should you modify the model equations?</strong></p>
 <p><strong>Update the modfile and comment on the generated moments. Do they depend on the choice of <span class="math inline">\(\kappa\)</span>?</strong></p>
-
 
 
 </section>
