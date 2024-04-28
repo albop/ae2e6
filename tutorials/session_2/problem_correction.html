@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Macro II - Fluctuations - First steps with Dynare and moment matching.</title>
+<title>Macro II - Fluctuations - Part II - First steps with Dynare and moment matching.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,6 +59,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/quarto-listing/list.min.js"></script>
+<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -84,6 +86,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-mod-listings .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-filename',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-filename","listing-file-modified"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-mod-listings'] = new List('listing-mod-listings', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -131,7 +162,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Macro II - Fluctuations
+      Macro II - Fluctuations - Part II
       </li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
@@ -144,7 +175,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../">Macro II - Fluctuations</a> 
+      <a href="../../">Macro II - Fluctuations - Part II</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -170,6 +201,18 @@ window.Quarto = {
  <span class="menu-text">Small Open Economy Extension (IRBC)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides/session_3/handout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to Heterogeneity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides/session_4/handout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Financial Intermediation</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -191,6 +234,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../tutorials/session_2/problem.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">First steps with Dynare and moment matching.</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/session_3/problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Opening Economy Extension</span></a>
   </div>
 </li>
       </ul>
@@ -274,8 +323,48 @@ Modfiles
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="mod-listings">
+<div id="listing-mod-listings" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1712913471349">
+<div class="body">
 
+</div>
+<div class="metadata">
+<p><a href="../../tutorials/session_2/rbc.mod" class="no-external"></a></p><a href="../../tutorials/session_2/rbc.mod" class="no-external">
+<div class="metadata-value listing-filename">
+rbc.mod
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1714252986701">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="../../tutorials/session_2/rbc_fixed.mod" class="no-external"></a></p><a href="../../tutorials/session_2/rbc_fixed.mod" class="no-external">
+<div class="metadata-value listing-filename">
+rbc_fixed.mod
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1714317151228">
+<div class="body">
+
+</div>
+<div class="metadata">
+<p><a href="../../tutorials/session_2/rbc_open.mod" class="no-external"></a></p><a href="../../tutorials/session_2/rbc_open.mod" class="no-external">
+<div class="metadata-value listing-filename">
+rbc_open.mod
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
 </div>
 </div>
 </div>
@@ -1653,6 +1742,7 @@ ERROR: Method overwriting is not permitted during Module precompilation. Use `__
 <p>Plus le ménage détient de titres étrangers, moins ceux-ci sont rémunérateurs. Inversement, plus le ménage est endetté vis-à-vis de l’étranger <span class="math inline">\((b^{\star} &lt; 0)\)</span>, plus les prêteurs étrangers vont exiger un taux d’ intérêt élevé. On peut donc interpréter le terme <span class="math inline">\(exp(−\kappa b^{\star}_t ) − 1\)</span> comme une prime de risque sur le taux d’intérêt étranger. Pour mettre à jour le fichier .mod, il faut déclarer à présent <span class="math inline">\(r^{\star}\)</span> comme une variable et non un paramètre, déclarer sa valeur à l’état stationnaire <span class="math inline">\(r^{\star} = \frac{1}{β}\)</span> dans le bloc steady_state_model; et enfin ajouter l’équation ci-dessus dans le bloc model;.</p>
 <p>Si on ne change pas les conditions d’ Euler, cela revient à supposer que les consommateurs/le gouvernment n’internalisent pas l’ effet de leur emprunt sur le taux d’ intérêt.</p>
 <p><strong>Update the modfile and comment on the generated moments. Do they depend on the choice of <span class="math inline">\(\kappa\)</span>?</strong></p>
+
 
 
 </section>

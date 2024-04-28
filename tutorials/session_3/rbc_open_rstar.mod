@@ -1,10 +1,8 @@
-%var k i y a n c b r w;
-var k i y a n c r w b rst;
+var k i y a n c r w b;
 
 varexo epsilon;
 
-%parameters bet del alp nss khi eta rho rst;
-parameters bet del alp nss khi eta rho;
+parameters bet del alp nss khi eta rho rst;
 
 
 bet=0.98;
@@ -14,7 +12,7 @@ rho=0.95;
 eta=1;
 nss=0.33;
 khi=(1-alp)*(1-nss)^eta/nss*(1/bet-1+del)/(1/bet-1+del-del*alp);
-%rst=1/bet;
+rst=1/bet;
 
 
 model;
@@ -27,7 +25,7 @@ log(a)=rho*log(a(-1))+epsilon;
 w=(1-alp)*y/n;
 r=alp*y/k(-1);
 b=y-c-i+rst*b(-1);
-rst=1/bet+exp(-b)-1;
+rst=1/bet;
 end;
 
 
@@ -41,7 +39,6 @@ w=(1-alp)*y/n;
 i=del*k;
 c=y-i;
 b=0;
-rst=1/bet;
 end;
 
 
@@ -49,12 +46,6 @@ shocks;
 var epsilon;stderr 0.009;
 end;
 
-
-resid;
-
-
 check;
 
-
-stoch_simul(irf=200);
-%return
+stoch_simul(irf=200, order=1);
