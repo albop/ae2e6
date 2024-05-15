@@ -1,0 +1,72 @@
+---
+title: "Macro II - Fluctuations  - Partie 2"
+format: pdf
+execute:
+    echo: true
+    eval: false
+    code-line-numbers: true
+---
+
+On suppose que l'utilité du consommateur représentatif, l'individu $i$ est donnée par
+$\sum_{t=1}^T \frac{1}{(1+\rho)^t} \frac{(C_{it}/Z_{it})^(1-\theta)}{1-\theta}$ avec $\rho>0, \theta>0$ où $Z_{it}$ est le niveau de référence de la consommation. Son revenu est $y_{i,t}$ et il peut épargner $a_t$ à un taux d'intérêt $r$ supposant constant. On suppose qu'il n'y a pas d'incertitude.
+
+
+__Habitudes externes__: supposons $Z_{it} = C_{t-1}^{\phi}$
+ avec $0\leq \phi \leq 1$. Cela signifie que le niveau de référence est déterminé par la consommation agrégée, donc prise comme donnée par l'individu.
+
+@. __Écrire la condition d'Euler pour la consommation. Exprimer $\frac{C_{i,t+1}}{C_{i,t}}$ en fonction de $\frac{C_t}{C_{t-1}}$ et $\frac{1+r}{1+\rho}$.__
+
+@. __A l'équilibre la consommation du consommateur représentatif vaut $C_{i,t}=C_t$ pour tout $t$. Utiliser ce fait pour écrire $\log(C_{t+1}) - \log(C_t)$ en fonction de $\log(C_t)-\log(C_{t-1})$ (et toute autre variable pertinente). Pour $\phi>0$ et $\theta=1$, la formation d'habitude a-t-elle un effect sur le comportement de la consommation? Et pour $\phi>0$ et $\theta>1$?__
+
+__Habitudes internes.__ On suppose maintenant $Z_{i,t}=C_{i,t}$. C'est à dire que le niveau de consommation de référence de l'individu est déterminée par sa consommation passé. On fixe $\phi=1$.
+
+@. __Réécrire la condition d'Euler pour cette nouvelle spécification__.
+
+@. __On note $g_t=\frac{C_t}{C_{t-1}}-1$ la croissance de la consommation. Sous l'hypothèse, $\rho=r=0$ et en supposant la croissance de la consommation proche de zero, donner une formule approchée au premier ordre liant $g_{t+2}-g_{t+1}$ à $g_{t+1}-g_t$. Interpréter.__
+
+
+Le modfile de la page suivante correspond au modèle RBC en économie ouverte (étudié en TD) augmenté avec des habitudes de consommation.
+
+@. Quelles sont les modifications qui correspondent aux habitudes?
+
+@. Quelle(s) modification(s) proposeriez-vous pour étudier l'éffet d'un choc de deviation standard 0.01 et de persistence $\rho$, sur le taux d'intérêt mondial (donc la réponse des variable à un choc temporaire $\epsilon$  lorsque le taux d'intérêt mondial est donné par $r_t = \overline{r} + \epsilon_t$) ?
+
+@. Commenter brièvement les IRFs obtenus après cette modification.
+
+{{< pagebreak >}}
+
+```{.default code-line-numbers="true"}
+var y i c n a b k r w;
+varexo epsilon;
+parameters bet del alp nss khi eta rho rst;
+
+bet=0.98;  alp=0.33; del=0.025; rho=0.95; eta=1; nss=0.33;
+khi=(1-alp)*(1-nss)^eta/nss*(1/bet-1+del)/(1/bet-1+del-del*alp);
+rst=1/bet;
+
+model;
+1/c=bet*(r(1)+1-del)/c(1);
+1/c=bet*rst/c(1);
+w=khi*c/(1-n)^eta;
+k=(1-del)*k(-1)+i;
+y=a*k(-1)^alp*n^(1-alp);
+log(a)=rho*log(a(-1))+epsilon;
+w=(1-alp)*y/n;
+r=alp*y/k(-1);
+b=y-c-i+rst*b(-1);
+end;
+
+steady_state_model;
+a=1;                      r=1/bet-1+del;     n=nss;             
+k=(alp/r)^(1/(1-alp))*n;  y=k^alp*n^(1-alp); w=(1-alp)*y/n;
+i=del*k;                  c=y-i;             b=0;
+end;
+
+shocks;
+var epsilon;stderr 0.009;
+end;
+
+check;
+
+stoch_simul(irf=200, order=1) y c i b;
+```
