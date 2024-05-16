@@ -26,7 +26,7 @@ beta = 1/r;
 model;
 
 [name='income process']
-y = ybar + 0.1*e_y;                       // income per capita
+y = ybar + e_y;                       // income per capita
 
 [name='budget equation']
 c = y + (b(-1) - b*q);            // consumption per capita
@@ -51,4 +51,4 @@ steady;
 check;
 
 
-stoch_simul(order=1);
+stoch_simul(order=1) y c b;

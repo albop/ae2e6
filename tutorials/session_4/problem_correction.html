@@ -294,7 +294,7 @@ Modfiles
 <div class="callout-body-container callout-body">
 <div id="listing-mod-listings" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1715866705448">
+<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1715869816311">
 <div class="body">
 
 </div>
@@ -418,8 +418,8 @@ Correction
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The <code>one_agent.mod</code> model is a standard consumption saving model without preference for wealth.</p>
-<p>In general, if the solution of a model is $y_t = A y_{t-1} where <span class="math inline">\(y_t\)</span> is the vector of variables, we have a unit root when one of the eigenvalues of A is equal to 1 in absolute terms.</p>
-<p>In the specific case of the modfile. We can directly read the values of matrix <span class="math inline">\(A\)</span> are given in the output of dynare (precisely it is a subset of <span class="math inline">\(A'\)</span>)</p>
+<p>In general, if the solution of a model is <span class="math inline">\(y_t = A y_{t-1}\)</span> where <span class="math inline">\(y_t\)</span> is the vector of variables, we have a unit root when one of the eigenvalues of A is equal to 1 in absolute terms.</p>
+<p>In the specific case of the modfile, we can directly read the values of matrix <span class="math inline">\(A\)</span> are given in the output of dynare (precisely it is a subset of <span class="math inline">\(A'\)</span>)</p>
 <pre><code>  Coefficients of approximate solution function (reduced form)
 
 ───────┬──────────────────
@@ -430,7 +430,7 @@ Correction
 ───────┴──────────────────</code></pre>
 <p>The rows correspond to the (predetermined) states. Non predetermined variables do not appear as rows (or equivalently with zeros everywhere).</p>
 <p>Here we see that <span class="math inline">\(b_t\)</span> is the only endogenous state. We also see that its dynamic is given by:</p>
-<p>In particular, we see rule: <span class="math inline">\(b_t = 1.0 b_{t-1} + 0.1 e_{y,t}\)</span>.</p>
+<p><span class="math display">\[b_t = 1.0 b_{t-1} + 0.1 e_{y,t}\]</span></p>
 <p>In other words, the dynamic of <span class="math inline">\(b\)</span> is an AR1 with perfect persistence.</p>
 <p>This behaviour (like in an open economy) comes from the fact that any steady-state level of debt is feasible (in a deterministic model). Hence shocks can affect the steady-state permanently.</p>
 </div>
@@ -552,6 +552,7 @@ Correction
 <li>For a persistent one, define a new parameter in the parameters line initialized to <code>rho=0.9</code> and change the equation to <code>y - ybar = rho*(y(-1) - ybar) + e_y</code>. In the case <code>rho=1.0</code> note the apparition of a second unit root.</li>
 </ul>
 <p>In the simulations, pay attention to the magnitude of the shock <code>e_y</code> (1% by default) to compare it to the magnitude of the response for assets <code>b</code>.</p>
+<p>In all simulations, the persistent effect of the shock on the level of debt comes from the presence of a unit root.</p>
 </div>
 </div>
 </div>
