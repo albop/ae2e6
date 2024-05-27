@@ -14,7 +14,7 @@ rho=0.95;
 eta=1;
 nss=0.33;
 khi=(1-alp)*(1-nss)^eta/nss*(1/bet-1+del)/(1/bet-1+del-del*alp);
-kappa=0.0005;
+kappa=0.005;
 %rst=1/bet;
 
 
