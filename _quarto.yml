@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "Macro II - Fluctuations"
+  title: "Macro II - Fluctuations - Part II"
   search: false
   sidebar:
       style: "docked"
@@ -11,10 +11,21 @@ website:
           contents:
             - slides/session_1/index.qmd
             - slides/session_2/index.qmd
+            - slides/session_3/index.qmd
+            - slides/session_4/index.qmd
         - section: tutorials
           contents:
             - tutorials/session_1/index.ipynb
             - tutorials/session_2/index.ipynb
+            - tutorials/session_3/index.ipynb
+            - tutorials/session_4/index.ipynb
+        - section: tutorials (corrections)
+          contents:
+            - tutorials/session_1/index_correction.ipynb
+            - tutorials/session_2/index_correction.ipynb
+            - tutorials/session_3/index_correction.ipynb
+            - tutorials/session_4/index_correction.ipynb
+
 
 resources:
   - tutorials/session_2/*.md

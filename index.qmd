@@ -1,5 +1,5 @@
 ---
-title: "Macro II - Fluctuations"
+title: "Macro II - Fluctuations - Part II"
 listing:
   id: sample-listings
   type: table
@@ -31,7 +31,7 @@ You can browse the dyno models at this [address](https://www.mosphere.fr/ae2e6_m
 
 :::
 
-## Schedule (WIP)
+## Schedule
 
 ::: {#sample-listings}
 

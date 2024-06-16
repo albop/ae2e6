@@ -1,15 +1,20 @@
-var y i c n a b k r w;
+var y i c n a b k r w lam;
 varexo epsilon;
-parameters bet del alp nss khi eta rho rst;
+parameters bet del alp nss khi eta rho sig rst theta phi kss yss wss css lamss;
 
-bet=0.98;  alp=0.33; del=0.025; rho=0.95; eta=1; nss=0.33;
-khi=(1-alp)*(1-nss)^eta/nss*(1/bet-1+del)/(1/bet-1+del-del*alp);
-rst=1/bet;
+bet=0.98;  alp=0.33; del=0.025; rho=0.95; eta=1; rst=1/bet; nss=0.33; 
+theta=2.0; phi=0.5;
+
+// some steady-state calculations are needed to define khi
+kss = (alp/(1/bet-(1-del)))^(1/(1-alp))*nss; yss=kss^alp*nss^(1-alp);
+wss = (1-alp)*yss/nss; css=yss-del*kss; lamss=css^((phi-1)*theta-phi);
+khi=lamss*wss*(1-nss)^eta;
 
 model;
-1/c=bet*(r(1)+1-del)/c(1);
-1/c=bet*rst/c(1);
-w=khi*c/(1-n)^eta;
+lam=(c)^(-theta)*c(-1)^(phi*(theta-1));
+lam=bet*(r(1)+1-del)*lam(1);
+lam=bet*rst*lam(1);
+lam=khi/(1-n)^eta/w;
 k=(1-del)*k(-1)+i;
 y=a*k(-1)^alp*n^(1-alp);
 log(a)=rho*log(a(-1))+epsilon;
@@ -20,8 +25,9 @@ end;
 
 steady_state_model;
 a=1;                      r=1/bet-1+del;     n=nss;             
-k=(alp/r)^(1/(1-alp))*n;  y=k^alp*n^(1-alp); w=(1-alp)*y/n;
-i=del*k;                  c=y-i;             b=0;
+k=kss;  y=k^alp*n^(1-alp); w=(1-alp)*y/n;
+i=del*k;                  c=y-i;           b=0;
+lam=(c)^(-theta)*c^(phi*(theta-1));
 end;
 
 shocks;
