@@ -1,0 +1,85 @@
+---
+title: "Macro II - Fluctuations  - Partie 2"
+subtitle: ENSAE - 2023/2024 - Session 2A
+format: pdf
+execute:
+    echo: true
+    eval: false
+    code-line-numbers: true
+---
+
+On suppose que l'utilité d'un consommateur représentatif, l'individu $i$ est donnée par
+$\sum_{t=0}^{\infty} \frac{1}{(1+\rho)^t} \frac{(C_{it}/Z_{it})^{1-\theta}}{1-\theta}$ avec $\rho>0, \theta>0$ où $Z_{it}$ est le niveau de référence de la consommation. Le revenu de l'individu est $y_{i,t}$ et il peut épargner $a_t$ à un taux d'intérêt $r$ supposé constant. On suppose qu'il n'y a pas d'incertitude.
+
+
+__Habitudes externes.__ Supposons $Z_{it} = C_{t-1}^{\phi}$ avec $0\leq \phi \leq 1$. Cela signifie que le niveau de référence est déterminé par la consommation agrégée, prise comme donnée par l'individu.
+
+@. Écrire la contrainte de budget. Écrire la condition d'Euler pour la consommation. Exprimer $\frac{C_{i,t+1}}{C_{i,t}}$ en fonction de $\frac{C_t}{C_{t-1}}$ et $\frac{1+r}{1+\rho}$.
+
+::: {.content-visible when-profile="correction"}
+
+::: {.callout-note title="Correction" }
+
+On obtient $\lambda_t = (C_{it})^{-\theta}/Z_{it}^{1-\theta}$.
+
+Et la condition d'Euler:
+
+$$\lambda_t = \beta \lambda_{t+1} \frac{1+r}{1+\rho}$$
+
+D'où
+$$\frac{1+\rho}{1+r}=\beta \left( \frac{C_{i,t+1}}{C_{i,t1}}\right)^{-\theta}\left( \frac{Z_{i,t+1}}{Z_{i,t}} \right)^ {\theta-1}$$
+
+
+:::
+
+:::
+
+@. A l'équilibre la consommation du consommateur représentatif vaut $C_{i,t}=C_t$ pour tout $t$. Utiliser ce fait pour écrire $\log(C_{t+1}) - \log(C_t)$ en fonction de $\log(C_t)-\log(C_{t-1})$ (et toute autre variable pertinente). Pour $\phi>0$ et $\theta=1$, la formation d'habitude a-t-elle un effet sur le comportement de la consommation ? Et pour $\phi>0$ et $\theta>1$ ?
+
+::: {.content-visible when-profile="correction"}
+
+::: {.callout-note title="Correction"}
+
+En utilisant la condition d' équilibre:
+
+$$\frac{1+\rho}{1+r}=\beta \left( \frac{C_{t+1}}{C_{t}}\right)^{-\theta}\left( \frac{C_{t}}{C_{t-1}} \right)^ {\phi(\theta-1)}$$
+
+On peut la logdifferencier pour obtenir:
+
+$$\theta \left( \log(C_{t+1}) - \log(C_t) \right) =   \phi(\theta-1) \left( \log(C_t) - \log(C_{t-1}) \right)$$
+
+Pour $\phi>0$ et $\theta=1$ consommation est constante. Cela s'explique car pour ses valeurs l' utilité marginale de la consommation ne dépend pas de l'habitude. On trouve donc le même résultat.
+
+Pour $\phi>0$ et $\theta>1$, le taux de croissance la consommation peut s'écarter de zero s'il s'en est écarté dans le passé. Il décroît alors vers zero au rhythme $\phi\frac{\theta-1}{\theta}<1$.
+
+:::
+
+:::
+
+__Habitudes internes.__ On suppose maintenant $Z_{i,t}=C_{i,t-1}^ {\phi}$. C'est à dire que le niveau de consommation de référence est déterminé par sa propre consommation passée. On fixe $\phi=1$.
+
+@. Réécrire la condition d'Euler pour cette nouvelle spécification.
+
+@. On note $g_t=\frac{C_t}{C_{t-1}}-1$ la croissance de la consommation. Sous l'hypothèse, $\rho=r=0$ et en supposant la croissance de la consommation proche de zero, donner une formule approchée au premier ordre liant $g_{t+2}-g_{t+1}$ à $g_{t+1}-g_t$. Interpréter.
+
+
+__Implementation.__ Le modfile de la page suivante correspond au modèle RBC en économie ouverte (étudié en TD) augmenté par des habitudes de consommation.
+
+
+@. Dans le modfile, quelle symbole dénote le taux intérêt ? Donner le numéros de ligne des équations correspondant à l'épargne optimale des ménages et à la contrainte de budget.
+
+@. Quelle(s) modification(s) proposeriez-vous pour étudier l'effet d'un choc temporaire de magnitude 0.01 sur le taux d'intérêt mondial, s'éteignant après une seule période ?
+
+@. Commenter brièvement les IRFs obtenus après cette modification.
+
+{{< pagebreak >}}
+
+```{.default code-line-numbers="true"}
+
+{{< include open_habits.mod >}}
+
+```
+
+{{< pagebreak >}}
+
+![RBC + habits: réponse à un choc temporaire sur le taux d'intérêt mondial.](irfs_epsilon_r_1.png)
