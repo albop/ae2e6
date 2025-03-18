@@ -24,10 +24,14 @@ On obtient $\lambda_t = (C_{it})^{-\theta}/Z_{it}^{1-\theta}$.
 
 Et la condition d'Euler:
 
-$$\lambda_t = \beta \lambda_{t+1} \frac{1+r}{1+\rho}$$
+$$\lambda_t =  \lambda_{t+1} \frac{1+r}{1+\rho}$$
 
 D'où
-$$\frac{1+\rho}{1+r}=\beta \left( \frac{C_{i,t+1}}{C_{i,t1}}\right)^{-\theta}\left( \frac{Z_{i,t+1}}{Z_{i,t}} \right)^ {\theta-1}$$
+$$\frac{1+\rho}{1+r}= \left( \frac{C_{i,t+1}}{C_{i,t1}}\right)^{-\theta}\left( \frac{Z_{i,t+1}}{Z_{i,t}} \right)^ {\theta-1}$$
+
+et 
+
+$$\frac{1+\rho}{1+r}= \left( \frac{C_{i,t+1}}{C_{i,t1}}\right)^{-\theta}\left( \frac{C_t}{C_{t-1}} \right)^ {\varphi (\theta-1)}$$
 
 
 :::
@@ -42,11 +46,11 @@ $$\frac{1+\rho}{1+r}=\beta \left( \frac{C_{i,t+1}}{C_{i,t1}}\right)^{-\theta}\le
 
 En utilisant la condition d' équilibre:
 
-$$\frac{1+\rho}{1+r}=\beta \left( \frac{C_{t+1}}{C_{t}}\right)^{-\theta}\left( \frac{C_{t}}{C_{t-1}} \right)^ {\phi(\theta-1)}$$
+$$\frac{1+\rho}{1+r}=\left( \frac{C_{t+1}}{C_{t}}\right)^{-\theta}\left( \frac{C_{t}}{C_{t-1}} \right)^ {\phi(\theta-1)}$$
 
 On peut la logdifferencier pour obtenir:
 
-$$\theta \left( \log(C_{t+1}) - \log(C_t) \right) =   \phi(\theta-1) \left( \log(C_t) - \log(C_{t-1}) \right)$$
+$$\theta \left( \Delta \log(C_{t+1}) - \Delta \log(C_t) \right) =   \phi(\theta-1) \left( \Delta \log(C_t) - \Delta \log(C_{t-1}) \right)$$
 
 Pour $\phi>0$ et $\theta=1$ consommation est constante. Cela s'explique car pour ses valeurs l' utilité marginale de la consommation ne dépend pas de l'habitude. On trouve donc le même résultat.
 
@@ -59,6 +63,21 @@ Pour $\phi>0$ et $\theta>1$, le taux de croissance la consommation peut s'écart
 __Habitudes internes.__ On suppose maintenant $Z_{i,t}=C_{i,t-1}^ {\phi}$. C'est à dire que le niveau de consommation de référence est déterminé par sa propre consommation passée. On fixe $\phi=1$.
 
 @. Réécrire la condition d'Euler pour cette nouvelle spécification.
+
+::: {.content-visible when-profile="correction"}
+
+::: {.callout-note title="Correction"}
+
+On a $\lambda_t = \frac{C_{i,t}^ {-\theta}}{c_{i,t-1}^ {1-\theta}} - \beta \frac{C_{i,t+1}^{\theta}}{C_{i,t}^{\theta-1}}$
+
+et
+
+$\frac{\lambda_t}{\lambda_{t+1}} = \frac{1+r}{1+\rho}$
+
+:::
+
+:::
+
 
 @. On note $g_t=\frac{C_t}{C_{t-1}}-1$ la croissance de la consommation. Sous l'hypothèse, $\rho=r=0$ et en supposant la croissance de la consommation proche de zero, donner une formule approchée au premier ordre liant $g_{t+2}-g_{t+1}$ à $g_{t+1}-g_t$. Interpréter.
 

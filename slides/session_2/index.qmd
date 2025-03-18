@@ -1,7 +1,7 @@
 ---
 title: "Small Open Economy Extension (IRBC)"
-date: 2024/03/27
-subtitle: "Macro II - Fluctuations - ENSAE, 2023-2024"
+date: 2025/03/19
+subtitle: "Macro II - Fluctuations - ENSAE, 2024-2025"
 author: Pablo Winant
 format:
     revealjs:

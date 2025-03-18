@@ -1,7 +1,7 @@
 ---
 title: "Solving DSGE models"
-date: 2024/03/20
-subtitle: "Macro II - Fluctuations - ENSAE, 2023-2024"
+date: 2025/03/12
+subtitle: "Macro II - Fluctuations - ENSAE, 2024-2025"
 author: Pablo Winant
 format:
     revealjs:
@@ -56,13 +56,14 @@ In (macro)economics, we *model* the behaviour of economic agents by specifying:
 This has important implications:
 
 - macro models are *forward looking*
+    - rely on expectations
 - macro models need to be __solved__
 
 :::
 
 ::: fragment
 
-In many cases, there is not closed form for the solution -> we need numerical techniques
+In many cases, there is no closed form for the solution -> we need _numerical techniques_
 
 :::
 
@@ -78,6 +79,7 @@ In many cases, there is not closed form for the solution -> we need numerical te
     - DSGE: Dynamic Stochastic General Equilibrium
     - usually solved around a steady-state
 - Now about 10 contributors.
+    - $+$ power users who have contributed to the code
 
 :::::
 
@@ -87,6 +89,7 @@ In many cases, there is not closed form for the solution -> we need numerical te
     - early version in Gauss
     - then Matlab/Octave/Scilab
     - latest version in Julia
+    - ... and Python (checkout [dyno 🦖](https://www.mosphere.fr/ae2e6_models/voici/tree/index.html))
 
 ::::
 
@@ -110,12 +113,24 @@ Nowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF,
 
 . . .
 
-Institutions (led by researchers) are (slowly) diversifying their model
+Institutions, led by researchers are  diversifying their model
 
+- Semi-Structural Models
 - Computational General Equilibrium Models
-- Agent-based
-- Semi-structural models
+- Network Models
+- Agent-based Models
 - Heterogenous Agents Models
+
+## The Plan
+
+Provide a short introduction to DSGE modeling:
+
+- How models are solved (today)
+- Small Open Economy (aka IRBC model)
+- Heterogeneity
+- Financial Intermediation
+
+In passing, we'll discuss some of the trends
 
 # Solving a model
 
@@ -163,9 +178,13 @@ The situation is different when one is making a perfect foresight simulation.
 
 ::: {.callout-tip}
 
-In dynare the model equations are coded in the `model; ... ; end;` block.
+In a dynare modefile the model equations are coded in the `model; ... ; end;` block.
+
+Variable $v_t$ (resp $v_{t-1}$, $v_{t+1}$) is denoted by `v` or `v(0)` (resp `v(-1)`, `v(+1)`).
 
 :::
+
+__General Timing Convention__
 
 New information arrives with the innovations $\epsilon_t$. 
 
@@ -173,9 +192,20 @@ At date $t$, the information set is spanned by $\mathcal{F}_t = \mathcal{F} (\cd
 
 By convention *an endogenous variable has a subscript $t$ if it is known first at date $t$*.
 
-## Example
+. . .
 
-__The timing of equations__
+Several  __variable types__ depending on how they appear in the model:
+
+- jump variable: appear  $t$ or $t+1$
+- predetermined variable: appear in $t-1$ and $t$ (possibly $t+1$)
+- static variables: appear in $t$ only
+    - can be expressed as a function of other variables
+
+
+## The timing of equations
+
+### Example
+
 
 Using Dynare's timing conventions:
 
@@ -186,6 +216,7 @@ Using Dynare's timing conventions:
     - when is investment known?
 
 - Add a multiplicative investment efficiency shock $\chi_t$. Assume it is an $AR1$ driven by innovation $\eta_t$ and autocorrelation $\rho_{\chi}$
+    - how do you write the law of motion for capital?
 
 
 ##  Steady-state
@@ -212,40 +243,42 @@ To find numerically the steady-state: `steady;`.
 
 ## The implicit system {auto-animate="true"}
 
-Replacing the solution $$y_t = g(y_{t-1},\epsilon_t)$$ in the system
+Replacing the solution $$y_t = \color{red}{g}(y_{t-1},\epsilon_t)$$ in the system
 $$\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0$$
 
 we obtain:
 
-$$\mathbb{E}_t \left[ f(g(g(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), g(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0$$
+$$\mathbb{E}_t \left[ f(\color{red}{g}(\color{red}{g}(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), \color{red}{g}(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0$$
 
-It is an equation defining implicitly the function $g()$
+It is an equation defining implicitly the function $\color{red}{g}()$
 
 ## The state-space{auto-animate="true"}
 
-$$\mathbb{E}_t \left[ f(g(g(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), g(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0$$
+$$\mathbb{E}_t \left[ f(\color{red}{g}(\color{red}{g}(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), \color{red}{g}(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0$$
 
-In this expression, $y_{t-1},\epsilon_t$ is the state-space.
+In this expression, $y_{t-1},\epsilon_t$ is the state-space:
+
+- it contains all information available at $t$ to predict the future evolution of $(y_s)_{s\geq t}$
 
 . . .
 
 Dropping the time subscripts, the equation must be satisfied for any realization of $(y,\epsilon)$
-$$\forall (y,\epsilon)\  \Phi(g)(y,\epsilon) = \mathbb{E}_{\epsilon'} \left[ f(g(g(y,\epsilon),\epsilon'), g(y,\epsilon), y, \epsilon) \right]= 0$$
+$$\forall (y,\epsilon)\  \Phi(\color{red}{g})(y,\epsilon) = \mathbb{E}_{\epsilon'} \left[ f(\color{red}{g}(\color{red}{g}(y,\epsilon),\epsilon'), \color{red}{g}(y,\epsilon), y, \epsilon) \right]= 0$$
 
-It is a functional equation $\Phi(g)=0$
+It is a functional equation $\Phi(\color{red}{g})=0$
 
 ## Expected shocks
 
 First order approximation:
 
-- Assume $|y_t-\overline{y}|<<1$,$|\epsilon|<<1$,$|\epsilon'|<<1$
+- Assume $|\epsilon|<<1$,$|\epsilon'|<<1$
 
 Perform a Taylor expansion with respect to future shock:
 
 \begin{align}
- & & \mathbb{E}_{\epsilon'} \left[ f(g(g(y,\epsilon),\epsilon'), g(y,\epsilon), y, \epsilon) \right]  \\
-= & &  \mathbb{E}_{\epsilon'}\left[ f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) \right] \\ 
-  & & +  \mathbb{E}_{\epsilon'} \left[ f^{\prime}_{y_{t+1}}(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) g^{\prime}_{\epsilon} \epsilon^\prime\right] + o(\epsilon^{\prime}) \\
+ & & \mathbb{E}_{\color{green}{\epsilon'}} \left[ f(g(g(y,\epsilon),\color{green}{\epsilon'}), g(y,\epsilon), y, \epsilon) \right]  \\
+= & &  \mathbb{E}_{\color{green}{\epsilon'}}\left[ f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) \right] \\ 
+  & & +  \mathbb{E}_{\color{green}{\epsilon'}} \left[ f^{\prime}_{y_{t+1}}(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) g^{\prime}_{\epsilon} \color{green}{\epsilon'}\right] + o(\epsilon^{\prime}) \\
 \approx & & f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon)
 \end{align}
 
@@ -263,28 +296,27 @@ We are left with the system:
 
 $$F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0$$
 
-We can now use a variant of the *implicit function theorem* to recover a first approximation of $g$ as:
+A variant of the *implicit function theorem* then yields the existence of a first approximation of $g$:
+
 $$g(y,\epsilon) = \overline{y} + g^{\prime}_{y} (y-\overline{y}) + g^{\prime}_e \epsilon_t $$
 
 . . .
  
-We can obtain the unknown quantities $g^{\prime}_y$,  and $g^{\prime}_e$ using the *method of undeterminate coefficients*:
-
-Plug the first approximation into the system and write the conditions $$F^{\prime}_y(\overline{y}, 0) = 0$$ $$F^{\prime}_\epsilon(\overline{y}, 0) = 0$$
+Unknown quantities $g^{\prime}_y$,  and $g^{\prime}_e$ are obtained using the *method of undeterminate coefficients*. Plug the first approximation into the system and write the conditions $$F^{\prime}_y(\overline{y}, 0) = 0$$ $$F^{\prime}_\epsilon(\overline{y}, 0) = 0$$
 
 
 
 ## Computing $g^{\prime}_y$
 
 Recall the system:
-$$F(y,\epsilon) = f(g(g(y,0),\epsilon), g(y,\epsilon), y, \epsilon) = 0$$
+$$F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0$$
 
 
 We have $$F^{\prime}_y(\overline{y}, 0) = f^{\prime}_{y_{t+1}} g^{\prime}_y g^{\prime}_y + f^{\prime}_{y_{t}} g^{\prime}_y + f^{\prime}_{y_{t-1}} = 0 $$
 
 . . .
 
-This is a specific Riccatti equation  $$A X^2 + B X + C$$ where $A,B,C$ and $X=g^{\prime}_y$ are square matrices $\in \mathbb{R}^n \times \mathbb{R}^n$
+g^{\prime}_y is the solution of a specific Riccatti equation  $$A X^2 + B X + C$$ where $A,B,C$ and $X=g^{\prime}_y$ are square matrices $\in \mathbb{R}^n \times \mathbb{R}^n$
 
 ## First Order Deterministic Model
 
@@ -350,7 +382,7 @@ $$\alpha \pi_{t+1} - \pi_t + 0 \pi_{t-1}  = 0$$
 
 or
 
-$$\pi_{t+1} - (\frac{1}{\alpha} + 0 )\pi_t + \left(\frac{1}{\alpha} 0\right) \pi_{t-1} = 0$$
+$$\pi_{t+1} - \left(\frac{1}{\alpha} + 0 \right)\pi_t + \left(\frac{1}{\alpha} 0\right) \pi_{t-1} = 0$$
 
 . . .
 
