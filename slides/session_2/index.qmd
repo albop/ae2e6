@@ -24,7 +24,7 @@ format:
 ## Why a small open economy?
 
 
-What are the classical reasons to open economy to trade
+What are the classical reasons to open economy to trade?
 
 ::: incremental
 
@@ -115,33 +115,44 @@ Internationally:
 ::::
 :::
 
-# Modeling a Small Open Econmomy
+# Modeling a Small Open Economy
 
 ## Endowment model
 
-Take an endowment economy: income $(y_t)_t$ is exogenously given. We assume it is deterministic
-
+Representative agents maximizes:
 $$\max_{c_t} \sum_{t=0}^{\infty} \beta^t u(c_t)$$
+$$c_t + a_{t} \leq y_t + (1+r) a_{t-1} $$
 
-$$c_t+a_{t+1} \leq y_t + (1+r) a_t$$
+::: r-stack
 
-Country takes world interest rate $r$ as given 
+:::: {.fragment .current-visible}
 
-- a small open economy doesn't affect world prices
+__Endowment economy__:
 
+- income $(y_t)_t$ is exogenously given
+- for simplicity we assume it is deterministic
 
-## Endowment model (2)
+__Small open economy__:
+
+- *open*:  can save $a_t$ which yields $a_{t+1}(1+r)$ in the next period
+- *small*: country takes world interest rate $r$ as given (no effect on world prices)
+
+::::
+:::: {.fragment .current-visible}
 
 We solve this problem with the terminal conditions:
 
 - $a_0$ given
-- $\lim_{T\rightarrow\infty} \frac{a_{T+1}}{(1+r)^T}\geq0$ 
+- $\lim_{T\rightarrow\infty} \frac{a_{T}}{(1+r)^T}\geq0$ 
 
     - *no-ponzi* condition
 
-. . .
+The no-ponzi condition will in effect eliminate diverging solutions.
 
-The no-ponzi condition will in effect eliminate diverging solutions. In a first order approximation, it selects the right eigenvalues.
+In a first order approximation, it selects the right eigenvalues.
+
+::::
+:::
 
 ## Endowment model (3)
 
