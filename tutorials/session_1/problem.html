@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -65,10 +65,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fce3f6019bb826be6beab376ba71255.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-7b49eb1f46f1ac1ffdbd63bb8b3192ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -706,7 +706,7 @@ City: Bogota</code></pre>
 <p><span class="math display">\[y_t = A y_{t-1} + B e_t\]</span></p>
 <p>where <span class="math inline">\(y_t=(y^1_t, y^2_t)\)</span> a vector of variables and <span class="math inline">\(e_t=(e^1_t, e^2_t)\)</span> a normal i.i.d. multivariate process defined by covariance matrix <span class="math inline">\(\Sigma \in R^p \times R^p\)</span>.</p>
 <p>We start by choosing:</p>
-<p><span class="math display">\[A = \begin{bmatrix}\rho &amp; 0 \\ 2 &amp; \lambda\end{bmatrix}\]</span></p>
+<p><span class="math display">\[A = \begin{bmatrix}\rho &amp; 2 \\ 0 &amp; \lambda\end{bmatrix}\]</span></p>
 <p><span class="math display">\[B = \begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}\]</span></p>
 <p><span class="math display">\[\Sigma = \begin{bmatrix}0.05 &amp; 0.005 \\ 0.005 &amp; 0.01\end{bmatrix}\]</span></p>
 <p><strong>Define julia variables for matrices <span class="math inline">\(A, B, \Sigma\)</span>.</strong></p>
