@@ -223,7 +223,7 @@ Using Dynare's timing conventions:
 
 The deterministic steady-state satisfies:
 
-$$ f(\overline{y},\overline{y}, \overline{y}, 0)= 0$$
+$$f(\overline{y},\overline{y}, \overline{y}, 0)= 0$$
 
 Often, there is a closed-form solution.
 
@@ -316,7 +316,7 @@ We have $$F^{\prime}_y(\overline{y}, 0) = f^{\prime}_{y_{t+1}} g^{\prime}_y g^{\
 
 . . .
 
-g^{\prime}_y is the solution of a specific Riccatti equation  $$A X^2 + B X + C$$ where $A,B,C$ and $X=g^{\prime}_y$ are square matrices $\in \mathbb{R}^n \times \mathbb{R}^n$
+$g^{\prime}_y$ is the solution of a specific Riccatti equation  $$A X^2 + B X + C$$ where $A,B,C$ and $X=g^{\prime}_y$ are square matrices $\in \mathbb{R}^n \times \mathbb{R}^n$
 
 ## First Order Deterministic Model
 

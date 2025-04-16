@@ -40,7 +40,14 @@ What are the classical reasons to open economy to trade?
 
 ## From RBC to IRBC
 
-After the success of RBC models to match business cycles it didn't take long before the same methodology was applied to International Business Cycles
+RBC models have been  very successful at matching Business Cycles
+
+- (temporary) victory against keynesian view that short term fluctuations result from demand shocks
+- so successful that facts at odd with theoretical predictions have been called "puzzles"
+
+. . .
+
+It didn't take long before the same methodology was applied to International Business Cycles
 
 . . .
 
@@ -116,6 +123,10 @@ Internationally:
 ::::
 :::
 
+. . .
+
+Can we replicate these moments with a BC model?
+
 # Modeling a Small Open Economy
 
 ## Endowment model
@@ -172,14 +183,19 @@ u^{\prime}(c_t)& =& \lambda_t \\
 \end{align}
 
 
-Under the *technical assumption* $\beta (1+r)=1$ we get:
+Under the *technical assumption* $\beta (1+r)=1$ we get $c_t=c_{t+1}$ then
 
 $$c_0 = \frac{r}{1+r}\left\{ (1+r) a_{-1} + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}$$
 
 . . .
 
-- problem isomorphic to consumption-savings decisions
+::: {.incremental}
+
 - consumption is determined by permanent income
+    - changes in initial wealth have permanent effects
+- *remark*: problem isomorphic to consumption-savings decisions
+
+:::
 
 ## Current Account
 
@@ -218,12 +234,14 @@ How does the current account reacts to income shocks?
 Still with the same formula:
 $$c_0 = \frac{r}{1+r}\left\{ (1+r) a_{-1} + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}$$
 
-What is the effect of an increase in $a_0$?
+What is the effect of an increase in $a_{-1}$?
 
-- consumption rises permanently
-    - by small amount $r$ corresponding to interests paid forever on $a_{-1}$
+    - consumption rises permanently
+    - $a_t$ is constant, equal to $a_{-1}$
+    - agent consumes small amount $r$ corresponding to interests paid forever on $a_{-1}$
+
 - this will correspond to a unit root in the solution
-
+<!-- 
 ## Exercise
 
 From the first order conditions 
@@ -236,7 +254,7 @@ u^{\prime}(c_t) & = & \lambda_t \\
 
 
 assuming $u(c_t) = \log (c_t)$, can you get the equation for the law of motion of $a_t$  and show the presence of a unit root?
-
+ -->
 
 ## Adding capital
 
@@ -298,7 +316,11 @@ $$a_{t} + c_t + i_t + \frac{\omega}{2}\frac{(k_{t}-k_{t-1})^ 2}{k_t} = (1+r)a_{t
 
 $$k_{t} = (1-\delta) k_{t-1} + i_t$$
 
-where $\omega$ is an adjustment friction. Typically, $\omega$ is chosen so that the model replicates $\frac{Var(i_t)}{Var(y_t)}$ from the data.
+where $\omega$ is an adjustment friction.
+
+. . .
+
+Typically, $\omega$ is chosen so that the model replicates $\frac{Var(i_t)}{Var(y_t)}$ from the data.
 
 . . .
 
@@ -326,7 +348,8 @@ where $\omega$ is an adjustment friction. Typically, $\omega$ is chosen so that 
 - small open economy model with production, consumption-leisure tradeoff and capital adjustment costs
     - = RBC+open+adj costs
 - perform some moments matching
-- compare different ways of stationarizing the model
+- compare different ways of stationarizing 
+
 
 ::::
 :::
@@ -335,7 +358,7 @@ where $\omega$ is an adjustment friction. Typically, $\omega$ is chosen so that 
 
 $$\max_{c_t, n_t} \sum_{t=0}^{\infty} \beta^t u(c_t, n_t)$$
 
-$$c_t + k_{t} + a_{t} = y_t + g_t - \frac{\omega}{2}(k_{t}-k_{t-1})^2 +(1-\delta) k_{t-1} + (1+r^{\star}+\pi(a_{t-1}))a_{t-1}$$
+$$c_t + k_{t} + a_{t} = y_t + g_t - \frac{\omega}{2}(k_{t}-k_{t-1})^2 +(1-\delta) k_{t-1} + (1+r^{\star}+{\color{red}\pi(a_{t-1})})a_{t-1}$$
 $$y_t = f(k_{t-1}, n_t, z_t)$$
 
 $$z_{t+1} = \rho z_t + \epsilon_{t+1}$$
@@ -343,6 +366,11 @@ $$z_{t+1} = \rho z_t + \epsilon_{t+1}$$
 and $$u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^{1-\psi}
 )\right)^{1-\sigma}$$
 
+
+. . .
+
+
+The term $\color{red}\pi$ is there to make the model stationary.
 
 
 ## How to make the distribution stationary?
