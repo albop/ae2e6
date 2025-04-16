@@ -37,8 +37,6 @@ format:
 
 __Ben Bernanke__
 
-::::: {.incremental}
-
 - chairman of the Fed (2006-2014) succeeding Alan Greenspan
 - aka Helicopter Ben
 - was an expert of the Great Depression...
@@ -48,11 +46,10 @@ __Ben Bernanke__
 - received the Nobel Prize in 2022 with Diamond and  Dybvig
   - for their work on banks and their necessary bailouts 
   during financial crises
-  - bernanke (and others) incorporated realistic models of banks (from D&D) in DSGE models
+  - Bernanke (and others) incorporated realistic models of banks (from D&D) in DSGE models
 
 - His acceptance speech is [online](https://www.nobelprize.org/prizes/economic-sciences/2022/bernanke/biographical/)
 
-:::::
 
 ::::
 
@@ -139,7 +136,7 @@ __Financial accelerator__[^finacc]:
 
 ## The Great Recession
 
-i::: {.incremental}
+::: {.incremental}
 
 - Great Recession Resulted from "credit disruptions"
 - A large fraction of intermediaries were *shadow banks* (investment banks, mortgage companies, money market funds, ...) which
@@ -177,7 +174,7 @@ i::: {.incremental}
   - works at Federal Reserve Board
   - specialized in macro modeling especially on the housing market
 
-- [Financial business cycles](assets/FBC.pdf), Review of Economic Dynamics 2015
+- [Financial business cycles](papers/FBC.pdf), Review of Economic Dynamics 2015
   - DSGE model with a financial sector and financial shocks
   - model is estimated
   - result: recessions (cycles) are triggered by credit shocks
@@ -242,7 +239,7 @@ where:
 - $W_t$: wage rate
 - $\epsilon_t$: a redistributive shock (proxy for default)
 
-## Households: {auto-animate="true"}
+## Households {auto-animate="true"}
 
 ::: columns
 
