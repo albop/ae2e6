@@ -1,6 +1,6 @@
 ---
 title: "Intro to Heterogeneity"
-date: 2025/04/1
+date: 2025/03/26
 subtitle: "Macro II - Fluctuations - ENSAE, 2024-2025"
 author: Pablo Winant
 format:

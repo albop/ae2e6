@@ -7,11 +7,11 @@ listing:
   filter-ui: false
   contents: 
     - slides/session_*/index.qmd
-    - slides/prep_*/wip.qmd
+    # - slides/prep_*/wip.qmd
   sort: date
   fields: [date, title]
 ---
-
+<!-- 
 ::: {.callout-tip title="Resources for tutorials" collapse="true"}
 
 The notebooks for the tutorials can be downloaded from this website (click on the Jupyter icon).
@@ -29,9 +29,9 @@ You can browse the dyno models at this [address](https://www.mosphere.fr/ae2e6_m
 
 
 
-:::
+::: -->
 
-## Schedule
+## Agenda des Cours
 
 ::: {#sample-listings}
 

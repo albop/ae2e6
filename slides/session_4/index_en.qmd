@@ -1,6 +1,6 @@
 ---
 title: "Financial Intermediation"
-date: 2025/04/15
+date: 2025/04/2
 subtitle: "Macro II - Fluctuations - ENSAE, 2024-2025"
 author: Pablo Winant
 
