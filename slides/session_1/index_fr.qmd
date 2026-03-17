@@ -1,0 +1,633 @@
+---
+title: "Résolution des modèles DSGE"
+date: 2025/03/12
+subtitle: "Macro II - Fluctuations - ENSAE, 2024-2025"
+author: Pablo Winant
+format:
+    revealjs:
+        navigation-mode: linear
+        layout: wide
+        toc: true
+        toc-depth: 1
+        toc-title: Plan
+        width: 1920
+        height: 1080
+    beamer:
+        output-file: slides.pdf
+    html:
+        output-file: handout.html
+
+---
+
+# Introduction
+
+## 
+
+::: columns
+
+:::: {.column width=80%}
+
+Quelle est la principale spécificité de la modélisation économique ?
+
+::: {.fragment}
+
+En (macro)économie, nous *modélisons* le comportement des agents économiques en spécifiant :
+
+- leur objectif $$\max_{c_t} E_t \sum_{s\geq t} \beta^s U(c_s)$$ $$\max \pi_t$$ $$\cdots$$
+- leurs contraintes (contrainte budgétaire, environnement éco...)
+
+:::
+
+::::
+
+:::: {.column width=20%}
+
+![](assets/lucifer.jpg){.fragment}
+
+
+
+::::
+:::
+
+. . .
+
+::: fragment
+
+Cela a des implications importantes :
+
+- les modèles macro sont orientés vers le futur (*forward looking*)
+    - ils reposent sur les anticipations
+- les modèles macro doivent être __résolus__
+
+:::
+
+::: fragment
+
+Dans de nombreux cas, il n'existe pas de forme fermée pour la solution -> il faut des _techniques numériques_
+
+:::
+
+## Dynare
+
+::: columns
+
+:::: {.column width=60%}
+
+::::: {.incremental}
+
+- 1996 : Michel Juillard crée un logiciel open source pour résoudre des modèles DSGE
+    - DSGE : Dynamic Stochastic General Equilibrium
+    - généralement résolus autour d'un état stationnaire
+- Aujourd'hui, environ 10 contributeurs.
+    - $+$ des power users qui ont contribué au code
+
+:::::
+
+:::: {.fragment}
+
+- Il a été largement adopté :
+    - premières versions sous Gauss
+    - puis Matlab/Octave/Scilab
+    - dernière version en Julia
+    - ... et Python (voir [dyno 🦖](https://www.mosphere.fr/ae2e6_models/voici/tree/index.html))
+
+::::
+
+
+::::
+
+:::: {.column width=40%}
+
+![Michel Juillard](assets/michel.jpeg)
+
+::::
+
+:::
+
+## Modèles DSGE dans les institutions
+
+Aujourd'hui, la plupart des modèles DSGE développés dans les institutions ont une version Dynare (FMI/GIMF, CE/Quest, BCE/, NYFed/FRBNY)
+
+- ils sont généralement basés sur le *modèle de taille intermédiaire* de Smets & Wouters (10 équations)
+- mais ils ont beaucoup grandi (>>100 équations)
+
+. . .
+
+Les institutions, portées par les chercheurs, diversifient leurs modèles
+
+- Modèles semi-structurels
+- Modèles d'équilibre général calculable
+- Modèles de réseaux
+- Modèles à agents
+- Modèles à agents hétérogènes
+
+## Plan
+
+Fournir une courte introduction à la modélisation DSGE :
+
+- Comment les modèles sont résolus (aujourd'hui)
+- Petite économie ouverte (aka modèle IRBC)
+- Hétérogénéité
+- Intermédiation financière
+
+Au passage, nous discuterons de certaines tendances
+
+# Résolution d'un modèle
+
+## Modèle
+
+Une représentation très concise d'un modèle
+
+$$\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0$$
+
+::: columns
+
+:::: column 
+
+::::: fragment
+
+Le __problème__ :
+
+- $y_t\in\mathbb{R}^n$ : le vecteur des variables endogènes
+- $\epsilon_t\in\mathbb{R}^{n_e}$ : le vecteur des variables exogènes
+    - on suppose que $\epsilon_t$ est un processus gaussien centré
+- $f: \mathbb{R}^n\rightarrow \mathbb{R}^n$ : les équations du modèle
+
+:::::
+::::
+
+:::: column
+
+::::: fragment
+
+La __solution__ :
+
+- $g$ telle que $$\forall t, y_t = g(y_{t-1},\epsilon_t)$$
+
+:::::
+
+::::
+
+:::
+
+::: notes
+La situation est différente lorsqu'on réalise une simulation en prévision parfaite.
+:::
+
+## Le timing des équations
+
+::: {.callout-tip}
+
+Dans un modefile dynare, les équations du modèle sont codées dans le bloc `model; ... ; end;`.
+
+La variable $v_t$ (resp $v_{t-1}$, $v_{t+1}$) est notée `v` ou `v(0)` (resp `v(-1)`, `v(+1)`).
+
+:::
+
+__Convention générale de timing__
+
+La nouvelle information arrive avec les innovations $\epsilon_t$. 
+
+À la date $t$, l'ensemble d'information est engendré par $\mathcal{F}_t = \mathcal{F} (\cdots, \epsilon_{t-3}, \epsilon_{t-2}, \epsilon_{t-1}, \epsilon_t)$
+
+Par convention, *une variable endogène a l'indice $t$ si elle est connue pour la première fois à la date $t$*.
+
+. . .
+
+Plusieurs __types de variables__ selon leur apparition dans le modèle :
+
+- variable de saut : apparaît en  $t$ ou $t+1$
+- variable prédéterminée : apparaît en $t-1$ et $t$ (éventuellement $t+1$)
+- variable statique : apparaît seulement en $t$
+    - peut être exprimée en fonction d'autres variables
+
+
+## Le timing des équations
+
+### Exemple
+
+
+Avec les conventions de timing de Dynare :
+
+- Écrire la fonction de production dans le modèle RBC
+
+- Écrire la loi de mouvement du capital $k$, avec un taux de dépréciation $\delta$ et l'investissement $i$
+    - quand le capital est-il connu ?
+    - quand l'investissement est-il connu ?
+
+- Ajouter un choc multiplicatif d'efficacité de l'investissement $\chi_t$. Supposer qu'il suit un $AR1$ piloté par l'innovation $\eta_t$ et l'autocorrélation $\rho_{\chi}$
+    - comment écrivez-vous la loi de mouvement du capital ?
+
+
+##  État stationnaire
+
+L'état stationnaire déterministe vérifie :
+
+$$f(\overline{y},\overline{y}, \overline{y}, 0)= 0$$
+
+Souvent, il existe une solution en forme fermée.
+
+Sinon, il faut recourir à un solveur numérique pour résoudre
+
+$$\overline{y}\rightarrow f(\overline{y},\overline{y}, \overline{y}, 0)$$
+
+
+::: {.callout-tip collapse="true"}
+
+Dans dynare, les valeurs d'état stationnaire sont fournies dans le bloc `steadystate_model; ... ; end;`. On peut vérifier qu'elles sont correctes avec l'instruction `check;`.
+
+Pour trouver numériquement l'état stationnaire : `steady;`.
+
+:::
+
+
+## Le système implicite {auto-animate="true"}
+
+En remplaçant la solution $$y_t = \color{red}{g}(y_{t-1},\epsilon_t)$$ dans le système
+$$\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0$$
+
+on obtient :
+
+$$\mathbb{E}_t \left[ f(\color{red}{g}(\color{red}{g}(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), \color{red}{g}(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0$$
+
+C'est une équation qui définit implicitement la fonction $\color{red}{g}()$
+
+## L'espace d'état{auto-animate="true"}
+
+$$\mathbb{E}_t \left[ f(\color{red}{g}(\color{red}{g}(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), \color{red}{g}(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0$$
+
+Dans cette expression, $y_{t-1},\epsilon_t$ est l'espace d'état :
+
+- il contient toute l'information disponible en $t$ pour prédire l'évolution future de $(y_s)_{s\geq t}$
+
+. . .
+
+En supprimant les indices temporels, l'équation doit être satisfaite pour toute réalisation de $(y,\epsilon)$
+$$\forall (y,\epsilon)\  \Phi(\color{red}{g})(y,\epsilon) = \mathbb{E}_{\epsilon'} \left[ f(\color{red}{g}(\color{red}{g}(y,\epsilon),\epsilon'), \color{red}{g}(y,\epsilon), y, \epsilon) \right]= 0$$
+
+C'est une équation fonctionnelle $\Phi(\color{red}{g})=0$
+
+## Chocs anticipés
+
+Approximation du premier ordre :
+
+- Supposer $|\epsilon|<<1$,$|\epsilon'|<<1$
+
+Effectuer un développement de Taylor par rapport au choc futur :
+
+\begin{align}
+ & & \mathbb{E}_{\color{green}{\epsilon'}} \left[ f(g(g(y,\epsilon),\color{green}{\epsilon'}), g(y,\epsilon), y, \epsilon) \right]  \\
+= & &  \mathbb{E}_{\color{green}{\epsilon'}}\left[ f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) \right] \\ 
+  & & +  \mathbb{E}_{\color{green}{\epsilon'}} \left[ f^{\prime}_{y_{t+1}}(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) g^{\prime}_{\epsilon} \color{green}{\epsilon'}\right] + o(\epsilon^{\prime}) \\
+\approx & & f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon)
+\end{align}
+
+. . .
+
+On utilise le fait que $\mathbb{E}\left[ \epsilon^{\prime}\right] = 0$. 
+
+Au premier ordre, les chocs anticipés ne jouent aucun rôle.
+
+Pour capturer les comportements de précaution (comme les primes de risque), il faut augmenter l'ordre d'approximation.
+
+## Perturbation du premier ordre
+
+Il nous reste le système :
+
+$$F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0$$
+
+Une variante du *théorème des fonctions implicites* donne alors l'existence d'une première approximation de $g$ :
+
+$$g(y,\epsilon) = \overline{y} + g^{\prime}_{y} (y-\overline{y}) + g^{\prime}_e \epsilon_t $$
+
+. . .
+ 
+Les quantités inconnues $g^{\prime}_y$,  et $g^{\prime}_e$ sont obtenues avec la *méthode des coefficients indéterminés*. On injecte la première approximation dans le système et on écrit les conditions $$F^{\prime}_y(\overline{y}, 0) = 0$$ $$F^{\prime}_\epsilon(\overline{y}, 0) = 0$$
+
+
+
+## Calcul de $g^{\prime}_y$
+
+Rappel du système :
+$$F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0$$
+
+
+On a $$F^{\prime}_y(\overline{y}, 0) = f^{\prime}_{y_{t+1}} g^{\prime}_y g^{\prime}_y + f^{\prime}_{y_{t}} g^{\prime}_y + f^{\prime}_{y_{t-1}} = 0 $$
+
+. . .
+
+$g^{\prime}_y$ est la solution d'une équation de Riccati spécifique  $$A X^2 + B X + C$$ où $A,B,C$ et $X=g^{\prime}_y$ sont des matrices carrées $\in \mathbb{R}^n \times \mathbb{R}^n$
+
+## Modèle déterministe du premier ordre
+
+Faisons une pause pour observer le modèle déterministe du premier ordre :
+$$A X^2 + B X + C$$
+
+D'après notre intuition en dimension 1, on sait qu'il doit y avoir plusieurs solutions
+
+- comment les trouver ?
+- comment sélectionner les bonnes ?
+
+En l'absence de chocs, la dynamique du modèle est donnée par $$y_t = X y_{t-1}$$
+
+Quelle est la condition pour que le modèle soit stationnaire ?
+
+. . .
+
+-> la plus grande valeur propre de $X$ doit être inférieure à 1
+
+::: notes
+
+Développer l'intuition en dimension 1.
+
+:::
+
+
+## Multiplicité des solutions
+
+On peut montrer que le système est associé à $2 n$ valeurs propres généralisées :
+
+$$|\lambda_1| \leq \cdots \leq |\lambda_{2 n}|$$
+
+Pour chaque choix $C$ de $n$ valeurs propres ($|C|=n$), une solution récursive spécifique $X_C$ peut être *construite*. Elle a pour valeurs propres $C$.
+
+. . .
+
+Cela donne au moins $\left(\begin{matrix} 2 n \\ n \end{matrix}\right)$ combinaisons différentes.
+
+. . .
+
+Un modèle est bien défini lorsqu'il existe __exactement une solution non divergente__.
+
+Ceci est équivalent à :
+
+$$|\lambda_1| \leq \cdots \leq |\lambda_{n}| \leq 1 < |\lambda_{n+1}| \leq \cdots \leq |\lambda_{2 n}|$$
+
+
+
+## Exemple 1
+
+Inflation orientée vers le futur :
+
+$$\pi_t = \alpha \pi_{t+1}$$
+avec $\alpha<1$. 
+
+Le modèle est-il bien défini ?
+
+. . .
+
+On peut réécrire le système :
+
+$$\alpha \pi_{t+1} - \pi_t + 0 \pi_{t-1}  = 0$$
+
+ou
+
+$$\pi_{t+1} - \left(\frac{1}{\alpha} + 0 \right)\pi_t + \left(\frac{1}{\alpha} 0\right) \pi_{t-1} = 0$$
+
+. . .
+
+Les valeurs propres généralisées sont $0\leq 1 < \frac{1}{\alpha}$.
+
+. . .
+
+La solution stable unique est $\pi_t=0 \pi_{t-1}$
+
+
+## Exemple 2
+
+Équation d'accumulation de dette par un agent rationnel :
+
+$$b_{t+1} - (1+\frac{1}{\beta}) b_t + \frac{1}{\beta} b_{t-1} = 0$$
+
+Le modèle est-il bien défini ?
+
+. . .
+
+Deux valeurs propres généralisées $\lambda_1=1 < \lambda_2=\frac{1}{\beta}$
+
+. . .
+
+La solution unique non divergente est $b_t = b_{t-1}$.
+
+- c'est une *racine unitaire* : toute déviation initiale de $b_{t-1}$ a des effets persistants
+
+
+## Exemple 3 
+
+Processus de productivité : 
+$$z_t = \rho z_{t-1}$$
+avec $\rho<1$ : [bien défini]{.fragment}
+
+. . .
+
+Dans ce cas, il existe une valeur propre infinie cachée $\infty$ associée à $z_{t+1}$.
+
+. . .
+
+Pour voir pourquoi, considérer le système associé aux valeurs propres $m$ et $\rho$ :
+$$z_{t+1} - (m+\rho) z_t + m \rho z_{t-1} = 0$$
+
+$$\frac{1}{m} z_{t+1} - (1+\frac{\rho}{m}) z_t + \rho z_{t-1} = 0$$
+
+Ce qui correspond au modèle initial quand $m=\infty$
+
+. . .
+
+
+Les valeurs propres généralisées sont $\lambda_1 = \rho \leq 1 < \lambda_2 = \infty$
+
+Plus généralement, toute variable qui n'apparaît pas en $t+1$ crée une valeur propre généralisée infinie.
+
+## Un critère de bonne définition
+
+En regardant à nouveau la liste des valeurs propres, on met de côté les valeurs infinies.
+
+Le modèle est bien spécifié ssi on peut ordonner les valeurs propres comme suit :
+
+$$|\lambda_1| \leq \cdots \leq |\lambda_{n}| \leq 1 < |\lambda_{n+1}| \leq \cdots  |\lambda_{n+k}| \leq \underbrace{|\lambda_{n+k+1}| \cdots \leq |\lambda_{2 n}|}_{\text{valeurs propres infinies}}$$
+
+
+::: {.callout-note}
+
+### Critère de Blanchard-Kahn
+
+Le modèle satisfait le critère de Blanchard-Kahn si le nombre de valeurs propres supérieures à un est exactement égal au nombre de variables *apparaissant* en $t+1$.
+
+Dans ce cas, le modèle est bien défini.
+
+:::
+
+## Calcul de la solution
+
+Il existe plusieurs méthodes classiques pour calculer la solution de l'équation algébrique de Riccati : $$A X^2+ B X + C=0$$
+
+- décomposition qz
+    - traditionnellement utilisée dans la littérature DSGE depuis Chris Sims
+    - un peu contre-intuitive
+- réduction cyclique
+    - nouveau défaut dans dynare, mieux adaptée aux grands modèles
+- itération temporelle linéaire cf @sec:linear_time_iteration
+    - conceptuellement très simple
+
+## Calcul de $g^{\prime}_{e}$
+
+Maintenant que nous avons $g^{\prime}_y$, comment obtenir $g^{\prime}_{e}$ ?
+
+Rappel :
+$$F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0$$
+
+
+On a $$F^{\prime}_e(\overline{y}, 0) =  f^{\prime}_{y_{t+1}}  g^{\prime}_y  g^{\prime}_e + f^{\prime}_{y_{t}} g^{\prime}_e + f^{\prime}_{\epsilon_t} = 0 $$
+
+Maintenant c'est facile :
+
+$$g^{\prime}_e = - (f^{\prime}_{y_{t+1}}  g^{\prime}_y + f^{\prime}_{y_{t}} )^{-1}  f^{\prime}_{\epsilon_t} = 0 $$
+
+
+## La solution du modèle
+
+Le résultat de la résolution du modèle :
+$$y_t = g_y y_{t-1} + g_e \epsilon_t$$
+
+C'est un AR1, piloté par le choc exogène $\epsilon_t$.
+
+. . .
+
+Comme c'est une structure bien connue, on peut analyser le modèle avec
+
+- des fonctions de réponse impulsionnelle
+- des simulations stochastiques
+
+. . .
+
+Puis, pour comparer le modèle aux données, on calcule
+
+- les moments implicites :
+    - covariances, autocorrélation
+- la vraisemblance
+
+Optimiser l'ajustement aux données s'appelle l'estimation du *modèle*
+
+
+
+# Conclusion {#sec-conclusion}
+
+## Que faire avec la solution
+
+La solution d'un modèle trouvée par Dynare a une forme particulièrement simple : un AR1
+
+- $y_t = X y_{t-1} + Y \epsilon_t$
+- où les covariances $\Sigma$ de $\epsilon_t$ peuvent être choisies par le modélisateur
+
+. . .
+
+Avec cette solution, on peut (cf prochain TD)
+
+- calculer des moments (conditionnels et inconditionnels)
+- réaliser des simulations stochastiques, fonctions de réponse impulsionnelle
+
+. . .
+
+
+
+## Aller plus loin
+
+Amener le modèle aux données avec Dynare
+
+- "estimer" le modèle : calculer la vraisemblance d'une solution et la maximiser en choisissant les bons paramètres
+- "identifier" les chocs dans les données
+
+Autres fonctions
+
+- approximation d'ordre supérieur
+- simulations en prévision parfaite (non linéaires)
+- plan de Ramsey
+- politique discrétionnaire
+- ...
+
+## À venir
+
+
+![](assets/ea0.jpg)
+
+
+De nombreux modèles
+
+
+
+# Annexe : itération temporelle linéaire  {#sec:linear_time_iteration}
+
+
+
+## Itération temporelle linéaire
+
+Rappel du système à résoudre :
+$$F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0$$
+
+mais supposons maintenant que les règles de décision aujourd'hui et demain soient différentes :
+
+- aujourd'hui : $y_t = g(y_{t-1}, \epsilon_t) = \overline{y} + X y_{t-1} + g_y \epsilon_t$
+- demain : $y_{t+1} = \tilde{g}(y_t, \epsilon_{t+1}) = \overline{y} + \tilde{X} y_{t-1} + \tilde{g}_y \epsilon_t$
+
+L'équation de Riccati s'écrit alors :
+
+$$A \tilde{X} X + B X + C = 0$$
+
+
+## Itération temporelle linéaire (2)
+
+L'algorithme d'itération temporelle linéaire consiste à résoudre la règle de décision $X$ aujourd'hui en fonction de la règle de décision demain $\tilde{X}$.
+
+Cela correspond à la formule simple :
+
+$$X = -(A\tilde{X} + B)^{-1} C$$
+
+Et l'algorithme complet peut être décrit ainsi :
+
+- choisir $X_0$
+- pour tout $X_n$, calculer $X_{n+1} = T(X_n) = -(A X_n + B)^{-1} C$
+    - répéter jusqu'à convergence
+
+## Itération temporelle linéaire (3)
+
+On peut montrer qu'en partant d'une valeur initiale aléatoire, l'algorithme d'itération temporelle linéaire converge vers la solution $X$ de plus petit module :
+
+$$\underbrace{|\lambda_1| \leq \cdots  \leq |\lambda_n|}_{\text{Valeurs propres sélectionnées}} \leq |\lambda_{n+1}|\cdots \leq |\lambda_{2n}|$$
+
+Autrement dit, il trouve la bonne solution lorsque le modèle est bien spécifié.
+
+Comment vérifier qu'il est bien spécifié ?
+
+- $\lambda_n$ est la plus grande valeur propre de la solution $X$
+- et pour $\lambda_{n+1}$ ?
+    - $\frac{1}{\lambda_{n+1}}$ est la plus grande valeur propre de $(AX+B)^{-1}A$
+ 
+## Itération temporelle linéaire (4) 
+
+Définir $$M(\lambda) = A\lambda^2 + B \lambda + C$$
+
+Pour toute solution $X$, $M(\lambda)$ peut être factorisée comme : [^footnote_bezout]
+
+$$M(\lambda)=(\lambda A + A X + B)(\lambda I -X)$$
+
+et
+
+$$det(M(\lambda)) = \underbrace{det(\lambda A + A X + B)}_{Q(\lambda)}det(\lambda I -X)$$
+
+[^footnote_bezout]: Cas particulier du théorème de Bezout. Facile à vérifier dans ce cas
+
+Par construction, $Q(\lambda)$ est un polynôme dont les racines sont celles qui ne sont pas sélectionnées par la solution, c.-à-d. $\Lambda\setminus Sp(X)$.
+
+## Itération temporelle linéaire (5) 
+
+Pour $\lambda \neq 0$ on a :
+
+$$\lambda \in Sp((A X +B )^{-1} A)$$
+$$\iff\tdet( (A X +B )^{-1})A - I\lambda )=0$$
+$$\iff\tdet( \frac{1}{\lambda} A - I (A X +B )  )=0$$
+$$\iff Q(\frac{1}{\lambda})=0$$
+$$\iff \frac{1}{\lambda} \in G \setminus Sp(X)$$
+
+En mots, $(AX+B)^{-1}$ contient toutes les valeurs propres qui ont été rejetées par la sélection de $X$.
+
+En particulier, $\rho((AX+B)^{-1})A)=1/\min(G\setminus Sp(X))$

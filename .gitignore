@@ -10,4 +10,8 @@ StaticParams*.jl
 SteadyState2.jl
 *.log
 Manifest.toml
-*.jls
+*.jls# pixi environments
+.pixi/*
+!.pixi/config.toml
+
+**/*.quarto_ipynb
