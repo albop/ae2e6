@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-067f8ab80d092ae3595f7402c2c9b667.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.32">
+
+  <meta name="author" content="Pablo Winant">
+  <meta name="dcterms.date" content="2025-03-12">
+  <title>Macro II - Fluctuations - Part II – Solving DSGE models</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Solving DSGE models</h1>
+  <p class="subtitle">Macro II - Fluctuations - ENSAE, 2024-2025</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Pablo Winant 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-03-12</p>
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Plan</h2>
+<ul>
+<li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
+<li><a href="#/solving-a-model" id="/toc-solving-a-model">Solving a model</a></li>
+<li><a href="#/sec-conclusion" id="/toc-sec-conclusion">Conclusion</a></li>
+<li><a href="#/sec:linear_time_iteration" id="/toc-sec:linear_time_iteration">Appendix: Linear Time Iteration</a></li>
+</ul>
+</nav>
+</section>
+<section>
+<section id="introduction" class="title-slide slide level1 center">
+<h1>Introduction</h1>
+
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="columns">
+<div class="column" style="width:80%;">
+<p>What is the main specificity of economic modeling?</p>
+<div class="fragment">
+<p>In (macro)economics, we <em>model</em> the behaviour of economic agents by specifying:</p>
+<ul>
+<li>their objective <span class="math display">\[\max_{c_t} E_t \sum_{s\geq t} \beta^s U(c_s)\]</span> <span class="math display">\[\max \pi_t\]</span> <span class="math display">\[\cdots\]</span></li>
+<li>their constraints (budget constraint, econ. environment…)</li>
+</ul>
+</div>
+</div><div class="column" style="width:20%;">
+<p><img data-src="assets/lucifer.jpg" class="fragment"></p>
+</div></div>
+<div class="fragment">
+<div class="fragment">
+<p>This has important implications:</p>
+<ul>
+<li>macro models are <em>forward looking</em>
+<ul>
+<li>rely on expectations</li>
+</ul></li>
+<li>macro models need to be <strong>solved</strong></li>
+</ul>
+</div>
+<div class="fragment">
+<p>In many cases, there is no closed form for the solution -&gt; we need <em>numerical techniques</em></p>
+</div>
+</div>
+</section>
+<section id="dynare" class="slide level2">
+<h2>Dynare</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li class="fragment">1996: Michel Juillard created an opensource software to solve DSGE models
+<ul>
+<li class="fragment">DSGE: Dynamic Stochastic General Equilibrium</li>
+<li class="fragment">usually solved around a steady-state</li>
+</ul></li>
+<li class="fragment">Now about 10 contributors.
+<ul>
+<li class="fragment"><span class="math inline">\(+\)</span> power users who have contributed to the code</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>It has been widely adopted:
+<ul>
+<li>early version in Gauss</li>
+<li>then Matlab/Octave/Scilab</li>
+<li>latest version in Julia</li>
+<li>… and Python (checkout <a href="https://www.mosphere.fr/ae2e6_models/voici/tree/index.html">dyno 🦖</a>)</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/michel.jpeg"></p>
+<figcaption>Michel Juillard</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="dsge-models-in-institutions" class="slide level2">
+<h2>DSGE Models in institutions</h2>
+<p>Nowadays most DSGE models built in institutions have a Dynare version (IMF/GIMF, EC/Quest, ECB/, NYFed/FRBNY)</p>
+<ul>
+<li>they are usually based on the <em>midsize model</em> from Smets &amp; Wouters (10 equations)</li>
+<li>but have grown up a lot (&gt;&gt;100 equations)</li>
+</ul>
+<div class="fragment">
+<p>Institutions, led by researchers are diversifying their model</p>
+<ul>
+<li>Semi-Structural Models</li>
+<li>Computational General Equilibrium Models</li>
+<li>Network Models</li>
+<li>Agent-based Models</li>
+<li>Heterogenous Agents Models</li>
+</ul>
+</div>
+</section>
+<section id="the-plan" class="slide level2">
+<h2>The Plan</h2>
+<p>Provide a short introduction to DSGE modeling:</p>
+<ul>
+<li>How models are solved (today)</li>
+<li>Small Open Economy (aka IRBC model)</li>
+<li>Heterogeneity</li>
+<li>Financial Intermediation</li>
+</ul>
+<p>In passing, we’ll discuss some of the trends</p>
+</section></section>
+<section>
+<section id="solving-a-model" class="title-slide slide level1 center">
+<h1>Solving a model</h1>
+
+</section>
+<section id="model" class="slide level2">
+<h2>Model</h2>
+<p>A very concise representation of a model</p>
+<p><span class="math display">\[\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0\]</span></p>
+<div class="columns">
+<div class="column">
+<div class="fragment">
+<p>The <strong>problem</strong>:</p>
+<ul>
+<li><span class="math inline">\(y_t\in\mathbb{R}^n\)</span>: the vector of endogenous variables</li>
+<li><span class="math inline">\(\epsilon_t\in\mathbb{R}^{n_e}\)</span>: the vector of exogenous variables
+<ul>
+<li>we assume that <span class="math inline">\(\epsilon_t\)</span> is a zero-mean gaussian process</li>
+</ul></li>
+<li><span class="math inline">\(f: \mathbb{R}^n\rightarrow \mathbb{R}^n\)</span>: the model equations</li>
+</ul>
+</div>
+</div><div class="column">
+<div class="fragment">
+<p>The <strong>solution</strong>:</p>
+<ul>
+<li><span class="math inline">\(g\)</span> such that <span class="math display">\[\forall t, y_t = g(y_{t-1},\epsilon_t)\]</span></li>
+</ul>
+</div>
+</div></div>
+<aside class="notes">
+<p>The situation is different when one is making a perfect foresight simulation.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-timing-of-the-equations" class="slide level2">
+<h2>The timing of the equations</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>In a dynare modefile the model equations are coded in the <code>model; ... ; end;</code> block.</p>
+<p>Variable <span class="math inline">\(v_t\)</span> (resp <span class="math inline">\(v_{t-1}\)</span>, <span class="math inline">\(v_{t+1}\)</span>) is denoted by <code>v</code> or <code>v(0)</code> (resp <code>v(-1)</code>, <code>v(+1)</code>).</p>
+</div>
+</div>
+</div>
+<p><strong>General Timing Convention</strong></p>
+<p>New information arrives with the innovations <span class="math inline">\(\epsilon_t\)</span>.</p>
+<p>At date <span class="math inline">\(t\)</span>, the information set is spanned by <span class="math inline">\(\mathcal{F}_t = \mathcal{F} (\cdots, \epsilon_{t-3}, \epsilon_{t-2}, \epsilon_{t-1}, \epsilon_t)\)</span></p>
+<p>By convention <em>an endogenous variable has a subscript <span class="math inline">\(t\)</span> if it is known first at date <span class="math inline">\(t\)</span></em>.</p>
+<div class="fragment">
+<p>Several <strong>variable types</strong> depending on how they appear in the model:</p>
+<ul>
+<li>jump variable: appear <span class="math inline">\(t\)</span> or <span class="math inline">\(t+1\)</span></li>
+<li>predetermined variable: appear in <span class="math inline">\(t-1\)</span> and <span class="math inline">\(t\)</span> (possibly <span class="math inline">\(t+1\)</span>)</li>
+<li>static variables: appear in <span class="math inline">\(t\)</span> only
+<ul>
+<li>can be expressed as a function of other variables</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="the-timing-of-equations" class="slide level2">
+<h2>The timing of equations</h2>
+<h3 id="example">Example</h3>
+<p>Using Dynare’s timing conventions:</p>
+<ul>
+<li><p>Write the production function in the RBC</p></li>
+<li><p>Write the law of motion for capital <span class="math inline">\(k\)</span>, with a depreciation rate <span class="math inline">\(\delta\)</span> and investment <span class="math inline">\(i\)</span></p>
+<ul>
+<li>when is capital known?</li>
+<li>when is investment known?</li>
+</ul></li>
+<li><p>Add a multiplicative investment efficiency shock <span class="math inline">\(\chi_t\)</span>. Assume it is an <span class="math inline">\(AR1\)</span> driven by innovation <span class="math inline">\(\eta_t\)</span> and autocorrelation <span class="math inline">\(\rho_{\chi}\)</span></p>
+<ul>
+<li>how do you write the law of motion for capital?</li>
+</ul></li>
+</ul>
+</section>
+<section id="steady-state" class="slide level2">
+<h2>Steady-state</h2>
+<p>The deterministic steady-state satisfies:</p>
+<p><span class="math display">\[f(\overline{y},\overline{y}, \overline{y}, 0)= 0\]</span></p>
+<p>Often, there is a closed-form solution.</p>
+<p>Otherwise, one must resort to a numerical solver to solve</p>
+<p><span class="math display">\[\overline{y}\rightarrow f(\overline{y},\overline{y}, \overline{y}, 0)\]</span></p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>In dynare the steady-state values are provided in the <code>steadystate_model; ... ; end;</code> block. One can check they are correct using the <code>check;</code> statement.</p>
+<p>To find numerically the steady-state: <code>steady;</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-implicit-system" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">The implicit system</h2>
+<p>Replacing the solution <span class="math display">\[y_t = \color{red}{g}(y_{t-1},\epsilon_t)\]</span> in the system <span class="math display">\[\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0\]</span></p>
+<p>we obtain:</p>
+<p><span class="math display">\[\mathbb{E}_t \left[ f(\color{red}{g}(\color{red}{g}(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), \color{red}{g}(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0\]</span></p>
+<p>It is an equation defining implicitly the function <span class="math inline">\(\color{red}{g}()\)</span></p>
+</section>
+<section id="the-state-space" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">The state-space</h2>
+<p><span class="math display">\[\mathbb{E}_t \left[ f(\color{red}{g}(\color{red}{g}(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), \color{red}{g}(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0\]</span></p>
+<p>In this expression, <span class="math inline">\(y_{t-1},\epsilon_t\)</span> is the state-space:</p>
+<ul>
+<li>it contains all information available at <span class="math inline">\(t\)</span> to predict the future evolution of <span class="math inline">\((y_s)_{s\geq t}\)</span></li>
+</ul>
+<div class="fragment">
+<p>Dropping the time subscripts, the equation must be satisfied for any realization of <span class="math inline">\((y,\epsilon)\)</span> <span class="math display">\[\forall (y,\epsilon)\  \Phi(\color{red}{g})(y,\epsilon) = \mathbb{E}_{\epsilon'} \left[ f(\color{red}{g}(\color{red}{g}(y,\epsilon),\epsilon'), \color{red}{g}(y,\epsilon), y, \epsilon) \right]= 0\]</span></p>
+<p>It is a functional equation <span class="math inline">\(\Phi(\color{red}{g})=0\)</span></p>
+</div>
+</section>
+<section id="expected-shocks" class="slide level2">
+<h2>Expected shocks</h2>
+<p>First order approximation:</p>
+<ul>
+<li>Assume <span class="math inline">\(|\epsilon|&lt;&lt;1\)</span>,<span class="math inline">\(|\epsilon'|&lt;&lt;1\)</span></li>
+</ul>
+<p>Perform a Taylor expansion with respect to future shock:</p>
+<p><span class="math display">\[\begin{align}
+&amp; &amp; \mathbb{E}_{\color{green}{\epsilon'}} \left[ f(g(g(y,\epsilon),\color{green}{\epsilon'}), g(y,\epsilon), y, \epsilon) \right]  \\
+= &amp; &amp;  \mathbb{E}_{\color{green}{\epsilon'}}\left[ f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) \right] \\
+  &amp; &amp; +  \mathbb{E}_{\color{green}{\epsilon'}} \left[ f^{\prime}_{y_{t+1}}(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) g^{\prime}_{\epsilon} \color{green}{\epsilon'}\right] + o(\epsilon^{\prime}) \\
+\approx &amp; &amp; f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon)
+\end{align}\]</span></p>
+<div class="fragment">
+<p>This uses the fact that <span class="math inline">\(\mathbb{E}\left[ \epsilon^{\prime}\right] = 0\)</span>.</p>
+<p>At first order, expected shocks play no role.</p>
+<p>To capture precautionary behaviour (like risk premia), we would need to increase the approximation order.</p>
+</div>
+</section>
+<section id="first-order-perturbation" class="slide level2">
+<h2>First order perturbation</h2>
+<p>We are left with the system:</p>
+<p><span class="math display">\[F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0\]</span></p>
+<p>A variant of the <em>implicit function theorem</em> then yields the existence of a first approximation of <span class="math inline">\(g\)</span>:</p>
+<p><span class="math display">\[g(y,\epsilon) = \overline{y} + g^{\prime}_{y} (y-\overline{y}) + g^{\prime}_e \epsilon_t \]</span></p>
+<div class="fragment">
+<p>Unknown quantities <span class="math inline">\(g^{\prime}_y\)</span>, and <span class="math inline">\(g^{\prime}_e\)</span> are obtained using the <em>method of undeterminate coefficients</em>. Plug the first approximation into the system and write the conditions <span class="math display">\[F^{\prime}_y(\overline{y}, 0) = 0\]</span> <span class="math display">\[F^{\prime}_\epsilon(\overline{y}, 0) = 0\]</span></p>
+</div>
+</section>
+<section id="computing-gprime_y" class="slide level2">
+<h2>Computing <span class="math inline">\(g^{\prime}_y\)</span></h2>
+<p>Recall the system: <span class="math display">\[F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0\]</span></p>
+<p>We have <span class="math display">\[F^{\prime}_y(\overline{y}, 0) = f^{\prime}_{y_{t+1}} g^{\prime}_y g^{\prime}_y + f^{\prime}_{y_{t}} g^{\prime}_y + f^{\prime}_{y_{t-1}} = 0 \]</span></p>
+<div class="fragment">
+<p><span class="math inline">\(g^{\prime}_y\)</span> is the solution of a specific Riccatti equation <span class="math display">\[A X^2 + B X + C\]</span> where <span class="math inline">\(A,B,C\)</span> and <span class="math inline">\(X=g^{\prime}_y\)</span> are square matrices <span class="math inline">\(\in \mathbb{R}^n \times \mathbb{R}^n\)</span></p>
+</div>
+</section>
+<section id="first-order-deterministic-model" class="slide level2">
+<h2>First Order Deterministic Model</h2>
+<p>Let’s pause a minute to observe the first order deterministic model: <span class="math display">\[A X^2 + B X + C\]</span></p>
+<p>From our intuition in dimension 1, we know there must be multiple solutions</p>
+<ul>
+<li>how do we find them?</li>
+<li>how do we select the right ones?</li>
+</ul>
+<p>I the absence of shocks the dynamics of the model are given by <span class="math display">\[y_t = X y_{t-1}\]</span></p>
+<p>What is the condition for the model to be stationary?</p>
+<div class="fragment">
+<p>-&gt; the biggest eigenvalue of <span class="math inline">\(X\)</span> should be smaller than 1</p>
+<aside class="notes">
+<p>Develop intuition in dimension 1.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="multiplicity-of-solution" class="slide level2">
+<h2>Multiplicity of solution</h2>
+<p>It is possible to show that the system is associated with <span class="math inline">\(2 n\)</span> generalized eigenvalues:</p>
+<p><span class="math display">\[|\lambda_1| \leq \cdots \leq |\lambda_{2 n}|\]</span></p>
+<p>For each choice <span class="math inline">\(C\)</span> of <span class="math inline">\(n\)</span> eigenvalues (<span class="math inline">\(|C|=n\)</span>), a specific recursive solution <span class="math inline">\(X_C\)</span> can be <em>constructed</em>. It has eigenvalues <span class="math inline">\(C\)</span>.</p>
+<div class="fragment">
+<p>This yields at least <span class="math inline">\(\left(\begin{matrix} 2 n \\ n \end{matrix}\right)\)</span> different combinations.</p>
+</div>
+<div class="fragment">
+<p>A model is well defined when there is <strong>exactly one solution that is non divergent</strong>.</p>
+<p>This is equivalent to:</p>
+<p><span class="math display">\[|\lambda_1| \leq \cdots \leq |\lambda_{n}| \leq 1 &lt; |\lambda_{n+1}| \leq \cdots \leq |\lambda_{2 n}|\]</span></p>
+</div>
+</section>
+<section id="example-1" class="slide level2">
+<h2>Example 1</h2>
+<p>Forward looking inflation:</p>
+<p><span class="math display">\[\pi_t = \alpha \pi_{t+1}\]</span> with <span class="math inline">\(\alpha&lt;1\)</span>.</p>
+<p>Is it well defined?</p>
+<div class="fragment">
+<p>We can rewrite the system as:</p>
+<p><span class="math display">\[\alpha \pi_{t+1} - \pi_t + 0 \pi_{t-1}  = 0\]</span></p>
+<p>or</p>
+<p><span class="math display">\[\pi_{t+1} - \left(\frac{1}{\alpha} + 0 \right)\pi_t + \left(\frac{1}{\alpha} 0\right) \pi_{t-1} = 0\]</span></p>
+</div>
+<div class="fragment">
+<p>The generalized eigenvalues are <span class="math inline">\(0\leq 1 &lt; \frac{1}{\alpha}\)</span>.</p>
+</div>
+<div class="fragment">
+<p>The unique stable solution is <span class="math inline">\(\pi_t=0 \pi_{t-1}\)</span></p>
+</div>
+</section>
+<section id="example-2" class="slide level2">
+<h2>Example 2</h2>
+<p>Debt accumulation equation by a rational agent:</p>
+<p><span class="math display">\[b_{t+1} - (1+\frac{1}{\beta}) b_t + \frac{1}{\beta} b_{t-1} = 0\]</span></p>
+<p>Is it well-defined?</p>
+<div class="fragment">
+<p>Two generalized eigenvalues <span class="math inline">\(\lambda_1=1 &lt; \lambda_2=\frac{1}{\beta}\)</span></p>
+</div>
+<div class="fragment">
+<p>The unique non-diverging solution is <span class="math inline">\(b_t = b_{t-1}\)</span>.</p>
+<ul>
+<li>it is a <em>unit-root</em>: any initial deviation in <span class="math inline">\(b_{t-1}\)</span> has persistent effects</li>
+</ul>
+</div>
+</section>
+<section id="example-3" class="slide level2">
+<h2>Example 3</h2>
+<p>Productivity process: <span class="math display">\[z_t = \rho z_{t-1}\]</span> with <span class="math inline">\(\rho&lt;1\)</span>: <span class="fragment">well defined</span></p>
+<div class="fragment">
+<p>In that case there is a hidden infinite eigenvalue <span class="math inline">\(\infty\)</span> associated to <span class="math inline">\(z_{t+1}\)</span>.</p>
+</div>
+<div class="fragment">
+<p>To see why consider the system associated with eigenvalues <span class="math inline">\(m\)</span> and <span class="math inline">\(\rho\)</span>: <span class="math display">\[z_{t+1} - (m+\rho) z_t + m \rho z_{t-1} = 0\]</span></p>
+<p><span class="math display">\[\frac{1}{m} z_{t+1} - (1+\frac{\rho}{m}) z_t + \rho z_{t-1} = 0\]</span></p>
+<p>Which corresponds to the initial model when <span class="math inline">\(m=\infty\)</span></p>
+</div>
+<div class="fragment">
+<p>The generalized eigenvalues are <span class="math inline">\(\lambda_1 = \rho \leq 1 &lt; \lambda_2 = \infty\)</span></p>
+<p>More generally, any variable that does not appear in <span class="math inline">\(t+1\)</span> creates one infinite generalized eigenvalue.</p>
+</div>
+</section>
+<section id="a-criterium-for-well-definedness" class="slide level2">
+<h2>A criterium for well-definedness</h2>
+<p>Looking again at the list of eigenvalues we set aside the infinite ones.</p>
+<p>The model is well specified iff we can sort the eigenvalues as:</p>
+<p><span class="math display">\[|\lambda_1| \leq \cdots \leq |\lambda_{n}| \leq 1 &lt; |\lambda_{n+1}| \leq \cdots  |\lambda_{n+k}| \leq \underbrace{|\lambda_{n+k+1}| \cdots \leq |\lambda_{2 n}|}_{\text{infinite eigenvalues}}\]</span></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Blanchard-Kahn criterium</strong></p>
+</div>
+<div class="callout-content">
+<p>The model satisfies the Blanchard-Kahn criterium if the number of eigenvalues greater than one, is exactly equal to the number of variables <em>appearing</em> in <span class="math inline">\(t+1\)</span>.</p>
+<p>In that case the model is well-defined.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="computing-the-solution" class="slide level2">
+<h2>Computing the solution</h2>
+<p>There are several classical methods to compute the solution to the algebraic Riccatti equation: <span class="math display">\[A X^2+ B X + C=0\]</span></p>
+<ul>
+<li>qz decomposition
+<ul>
+<li>traditionnally used in the DSGE literature since Chris Sims</li>
+<li>a little bit unintuitive</li>
+</ul></li>
+<li>cyclic reduction
+<ul>
+<li>new default in dynare, more adequate for big models</li>
+</ul></li>
+<li>linear time iteration cf <span class="citation" data-cites="sec:linear_time_iteration">@sec:linear_time_iteration</span>
+<ul>
+<li>conceptually very simple</li>
+</ul></li>
+</ul>
+</section>
+<section id="computing-gprime_e" class="slide level2">
+<h2>Computing <span class="math inline">\(g^{\prime}_{e}\)</span></h2>
+<p>Now we have <span class="math inline">\(g^{\prime}_y\)</span>, how do we get <span class="math inline">\(g^{\prime}_{e}\)</span>?</p>
+<p>Recall: <span class="math display">\[F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0\]</span></p>
+<p>We have <span class="math display">\[F^{\prime}_e(\overline{y}, 0) =  f^{\prime}_{y_{t+1}}  g^{\prime}_y  g^{\prime}_e + f^{\prime}_{y_{t}} g^{\prime}_e + f^{\prime}_{\epsilon_t} = 0 \]</span></p>
+<p>Now this is easy:</p>
+<p><span class="math display">\[g^{\prime}_e = - (f^{\prime}_{y_{t+1}}  g^{\prime}_y + f^{\prime}_{y_{t}} )^{-1}  f^{\prime}_{\epsilon_t} = 0 \]</span></p>
+</section>
+<section id="the-model-solution" class="slide level2">
+<h2>The model solution</h2>
+<p>The result of the model solution: <span class="math display">\[y_t = g_y y_{t-1} + g_e \epsilon_t\]</span></p>
+<p>It is an AR1, driven by exogenous shock <span class="math inline">\(\epsilon_t\)</span>.</p>
+<div class="fragment">
+<p>Because it is a well known structure, one can investigate the model with</p>
+<ul>
+<li>impulse response functions</li>
+<li>stochastic simulations</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Then to compare the model to the data we compute</p>
+<ul>
+<li>implied moments:
+<ul>
+<li>covariances, autocorrelation</li>
+</ul></li>
+<li>likelihood</li>
+</ul>
+<p>Optimizing the fit to the data is called <em>model</em> estimation</p>
+</div>
+</section></section>
+<section>
+<section id="sec-conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
+
+</section>
+<section id="what-can-you-do-with-the-solution" class="slide level2">
+<h2>What can you do with the solution</h2>
+<p>The solution of a model found by Dynare has an especially simple form: an AR1</p>
+<ul>
+<li><span class="math inline">\(y_t = X y_{t-1} + Y \epsilon_t\)</span></li>
+<li>where the covariances <span class="math inline">\(\Sigma\)</span> of <span class="math inline">\(\epsilon_t\)</span> can be chosen by the modeler</li>
+</ul>
+<div class="fragment">
+<p>With this solution we can (cf next TD)</p>
+<ul>
+<li>compute (conditional and unconditional) moments</li>
+<li>perform stochastic simulations, impulse response function</li>
+</ul>
+</div>
+</section>
+<section id="going-further" class="slide level2">
+<h2>Going Further</h2>
+<p>Taking the model to the data with Dynare</p>
+<ul>
+<li>“estimate” the model: compute the likelihood of a solution and maximize it by choosing the right parameters</li>
+<li>“identify” shocks in the data</li>
+</ul>
+<p>Other functions</p>
+<ul>
+<li>higher order approximation</li>
+<li>(noninear) perfect foresight simulations</li>
+<li>ramsey plan</li>
+<li>discretionary policy</li>
+<li>…</li>
+</ul>
+</section>
+<section id="coming-next" class="slide level2">
+<h2>Coming Next</h2>
+
+<img data-src="assets/ea0.jpg" class="r-stretch"><p>Many models</p>
+</section></section>
+<section>
+<section id="sec:linear_time_iteration" class="title-slide slide level1 center">
+<h1>Appendix: Linear Time Iteration</h1>
+
+</section>
+<section id="linear-time-iteration" class="slide level2">
+<h2>Linear Time Iteration</h2>
+<p>Recall the system to solve: <span class="math display">\[F(y,\epsilon) = f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) = 0\]</span></p>
+<p>but now assume the decision rules today and tomorrow are different:</p>
+<ul>
+<li>today: <span class="math inline">\(y_t = g(y_{t-1}, \epsilon_t) = \overline{y} + X y_{t-1} + g_y \epsilon_t\)</span></li>
+<li>tomorrow: <span class="math inline">\(y_{t+1} = \tilde{g}(y_t, \epsilon_{t+1}) = \overline{y} + \tilde{X} y_{t-1} + \tilde{g}_y \epsilon_t\)</span></li>
+</ul>
+<p>Then the Ricatti equation is written:</p>
+<p><span class="math display">\[A \tilde{X} X + B X + C = 0\]</span></p>
+</section>
+<section id="linear-time-iteration-2" class="slide level2">
+<h2>Linear Time Iteration (2)</h2>
+<p>The linear time iteration algorithm consists in solving the decision rule <span class="math inline">\(X\)</span> today as a function of decision rule tomorrow <span class="math inline">\(\tilde{X}\)</span>.</p>
+<p>This corresponds to the simple formula:</p>
+<p><span class="math display">\[X = -(A\tilde{X} + B)^{-1} C\]</span></p>
+<p>And the full algorithm can be described as:</p>
+<ul>
+<li>choose <span class="math inline">\(X_0\)</span></li>
+<li>for any <span class="math inline">\(X_n\)</span>, compute <span class="math inline">\(X_{n+1} = T(X_n) = -(A X_n + B)^{-1} C\)</span>
+<ul>
+<li>repeat until convergence</li>
+</ul></li>
+</ul>
+</section>
+<section id="linear-time-iteration-3" class="slide level2">
+<h2>Linear Time Iteration (3)</h2>
+<p>It can be shown that, starting from a random initial guess, the linear time-iteration algorithm converges to the solution <span class="math inline">\(X\)</span> with the smallest modulus:</p>
+<p><span class="math display">\[\underbrace{|\lambda_1| \leq \cdots  \leq |\lambda_n|}_{\text{Selected eigenvalues}} \leq |\lambda_{n+1}|\cdots \leq |\lambda_{2n}|\]</span></p>
+<p>In other words, it finds the right solution when the model is well specified.</p>
+<p>How do you check it is well specified?</p>
+<ul>
+<li><span class="math inline">\(\lambda_n\)</span> is the biggest eigenvalue of solution <span class="math inline">\(X\)</span></li>
+<li>what about <span class="math inline">\(\lambda_{n+1}\)</span>?
+<ul>
+<li><span class="math inline">\(\frac{1}{\lambda_{n+1}}\)</span> is the biggest eigenvalue of <span class="math inline">\((AX+B)^{-1}A\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="linear-time-iteration-4" class="slide level2">
+<h2>Linear Time Iteration (4)</h2>
+<p>Define <span class="math display">\[M(\lambda) = A\lambda^2 + B \lambda + C\]</span></p>
+<p>For any solution <span class="math inline">\(X\)</span>, <span class="math inline">\(M(\lambda)\)</span> can be factorized as: <sup>1</sup></p>
+<p><span class="math display">\[M(\lambda)=(\lambda A + A X + B)(\lambda I -X)\]</span></p>
+<p>and</p>
+<p><span class="math display">\[det(M(\lambda)) = \underbrace{det(\lambda A + A X + B)}_{Q(\lambda)}det(\lambda I -X)\]</span></p>
+<p>By construction <span class="math inline">\(Q(\lambda)\)</span> is a polynomial whose roots are those that are not selected by the solution i.e.&nbsp;<span class="math inline">\(\Lambda\setminus Sp(X)\)</span>.</p>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Special case of Bezout theorem. Easy to check in that case</p></li></ol></aside></section>
+<section id="linear-time-iteration-5" class="slide level2">
+<h2>Linear Time Iteration (5)</h2>
+<p>For <span class="math inline">\(\lambda \neq 0\)</span> we have:</p>
+<p><span class="math display">\[\lambda \in Sp((A X +B )^{-1} A)\]</span> <span class="math display">\[\iff  det( (A X +B )^{-1})A - I\lambda )=0\]</span> <span class="math display">\[\iff  det( \frac{1}{\lambda} A - I (A X +B )  )=0\]</span> <span class="math display">\[\iff Q(\frac{1}{\lambda})=0\]</span> <span class="math display">\[\iff \frac{1}{\lambda} \in G \setminus Sp(X)\]</span></p>
+<p>In words, <span class="math inline">\((AX+B)^{-1}\)</span> contains all the eigenvalues that have been rejected by the selection of <span class="math inline">\(X\)</span>.</p>
+<p>In particular, <span class="math inline">\(\rho((AX+B)^{-1})A)=1/\min(G\setminus Sp(X))\)</span></p>
+
+
+</section></section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/albop\.github\.io\/ae2e6\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
