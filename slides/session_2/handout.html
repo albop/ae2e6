@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Pablo Winant">
-<meta name="dcterms.date" content="2026-03-25">
+<meta name="dcterms.date" content="2026-04-01">
 
 <title>Petite Économie Ouverte (IRBC) – Macro II - Fluctuations - Part II</title>
 <style>
@@ -156,7 +156,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 25, 2026</p>
+      <p class="date">April 1, 2026</p>
     </div>
   </div>
   
@@ -306,7 +306,7 @@ window.Quarto = {
 <li><p><span class="math inline">\(a_{-1}\)</span> donné<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
 <li><p><span class="math inline">\(\lim_{T\rightarrow\infty} \frac{a_{T}}{(1+r)^T}\geq0\)</span></p>
 <ul>
-<li>condition <em>pas de schéma de Ponzi</em></li>
+<li>condition de transversalité (aka no-Ponzi condition)</li>
 </ul></li>
 </ul>
 <p>La condition de pas de Ponzi va effectivement éliminer les solutions divergentes.</p>
@@ -350,13 +350,14 @@ u^{\prime}(c_t)&amp; =&amp; \lambda_t \\
 <div class="callout-body-container callout-body">
 <p>La <strong>balance commerciale</strong> est les exportations moins les importations (ici <span class="math inline">\(y_t-c_t\)</span>)</p>
 <p>Le <strong>compte courant</strong> est la balance commerciale plus les revenus nets de facteurs (ici <span class="math inline">\(y_t-c_t+r a_{t-1}\)</span>)</p>
-<p>Un <strong>compte courant</strong> positif : prêt supplémentaire au reste du monde.</p>
+<p>Un <strong>compte courant</strong> positif : le pays prête au reste du monde.</p>
 </div>
 </div>
 <p>. . .</p>
 <p>En utilisant la formule d’avant</p>
 <p><span class="math display">\[CA_0 =  a_{-1} r + (1-\frac{r}{1+r}) y_0 - \frac{r}{1+r}\left\{ \sum_{t\geq1}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
 <p>Comment le compte courant réagit-il aux chocs de revenu ?</p>
+<p>. . .</p>
 <ul>
 <li><p>le compte courant réagit positivement à un choc de revenu <em>temporaire</em></p></li>
 <li><p>et négativement aux anticipations de chocs futurs de revenu :</p>
@@ -400,7 +401,7 @@ en supposant $u(c_t) = \log (c_t)$, pouvez-vous obtenir l'équation de la loi de
 <p><span class="math display">\[a_{t} + c_t + i_t = (1+r) a_{t-1} + y_t\]</span></p>
 <p>On maximise alors <span class="math inline">\(\sum_t \beta^ t U(c_t)\)</span></p>
 <p>. . .</p>
-<p>Nous obtenons les conditions du premier ordre</p>
+<p>Nous obtenons les conditions du premier ordre (exactement comme dans le RBC)</p>
 <p><span class="math display">\[\lambda_t = \beta \lambda_{t+1} (1+r)\]</span> <span class="math display">\[\lambda_t = \beta \lambda_{t+1}\left[ (1-\delta) + z_{t+1} f^{\prime}(k_{t}) \right]\]</span></p>
 <p>où <span class="math inline">\(\lambda_t\)</span> est le multiplicateur de Lagrange associé à la contrainte budgétaire.</p>
 </section>
@@ -412,8 +413,11 @@ en supposant $u(c_t) = \log (c_t)$, pouvez-vous obtenir l'équation de la loi de
 <p>et l’investissement <span class="math display">\[i_t = \left( \frac{r+\delta}{\alpha z_{t+1}}\right)^{\frac{1}{\alpha-1}}- (1-\delta)\left( \frac{r+\delta}{\alpha z_{t}}\right)^{\frac{1}{\alpha-1}}\]</span></p>
 <p>. . .</p>
 <p>Ici l’investissement est entièrement déterminé par les chocs de productivité</p>
+<p>⇒ trop simple :</p>
 <ul>
-<li>trop simple : pas de dépendance internationale</li>
+<li>très corrélé avec la productivité</li>
+<li>pas de dépendance internationale</li>
+<li>ajustment immédiat du capital</li>
 </ul>
 <!-- 
 ## Les gains insaisissables de l'intégration financière
@@ -456,8 +460,8 @@ L'ajustement immédiat du capital fournit une limite supérieure aux gains de l'
 <ul>
 <li>= RBC + ouverture + coûts d’ajustement</li>
 </ul></li>
-<li>réalise un matching de moments</li>
-<li>compare différentes façons de stationnariser</li>
+<li>réalise exercice de moment-matching</li>
+<li>compare différentes façons de stationnariser le modèle (pour se débarrasser de la racine unitaire)</li>
 </ul>
 </div>
 </div>
@@ -474,7 +478,7 @@ L'ajustement immédiat du capital fournit une limite supérieure aux gains de l'
 </section>
 <section id="comment-rendre-la-distribution-stationnaire" class="level2">
 <h2 class="anchored" data-anchor-id="comment-rendre-la-distribution-stationnaire">Comment rendre la distribution stationnaire ?</h2>
-<p>La solution du modèle présente une racine unitaire :</p>
+<p>Sans <span class="math inline">\(\color{red}\pi\)</span> la solution du modèle présente une racine unitaire :</p>
 <p><span class="math display">\[a_t = a_{t-1} + ... \text{autres variables en t-1} + \text{chocs en t}\]</span></p>
 <p>. . .</p>
 <p>Problème :</p>

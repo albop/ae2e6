@@ -900,7 +900,7 @@
     "href": "slides/session_2/handout.html#modèle-de-dotation",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Modèle de dotation",
-    "text": "Modèle de dotation\nL’agent représentatif maximise : \\[\\max_{c_t} \\sum_{t=0}^{\\infty} \\beta^t u(c_t)\\] \\[c_t + a_{t} \\leq y_t + (1+r) a_{t-1} \\]\n\n\nÉconomie de dotation :\n\nle revenu \\((y_t)_t\\) est donné de manière exogène\npar souci de simplicité, on suppose qu’il est déterministe\n\nPetite économie ouverte :\n\nouverte : peut épargner \\(a_t\\) ce qui rapporte \\(a_{t+1}(1+r)\\) à la période suivante\npetite : le pays considère le taux d’intérêt mondial \\(r\\) comme donné (pas d’effet sur les prix mondiaux)\n\n\n\nNous résolvons ce problème avec les conditions aux limites :\n\n\\(a_{-1}\\) donné1\n\\(\\lim_{T\\rightarrow\\infty} \\frac{a_{T}}{(1+r)^T}\\geq0\\)\n\ncondition pas de schéma de Ponzi\n\n\nLa condition de pas de Ponzi va effectivement éliminer les solutions divergentes.\nDans une approximation au premier ordre, elle sélectionne les bonnes valeurs propres."
+    "text": "Modèle de dotation\nL’agent représentatif maximise : \\[\\max_{c_t} \\sum_{t=0}^{\\infty} \\beta^t u(c_t)\\] \\[c_t + a_{t} \\leq y_t + (1+r) a_{t-1} \\]\n\n\nÉconomie de dotation :\n\nle revenu \\((y_t)_t\\) est donné de manière exogène\npar souci de simplicité, on suppose qu’il est déterministe\n\nPetite économie ouverte :\n\nouverte : peut épargner \\(a_t\\) ce qui rapporte \\(a_{t+1}(1+r)\\) à la période suivante\npetite : le pays considère le taux d’intérêt mondial \\(r\\) comme donné (pas d’effet sur les prix mondiaux)\n\n\n\nNous résolvons ce problème avec les conditions aux limites :\n\n\\(a_{-1}\\) donné1\n\\(\\lim_{T\\rightarrow\\infty} \\frac{a_{T}}{(1+r)^T}\\geq0\\)\n\ncondition de transversalité (aka no-Ponzi condition)\n\n\nLa condition de pas de Ponzi va effectivement éliminer les solutions divergentes.\nDans une approximation au premier ordre, elle sélectionne les bonnes valeurs propres."
   },
   {
     "objectID": "slides/session_2/handout.html#modèle-de-dotation-3",
@@ -914,7 +914,7 @@
     "href": "slides/session_2/handout.html#compte-courant",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Compte courant",
-    "text": "Compte courant\n\n\n\n\n\n\nTipRappels sur le compte courant\n\n\n\nLa balance commerciale est les exportations moins les importations (ici \\(y_t-c_t\\))\nLe compte courant est la balance commerciale plus les revenus nets de facteurs (ici \\(y_t-c_t+r a_{t-1}\\))\nUn compte courant positif : prêt supplémentaire au reste du monde.\n\n\n. . .\nEn utilisant la formule d’avant\n\\[CA_0 =  a_{-1} r + (1-\\frac{r}{1+r}) y_0 - \\frac{r}{1+r}\\left\\{ \\sum_{t\\geq1}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nComment le compte courant réagit-il aux chocs de revenu ?\n\nle compte courant réagit positivement à un choc de revenu temporaire\net négativement aux anticipations de chocs futurs de revenu :\n\nC’est l’approche intertemporelle du compte courant"
+    "text": "Compte courant\n\n\n\n\n\n\nTipRappels sur le compte courant\n\n\n\nLa balance commerciale est les exportations moins les importations (ici \\(y_t-c_t\\))\nLe compte courant est la balance commerciale plus les revenus nets de facteurs (ici \\(y_t-c_t+r a_{t-1}\\))\nUn compte courant positif : le pays prête au reste du monde.\n\n\n. . .\nEn utilisant la formule d’avant\n\\[CA_0 =  a_{-1} r + (1-\\frac{r}{1+r}) y_0 - \\frac{r}{1+r}\\left\\{ \\sum_{t\\geq1}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nComment le compte courant réagit-il aux chocs de revenu ?\n. . .\n\nle compte courant réagit positivement à un choc de revenu temporaire\net négativement aux anticipations de chocs futurs de revenu :\n\nC’est l’approche intertemporelle du compte courant"
   },
   {
     "objectID": "slides/session_2/handout.html#racine-unitaire",
@@ -928,14 +928,14 @@
     "href": "slides/session_2/handout.html#ajout-du-capital",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Ajout du capital",
-    "text": "Ajout du capital\nNous ajoutons le capital et la production à notre économie de dotation : \\[y_t = z_t k_{t-1}^\\alpha\\] \\[k_t = (1-\\delta) k_{t-1} + i_{t}\\]\nLa contrainte de ressource agrégée devient :\n\\[a_{t} + c_t + i_t = (1+r) a_{t-1} + y_t\\]\nOn maximise alors \\(\\sum_t \\beta^ t U(c_t)\\)\n. . .\nNous obtenons les conditions du premier ordre\n\\[\\lambda_t = \\beta \\lambda_{t+1} (1+r)\\] \\[\\lambda_t = \\beta \\lambda_{t+1}\\left[ (1-\\delta) + z_{t+1} f^{\\prime}(k_{t}) \\right]\\]\noù \\(\\lambda_t\\) est le multiplicateur de Lagrange associé à la contrainte budgétaire."
+    "text": "Ajout du capital\nNous ajoutons le capital et la production à notre économie de dotation : \\[y_t = z_t k_{t-1}^\\alpha\\] \\[k_t = (1-\\delta) k_{t-1} + i_{t}\\]\nLa contrainte de ressource agrégée devient :\n\\[a_{t} + c_t + i_t = (1+r) a_{t-1} + y_t\\]\nOn maximise alors \\(\\sum_t \\beta^ t U(c_t)\\)\n. . .\nNous obtenons les conditions du premier ordre (exactement comme dans le RBC)\n\\[\\lambda_t = \\beta \\lambda_{t+1} (1+r)\\] \\[\\lambda_t = \\beta \\lambda_{t+1}\\left[ (1-\\delta) + z_{t+1} f^{\\prime}(k_{t}) \\right]\\]\noù \\(\\lambda_t\\) est le multiplicateur de Lagrange associé à la contrainte budgétaire."
   },
   {
     "objectID": "slides/session_2/handout.html#ajout-du-capital-conditions-doptimalité",
     "href": "slides/session_2/handout.html#ajout-du-capital-conditions-doptimalité",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Ajout du capital : conditions d’optimalité",
-    "text": "Ajout du capital : conditions d’optimalité\nPuisque \\(\\lambda_t&gt;0\\) (la contrainte est toujours active), nous obtenons :\n\\[(1-\\delta) + z_{t+1} f^{\\prime}(k_{t}) = 1+r\\]\n\\[k_{t} = \\left( \\frac{r+\\delta}{\\alpha z_{t+1}}\\right)^{\\frac{1}{\\alpha-1}}\\]\net l’investissement \\[i_t = \\left( \\frac{r+\\delta}{\\alpha z_{t+1}}\\right)^{\\frac{1}{\\alpha-1}}- (1-\\delta)\\left( \\frac{r+\\delta}{\\alpha z_{t}}\\right)^{\\frac{1}{\\alpha-1}}\\]\n. . .\nIci l’investissement est entièrement déterminé par les chocs de productivité\n\ntrop simple : pas de dépendance internationale"
+    "text": "Ajout du capital : conditions d’optimalité\nPuisque \\(\\lambda_t&gt;0\\) (la contrainte est toujours active), nous obtenons :\n\\[(1-\\delta) + z_{t+1} f^{\\prime}(k_{t}) = 1+r\\]\n\\[k_{t} = \\left( \\frac{r+\\delta}{\\alpha z_{t+1}}\\right)^{\\frac{1}{\\alpha-1}}\\]\net l’investissement \\[i_t = \\left( \\frac{r+\\delta}{\\alpha z_{t+1}}\\right)^{\\frac{1}{\\alpha-1}}- (1-\\delta)\\left( \\frac{r+\\delta}{\\alpha z_{t}}\\right)^{\\frac{1}{\\alpha-1}}\\]\n. . .\nIci l’investissement est entièrement déterminé par les chocs de productivité\n⇒ trop simple :\n\ntrès corrélé avec la productivité\npas de dépendance internationale\najustment immédiat du capital"
   },
   {
     "objectID": "slides/session_2/handout.html#ajout-de-frictions-à-linvestissement",
@@ -949,7 +949,7 @@
     "href": "slides/session_2/handout.html#un-modèle-de-petite-économie-ouverte-de-référence-1",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Un modèle de petite économie ouverte de référence",
-    "text": "Un modèle de petite économie ouverte de référence\n\n\n\n\n\nStephanie Schmitt Grohe et Martin Uribe\n\n\n\nClosing Small Economy Models, Schmitt Grohe and Uribe (2003), JIE\n\nmodèle de petite économie ouverte avec production, arbitrage consommation-loisir et coûts d’ajustement du capital\n\n= RBC + ouverture + coûts d’ajustement\n\nréalise un matching de moments\ncompare différentes façons de stationnariser"
+    "text": "Un modèle de petite économie ouverte de référence\n\n\n\n\n\nStephanie Schmitt Grohe et Martin Uribe\n\n\n\nClosing Small Economy Models, Schmitt Grohe and Uribe (2003), JIE\n\nmodèle de petite économie ouverte avec production, arbitrage consommation-loisir et coûts d’ajustement du capital\n\n= RBC + ouverture + coûts d’ajustement\n\nréalise exercice de moment-matching\ncompare différentes façons de stationnariser le modèle (pour se débarrasser de la racine unitaire)"
   },
   {
     "objectID": "slides/session_2/handout.html#le-modèle",
@@ -963,7 +963,7 @@
     "href": "slides/session_2/handout.html#comment-rendre-la-distribution-stationnaire",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Comment rendre la distribution stationnaire ?",
-    "text": "Comment rendre la distribution stationnaire ?\nLa solution du modèle présente une racine unitaire :\n\\[a_t = a_{t-1} + ... \\text{autres variables en t-1} + \\text{chocs en t}\\]\n. . .\nProblème :\n\nil n’existe pas d’état stationnaire déterministe unique\nla distribution ergodique des variables du modèle n’est pas définie\n\nCela soulève des problèmes pratiques (notamment pour l’estimation) pour le modèle linéaire.\n\npas de moments sans condition"
+    "text": "Comment rendre la distribution stationnaire ?\nSans \\(\\color{red}\\pi\\) la solution du modèle présente une racine unitaire :\n\\[a_t = a_{t-1} + ... \\text{autres variables en t-1} + \\text{chocs en t}\\]\n. . .\nProblème :\n\nil n’existe pas d’état stationnaire déterministe unique\nla distribution ergodique des variables du modèle n’est pas définie\n\nCela soulève des problèmes pratiques (notamment pour l’estimation) pour le modèle linéaire.\n\npas de moments sans condition"
   },
   {
     "objectID": "slides/session_2/handout.html#comment-se-débarrasser-de-la-racine-unitaire",
@@ -1047,7 +1047,7 @@
     "href": "slides/session_2/index.html#modèle-de-dotation",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Modèle de dotation",
-    "text": "Modèle de dotation\nL’agent représentatif maximise : \\[\\max_{c_t} \\sum_{t=0}^{\\infty} \\beta^t u(c_t)\\] \\[c_t + a_{t} \\leq y_t + (1+r) a_{t-1} \\]\n\n\nÉconomie de dotation :\n\nle revenu \\((y_t)_t\\) est donné de manière exogène\npar souci de simplicité, on suppose qu’il est déterministe\n\nPetite économie ouverte :\n\nouverte : peut épargner \\(a_t\\) ce qui rapporte \\(a_{t+1}(1+r)\\) à la période suivante\npetite : le pays considère le taux d’intérêt mondial \\(r\\) comme donné (pas d’effet sur les prix mondiaux)\n\n\n\nNous résolvons ce problème avec les conditions aux limites :\n\n\\(a_{-1}\\) donné1\n\\(\\lim_{T\\rightarrow\\infty} \\frac{a_{T}}{(1+r)^T}\\geq0\\)\n\ncondition pas de schéma de Ponzi\n\n\nLa condition de pas de Ponzi va effectivement éliminer les solutions divergentes.\nDans une approximation au premier ordre, elle sélectionne les bonnes valeurs propres.\n\n\nNotez que la condition initiale est compatible avec les conventions Dynare que nous utilisons ici."
+    "text": "Modèle de dotation\nL’agent représentatif maximise : \\[\\max_{c_t} \\sum_{t=0}^{\\infty} \\beta^t u(c_t)\\] \\[c_t + a_{t} \\leq y_t + (1+r) a_{t-1} \\]\n\n\nÉconomie de dotation :\n\nle revenu \\((y_t)_t\\) est donné de manière exogène\npar souci de simplicité, on suppose qu’il est déterministe\n\nPetite économie ouverte :\n\nouverte : peut épargner \\(a_t\\) ce qui rapporte \\(a_{t+1}(1+r)\\) à la période suivante\npetite : le pays considère le taux d’intérêt mondial \\(r\\) comme donné (pas d’effet sur les prix mondiaux)\n\n\n\nNous résolvons ce problème avec les conditions aux limites :\n\n\\(a_{-1}\\) donné1\n\\(\\lim_{T\\rightarrow\\infty} \\frac{a_{T}}{(1+r)^T}\\geq0\\)\n\ncondition de transversalité (aka no-Ponzi condition)\n\n\nLa condition de pas de Ponzi va effectivement éliminer les solutions divergentes.\nDans une approximation au premier ordre, elle sélectionne les bonnes valeurs propres.\n\n\nNotez que la condition initiale est compatible avec les conventions Dynare que nous utilisons ici."
   },
   {
     "objectID": "slides/session_2/index.html#modèle-de-dotation-3",
@@ -1061,7 +1061,7 @@
     "href": "slides/session_2/index.html#compte-courant",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Compte courant",
-    "text": "Compte courant\n\n\n\n\n\n\n\nRappels sur le compte courant\n\n\nLa balance commerciale est les exportations moins les importations (ici \\(y_t-c_t\\))\nLe compte courant est la balance commerciale plus les revenus nets de facteurs (ici \\(y_t-c_t+r a_{t-1}\\))\nUn compte courant positif : prêt supplémentaire au reste du monde.\n\n\n\n\n\nEn utilisant la formule d’avant\n\\[CA_0 =  a_{-1} r + (1-\\frac{r}{1+r}) y_0 - \\frac{r}{1+r}\\left\\{ \\sum_{t\\geq1}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nComment le compte courant réagit-il aux chocs de revenu ?\n\nle compte courant réagit positivement à un choc de revenu temporaire\net négativement aux anticipations de chocs futurs de revenu :\n\nC’est l’approche intertemporelle du compte courant"
+    "text": "Compte courant\n\n\n\n\n\n\n\nRappels sur le compte courant\n\n\nLa balance commerciale est les exportations moins les importations (ici \\(y_t-c_t\\))\nLe compte courant est la balance commerciale plus les revenus nets de facteurs (ici \\(y_t-c_t+r a_{t-1}\\))\nUn compte courant positif : le pays prête au reste du monde.\n\n\n\n\n\nEn utilisant la formule d’avant\n\\[CA_0 =  a_{-1} r + (1-\\frac{r}{1+r}) y_0 - \\frac{r}{1+r}\\left\\{ \\sum_{t\\geq1}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nComment le compte courant réagit-il aux chocs de revenu ?\n\n\n\nle compte courant réagit positivement à un choc de revenu temporaire\net négativement aux anticipations de chocs futurs de revenu :\n\nC’est l’approche intertemporelle du compte courant"
   },
   {
     "objectID": "slides/session_2/index.html#racine-unitaire",
@@ -1075,14 +1075,14 @@
     "href": "slides/session_2/index.html#ajout-du-capital",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Ajout du capital",
-    "text": "Ajout du capital\nNous ajoutons le capital et la production à notre économie de dotation : \\[y_t = z_t k_{t-1}^\\alpha\\] \\[k_t = (1-\\delta) k_{t-1} + i_{t}\\]\nLa contrainte de ressource agrégée devient :\n\\[a_{t} + c_t + i_t = (1+r) a_{t-1} + y_t\\]\nOn maximise alors \\(\\sum_t \\beta^ t U(c_t)\\)\n\nNous obtenons les conditions du premier ordre\n\\[\\lambda_t = \\beta \\lambda_{t+1} (1+r)\\] \\[\\lambda_t = \\beta \\lambda_{t+1}\\left[ (1-\\delta) + z_{t+1} f^{\\prime}(k_{t}) \\right]\\]\noù \\(\\lambda_t\\) est le multiplicateur de Lagrange associé à la contrainte budgétaire."
+    "text": "Ajout du capital\nNous ajoutons le capital et la production à notre économie de dotation : \\[y_t = z_t k_{t-1}^\\alpha\\] \\[k_t = (1-\\delta) k_{t-1} + i_{t}\\]\nLa contrainte de ressource agrégée devient :\n\\[a_{t} + c_t + i_t = (1+r) a_{t-1} + y_t\\]\nOn maximise alors \\(\\sum_t \\beta^ t U(c_t)\\)\n\nNous obtenons les conditions du premier ordre (exactement comme dans le RBC)\n\\[\\lambda_t = \\beta \\lambda_{t+1} (1+r)\\] \\[\\lambda_t = \\beta \\lambda_{t+1}\\left[ (1-\\delta) + z_{t+1} f^{\\prime}(k_{t}) \\right]\\]\noù \\(\\lambda_t\\) est le multiplicateur de Lagrange associé à la contrainte budgétaire."
   },
   {
     "objectID": "slides/session_2/index.html#ajout-du-capital-conditions-doptimalité",
     "href": "slides/session_2/index.html#ajout-du-capital-conditions-doptimalité",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Ajout du capital : conditions d’optimalité",
-    "text": "Ajout du capital : conditions d’optimalité\nPuisque \\(\\lambda_t&gt;0\\) (la contrainte est toujours active), nous obtenons :\n\\[(1-\\delta) + z_{t+1} f^{\\prime}(k_{t}) = 1+r\\]\n\\[k_{t} = \\left( \\frac{r+\\delta}{\\alpha z_{t+1}}\\right)^{\\frac{1}{\\alpha-1}}\\]\net l’investissement \\[i_t = \\left( \\frac{r+\\delta}{\\alpha z_{t+1}}\\right)^{\\frac{1}{\\alpha-1}}- (1-\\delta)\\left( \\frac{r+\\delta}{\\alpha z_{t}}\\right)^{\\frac{1}{\\alpha-1}}\\]\n\nIci l’investissement est entièrement déterminé par les chocs de productivité\n\ntrop simple : pas de dépendance internationale"
+    "text": "Ajout du capital : conditions d’optimalité\nPuisque \\(\\lambda_t&gt;0\\) (la contrainte est toujours active), nous obtenons :\n\\[(1-\\delta) + z_{t+1} f^{\\prime}(k_{t}) = 1+r\\]\n\\[k_{t} = \\left( \\frac{r+\\delta}{\\alpha z_{t+1}}\\right)^{\\frac{1}{\\alpha-1}}\\]\net l’investissement \\[i_t = \\left( \\frac{r+\\delta}{\\alpha z_{t+1}}\\right)^{\\frac{1}{\\alpha-1}}- (1-\\delta)\\left( \\frac{r+\\delta}{\\alpha z_{t}}\\right)^{\\frac{1}{\\alpha-1}}\\]\n\nIci l’investissement est entièrement déterminé par les chocs de productivité\n⇒ trop simple :\n\ntrès corrélé avec la productivité\npas de dépendance internationale\najustment immédiat du capital"
   },
   {
     "objectID": "slides/session_2/index.html#ajout-de-frictions-à-linvestissement",
@@ -1096,7 +1096,7 @@
     "href": "slides/session_2/index.html#un-modèle-de-petite-économie-ouverte-de-référence-1",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Un modèle de petite économie ouverte de référence",
-    "text": "Un modèle de petite économie ouverte de référence\n\n\n\n\n\nStephanie Schmitt Grohe et Martin Uribe\n\n\n\nClosing Small Economy Models, Schmitt Grohe and Uribe (2003), JIE\n\nmodèle de petite économie ouverte avec production, arbitrage consommation-loisir et coûts d’ajustement du capital\n\n= RBC + ouverture + coûts d’ajustement\n\nréalise un matching de moments\ncompare différentes façons de stationnariser"
+    "text": "Un modèle de petite économie ouverte de référence\n\n\n\n\n\nStephanie Schmitt Grohe et Martin Uribe\n\n\n\nClosing Small Economy Models, Schmitt Grohe and Uribe (2003), JIE\n\nmodèle de petite économie ouverte avec production, arbitrage consommation-loisir et coûts d’ajustement du capital\n\n= RBC + ouverture + coûts d’ajustement\n\nréalise exercice de moment-matching\ncompare différentes façons de stationnariser le modèle (pour se débarrasser de la racine unitaire)"
   },
   {
     "objectID": "slides/session_2/index.html#le-modèle",
@@ -1110,7 +1110,7 @@
     "href": "slides/session_2/index.html#comment-rendre-la-distribution-stationnaire",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Comment rendre la distribution stationnaire ?",
-    "text": "Comment rendre la distribution stationnaire ?\nLa solution du modèle présente une racine unitaire :\n\\[a_t = a_{t-1} + ... \\text{autres variables en t-1} + \\text{chocs en t}\\]\n\nProblème :\n\nil n’existe pas d’état stationnaire déterministe unique\nla distribution ergodique des variables du modèle n’est pas définie\n\nCela soulève des problèmes pratiques (notamment pour l’estimation) pour le modèle linéaire.\n\npas de moments sans condition"
+    "text": "Comment rendre la distribution stationnaire ?\nSans \\(\\color{red}\\pi\\) la solution du modèle présente une racine unitaire :\n\\[a_t = a_{t-1} + ... \\text{autres variables en t-1} + \\text{chocs en t}\\]\n\nProblème :\n\nil n’existe pas d’état stationnaire déterministe unique\nla distribution ergodique des variables du modèle n’est pas définie\n\nCela soulève des problèmes pratiques (notamment pour l’estimation) pour le modèle linéaire.\n\npas de moments sans condition"
   },
   {
     "objectID": "slides/session_2/index.html#comment-se-débarrasser-de-la-racine-unitaire",
@@ -1978,14 +1978,14 @@
     "href": "index.html",
     "title": "Macro II - Fluctuations - Part II",
     "section": "",
-    "text": "Date\n\n\n\nTitle\n\n\n\n\n\n\n\n\nMar 18, 2026\n\n\nRésolution des modèles DSGE\n\n\n\n\n\n\nMar 25, 2026\n\n\nPetite Économie Ouverte (IRBC)\n\n\n\n\n\n\nApr 1, 2026\n\n\nIntro to Heterogeneity (TBC)\n\n\n\n\n\n\nApr 15, 2026\n\n\nFinancial Intermediation (TBC)\n\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\n\nTitle\n\n\n\n\n\n\n\n\nMar 18, 2026\n\n\nRésolution des modèles DSGE\n\n\n\n\n\n\nApr 1, 2026\n\n\nPetite Économie Ouverte (IRBC)\n\n\n\n\n\n\nApr 15, 2026\n\n\nIntro to Heterogeneity (TBC)\n\n\n\n\n\n\nApr 22, 2026\n\n\nFinancial Intermediation (TBC)\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html#agenda-des-cours",
     "href": "index.html#agenda-des-cours",
     "title": "Macro II - Fluctuations - Part II",
     "section": "",
-    "text": "Date\n\n\n\nTitle\n\n\n\n\n\n\n\n\nMar 18, 2026\n\n\nRésolution des modèles DSGE\n\n\n\n\n\n\nMar 25, 2026\n\n\nPetite Économie Ouverte (IRBC)\n\n\n\n\n\n\nApr 1, 2026\n\n\nIntro to Heterogeneity (TBC)\n\n\n\n\n\n\nApr 15, 2026\n\n\nFinancial Intermediation (TBC)\n\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\n\nTitle\n\n\n\n\n\n\n\n\nMar 18, 2026\n\n\nRésolution des modèles DSGE\n\n\n\n\n\n\nApr 1, 2026\n\n\nPetite Économie Ouverte (IRBC)\n\n\n\n\n\n\nApr 15, 2026\n\n\nIntro to Heterogeneity (TBC)\n\n\n\n\n\n\nApr 22, 2026\n\n\nFinancial Intermediation (TBC)\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "tutorials/session_4/problem.html",
