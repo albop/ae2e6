@@ -1,0 +1,13 @@
+---
+title: Corrections
+listing:
+  id: sample-listings
+  type: table
+  sort-ui: false
+  filter-ui: false
+  contents: 
+    - session_*/index_correction.qmd
+    # - slides/prep_*/wip.qmd
+  sort: date
+  fields: [date, title]
+---

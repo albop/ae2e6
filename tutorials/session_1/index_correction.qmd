@@ -1,0 +1,626 @@
+---
+title: "Bases de Python et processus VAR - Correction"
+subtitle: "Cycles et fluctuations - AE2E6"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+jupyter: python3
+---
+
+<!-- Auto-generated from tutorials/session_1/index_source.qmd (correction version). -->
+
+::: {.callout-note collapse="true" title="Objectifs"}
+
+- Prendre en main l'environnement Python
+    - executer des cellules
+    - types de base : nombres, chaines, listes, tableaux
+    - fonctions
+    - graphiques simples
+- Simuler des modeles AR(1)
+    - fonctions de reponse impulsionnelle
+    - simulations stochastiques
+        - moments conditionnels / inconditionnels
+    - developper l'intuition sur les valeurs propres et les distributions ergodiques
+    
+:::
+
+
+
+# Python : introduction rapide
+
+
+## Pourquoi Python ?
+
+- Tres populaire en data science et en economie
+- Ecosysteme tres riche (NumPy, SciPy, Pandas, Matplotlib)
+- Syntaxe lisible
+- Libre et gratuit
+
+
+
+## Nombres
+
+
+```{python}
+# nombres (operations usuelles)
+(1.0+(2.0+3.0*(4.0+5.0)))/30
+
+```
+
+```{python}
+# les puissances s'ecrivent avec **
+2**8
+
+```
+
+## Variables / affectations / comparaisons
+
+
+```{python}
+# affectation de variable
+x = 10
+
+```
+
+```{python}
+# Les noms de variables peuvent contenir des caracteres Unicode
+# Python 3 prend en charge les noms de variables Unicode
+a = 20
+σ = 34
+ϵ = 1e-4
+
+```
+
+```{python}
+# comparaison
+2 == 3
+
+```
+
+```{python}
+3 <= 3
+
+```
+
+## Chaines de caracteres
+
+
+```{python}
+# Les chaines peuvent aussi contenir des caracteres Unicode
+fancy_str = "α est une chaine" 
+
+```
+
+```{python}
+# les guillemets simples ou doubles fonctionnent
+'c' 
+
+```
+
+```{python}
+# interpolation de chaines (f-strings)
+he_who_must_not_be_named = "Voldemort"
+f"Bienvenue {he_who_must_not_be_named}!" 
+
+```
+
+```{python}
+# interpolation de chaines
+n = 1999999
+print(f"Iteration {n} toujours en cours...")
+
+```
+
+## Tableaux (listes et NumPy)
+
+
+```{python}
+import numpy as np
+
+```
+
+```{python}
+# listes Python (conteneurs generiques)
+v_list = [1, 2, 3]
+
+```
+
+```{python}
+# tableaux NumPy (vecteurs/matrices)
+v = np.array([1, 2, 3])
+v
+
+```
+
+```{python}
+# matrices
+M = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+M
+
+```
+
+```{python}
+# multiplication matricielle
+M @ v
+
+```
+
+```{python}
+# les listes sont mutables
+x = ["One"]
+x.append("Two")
+x.append("Three")
+x.append("Four")
+x.append("Five")
+x
+
+```
+
+```{python}
+# acces aux elements d'un vecteur (indexation a partir de 0)
+v[0]
+
+```
+
+```{python}
+# acces aux elements d'une matrice
+M[0, 1]
+
+```
+
+::: {.callout-warning}
+
+En Python, l'indexation commence a 0. Le premier element d'une collection est note 0.
+
+:::
+
+
+```{python}
+# decouper des matrices (slicing)
+print(M)
+
+# garder la premiere ligne
+print("Premiere ligne")
+print(M[0, :])
+
+# garder la deuxieme colonne
+print("Deuxieme colonne")
+print(M[:, 1])
+
+# extraire une sous-matrice
+print(M[0:2, 0:2])
+
+```
+
+```{python}
+# concatener des vecteurs (sequence)
+np.concatenate(([1, 2], [3, 4]))
+
+```
+
+```{python}
+# concatener des vecteurs (empilement horizontal)
+np.hstack(([1, 2], [3, 4]))
+
+```
+
+```{python}
+# transposer une matrice
+np.array([[1, 2], [3, 4]]).T
+
+```
+
+## Tuples
+
+
+```{python}
+# les tuples peuvent contenir des donnees heterogenes
+t = ("This", "is", 1, "tuple")
+
+```
+
+```{python}
+# acces aux elements d'un tuple (indexation a partir de 0)
+t[2]
+
+```
+
+```{python}
+# les tuples sont immuables
+# Le code suivant doit lever une exception
+try:
+    t[0] = "That"
+except Exception as e:
+    print(e)
+
+```
+
+## Boucles
+
+
+```{python}
+# boucle sur n'importe quel iterable
+for i in range(1, 6): # de 1 a 5 (6 est exclu)
+    print(f"Iteration {i}")
+
+```
+
+## Fonctions
+
+
+```{python}
+def f(x):
+    return x**2
+
+f(10)
+
+```
+
+## Graphiques
+
+
+```{python}
+import matplotlib.pyplot as plt
+# %matplotlib inline 
+# (pas strictement necessaire dans les notebooks modernes mais utile pour la compatibilite)
+
+```
+
+```{python}
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+plt.plot(x, y)
+plt.title("Un graphique simple")
+plt.show()
+
+```
+
+# Processus VAR(1)
+
+
+Considerons le processus VAR(1) suivant :
+
+$$ y_t = A y_{t-1} + B \epsilon_t $$
+
+ou $\epsilon_t \sim \mathcal{N}(0, I_n)$.
+
+On suppose :
+$$ A = \begin{pmatrix} 0.8 & 0.1 \ 0 & 0.6 \end{pmatrix} $$
+$$ B = \begin{pmatrix} 1 & 0 \ 0 & 1 \end{pmatrix} $$
+
+
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+A = np.array([[0.8, 0.1], [0, 0.6]])
+B = np.eye(2)
+
+```
+
+@. __Calculer les valeurs propres de A__
+
+
+
+
+```{python}
+eigvals = np.linalg.eigvals(A)
+eigvals
+
+```
+
+
+@. __Verifier si le processus est stationnaire__
+
+
+
+
+```{python}
+if np.all(np.abs(eigvals) < 1):
+    print("Le processus est stationnaire")
+else:
+    print("Le processus n'est PAS stationnaire")
+
+```
+
+
+@. __Fonctions de reponse impulsionnelle__
+
+
+Calculer la reponse de $y_t$ a un choc $\epsilon_0 = [1, 0]'$ (et $\epsilon_t = 0$ pour $t > 0$).
+
+
+```{python}
+T = 20
+y = np.zeros((2, T))
+epsilon = np.array([1, 0])
+
+# Choc initial
+y[:, 0] = B @ epsilon
+
+# Propagation
+for t in range(1, T):
+    y[:, t] = A @ y[:, t-1]
+
+# Graphique
+plt.figure()
+plt.plot(y[0, :], label='y1')
+plt.plot(y[1, :], label='y2')
+plt.legend()
+plt.title("Reponse impulsionnelle a un choc sur e1")
+plt.show()
+
+```
+
+@. __Simulation stochastique__
+
+
+Importer `scipy.stats` pour faire des tirages dans une loi multivariee.
+
+
+```{python}
+from scipy.stats import multivariate_normal
+Sigma = np.eye(2) # Covariance of epsilon (since B=I and epsilon~N(0,I))
+# Si B n'etait pas I, il faudrait tenir compte de B*B', mais ici epsilon suit une loi normale standard.
+# L'enonce dit epsilon ~ N(0, I).
+# Mais plus loin, le code Julia utilise MvNormal(Σ). On suppose alors que Σ est la covariance du choc B*epsilon.
+# Dans le code Julia : `dis = MvNormal(Σ)`.
+# Et `y1 = A*y0 + B*e1`.
+# Donc e1 est tire selon N(0, Σ).
+# On conserve cette logique : Σ est la covariance du vecteur de chocs.
+
+
+```
+
+```{python}
+# Definissons Sigma comme dans le notebook Julia si elle y est definie.
+# Dans le code Julia : `Σ = [1.0 0.5; 0.5 1.0]`.
+# On retient cette valeur pour l'exercice.
+Sigma = np.array([[1.0, 0.5], [0.5, 1.0]])
+dist = multivariate_normal(mean=[0, 0], cov=Sigma)
+
+
+```
+
+```{python}
+# Tirages aleatoires
+random_points = dist.rvs(size=1000)
+plt.scatter(random_points[:, 0], random_points[:, 1], alpha=0.5)
+plt.axis('equal')
+plt.title("Tirages aleatoires selon Sigma")
+plt.show()
+
+```
+
+```{python}
+def simulate(A, B, Sigma, e0=None, T=20):
+    n = A.shape[0]
+    if e0 is None:
+        e0 = np.zeros(n)
+    
+    dist = multivariate_normal(mean=np.zeros(n), cov=Sigma)
+    
+    sim = []
+    # Etat initial (reponse a e0).
+    # Code Julia : `sim = [B*e0]` puis boucle `y1 = A*y0 + B*e1`.
+    # La simulation demarre donc avec un choc e0.
+    
+    y_curr = B @ e0
+    sim.append(y_curr)
+    
+    for t in range(T):
+        e_t = dist.rvs()
+        y_next = A @ y_curr + B @ e_t
+        sim.append(y_next)
+        y_curr = y_next
+        
+    return np.array(sim).T # Renvoie un tableau de taille (n_vars, T+1)
+
+```
+
+```{python}
+e0_2 = np.array([0, 1]) # Choc sur la deuxieme variable
+sim = simulate(A, B, Sigma, e0=e0_2)
+
+plt.figure()
+plt.plot(sim[0, :], label='y1')
+plt.plot(sim[1, :], label='y2')
+plt.legend()
+plt.title("Simulation stochastique unique")
+plt.show()
+
+```
+
+@. __Effectuer K=500 simulations stochastiques...__
+
+
+```{python}
+K = 500
+sims = [simulate(A, B, Sigma, e0=e0_2) for _ in range(K)]
+
+# Traces
+plt.figure()
+# Tracer les simulations individuelles (en transparence)
+for sim in sims:
+    plt.plot(sim[0, :], color='red', alpha=0.01)
+
+# Calculer moyenne et ecart-type
+# sims est une liste de tableaux (2, T+1)
+# On les empile en (K, 2, T+1)
+sims_arr = np.array(sims)
+mean_path = np.mean(sims_arr, axis=0)
+std_path = np.std(sims_arr, axis=0)
+
+# Tracer la moyenne
+plt.plot(mean_path[0, :], color='blue', label='Mean y1')
+# Tracer les intervalles
+plt.plot(mean_path[0, :] - std_path[0, :], color='blue', linestyle='--')
+plt.plot(mean_path[0, :] + std_path[0, :], color='blue', linestyle='--')
+
+plt.title("Simulation de Monte Carlo (y1)")
+plt.show()
+
+# Faire le meme graphique pour y2...
+
+
+```
+
+@. __Distribution ergodique__
+
+La matrice de covariance $\Omega$ verifie $\Omega = A \Omega A' + B \Sigma B'$.
+Resoudre par iteration.
+
+
+
+```{python}
+def ergodic_steady_state(A, B, Sigma, N=1000, tol=1e-8):
+    Omega = np.zeros_like(Sigma)
+    for i in range(N):
+        Omega_next = A @ Omega @ A.T + B @ Sigma @ B.T
+        if np.max(np.abs(Omega_next - Omega)) < tol:
+            return Omega_next
+        Omega = Omega_next
+    raise ValueError("Pas de convergence")
+
+Omega = ergodic_steady_state(A, B, Sigma)
+print("Covariance ergodique :")
+print(Omega)
+
+```
+
+@. __Comparer avec l'empirique__
+
+
+```{python}
+# Covariance empirique issue des simulations (points finaux)
+final_points = sims_arr[:, :, -1] # (K, 2)
+emp_cov = np.cov(final_points.T)
+print("Covariance empirique :")
+print(emp_cov)
+
+```
+
+
+
+# Systèmes Matriciels du Second Ordre
+
+On suppose qu'un système dynamique du second ordre est donné par :
+
+$$A \mathbb{E}[ y_{t+1} ] + B y_t + C y_{t-1} + D \epsilon_t = 0$$
+
+où A,B,C sont des matrices de taille (n, n), D une matrice de taille (n, m) et $\epsilon_t$ un vecteur de chocs exogènes normalement distribué de moyenne nulle et de covariance $\Sigma$, une matrice de taille (m, m).
+
+On cherche des solutions linéaires de la forme $y_t = X y_{t-1} + Y \epsilon_t$.
+
+@. Montrer que $X$ et $Y$ satisfont respectivement les équations matricielles suivantes:
+
+$$A X^2 + B X + C = 0$$
+$$A X Y + B Y + D = 0$$
+
+
+
+## Définition et implémentation : Schur généralisée (QZ)
+
+On veut résoudre :
+
+$$A\,\mathbb E_t[y_{t+1}] + B\,y_t + C\,y_{t-1} + D\,\varepsilon_t = 0$$
+
+avec une règle linéaire :
+
+$$y_t = Xy_{t-1} + Y\varepsilon_t$$
+
+Les matrices $(X,Y)$ vérifient :
+
+$$AX^2 + BX + C = 0,\qquad (AX+B)Y + D = 0.$$
+
+Idée QZ (très concise) :
+
+1. Linéariser le polynôme matriciel via le crayon généralisé $(M,N)$ :
+$$
+M = \begin{bmatrix}0 & I\\ -C & -B\end{bmatrix},
+\qquad
+N = \begin{bmatrix}I & 0\\ 0 & A\end{bmatrix}.
+$$
+2. Faire une QZ réordonnée (racines stables $|\lambda|<1$ en premier).
+3. Extraire le sous-espace invariant stable $U=\begin{bmatrix}U_1\\U_2\end{bmatrix}$.
+4. Poser $X = U_2 U_1^{-1}$.
+5. Calculer $Y = -(AX+B)^{-1}D$.
+
+```{python}
+import numpy as np
+from scipy.linalg import ordqz
+
+
+def solve_second_order_qz(A, B, C, D, tol=1e-10):
+    """
+    Résout AX^2 + BX + C = 0 (branche stable) puis Y via (AX+B)Y + D = 0.
+
+    Retourne:
+      X, Y, eigvals, diagnostics
+    """
+    A = np.asarray(A, dtype=float)
+    B = np.asarray(B, dtype=float)
+    C = np.asarray(C, dtype=float)
+    D = np.asarray(D, dtype=float)
+
+    n = A.shape[0]
+    I = np.eye(n)
+    Z = np.zeros((n, n))
+
+    # Companion pencil pour P(lambda)=A lambda^2 + B lambda + C
+    M = np.block([[Z, I], [-C, -B]])
+    N = np.block([[I, Z], [Z, A]])
+
+    S, T, alpha, beta, Q, Zqz = ordqz(M, N, sort="iuc")
+    eigvals = alpha / beta
+
+    n_stable = np.sum(np.abs(eigvals) < 1 - tol)
+    if n_stable != n:
+        raise ValueError(
+            f"Nombre de racines stables = {n_stable}, attendu = {n}."
+        )
+
+    U = Zqz[:, :n]
+    U1 = U[:n, :]
+    U2 = U[n:, :]
+
+    if np.linalg.cond(U1) > 1 / np.sqrt(np.finfo(float).eps):
+        raise ValueError("U1 est mal conditionnée : solution numérique instable.")
+
+    X = np.real_if_close(U2 @ np.linalg.inv(U1))
+
+    G = A @ X + B
+    Y = np.linalg.solve(-G, D)
+
+    # Diagnostics de cohérence
+    res_X = np.linalg.norm(A @ X @ X + B @ X + C, ord=np.inf)
+    res_Y = np.linalg.norm((A @ X + B) @ Y + D, ord=np.inf)
+
+    diagnostics = {
+        "eigvals": eigvals,
+        "n_stable": int(n_stable),
+        "residual_X": float(res_X),
+        "residual_Y": float(res_Y),
+    }
+    return X, Y, eigvals, diagnostics
+
+
+# Exemple numérique
+A = np.array([[1.0, 0.0], [0.0, 1.0]])
+B = np.array([[-2.1, 0.0], [0.0, -2.1]])
+C = np.array([[0.98, 0.0], [0.0, 0.9]])
+D = np.array([[1.0], [0.5]])
+
+X, Y, eigvals, info = solve_second_order_qz(A, B, C, D)
+
+print("X =")
+print(X)
+print("\nY =")
+print(Y)
+print("\nValeurs propres (pencil):")
+print(eigvals)
+print("\nDiagnostics:")
+print(info)
+```
