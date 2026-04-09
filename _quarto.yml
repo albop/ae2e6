@@ -1,6 +1,10 @@
 project:
   type: website
 
+  render:
+    - "**/*.qmd"
+    - "!tutorials/session_1/index_source.qmd"
+
 website:
   title: "Macro II - Fluctuations - Part II"
   search: false
