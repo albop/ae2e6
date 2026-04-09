@@ -6,21 +6,18 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-067f8ab80d092ae3595f7402c2c9b667.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.32">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
 
   <meta name="author" content="Pablo Winant">
-  <meta name="dcterms.date" content="2026-03-25">
-  <title>Macro II - Fluctuations - Part II – Petite Économie Ouverte (IRBC)</title>
+  <meta name="dcterms.date" content="2025-03-19">
+  <title>Macro II - Fluctuations - Part II – Small Open Economy Extension (IRBC)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -33,7 +30,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-aff952457c660ebbad5a69546bc30c2b.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8303b06891f51739cff57689036b5617.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -131,8 +128,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Petite Économie Ouverte (IRBC)</h1>
-  <p class="subtitle">Macro II - Fluctuations - ENSAE, 2025-2026</p>
+  <h1 class="title">Small Open Economy Extension (IRBC)</h1>
+  <p class="subtitle">Macro II - Fluctuations - ENSAE, 2024-2025</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -142,7 +139,7 @@ Pablo Winant
 </div>
 </div>
 
-  <p class="date">2026-03-25</p>
+  <p class="date">2025-03-19</p>
 </section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">Plan</h2>
@@ -355,14 +352,21 @@ u^{\prime}(c_t)&amp; =&amp; \lambda_t \\
 - $a_t$ is constant, equal to $a_{-1}$
 - agent consumes small amount $r$ corresponding to interests paid forever on $a_{-1}$</code></pre>
 <ul>
-<li>this will correspond to a unit root in the solution &lt;!– ## Exercise</li>
+<li>this will correspond to a unit root in the solution <!-- 
+## Exercise
+
+From the first order conditions 
+
+
+\begin{align}
+u^{\prime}(c_t) & = & \lambda_t \\
+\lambda_t & = &  \beta (1+r) \lambda_{t+1}
+\end{align}
+
+
+assuming $u(c_t) = \log (c_t)$, can you get the equation for the law of motion of $a_t$  and show the presence of a unit root?
+ --></li>
 </ul>
-<p>From the first order conditions</p>
-<p><span class="math display">\[\begin{align}
-u^{\prime}(c_t) &amp; = &amp; \lambda_t \\
-\lambda_t &amp; = &amp;  \beta (1+r) \lambda_{t+1}
-\end{align}\]</span></p>
-<p>assuming <span class="math inline">\(u(c_t) = \log (c_t)\)</span>, can you get the equation for the law of motion of <span class="math inline">\(a_t\)</span> and show the presence of a unit root? –&gt;</p>
 </section>
 <section id="adding-capital" class="slide level2">
 <h2>Adding capital</h2>
@@ -884,7 +888,7 @@ The immediate adjustment of capital provides an upper bound on the gains from fi
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp('/' + window.location.host + '/');
+            var filterRegex = new RegExp("https:\/\/albop\.github\.io\/ae2e6\/");
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

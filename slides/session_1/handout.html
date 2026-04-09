@@ -2,18 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Pablo Winant">
-<meta name="dcterms.date" content="2026-03-18">
+<meta name="dcterms.date" content="2025-03-18">
 
 <title>Résolution des modèles DSGE – Macro II - Fluctuations - Part II</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -32,14 +29,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-067f8ab80d092ae3595f7402c2c9b667.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-dffba865fdba01e4a0719914bf52ca0a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e04086fab2259e68405aa0399fd2ba10.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -57,7 +55,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -110,11 +108,12 @@ window.Quarto = {
   </ul></li>
   <li><a href="#résolution-dun-modèle" id="toc-résolution-dun-modèle" class="nav-link" data-scroll-target="#résolution-dun-modèle">Résolution d’un modèle</a>
   <ul class="collapse">
-  <li><a href="#rbc-in-dynare" id="toc-rbc-in-dynare" class="nav-link" data-scroll-target="#rbc-in-dynare">RBC in Dynare</a></li>
-  <li><a href="#les-symboles" id="toc-les-symboles" class="nav-link" data-scroll-target="#les-symboles">Les symboles</a></li>
-  <li><a href="#le-timing-des-équations" id="toc-le-timing-des-équations" class="nav-link" data-scroll-target="#le-timing-des-équations">Le timing des équations</a></li>
-  <li><a href="#le-timing-des-équations-examples" id="toc-le-timing-des-équations-examples" class="nav-link" data-scroll-target="#le-timing-des-équations-examples">Le timing des équations: examples</a></li>
   <li><a href="#modèle" id="toc-modèle" class="nav-link" data-scroll-target="#modèle">Modèle</a></li>
+  <li><a href="#le-timing-des-équations" id="toc-le-timing-des-équations" class="nav-link" data-scroll-target="#le-timing-des-équations">Le timing des équations</a></li>
+  <li><a href="#le-timing-des-équations-1" id="toc-le-timing-des-équations-1" class="nav-link" data-scroll-target="#le-timing-des-équations-1">Le timing des équations</a>
+  <ul class="collapse">
+  <li><a href="#exemple" id="toc-exemple" class="nav-link" data-scroll-target="#exemple">Exemple</a></li>
+  </ul></li>
   <li><a href="#état-stationnaire" id="toc-état-stationnaire" class="nav-link" data-scroll-target="#état-stationnaire">État stationnaire</a></li>
   <li><a href="#le-système-implicite" id="toc-le-système-implicite" class="nav-link" data-scroll-target="#le-système-implicite">Le système implicite</a></li>
   <li><a href="#lespace-détat" id="toc-lespace-détat" class="nav-link" data-scroll-target="#lespace-détat">L’espace d’état</a></li>
@@ -171,7 +170,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 18, 2026</p>
+      <p class="date">March 18, 2025</p>
     </div>
   </div>
   
@@ -191,7 +190,7 @@ window.Quarto = {
 <div class="column" style="width:80%;">
 <p>Quelle est la principale spécificité de la modélisation économique ?</p>
 <div class="fragment">
-<p>En économie, nous <em>modélisons</em> le comportement des agents économiques en spécifiant :</p>
+<p>En (macro)économie, nous <em>modélisons</em> le comportement des agents économiques en spécifiant :</p>
 <ul>
 <li>leur objectif <span class="math display">\[\max_{c_t} E_t \sum_{s\geq t} \beta^s U(c_s)\]</span> <span class="math display">\[\max \pi_t\]</span> <span class="math display">\[\cdots\]</span></li>
 <li>leurs contraintes (contrainte budgétaire, environnement éco…)</li>
@@ -203,13 +202,12 @@ window.Quarto = {
 </div>
 <p>. . .</p>
 <div class="fragment">
-<p>En macro-économie, cette approche a été développée par les nouveaux classiques (Lucas, Sargent, Barro, Kydland &amp; Prescott, etc.): on parle de <strong>micro-fondations</strong>.</p>
-</div>
-<p>. . .</p>
-<div class="fragment">
 <p>Cela a des implications importantes :</p>
 <ul>
-<li>les modèles macro donnent une part importante aux anticipations</li>
+<li>les modèles macro sont orientés vers le futur (<em>forward looking</em>)
+<ul>
+<li>ils reposent sur les anticipations</li>
+</ul></li>
 <li>les modèles macro doivent être <strong>résolus</strong></li>
 </ul>
 </div>
@@ -225,11 +223,7 @@ window.Quarto = {
 <ul class="incremental">
 <li>1996 : Michel Juillard crée un logiciel open source pour résoudre des modèles DSGE
 <ul class="incremental">
-<li>DSGE : Dynamic Stochastic General Equilibrium
-<ul class="incremental">
-<li>historiquement: extensions du modèle RBC</li>
-<li>maintenant utilisés pour une large classe de modèles</li>
-</ul></li>
+<li>DSGE : Dynamic Stochastic General Equilibrium</li>
 <li>généralement résolus autour d’un état stationnaire</li>
 </ul></li>
 <li>Aujourd’hui, environ 10 contributeurs.
@@ -245,11 +239,7 @@ window.Quarto = {
 <li>premières versions sous Gauss</li>
 <li>puis Matlab/Octave/Scilab</li>
 <li>dernière version en Julia</li>
-</ul></li>
-<li>Dans ce cours, on utilise <a href="http://github.com/albop/dyno.py">dyno 🦖</a>, une variante en python
-<ul>
-<li>compatible avec les modfiles dynare</li>
-<li>syntax simplifiée + interface graphique</li>
+<li>… et Python (voir <a href="https://www.mosphere.fr/ae2e6_models/voici/tree/index.html">dyno 🦖</a>)</li>
 </ul></li>
 </ul>
 </div>
@@ -282,135 +272,50 @@ window.Quarto = {
 </section>
 <section id="plan" class="level2">
 <h2 class="anchored" data-anchor-id="plan">Plan</h2>
-<p>Plan des séances:</p>
+<p>Fournir une courte introduction à la modélisation DSGE :</p>
 <ul>
 <li>Comment les modèles sont résolus (aujourd’hui)</li>
 <li>Petite économie ouverte (aka modèle IRBC)</li>
-<li>Hétérogénéité (T.B.C.)</li>
-<li>Intermédiation financière (T.B.C.)</li>
+<li>Hétérogénéité</li>
+<li>Intermédiation financière</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled" title="Objectifs pédagogiques">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Objectifs pédagogiques
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>consolider les connaissances sur le modèle RBC et la méthodologie associée</li>
-<li>utiliser la modélisation DSGE (dynare) analyser un modèle</li>
-<li>développer la culture des cycles réels en discutant quelques extensions</li>
-</ul>
-</div>
-</div>
+<p>Au passage, nous discuterons de certaines tendances</p>
 </section>
 </section>
 <section id="résolution-dun-modèle" class="level1">
 <h1>Résolution d’un modèle</h1>
-<section id="rbc-in-dynare" class="level2">
-<h2 class="anchored" data-anchor-id="rbc-in-dynare">RBC in Dynare</h2>
-<pre><code>var y, c, k, a, h, b;
-varexo e, u;
-parameters beta, rho, alpha, delta, theta, psi, tau, phi;
-
-alpha = 0.36;
-rho   = 0.95;
-tau   = 0.025;
-beta  = 0.99;
-delta = 0.025;
-psi   = 0;
-theta = 2.95;
-
-model;
-c*theta*h^(1+psi)=(1-alpha)*y;
-k = beta*(((exp(b)*c)/(exp(b(+1))*c(+1)))
-    *(exp(b(+1))*alpha*y(+1)+(1-delta)*k));
-y = exp(a)*(k(-1)^alpha)*(h^(1-alpha));
-k = exp(b)*(y-c)+(1-delta)*k(-1);
-a = rho*a(-1)+tau*b(-1) + e;
-b = tau*a(-1)+rho*b(-1) + u;
-end;
-
-steadystate_model;
-y = 1.08068253095672;
-c = 0.80359242014163;
-h = 0.29175631001732;
-k = 11.08360443260358;
-a = 0;
-b = 0;
-e = 0;
-u = 0;
-end;
-
-shocks;
-var e; stderr 0.009;
-var u; stderr 0.009;
-var e, u = phi*0.009*0.009;
-end;
-
-stoch_simul;</code></pre>
-</section>
-<section id="les-symboles" class="level2">
-<h2 class="anchored" data-anchor-id="les-symboles">Les symboles</h2>
-<p>Un modèle peut contenir différent symboles:</p>
-<ul>
-<li><strong>variables</strong> (endogènes): résolues par le modèles
-<ul>
-<li>variable de saut : apparaît en <span class="math inline">\(t\)</span> ou <span class="math inline">\(t+1\)</span></li>
-<li>variable prédéterminée : apparaît en <span class="math inline">\(t-1\)</span> et <span class="math inline">\(t\)</span> (éventuellement <span class="math inline">\(t+1\)</span>)</li>
-<li>variable statique : apparaît seulement en <span class="math inline">\(t\)</span>
-<ul>
-<li>peut être exprimée en fonction d’autres variables</li>
-</ul></li>
-</ul></li>
-<li><strong>variable exogène</strong> : les chocs i.i.d.</li>
-<li><strong>paramètres</strong>: quantités fixes</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="modèle" class="level2">
+<h2 class="anchored" data-anchor-id="modèle">Modèle</h2>
+<p>Une représentation très concise d’un modèle</p>
+<p><span class="math display">\[\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0\]</span></p>
 <div class="columns">
 <div class="column">
-<p>Dans un modefile dynare, tous les symboles sont déclarés avant d’être utilisés:</p>
+<div class="fragment">
+<p>Le <strong>problème</strong> :</p>
 <ul>
-<li><p><code>var y, c, k, a, h, b;</code> : définit les variables <span class="math inline">\(y_t, c_t, k_t, a_t, h_t, b_t\)</span></p></li>
-<li><p><code>varexo e, u;</code> : définit les chocs i.i.d. <span class="math inline">\(e_t\)</span> et <span class="math inline">\(u_t\)</span></p>
+<li><span class="math inline">\(y_t\in\mathbb{R}^n\)</span> : le vecteur des variables endogènes</li>
+<li><span class="math inline">\(\epsilon_t\in\mathbb{R}^{n_e}\)</span> : le vecteur des variables exogènes
 <ul>
-<li>les chocs sont ensuite spécifiés dans le block <code>shocks</code> …<code>end</code></li>
+<li>on suppose que <span class="math inline">\(\epsilon_t\)</span> est un processus gaussien centré</li>
 </ul></li>
-<li><p><code>parameters alpha, ....;</code>: déclare les constantes</p>
-<ul>
-<li>les valeurs sont données en ligne</li>
-</ul></li>
+<li><span class="math inline">\(f: \mathbb{R}^n\rightarrow \mathbb{R}^n\)</span> : les équations du modèle</li>
 </ul>
+</div>
 </div><div class="column">
-<pre><code>var y, c, k, a, h, b;
-varexo e, u;
-parameters beta, rho, alpha, delta, theta, psi, tau, phi;
-
-alpha = 0.36;
-rho   = 0.95;
-tau   = 0.025;
-beta  = 0.99;</code></pre>
+<div class="fragment">
+<p>La <strong>solution</strong> :</p>
+<ul>
+<li><span class="math inline">\(g\)</span> telle que <span class="math display">\[\forall t, y_t = g(y_{t-1},\epsilon_t)\]</span></li>
+</ul>
 </div>
 </div>
 </div>
+<div class="notes">
+<p>La situation est différente lorsqu’on réalise une simulation en prévision parfaite.</p>
 </div>
 </section>
 <section id="le-timing-des-équations" class="level2">
 <h2 class="anchored" data-anchor-id="le-timing-des-équations">Le timing des équations</h2>
-<div class="columns">
-<div class="column">
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -423,31 +328,27 @@ Tip
 <div class="callout-body-container callout-body">
 <p>Dans un modefile dynare, les équations du modèle sont codées dans le bloc <code>model; ... ; end;</code>.</p>
 <p>La variable <span class="math inline">\(v_t\)</span> (resp <span class="math inline">\(v_{t-1}\)</span>, <span class="math inline">\(v_{t+1}\)</span>) est notée <code>v</code> ou <code>v(0)</code> (resp <code>v(-1)</code>, <code>v(+1)</code>).</p>
-<p>Il doit y avoir une équation par variable.</p>
-</div>
-</div>
-</div><div class="column">
-<pre><code>model;
-c*theta*h^(1+psi)=(1-alpha)*y;
-k = beta*(((exp(b)*c)/(exp(b(+1))*c(+1)))
-    *(exp(b(+1))*alpha*y(+1)+(1-delta)*k));
-y = exp(a)*(k(-1)^alpha)*(h^(1-alpha));
-k = exp(b)*(y-c)+(1-delta)*k(-1);
-a = rho*a(-1)+tau*b(-1) + e;
-b = tau*a(-1)+rho*b(-1) + u;
-end;</code></pre>
 </div>
 </div>
 <p><strong>Convention générale de timing</strong></p>
-<ul>
-<li><p>La nouvelle information arrive avec les innovations <span class="math inline">\(\epsilon_t\)</span>.</p></li>
-<li><p>À la date <span class="math inline">\(t\)</span>, l’ensemble d’information est engendré par <span class="math inline">\(\mathcal{F}_t = \mathcal{F} (\cdots, \epsilon_{t-3}, \epsilon_{t-2}, \epsilon_{t-1}, \epsilon_t)\)</span></p></li>
-<li><p>Par convention, <em>une variable endogène a l’indice <span class="math inline">\(t\)</span> si elle est connue pour la première fois à la date <span class="math inline">\(t\)</span></em>.</p></li>
-</ul>
+<p>La nouvelle information arrive avec les innovations <span class="math inline">\(\epsilon_t\)</span>.</p>
+<p>À la date <span class="math inline">\(t\)</span>, l’ensemble d’information est engendré par <span class="math inline">\(\mathcal{F}_t = \mathcal{F} (\cdots, \epsilon_{t-3}, \epsilon_{t-2}, \epsilon_{t-1}, \epsilon_t)\)</span></p>
+<p>Par convention, <em>une variable endogène a l’indice <span class="math inline">\(t\)</span> si elle est connue pour la première fois à la date <span class="math inline">\(t\)</span></em>.</p>
 <p>. . .</p>
+<p>Plusieurs <strong>types de variables</strong> selon leur apparition dans le modèle :</p>
+<ul>
+<li>variable de saut : apparaît en <span class="math inline">\(t\)</span> ou <span class="math inline">\(t+1\)</span></li>
+<li>variable prédéterminée : apparaît en <span class="math inline">\(t-1\)</span> et <span class="math inline">\(t\)</span> (éventuellement <span class="math inline">\(t+1\)</span>)</li>
+<li>variable statique : apparaît seulement en <span class="math inline">\(t\)</span>
+<ul>
+<li>peut être exprimée en fonction d’autres variables</li>
+</ul></li>
+</ul>
 </section>
-<section id="le-timing-des-équations-examples" class="level2">
-<h2 class="anchored" data-anchor-id="le-timing-des-équations-examples">Le timing des équations: examples</h2>
+<section id="le-timing-des-équations-1" class="level2">
+<h2 class="anchored" data-anchor-id="le-timing-des-équations-1">Le timing des équations</h2>
+<section id="exemple" class="level3">
+<h3 class="anchored" data-anchor-id="exemple">Exemple</h3>
 <p>Avec les conventions de timing de Dynare :</p>
 <ul>
 <li><p>Écrire la fonction de production dans le modèle RBC</p></li>
@@ -462,38 +363,6 @@ end;</code></pre>
 </ul></li>
 </ul>
 </section>
-<section id="modèle" class="level2">
-<h2 class="anchored" data-anchor-id="modèle">Modèle</h2>
-<p>Une représentation très concise d’un modèle</p>
-<p><span class="math display">\[\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0\]</span> <!-- 
-::: columns
-
-:::: column  --></p>
-<div class="fragment">
-<p>Le <strong>problème</strong> :</p>
-<ul>
-<li><span class="math inline">\(y_t\in\mathbb{R}^n\)</span> : le vecteur des variables endogènes</li>
-<li><span class="math inline">\(\epsilon_t\in\mathbb{R}^{n_e}\)</span> : le vecteur des variables exogènes
-<ul>
-<li>on suppose que <span class="math inline">\(\epsilon_t\)</span> est un processus gaussien centré</li>
-</ul></li>
-<li><span class="math inline">\(f: \mathbb{R}^n\rightarrow \mathbb{R}^n\)</span> : les équations du modèle</li>
-</ul>
-</div>
-<!-- ::::
-
-:::: column -->
-<div class="fragment">
-<p>La <strong>solution</strong> :</p>
-<ul>
-<li><span class="math inline">\(g\)</span> telle que <span class="math inline">\(\forall t, y_t = g(y_{t-1},\epsilon_t)\)</span></li>
-<li><span class="math inline">\(g\)</span> est la <strong>règle de décision</strong> / <strong>politique</strong></li>
-<li>elle caractérise la dynamique du modèle résolu</li>
-</ul>
-</div>
-<div class="notes">
-<p>La situation est différente lorsqu’on réalise une simulation en prévision parfaite.</p>
-</div>
 </section>
 <section id="état-stationnaire" class="level2">
 <h2 class="anchored" data-anchor-id="état-stationnaire">État stationnaire</h2>
@@ -502,10 +371,8 @@ end;</code></pre>
 <p>Souvent, il existe une solution en forme fermée.</p>
 <p>Sinon, il faut recourir à un solveur numérique pour résoudre</p>
 <p><span class="math display">\[\overline{y}\rightarrow f(\overline{y},\overline{y}, \overline{y}, 0)\]</span></p>
-<div class="columns">
-<div class="column">
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -514,21 +381,11 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Dans dynare, les valeurs d’état stationnaire sont fournies dans le bloc <code>steadystate_model; ... ; end;</code>.</p>
-<p>On peut vérifier qu’elles sont correctes avec l’instruction <code>check;</code>.</p>
+<p>Dans dynare, les valeurs d’état stationnaire sont fournies dans le bloc <code>steadystate_model; ... ; end;</code>. On peut vérifier qu’elles sont correctes avec l’instruction <code>check;</code>.</p>
 <p>Pour trouver numériquement l’état stationnaire : <code>steady;</code>.</p>
 </div>
-</div>
-</div>
-</div><div class="column">
-<pre><code>steadystate_model;
-y = 1.08068253095672;
-c = 0.80359242014163;
-h = 0.29175631001732;
-k = 11.08360443260358;
-end;</code></pre>
 </div>
 </div>
 </section>
@@ -670,7 +527,6 @@ end;</code></pre>
 <div class="callout-body-container callout-body">
 <p>Le modèle satisfait le critère de Blanchard-Kahn si le nombre de valeurs propres supérieures à un est exactement égal au nombre de variables <em>apparaissant</em> en <span class="math inline">\(t+1\)</span>.</p>
 <p>Dans ce cas, le modèle est bien défini.</p>
-<p>Dans Dynare, la résolution échoue si le critère n’est pas satisfait. La commande <code>check</code> en plus de vérifier l’état stationnaire, vérifie aussi les conditions de BK.</p>
 </div>
 </div>
 </section>

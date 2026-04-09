@@ -1,11 +1,23 @@
 [
   {
+    "listing": "/tutorials/session_2/index_correction.html",
+    "items": []
+  },
+  {
     "listing": "/index.html",
     "items": [
       "/slides/session_1/handout.html",
       "/slides/session_2/handout.html",
       "/slides/session_3/handout.html",
-      "/slides/session_4/handout.html"
+      "/slides/session_4/handout.html",
+      "/tutorials/session_1/index.html"
+    ]
+  },
+  {
+    "listing": "/tutorials/corrections.html",
+    "items": [
+      "/tutorials/session_1/index_correction.html",
+      "/tutorials/session_2/index_correction.html"
     ]
   }
 ]

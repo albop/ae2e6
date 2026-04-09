@@ -2,18 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Pablo Winant">
-<meta name="dcterms.date" content="2026-04-01">
+<meta name="dcterms.date" content="2025-03-25">
 
 <title>Petite Économie Ouverte (IRBC) – Macro II - Fluctuations - Part II</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -32,14 +29,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-067f8ab80d092ae3595f7402c2c9b667.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-dffba865fdba01e4a0719914bf52ca0a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e04086fab2259e68405aa0399fd2ba10.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -57,7 +55,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -101,32 +99,32 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-et-faits-stylisés" id="toc-introduction-et-faits-stylisés" class="nav-link active" data-scroll-target="#introduction-et-faits-stylisés">Introduction et faits stylisés</a>
+  <li><a href="#introduction-and-basic-facts" id="toc-introduction-and-basic-facts" class="nav-link active" data-scroll-target="#introduction-and-basic-facts">Introduction and Basic Facts</a>
   <ul class="collapse">
-  <li><a href="#pourquoi-une-petite-économie-ouverte" id="toc-pourquoi-une-petite-économie-ouverte" class="nav-link" data-scroll-target="#pourquoi-une-petite-économie-ouverte">Pourquoi une petite économie ouverte ?</a></li>
-  <li><a href="#du-modèle-rbc-au-modèle-irbc" id="toc-du-modèle-rbc-au-modèle-irbc" class="nav-link" data-scroll-target="#du-modèle-rbc-au-modèle-irbc">Du modèle RBC au modèle IRBC</a></li>
-  <li><a href="#faits-empiriques-des-irbc" id="toc-faits-empiriques-des-irbc" class="nav-link" data-scroll-target="#faits-empiriques-des-irbc">Faits empiriques des IRBC</a></li>
-  <li><a href="#faits-empiriques-des-irbc-1" id="toc-faits-empiriques-des-irbc-1" class="nav-link" data-scroll-target="#faits-empiriques-des-irbc-1">Faits empiriques des IRBC</a></li>
-  <li><a href="#faits-stylisés" id="toc-faits-stylisés" class="nav-link" data-scroll-target="#faits-stylisés">Faits stylisés</a></li>
+  <li><a href="#why-a-small-open-economy" id="toc-why-a-small-open-economy" class="nav-link" data-scroll-target="#why-a-small-open-economy">Why a small open economy?</a></li>
+  <li><a href="#from-rbc-to-irbc" id="toc-from-rbc-to-irbc" class="nav-link" data-scroll-target="#from-rbc-to-irbc">From RBC to IRBC</a></li>
+  <li><a href="#irbc-facts" id="toc-irbc-facts" class="nav-link" data-scroll-target="#irbc-facts">IRBC Facts</a></li>
+  <li><a href="#irbc-facts-1" id="toc-irbc-facts-1" class="nav-link" data-scroll-target="#irbc-facts-1">IRBC Facts</a></li>
+  <li><a href="#stylized-facts" id="toc-stylized-facts" class="nav-link" data-scroll-target="#stylized-facts">Stylized Facts</a></li>
   </ul></li>
-  <li><a href="#modélisation-dune-petite-économie-ouverte" id="toc-modélisation-dune-petite-économie-ouverte" class="nav-link" data-scroll-target="#modélisation-dune-petite-économie-ouverte">Modélisation d’une petite économie ouverte</a>
+  <li><a href="#modeling-a-small-open-economy" id="toc-modeling-a-small-open-economy" class="nav-link" data-scroll-target="#modeling-a-small-open-economy">Modeling a Small Open Economy</a>
   <ul class="collapse">
-  <li><a href="#modèle-de-dotation" id="toc-modèle-de-dotation" class="nav-link" data-scroll-target="#modèle-de-dotation">Modèle de dotation</a></li>
-  <li><a href="#modèle-de-dotation-3" id="toc-modèle-de-dotation-3" class="nav-link" data-scroll-target="#modèle-de-dotation-3">Modèle de dotation (3)</a></li>
-  <li><a href="#compte-courant" id="toc-compte-courant" class="nav-link" data-scroll-target="#compte-courant">Compte courant</a></li>
-  <li><a href="#racine-unitaire" id="toc-racine-unitaire" class="nav-link" data-scroll-target="#racine-unitaire">Racine unitaire</a></li>
-  <li><a href="#ajout-du-capital" id="toc-ajout-du-capital" class="nav-link" data-scroll-target="#ajout-du-capital">Ajout du capital</a></li>
-  <li><a href="#ajout-du-capital-conditions-doptimalité" id="toc-ajout-du-capital-conditions-doptimalité" class="nav-link" data-scroll-target="#ajout-du-capital-conditions-doptimalité">Ajout du capital : conditions d’optimalité</a></li>
-  <li><a href="#ajout-de-frictions-à-linvestissement" id="toc-ajout-de-frictions-à-linvestissement" class="nav-link" data-scroll-target="#ajout-de-frictions-à-linvestissement">Ajout de frictions à l’investissement</a></li>
+  <li><a href="#endowment-model" id="toc-endowment-model" class="nav-link" data-scroll-target="#endowment-model">Endowment model</a></li>
+  <li><a href="#endowment-model-3" id="toc-endowment-model-3" class="nav-link" data-scroll-target="#endowment-model-3">Endowment model (3)</a></li>
+  <li><a href="#current-account" id="toc-current-account" class="nav-link" data-scroll-target="#current-account">Current Account</a></li>
+  <li><a href="#unit-root" id="toc-unit-root" class="nav-link" data-scroll-target="#unit-root">Unit root</a></li>
+  <li><a href="#adding-capital" id="toc-adding-capital" class="nav-link" data-scroll-target="#adding-capital">Adding capital</a></li>
+  <li><a href="#adding-capital-optimality-conditions" id="toc-adding-capital-optimality-conditions" class="nav-link" data-scroll-target="#adding-capital-optimality-conditions">Adding capital: optimality conditions</a></li>
+  <li><a href="#add-friction-to-the-investment" id="toc-add-friction-to-the-investment" class="nav-link" data-scroll-target="#add-friction-to-the-investment">Add friction to the investment</a></li>
   </ul></li>
-  <li><a href="#un-modèle-de-petite-économie-ouverte-de-référence" id="toc-un-modèle-de-petite-économie-ouverte-de-référence" class="nav-link" data-scroll-target="#un-modèle-de-petite-économie-ouverte-de-référence">Un modèle de petite économie ouverte de référence</a>
+  <li><a href="#a-benchmark-small-open-economy-model" id="toc-a-benchmark-small-open-economy-model" class="nav-link" data-scroll-target="#a-benchmark-small-open-economy-model">A benchmark Small Open Economy Model</a>
   <ul class="collapse">
-  <li><a href="#un-modèle-de-petite-économie-ouverte-de-référence-1" id="toc-un-modèle-de-petite-économie-ouverte-de-référence-1" class="nav-link" data-scroll-target="#un-modèle-de-petite-économie-ouverte-de-référence-1">Un modèle de petite économie ouverte de référence</a></li>
-  <li><a href="#le-modèle" id="toc-le-modèle" class="nav-link" data-scroll-target="#le-modèle">Le modèle</a></li>
-  <li><a href="#comment-rendre-la-distribution-stationnaire" id="toc-comment-rendre-la-distribution-stationnaire" class="nav-link" data-scroll-target="#comment-rendre-la-distribution-stationnaire">Comment rendre la distribution stationnaire ?</a></li>
-  <li><a href="#comment-se-débarrasser-de-la-racine-unitaire" id="toc-comment-se-débarrasser-de-la-racine-unitaire" class="nav-link" data-scroll-target="#comment-se-débarrasser-de-la-racine-unitaire">Comment se débarrasser de la racine unitaire ?</a></li>
-  <li><a href="#calibrage" id="toc-calibrage" class="nav-link" data-scroll-target="#calibrage">Calibrage</a></li>
-  <li><a href="#résultats" id="toc-résultats" class="nav-link" data-scroll-target="#résultats">Résultats</a></li>
+  <li><a href="#a-benchmark-small-open-economy-model-1" id="toc-a-benchmark-small-open-economy-model-1" class="nav-link" data-scroll-target="#a-benchmark-small-open-economy-model-1">A benchmark Small Open Economy Model</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The model</a></li>
+  <li><a href="#how-to-make-the-distribution-stationary" id="toc-how-to-make-the-distribution-stationary" class="nav-link" data-scroll-target="#how-to-make-the-distribution-stationary">How to make the distribution stationary?</a></li>
+  <li><a href="#how-to-get-rid-of-the-unit-root" id="toc-how-to-get-rid-of-the-unit-root" class="nav-link" data-scroll-target="#how-to-get-rid-of-the-unit-root">How to get rid of the unit root?</a></li>
+  <li><a href="#calibration" id="toc-calibration" class="nav-link" data-scroll-target="#calibration">Calibration</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul></li>
@@ -139,7 +137,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Petite Économie Ouverte (IRBC)</h1>
-<p class="subtitle lead">Macro II - Fluctuations - ENSAE, 2025-2026</p>
+<p class="subtitle lead">Macro II - Fluctuations - ENSAE, 2024-2025</p>
 </div>
 
 
@@ -156,7 +154,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 1, 2026</p>
+      <p class="date">March 25, 2025</p>
     </div>
   </div>
   
@@ -168,57 +166,56 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction-et-faits-stylisés" class="level1">
-<h1>Introduction et faits stylisés</h1>
-<section id="pourquoi-une-petite-économie-ouverte" class="level2">
-<h2 class="anchored" data-anchor-id="pourquoi-une-petite-économie-ouverte">Pourquoi une petite économie ouverte ?</h2>
-<p>Quelles sont les raisons classiques d’ouvrir l’économie au commerce ?</p>
+<section id="introduction-and-basic-facts" class="level1">
+<h1>Introduction and Basic Facts</h1>
+<section id="why-a-small-open-economy" class="level2">
+<h2 class="anchored" data-anchor-id="why-a-small-open-economy">Why a small open economy?</h2>
+<p>What are the classical reasons to open economy to trade?</p>
 <div class="incremental">
 <ul class="incremental">
-<li>intégration commerciale
+<li>trade integration
 <ul class="incremental">
-<li>goût pour la variété</li>
-<li>avantage comparatif</li>
+<li>taste for variety</li>
+<li>comparative advantage</li>
 </ul></li>
-<li>intégration financière
+<li>financial integration
 <ul class="incremental">
-<li>lissage des chocs / assurance</li>
+<li>smooth shock / insurance</li>
 </ul></li>
 </ul>
 </div>
 </section>
-<section id="du-modèle-rbc-au-modèle-irbc" class="level2">
-<h2 class="anchored" data-anchor-id="du-modèle-rbc-au-modèle-irbc">Du modèle RBC au modèle IRBC</h2>
-<p>Les modèles RBC ont connu un très grand succès pour reproduire les cycles économiques</p>
+<section id="from-rbc-to-irbc" class="level2">
+<h2 class="anchored" data-anchor-id="from-rbc-to-irbc">From RBC to IRBC</h2>
+<p>RBC models have been very successful at matching Business Cycles</p>
 <ul>
-<li>victoire (temporaire) contre la vision keynésienne selon laquelle les fluctuations de court terme résultent de chocs de demande</li>
+<li>(temporary) victory against keynesian view that short term fluctuations result from demand shocks</li>
+<li>so successful that facts at odd with theoretical predictions have been called “puzzles”</li>
 </ul>
 <p>. . .</p>
-<p>Il n’a pas fallu longtemps avant que la même méthodologie soit appliquée aux cycles économiques internationaux</p>
+<p>It didn’t take long before the same methodology was applied to International Business Cycles</p>
 <p>. . .</p>
-<p>Article fondateur :</p>
-<p>&nbsp;</p>
+<p>Seminal Paper:</p>
 <ul>
-<li><a href="papers/Backus-InternationalRealBusiness-1992.pdf"><em>International Real Business Cycles</em></a>, Backus, Kehoe, Kydland (1992)</li>
+<li><a href="papers/Backus-InternationalRealBusiness-1992.pdf"><em>International Real Business Cycles</em></a>, Backus, Kehoe, Kydland (1992) (freshwater economists)</li>
 </ul>
-<p>&nbsp;</p>
-<p>Grand succès méthodologique :</p>
+<p>Very successful methodology:</p>
 <ul>
-<li>les faits en contradiction avec les prédictions théoriques ont été appelés « puzzles »</li>
+<li>facts at odd with theoretical predictions have been called “puzzles”</li>
 </ul>
 </section>
-<section id="faits-empiriques-des-irbc" class="level2" data-auto-animate="true">
-<h2 data-auto-animate="true" class="anchored" data-anchor-id="faits-empiriques-des-irbc">Faits empiriques des IRBC</h2>
+<section id="irbc-facts" class="level2" data-auto-animate="true">
+<h2 data-auto-animate="true" class="anchored" data-anchor-id="irbc-facts">IRBC Facts</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/moments.png" class="img-fluid figure-img"></p>
 <figcaption>Moments</figcaption>
 </figure>
 </div>
-<p>D’après Kehoe,Kydland (1995)</p>
+<p>From Kehoe,Kydland (1995)</p>
 </section>
-<section id="faits-empiriques-des-irbc-1" class="level2" data-auto-animate="true">
-<h2 data-auto-animate="true" class="anchored" data-anchor-id="faits-empiriques-des-irbc-1">Faits empiriques des IRBC</h2>
+<section id="irbc-facts-1" class="level2" data-auto-animate="true">
+<h2 data-auto-animate="true" class="anchored" data-anchor-id="irbc-facts-1">IRBC Facts</h2>
 <div class="columns">
 <div class="column" style="width:20%;">
 <div class="quarto-figure quarto-figure-center">
@@ -231,14 +228,14 @@ window.Quarto = {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/comovements.png" class="img-fluid figure-img"></p>
-<figcaption>Correlations</figcaption>
+<figcaption>Comoments</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="faits-stylisés" class="level2">
-<h2 class="anchored" data-anchor-id="faits-stylisés">Faits stylisés</h2>
+<section id="stylized-facts" class="level2">
+<h2 class="anchored" data-anchor-id="stylized-facts">Stylized Facts</h2>
 <div class="columns">
 <div class="column" style="width:20%;">
 <div class="quarto-figure quarto-figure-center">
@@ -250,28 +247,27 @@ window.Quarto = {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/comovements.png" class="img-fluid figure-img"></p>
-<figcaption>Correlations</figcaption>
+<figcaption>Comoments</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:80%;">
 <div class="incremental">
-<p>Au niveau national :</p>
+<p>Domestically:</p>
 <div class="fragment">
 <ul class="incremental">
-<li>la production est plus volatile que la consommation</li>
-<li>la production est autocorrélée</li>
-<li>la productivité est fortement procyclique</li>
-<li>autres variables corrélées positivement avec la production</li>
-<li>balance commerciale est fortement contracyclique</li>
+<li>output more variable than consumption</li>
+<li>output autocorrelated</li>
+<li>productivity strongly procyclical</li>
+<li>trade balance strongly countercyclcal</li>
+<li>positive comovements in output</li>
 </ul>
 </div>
 <div class="fragment">
-<p>Au niveau international :</p>
+<p>Internationally:</p>
 <ul class="incremental">
-<li>production corrélées positivement entre les pays</li>
-<li>correlations de la consommation nettement plus faible
+<li>smaller comovements in consumption
 <ul class="incremental">
-<li>Puzzle de Backus-Kehoe-Kydland</li>
+<li>Backus-Kehoe-Kydland puzzle</li>
 </ul></li>
 </ul>
 </div>
@@ -279,110 +275,104 @@ window.Quarto = {
 </div>
 </div>
 <p>. . .</p>
-<p>Pouvons-nous reproduire ces moments avec un modèle de cycles économiques ?</p>
+<p>Can we replicate these moments with a BC model?</p>
 </section>
 </section>
-<section id="modélisation-dune-petite-économie-ouverte" class="level1">
-<h1>Modélisation d’une petite économie ouverte</h1>
-<section id="modèle-de-dotation" class="level2">
-<h2 class="anchored" data-anchor-id="modèle-de-dotation">Modèle de dotation</h2>
-<p>L’agent représentatif maximise : <span class="math display">\[\max_{c_t} \sum_{t=0}^{\infty} \beta^t u(c_t)\]</span> <span class="math display">\[c_t + a_{t} \leq y_t + (1+r) a_{t-1} \]</span></p>
+<section id="modeling-a-small-open-economy" class="level1">
+<h1>Modeling a Small Open Economy</h1>
+<section id="endowment-model" class="level2">
+<h2 class="anchored" data-anchor-id="endowment-model">Endowment model</h2>
+<p>Representative agents maximizes: <span class="math display">\[\max_{c_t} \sum_{t=0}^{\infty} \beta^t u(c_t)\]</span> <span class="math display">\[c_t + a_{t} \leq y_t + (1+r) a_{t-1} \]</span></p>
 <div class="r-stack">
 <div class="fragment current-visible">
-<p><strong>Économie de dotation</strong> :</p>
+<p><strong>Endowment economy</strong>:</p>
 <ul>
-<li>le revenu <span class="math inline">\((y_t)_t\)</span> est donné de manière exogène</li>
-<li>par souci de simplicité, on suppose qu’il est déterministe</li>
+<li>income <span class="math inline">\((y_t)_t\)</span> is exogenously given</li>
+<li>for simplicity we assume it is deterministic</li>
 </ul>
-<p><strong>Petite économie ouverte</strong> :</p>
+<p><strong>Small open economy</strong>:</p>
 <ul>
-<li><em>ouverte</em> : peut épargner <span class="math inline">\(a_t\)</span> ce qui rapporte <span class="math inline">\(a_{t+1}(1+r)\)</span> à la période suivante</li>
-<li><em>petite</em> : le pays considère le taux d’intérêt mondial <span class="math inline">\(r\)</span> comme donné (pas d’effet sur les prix mondiaux)</li>
+<li><em>open</em>: can save <span class="math inline">\(a_t\)</span> which yields <span class="math inline">\(a_{t+1}(1+r)\)</span> in the next period</li>
+<li><em>small</em>: country takes world interest rate <span class="math inline">\(r\)</span> as given (no effect on world prices)</li>
 </ul>
 </div>
 <div class="fragment current-visible">
-<p>Nous résolvons ce problème avec les conditions aux limites :</p>
+<p>We solve this problem with the terminal conditions:</p>
 <ul>
-<li><p><span class="math inline">\(a_{-1}\)</span> donné<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
+<li><p><span class="math inline">\(a_{-1}\)</span> given<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
 <li><p><span class="math inline">\(\lim_{T\rightarrow\infty} \frac{a_{T}}{(1+r)^T}\geq0\)</span></p>
 <ul>
-<li>condition de transversalité (aka no-Ponzi condition)</li>
+<li><em>no-ponzi</em> condition</li>
 </ul></li>
 </ul>
-<p>La condition de pas de Ponzi va effectivement éliminer les solutions divergentes.</p>
-<p>Dans une approximation au premier ordre, elle sélectionne les bonnes valeurs propres.</p>
+<p>The no-ponzi condition will in effect eliminate diverging solutions.</p>
+<p>In a first order approximation, it selects the right eigenvalues.</p>
 </div>
 </div>
 </section>
-<section id="modèle-de-dotation-3" class="level2">
-<h2 class="anchored" data-anchor-id="modèle-de-dotation-3">Modèle de dotation (3)</h2>
-<p>Nous obtenons le Lagrangien :</p>
+<section id="endowment-model-3" class="level2">
+<h2 class="anchored" data-anchor-id="endowment-model-3">Endowment model (3)</h2>
+<p>We get the lagrangian:</p>
 <p><span class="math display">\[\mathcal{L}= \sum_{t=0}^{\infty} \beta^t u(c_t) + \sum_{t=0}^{\infty} \beta^t \lambda_t \left(y_t + (1+r) a_{t-1} - c_t-a_{t} \right)\]</span></p>
-<p>Conditions du premier ordre :</p>
+<p>First order conditions:</p>
 <p><span class="math display">\[\begin{align}
 u^{\prime}(c_t)&amp; =&amp; \lambda_t \\
 \lambda_t &amp;=&amp; \beta (1+r) \lambda_{t+1}
 \end{align}\]</span></p>
-<p>Sous l’<em>hypothèse technique</em> <span class="math inline">\(\beta (1+r)=1\)</span> nous obtenons <span class="math inline">\(c_t=c_{t+1}\)</span> et donc</p>
+<p>Under the <em>technical assumption</em> <span class="math inline">\(\beta (1+r)=1\)</span> we get <span class="math inline">\(c_t=c_{t+1}\)</span> then</p>
 <p><span class="math display">\[c_0 = \frac{r}{1+r}\left\{ (1+r) a_{-1} + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
 <p>. . .</p>
 <div class="incremental">
 <ul class="incremental">
-<li>la consommation est déterminée par le revenu permanent
+<li>consumption is determined by permanent income
 <ul class="incremental">
-<li>les changements de richesse initiale ont des effets permanents</li>
+<li>changes in initial wealth have permanent effects</li>
 </ul></li>
-<li><em>remarque</em> : problème isomorphe aux décisions d’épargne-consommation</li>
+<li><em>remark</em>: problem isomorphic to consumption-savings decisions</li>
 </ul>
 </div>
 </section>
-<section id="compte-courant" class="level2">
-<h2 class="anchored" data-anchor-id="compte-courant">Compte courant</h2>
-<div class="callout callout-style-default callout-tip callout-titled" title="Rappels sur le compte courant">
+<section id="current-account" class="level2">
+<h2 class="anchored" data-anchor-id="current-account">Current Account</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Reminders on Current Account">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Rappels sur le compte courant
+<span class="screen-reader-only">Tip</span>Reminders on Current Account
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>La <strong>balance commerciale</strong> est les exportations moins les importations (ici <span class="math inline">\(y_t-c_t\)</span>)</p>
-<p>Le <strong>compte courant</strong> est la balance commerciale plus les revenus nets de facteurs (ici <span class="math inline">\(y_t-c_t+r a_{t-1}\)</span>)</p>
-<p>Un <strong>compte courant</strong> positif : le pays prête au reste du monde.</p>
+<p>The <strong>trade balance</strong> is exports-imports (here <span class="math inline">\(y_t-c_t\)</span>)</p>
+<p>The <strong>current account</strong> is trade balance + net factor payments (here <span class="math inline">\(y_t-c_t+r a_{t-1}\)</span>)</p>
+<p>Positive <strong>current account</strong>: additional lending to the rest of the world.</p>
 </div>
 </div>
 <p>. . .</p>
-<p>En utilisant la formule d’avant</p>
+<p>Using the formula from before</p>
 <p><span class="math display">\[CA_0 =  a_{-1} r + (1-\frac{r}{1+r}) y_0 - \frac{r}{1+r}\left\{ \sum_{t\geq1}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
-<p>Comment le compte courant réagit-il aux chocs de revenu ?</p>
-<p>. . .</p>
+<p>How does the current account reacts to income shocks?</p>
 <ul>
-<li><p>le compte courant réagit positivement à un choc de revenu <em>temporaire</em></p></li>
-<li><p>et négativement aux anticipations de chocs futurs de revenu :</p>
+<li><p>current account responds positively to <em>temporary</em> shock in income</p></li>
+<li><p>and to news about future income shocks:</p>
 <ul>
-<li>C’est l’<em>approche intertemporelle</em> du compte courant</li>
+<li>This is the <em>intertemporal approach</em> to the current account</li>
 </ul></li>
 </ul>
 </section>
-<section id="racine-unitaire" class="level2">
-<h2 class="anchored" data-anchor-id="racine-unitaire">Racine unitaire</h2>
-<p>Reprenons la formule de la consommation : <span class="math display">\[c_0 = \frac{r}{1+r}\left\{ (1+r) a_{-1} + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
-<p>Rappelons aussi l’équation d’accumulation des actifs étrangers : <span class="math display">\[a_t = (1+r) a_{t} + y_t - c_t\]</span></p>
-<p>Lorsque <span class="math inline">\(a_{-1}\)</span> augmente de <span class="math inline">\(\Delta a_{-1}\)</span>, alors <span class="math inline">\(c_0\)</span> augmente de <span class="math inline">\(r \Delta a_{-1}\)</span>.</p>
-<p>En conséqence <span class="math inline">\(a_0\)</span> augmente d’exactement <span class="math inline">\(\Delta a_{-1}\)</span> (car <span class="math inline">\(a_0 = (1+r) a_{-1} + y_0 - c_0\)</span>).</p>
-<p>En itérant le raisonnement, <span class="math inline">\(a_1, a_2, ...\)</span> augmentent aussi d’exactement <span class="math inline">\(\Delta a_{-1}\)</span>.</p>
-<p>Et les consomations <span class="math inline">\(c_1, c_2, ...\)</span> augmentent d’exactement <span class="math inline">\(r \Delta a_{-1}\)</span>.</p>
-<p>. . .</p>
-<p>Une augmentation de la richesse initiale a un <strong>effet permanent sur les actifs étrangers</strong> et la consommation.</p>
+<section id="unit-root" class="level2">
+<h2 class="anchored" data-anchor-id="unit-root">Unit root</h2>
+<p>Still with the same formula: <span class="math display">\[c_0 = \frac{r}{1+r}\left\{ (1+r) a_{-1} + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}\]</span></p>
+<p>What is the effect of an increase in <span class="math inline">\(a_{-1}\)</span>?</p>
+<pre><code>- consumption rises permanently
+- $a_t$ is constant, equal to $a_{-1}$
+- agent consumes small amount $r$ corresponding to interests paid forever on $a_{-1}$</code></pre>
 <ul>
-<li>cela correspondra à une racine unitaire dans la solution (valeur propre de module 1)</li>
-</ul>
-<!-- 
-## Exercice
+<li>this will correspond to a unit root in the solution <!-- 
+## Exercise
 
-À partir des conditions du premier ordre 
+From the first order conditions 
 
 
 \begin{align}
@@ -391,142 +381,140 @@ u^{\prime}(c_t) & = & \lambda_t \\
 \end{align}
 
 
-en supposant $u(c_t) = \log (c_t)$, pouvez-vous obtenir l'équation de la loi de mouvement de $a_t$ et montrer la présence d'une racine unitaire ?
- -->
+assuming $u(c_t) = \log (c_t)$, can you get the equation for the law of motion of $a_t$  and show the presence of a unit root?
+ --></li>
+</ul>
 </section>
-<section id="ajout-du-capital" class="level2">
-<h2 class="anchored" data-anchor-id="ajout-du-capital">Ajout du capital</h2>
-<p>Nous ajoutons le capital et la production à notre économie de dotation : <span class="math display">\[y_t = z_t k_{t-1}^\alpha\]</span> <span class="math display">\[k_t = (1-\delta) k_{t-1} + i_{t}\]</span></p>
-<p>La contrainte de ressource agrégée devient :</p>
+<section id="adding-capital" class="level2">
+<h2 class="anchored" data-anchor-id="adding-capital">Adding capital</h2>
+<p>We add capital and production to our endowment economy: <span class="math display">\[y_t = z_t k_{t-1}^\alpha\]</span> <span class="math display">\[k_t = (1-\delta) k_{t-1} + i_{t}\]</span></p>
+<p>The aggregate resource constraint becomes:</p>
 <p><span class="math display">\[a_{t} + c_t + i_t = (1+r) a_{t-1} + y_t\]</span></p>
-<p>On maximise alors <span class="math inline">\(\sum_t \beta^ t U(c_t)\)</span></p>
+<p>Now maximize <span class="math inline">\(\sum_t \beta^ t U(c_t)\)</span></p>
 <p>. . .</p>
-<p>Nous obtenons les conditions du premier ordre (exactement comme dans le RBC)</p>
+<p>We get first order conditions</p>
 <p><span class="math display">\[\lambda_t = \beta \lambda_{t+1} (1+r)\]</span> <span class="math display">\[\lambda_t = \beta \lambda_{t+1}\left[ (1-\delta) + z_{t+1} f^{\prime}(k_{t}) \right]\]</span></p>
-<p>où <span class="math inline">\(\lambda_t\)</span> est le multiplicateur de Lagrange associé à la contrainte budgétaire.</p>
+<p>where <span class="math inline">\(\lambda_t\)</span> is lagrange multiplier associated to budget constraint.</p>
 </section>
-<section id="ajout-du-capital-conditions-doptimalité" class="level2">
-<h2 class="anchored" data-anchor-id="ajout-du-capital-conditions-doptimalité">Ajout du capital : conditions d’optimalité</h2>
-<p>Puisque <span class="math inline">\(\lambda_t&gt;0\)</span> (la contrainte est toujours active), nous obtenons :</p>
+<section id="adding-capital-optimality-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="adding-capital-optimality-conditions">Adding capital: optimality conditions</h2>
+<p>Since <span class="math inline">\(\lambda_t&gt;0\)</span> (constraint is always binding), we get:</p>
 <p><span class="math display">\[(1-\delta) + z_{t+1} f^{\prime}(k_{t}) = 1+r\]</span></p>
 <p><span class="math display">\[k_{t} = \left( \frac{r+\delta}{\alpha z_{t+1}}\right)^{\frac{1}{\alpha-1}}\]</span></p>
-<p>et l’investissement <span class="math display">\[i_t = \left( \frac{r+\delta}{\alpha z_{t+1}}\right)^{\frac{1}{\alpha-1}}- (1-\delta)\left( \frac{r+\delta}{\alpha z_{t}}\right)^{\frac{1}{\alpha-1}}\]</span></p>
+<p>and investment <span class="math display">\[i_t = \left( \frac{r+\delta}{\alpha z_{t+1}}\right)^{\frac{1}{\alpha-1}}- (1-\delta)\left( \frac{r+\delta}{\alpha z_{t}}\right)^{\frac{1}{\alpha-1}}\]</span></p>
 <p>. . .</p>
-<p>Ici l’investissement est entièrement déterminé par les chocs de productivité</p>
-<p>⇒ trop simple :</p>
+<p>Here investment is fully determined by productivity shocks</p>
 <ul>
-<li>très corrélé avec la productivité</li>
-<li>pas de dépendance internationale</li>
-<li>ajustment immédiat du capital</li>
+<li>too simple: no international dependence</li>
 </ul>
 <!-- 
-## Les gains insaisissables de l'intégration financière
+## The elusive gains of financial integration
 
-Note à côté :
+Side note:
 
-Cf : Gourinchas et Jeanne *The elusive gains from financial integration.
-L'ajustement immédiat du capital fournit une limite supérieure aux gains de l'intégration financière.
+Cf: Gourinchas and Jeanne *The elusive gains from financial integration.
+The immediate adjustment of capital provides an upper bound on the gains from financial integration.
  -->
 </section>
-<section id="ajout-de-frictions-à-linvestissement" class="level2">
-<h2 class="anchored" data-anchor-id="ajout-de-frictions-à-linvestissement">Ajout de frictions à l’investissement</h2>
-<p>Une solution possible : modifier la contrainte de ressource de sorte que l’ajustement du capital soit coûteux</p>
-<p>Par exemple :</p>
+<section id="add-friction-to-the-investment" class="level2">
+<h2 class="anchored" data-anchor-id="add-friction-to-the-investment">Add friction to the investment</h2>
+<p>A possible solution: change the resource constraint such that adjusting capital is costly</p>
+<p>For instance:</p>
 <p><span class="math display">\[a_{t} + c_t + i_t + \frac{\omega}{2}\frac{(k_{t}-k_{t-1})^ 2}{k_t} = (1+r)a_{t-1} + z f(k_{t-1})\]</span></p>
 <p><span class="math display">\[k_{t} = (1-\delta) k_{t-1} + i_t\]</span></p>
-<p>où <span class="math inline">\(\omega\)</span> est un paramètre de friction d’ajustement.</p>
+<p>where <span class="math inline">\(\omega\)</span> is an adjustment friction.</p>
 <p>. . .</p>
-<p>En général, <span class="math inline">\(\omega\)</span> est choisi de sorte que le modèle reproduise <span class="math inline">\(\frac{Var(i_t)}{Var(y_t)}\)</span> à partir des données.</p>
+<p>Typically, <span class="math inline">\(\omega\)</span> is chosen so that the model replicates <span class="math inline">\(\frac{Var(i_t)}{Var(y_t)}\)</span> from the data.</p>
 <p>. . .</p>
-<p>🔜 Cf tutoriel.</p>
+<p>🔜 Cf tutorial.</p>
 </section>
 </section>
-<section id="un-modèle-de-petite-économie-ouverte-de-référence" class="level1">
-<h1>Un modèle de petite économie ouverte de référence</h1>
-<section id="un-modèle-de-petite-économie-ouverte-de-référence-1" class="level2">
-<h2 class="anchored" data-anchor-id="un-modèle-de-petite-économie-ouverte-de-référence-1">Un modèle de petite économie ouverte de référence</h2>
+<section id="a-benchmark-small-open-economy-model" class="level1">
+<h1>A benchmark Small Open Economy Model</h1>
+<section id="a-benchmark-small-open-economy-model-1" class="level2">
+<h2 class="anchored" data-anchor-id="a-benchmark-small-open-economy-model-1">A benchmark Small Open Economy Model</h2>
 <div class="columns">
 <div class="column">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/economics-grohe.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Stephanie Schmitt Grohe et Martin Uribe</figcaption>
+<figcaption>Stephanie Schmitt Grohe and Martin Uribe</figcaption>
 </figure>
 </div>
 </div><div class="column">
 <p><a href="papers/1-s2.0-S0022199602000569-main.pdf"><em>Closing Small Economy Models</em></a>, Schmitt Grohe and Uribe (2003), JIE</p>
 <ul>
-<li>modèle de petite économie ouverte avec production, arbitrage consommation-loisir et coûts d’ajustement du capital
+<li>small open economy model with production, consumption-leisure tradeoff and capital adjustment costs
 <ul>
-<li>= RBC + ouverture + coûts d’ajustement</li>
+<li>= RBC+open+adj costs</li>
 </ul></li>
-<li>réalise exercice de moment-matching</li>
-<li>compare différentes façons de stationnariser le modèle (pour se débarrasser de la racine unitaire)</li>
+<li>perform some moments matching</li>
+<li>compare different ways of stationarizing</li>
 </ul>
 </div>
 </div>
 </section>
-<section id="le-modèle" class="level2">
-<h2 class="anchored" data-anchor-id="le-modèle">Le modèle</h2>
+<section id="the-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-model">The model</h2>
 <p><span class="math display">\[\max_{c_t, n_t} \sum_{t=0}^{\infty} \beta^t u(c_t, n_t)\]</span></p>
 <p><span class="math display">\[c_t + k_{t} + a_{t} = y_t + g_t - \frac{\omega}{2}(k_{t}-k_{t-1})^2 +(1-\delta) k_{t-1} + (1+r^{\star}+{\color{red}\pi(a_{t-1})})a_{t-1}\]</span> <span class="math display">\[y_t = f(k_{t-1}, n_t, z_t)\]</span></p>
 <p><span class="math display">\[z_{t+1} = \rho z_t + \epsilon_{t+1}\]</span></p>
-<p>et <span class="math display">\[u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^{1-\psi}
+<p>and <span class="math display">\[u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^{1-\psi}
 )\right)^{1-\sigma}\]</span></p>
 <p>. . .</p>
-<p>Le terme <span class="math inline">\(\color{red}\pi\)</span> est là pour rendre le modèle stationnaire.</p>
+<p>The term <span class="math inline">\(\color{red}\pi\)</span> is there to make the model stationary.</p>
 </section>
-<section id="comment-rendre-la-distribution-stationnaire" class="level2">
-<h2 class="anchored" data-anchor-id="comment-rendre-la-distribution-stationnaire">Comment rendre la distribution stationnaire ?</h2>
-<p>Sans <span class="math inline">\(\color{red}\pi\)</span> la solution du modèle présente une racine unitaire :</p>
-<p><span class="math display">\[a_t = a_{t-1} + ... \text{autres variables en t-1} + \text{chocs en t}\]</span></p>
+<section id="how-to-make-the-distribution-stationary" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-make-the-distribution-stationary">How to make the distribution stationary?</h2>
+<p>The solution of the model exhibits a unit root:</p>
+<p><span class="math display">\[a_t = a_{t-1} + ... \text{other variables in t-1} + \text{shocks in t}\]</span></p>
 <p>. . .</p>
-<p>Problème :</p>
+<p>Problem:</p>
 <ul>
-<li>il n’existe pas d’état stationnaire déterministe unique</li>
-<li>la distribution ergodique des variables du modèle n’est pas définie</li>
+<li>there isn’t a unique deterministic steady-state</li>
+<li>the ergodic distribution of the model variables is not defined</li>
 </ul>
-<p>Cela soulève des problèmes pratiques (notamment pour l’estimation) pour le modèle <em>linéaire</em>.</p>
+<p>This raises practical issues (notably for estimation) for the <em>linear</em> model.</p>
 <ul>
-<li>pas de moments sans condition</li>
+<li>no unconditional moments</li>
 </ul>
 </section>
-<section id="comment-se-débarrasser-de-la-racine-unitaire" class="level2">
-<h2 class="anchored" data-anchor-id="comment-se-débarrasser-de-la-racine-unitaire">Comment se débarrasser de la racine unitaire ?</h2>
-<p><em>Idée générale</em> :</p>
+<section id="how-to-get-rid-of-the-unit-root" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-get-rid-of-the-unit-root">How to get rid of the unit root?</h2>
+<p><em>General idea</em>:</p>
 <ul>
-<li>introduire une force qui tire le niveau des actifs étrangers vers l’équilibre</li>
+<li>introduce a force that pulls the level of foreign assets towards equilibrium</li>
 </ul>
-<p>Schmitt Grohe and Uribe (2003) considèrent de nombreuses options :</p>
+<p>Schmitt Grohe and Uribe (2003) consider many options:</p>
 <div class="r-stack">
 <div class="fragment current-visible">
 <ul>
-<li>taux d’intérêt élastique à la dette : <span class="math display">\[1+r = 1+r^{\star} + \pi(a_d)\]</span>
+<li>debt-elastic interest rate: <span class="math display">\[1+r = 1+r^{\star} + \pi(a_d)\]</span>
 <ul>
-<li>avec <span class="math inline">\(\pi(0)=0\)</span> et <span class="math inline">\(\pi^{\prime}(0)&gt;0\)</span></li>
-<li><span class="math inline">\(\pi\)</span> peut être compris comme une prime de risque sur l’augmentation de la dette</li>
+<li>with <span class="math inline">\(\pi(0)=0\)</span> and <span class="math inline">\(\pi^{\prime}(0)&gt;0\)</span></li>
+<li><span class="math inline">\(\pi\)</span> can be understood as a risk premium on rising debt</li>
 </ul></li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li>facteur d’actualisation endogène (alias préférences à la Uzawa) <span class="math display">\[\beta(c_t) = (1+c_t)^{-\chi}\]</span></li>
-<li>coûts d’ajustement pour les portefeuilles internationaux</li>
+<li>endogenous time-discount (aka Usawa preferences) <span class="math display">\[\beta(c_t) = (1+c_t)^{-\chi}\]</span></li>
+<li>costs of adjustment for international portfolios</li>
 </ul>
 </div>
 </div>
 <p>. . .</p>
-<p>SGU montrent que le choix du dispositif de stationnarisation a peu d’effet sur la dynamique (moments) de la plupart des variables</p>
+<p>SGU show that the choice of the stationarization device has little effect for the dynamics (moments) of most variables</p>
 </section>
-<section id="calibrage" class="level2">
-<h2 class="anchored" data-anchor-id="calibrage">Calibrage</h2>
+<section id="calibration" class="level2">
+<h2 class="anchored" data-anchor-id="calibration">Calibration</h2>
 <div class="columns">
 <div class="column">
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Paramètres</th>
-<th>Valeurs</th>
+<th>Parameters</th>
+<th>Values</th>
 </tr>
 </thead>
 <tbody>
@@ -556,8 +544,8 @@ L'ajustement immédiat du capital fournit une limite supérieure aux gains de l'
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Paramètres</th>
-<th>Valeurs</th>
+<th>Parameters</th>
+<th>Values</th>
 </tr>
 </thead>
 <tbody>
@@ -586,12 +574,12 @@ L'ajustement immédiat du capital fournit une limite supérieure aux gains de l'
 </div>
 </div>
 </section>
-<section id="résultats" class="level2">
-<h2 class="anchored" data-anchor-id="résultats">Résultats</h2>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/sgu_irf.png" style="height:60.0%" class="figure-img"></p>
-<figcaption>Fonction de réponse impulsionnelle</figcaption>
+<figcaption>Impulse Response Function</figcaption>
 </figure>
 </div>
 </section>
@@ -600,25 +588,25 @@ L'ajustement immédiat du capital fournit une limite supérieure aux gains de l'
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/sgu_moments.png" style="height:60.0%" class="figure-img"></p>
-<figcaption>Moments (d’après SGU)</figcaption>
+<figcaption>Moments (from SGU)</figcaption>
 </figure>
 </div>
 </section>
 <section id="conclusions" class="level2">
 <h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
 <ul>
-<li>Le modèle reproduit assez bien les corrélations inconditionnelles
+<li>The model matches unconditional correlations fairly well
 <ul>
-<li>Le dispositif de stationnarisation a peu d’effet sur les moments</li>
+<li>The stationarization device has little effect on the moments</li>
 </ul></li>
-<li>Les corrélations conditionnelles ne sont pas très bonnes
+<li>Unconditional correlations are not that great
 <ul>
-<li>une limitation de la méthode de matching de moments ?</li>
+<li>a limitation of the moment matching method?</li>
 </ul></li>
-<li>La corrélation de la consommation avec la production est trop élevée
+<li>Correlation of consumption with output is too high
 <ul>
-<li>et la corrélation internationale des consommations est trop élevée dans le modèle</li>
-<li>… toujours le puzzle de Backus-Kehoe-Kydland…</li>
+<li>and probably cross-correlation of consumption too low</li>
+<li>still the Backus-Kehoe-Kydland puzzle…</li>
 </ul></li>
 </ul>
 
@@ -630,7 +618,7 @@ L'ajustement immédiat du capital fournit une limite supérieure aux gains de l'
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Notez que la condition initiale est compatible avec les conventions Dynare que nous utilisons ici.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Note that initial condition is compatible with the dynare conventions we use here.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
