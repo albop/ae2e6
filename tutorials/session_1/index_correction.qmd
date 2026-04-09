@@ -5,6 +5,8 @@ format:
   html:
     code-fold: true
     code-tools: true
+  ipynb:
+    output_file: exercises.ipynb
 jupyter: python3
 ---
 
@@ -283,12 +285,12 @@ Considerons le processus VAR(1) suivant :
 
 $$ y_t = A y_{t-1} + B \epsilon_t $$
 
-ou $\epsilon_t \sim \mathcal{N}(0, I_n)$.
+ou $\epsilon_t \sim \mathcal{N}(0, \Sigma)$.
 
 On suppose :
-$$ A = \begin{pmatrix} 0.8 & 0.1 \ 0 & 0.6 \end{pmatrix} $$
-$$ B = \begin{pmatrix} 1 & 0 \ 0 & 1 \end{pmatrix} $$
-
+$$ A = \begin{pmatrix} 0.8 & 0.1 \\ 0.01V & 0.6 \end{pmatrix} $$
+$$ B = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} $$
+$$\Sigma = \begin{pmatrix} 1 & 0.5 \\ 0.5 & 1 \end{pmatrix} $$
 
 
 ```{python}
@@ -312,9 +314,7 @@ eigvals
 ```
 
 
-@. __Verifier si le processus est stationnaire__
-
-
+@. __Verifier programmatiquement si le processus est stationnaire__
 
 
 ```{python}
@@ -326,10 +326,10 @@ else:
 ```
 
 
-@. __Fonctions de reponse impulsionnelle__
+@. __Fonctions de reponse (IRF)__
 
 
-Calculer la reponse de $y_t$ a un choc $\epsilon_0 = [1, 0]'$ (et $\epsilon_t = 0$ pour $t > 0$).
+Calculer la reponse de $y_t$ a un choc $\epsilon_0 = [1, 0]'$ (et $\epsilon_t = 0$ pour $t > 0$). Faiire un graphique de la reponse de $y_1$ et $y_2$ au choc initial.
 
 
 ```{python}
@@ -357,31 +357,13 @@ plt.show()
 @. __Simulation stochastique__
 
 
-Importer `scipy.stats` pour faire des tirages dans une loi multivariee.
+Importer `scipy.stats` pour faire des tirages dans une loi normale multivariée.
 
 
 ```{python}
 from scipy.stats import multivariate_normal
-Sigma = np.eye(2) # Covariance of epsilon (since B=I and epsilon~N(0,I))
-# Si B n'etait pas I, il faudrait tenir compte de B*B', mais ici epsilon suit une loi normale standard.
-# L'enonce dit epsilon ~ N(0, I).
-# Mais plus loin, le code Julia utilise MvNormal(Σ). On suppose alors que Σ est la covariance du choc B*epsilon.
-# Dans le code Julia : `dis = MvNormal(Σ)`.
-# Et `y1 = A*y0 + B*e1`.
-# Donc e1 est tire selon N(0, Σ).
-# On conserve cette logique : Σ est la covariance du vecteur de chocs.
-
-
-```
-
-```{python}
-# Definissons Sigma comme dans le notebook Julia si elle y est definie.
-# Dans le code Julia : `Σ = [1.0 0.5; 0.5 1.0]`.
-# On retient cette valeur pour l'exercice.
 Sigma = np.array([[1.0, 0.5], [0.5, 1.0]])
 dist = multivariate_normal(mean=[0, 0], cov=Sigma)
-
-
 ```
 
 ```{python}
@@ -394,8 +376,24 @@ plt.show()
 
 ```
 
+@. __Simuler une trajectoire stochastique__
+
+Vous pouvez utiliser la fonction suivante.
+
 ```{python}
 def simulate(A, B, Sigma, e0=None, T=20):
+    """
+    Simule une trajectoire de y_t = A y_{t-1} + B e_t avec e_t ~ N(0, Sigma).
+    Arguments:
+    - A, B: matrices du processus VAR(1)
+    - Sigma: matrice de covariance des chocs
+    - e0: choc initial (vecteur de taille n), si None alors e0 = 0
+    - T: nombre de periodes a simuler
+    Retour:
+    - sim: tableau de taille (n, T+1) contenant la trajectoire simulee de y_t, avec sim[:, 0] = B @ e0
+    """
+
+
     n = A.shape[0]
     if e0 is None:
         e0 = np.zeros(n)
@@ -403,10 +401,7 @@ def simulate(A, B, Sigma, e0=None, T=20):
     dist = multivariate_normal(mean=np.zeros(n), cov=Sigma)
     
     sim = []
-    # Etat initial (reponse a e0).
-    # Code Julia : `sim = [B*e0]` puis boucle `y1 = A*y0 + B*e1`.
-    # La simulation demarre donc avec un choc e0.
-    
+
     y_curr = B @ e0
     sim.append(y_curr)
     
@@ -430,10 +425,9 @@ plt.plot(sim[1, :], label='y2')
 plt.legend()
 plt.title("Simulation stochastique unique")
 plt.show()
-
 ```
 
-@. __Effectuer K=500 simulations stochastiques...__
+@. __Effectuer K=500 simulations stochastiques... Les représenter sur un graphe spaghetti. Ajouter la moyenne et les écart-types.__
 
 
 ```{python}
@@ -463,16 +457,11 @@ plt.title("Simulation de Monte Carlo (y1)")
 plt.show()
 
 # Faire le meme graphique pour y2...
-
-
 ```
 
 @. __Distribution ergodique__
 
-La matrice de covariance $\Omega$ verifie $\Omega = A \Omega A' + B \Sigma B'$.
-Resoudre par iteration.
-
-
+La matrice de covariance $\Omega$ verifie $\Omega = A \Omega A' + B \Sigma B'$. Resoudre cette équation en appliquant l'itération $\Omega_n = A \Omega_{n-1} A' + B \Sigma B'$
 
 ```{python}
 def ergodic_steady_state(A, B, Sigma, N=1000, tol=1e-8):
@@ -490,7 +479,7 @@ print(Omega)
 
 ```
 
-@. __Comparer avec l'empirique__
+@. __Comparer avec les simulations stochastiques__
 
 
 ```{python}
@@ -499,12 +488,39 @@ final_points = sims_arr[:, :, -1] # (K, 2)
 emp_cov = np.cov(final_points.T)
 print("Covariance empirique :")
 print(emp_cov)
-
 ```
 
+@. Que se passe-il si A a une valeur propre de module supérieur à 1 ? Égal à 1 ? 
 
+On peut considérer la matrice:
 
-# Systèmes Matriciels du Second Ordre
+$$ A = \begin{pmatrix} \rho & 0.1 \\ 0.0 & 0.6 \end{pmatrix} $$
+
+pour différentes valeurs de $\rho$ (0.8, 1.0, 1.2) et refaire les simulations stochastiques.
+
+```{python}
+def simulate_and_plot(A, B, Sigma, e0=None, T=20, K=500):
+    sims = [simulate(A, B, Sigma, e0=e0, T=T) for _ in range(K)]
+    sims_arr = np.array(sims)
+    mean_path = np.mean(sims_arr, axis=0)
+    std_path = np.std(sims_arr, axis=0)
+
+    plt.figure()
+    for sim in sims:
+        plt.plot(sim[0, :], color='red', alpha=0.01)
+    plt.plot(mean_path[0, :], color='blue', label='Mean y1')
+    plt.plot(mean_path[0, :] - std_path[0, :], color='blue', linestyle='--')
+    plt.plot(mean_path[0, :] + std_path[0, :], color='blue', linestyle='--')
+    plt.title(f"Simulation de Monte Carlo (rho={A[0, 0]})")
+
+for i, rho in enumerate([0.8, 1.0, 1.2]):
+    plt.subplot(1,3,i+1)
+    A = np.array([[rho, 0.1], [0.0, 0.6]])
+    simulate_and_plot(A, B, Sigma, e0=e0_2, T=20, K=500)
+plt.show()
+```
+
+# Bonus: Systèmes Matriciels du Second Ordre
 
 On suppose qu'un système dynamique du second ordre est donné par :
 
@@ -520,40 +536,36 @@ $$A X^2 + B X + C = 0$$
 $$A X Y + B Y + D = 0$$
 
 
+Dans la suite, on peut utiliser:
 
-## Définition et implémentation : Schur généralisée (QZ)
 
-On veut résoudre :
+```{python}
+A = np.array([[1.0, 0.0], [0.0, 1.0]])
+B = np.array([[-2.1, 0.0], [0.0, -2.1]])
+C = np.array([[0.98, 0.0], [0.0, 0.9]])
+D = np.array([[1.0], [0.5]])
+```
 
-$$A\,\mathbb E_t[y_{t+1}] + B\,y_t + C\,y_{t-1} + D\,\varepsilon_t = 0$$
+## Iteration Temporelle
 
-avec une règle linéaire :
+L'algorithme d'iteration temporelle consiste itérer la fonction $X_{n+1}=T(X_n)$ où $X_{n+1}$ satisfait $$A X_n X_{n+1} + B X_n + C = 0$$.
 
-$$y_t = Xy_{t-1} + Y\varepsilon_t$$
+@. Résoudre le systeme matriciel du second ordre par iteration temporelle.
 
-Les matrices $(X,Y)$ vérifient :
+@. Vérifier que la solution satisfait les équations matricielles.
 
-$$AX^2 + BX + C = 0,\qquad (AX+B)Y + D = 0.$$
+@. Calculer la valeur de Y.
 
-Idée QZ (très concise) :
+## Méthode de Schur généralisée (QZ)
 
-1. Linéariser le polynôme matriciel via le crayon généralisé $(M,N)$ :
-$$
-M = \begin{bmatrix}0 & I\\ -C & -B\end{bmatrix},
-\qquad
-N = \begin{bmatrix}I & 0\\ 0 & A\end{bmatrix}.
-$$
-2. Faire une QZ réordonnée (racines stables $|\lambda|<1$ en premier).
-3. Extraire le sous-espace invariant stable $U=\begin{bmatrix}U_1\\U_2\end{bmatrix}$.
-4. Poser $X = U_2 U_1^{-1}$.
-5. Calculer $Y = -(AX+B)^{-1}D$.
 
+La fonction suivante calcule la solution du système matriciel du second ordre en utilisant la méthode de Schur généralisée (QZ).
 ```{python}
 import numpy as np
 from scipy.linalg import ordqz
 
 
-def solve_second_order_qz(A, B, C, D, tol=1e-10):
+def solve_second_order_qz(A, B, C, D, tol=1e-10, return_eigvals=False):
     """
     Résout AX^2 + BX + C = 0 (branche stable) puis Y via (AX+B)Y + D = 0.
 
@@ -574,7 +586,11 @@ def solve_second_order_qz(A, B, C, D, tol=1e-10):
     N = np.block([[I, Z], [Z, A]])
 
     S, T, alpha, beta, Q, Zqz = ordqz(M, N, sort="iuc")
-    eigvals = alpha / beta
+    eigvals = (alpha / beta).sort()
+
+    if return_eigvals:
+        return eigvals
+
 
     n_stable = np.sum(np.abs(eigvals) < 1 - tol)
     if n_stable != n:
@@ -605,22 +621,7 @@ def solve_second_order_qz(A, B, C, D, tol=1e-10):
         "residual_Y": float(res_Y),
     }
     return X, Y, eigvals, diagnostics
-
-
-# Exemple numérique
-A = np.array([[1.0, 0.0], [0.0, 1.0]])
-B = np.array([[-2.1, 0.0], [0.0, -2.1]])
-C = np.array([[0.98, 0.0], [0.0, 0.9]])
-D = np.array([[1.0], [0.5]])
-
-X, Y, eigvals, info = solve_second_order_qz(A, B, C, D)
-
-print("X =")
-print(X)
-print("\nY =")
-print(Y)
-print("\nValeurs propres (pencil):")
-print(eigvals)
-print("\nDiagnostics:")
-print(info)
 ```
+
+@. Calculer les valeurs propres du système
+
