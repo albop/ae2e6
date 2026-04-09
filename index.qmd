@@ -1,38 +1,37 @@
 ---
 title: "Macro II - Fluctuations - Part II"
 listing:
-  id: sample-listings
-  type: table
-  sort-ui: false
-  filter-ui: false
-  contents: 
-    - slides/session_*/index.qmd
-    # - slides/prep_*/wip.qmd
-  sort: date
-  fields: [date, title]
+  - id: sample-listings
+    type: table
+    sort-ui: false
+    filter-ui: false
+    contents: 
+      - slides/session_*/index.qmd
+      # - slides/prep_*/wip.qmd
+    sort: date
+    fields: [date, title]
+
+  - id: tutorials-listings
+    type: table
+    filter-ui: false
+    sort-ui: false
+    field-display-names: {title: "Tutoriels"}
+    contents: 
+      - tutorials/session_1/index.qmd
+      # - slides/prep_*/wip.qmd
+    fields: [title]
 ---
-<!-- 
-::: {.callout-tip title="Resources for tutorials" collapse="true"}
-
-The notebooks for the tutorials can be downloaded from this website (click on the Jupyter icon).
-
-The following Julia environments can be used:
-
-- [jupytercloud server](https://jupytercloud.idcs.polytechnique.fr/jupyter)
-  - choose the ENSAE in the list of schools, then "computational economics"
-  - it has Dynare preinstalled
-- [mybinder](https://mybinder.org/v2/gh/albop/ae2e6_tutorials.git/main)
-  - a bit slow to run
-- a local Julia installation (your own responsability)
-
-You can browse the dyno models at this [address](https://www.mosphere.fr/ae2e6_models)
-
-
-
-::: -->
+ 
+Lien pour les tutoriels: [![Notebook tutorials](https://img.shields.io/badge/notebook-link-e2d610?logo=jupyter&logoColor=white)](https://notebook.link/public-project/7a0744ba-7b15-42e5-9360-68028cb8b8f9/lab/ "Open tutorials notebook")
 
 ## Agenda des Cours
 
 ::: {#sample-listings}
+
+:::
+
+## Tutoriels
+
+::: {#tutorials-listings}
 
 :::

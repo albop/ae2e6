@@ -1,0 +1,46 @@
+---
+title: "Macro II - Fluctuations  - Partie 2"
+subtitle: ENSAE - 2023/2025 - Session 2A
+format: pdf
+execute:
+    echo: true
+    eval: false
+    code-line-numbers: true
+---
+
+
+On considère une petite économie ouverte peuplée par deux agents représentatifs, l'agent $p$ (pour pauvre) et l'agent $r$ (pour riche). Le taux d'intérêt mondial est $R>1$.
+
+La production totale de cette économie est exogène, dénotée par $y_t$. Une part $\zeta_t$ de la production total constitue le revenu de l'agent $r$, tandis que le reste de la production revient à l'agent $p$.
+
+Chaque agent $i\in p,r$ peut acheter ou vendre au prix $q_t$ un actif spécial (nommé une *console*) qui rapporte 1 à chaque période future. On note $x^i_t$ la quantité de tels actifs détenu en $t$ par l'agent $i$. 
+Cet actif étant échangé sur le marchés internationaux, son rendement est constant, égal au taux d'intérêt mondial.
+
+Par convention, on note $W^i_t = 1 + q_t x_t$ la richesse de l'agent $i$\footnote{Dans cette expression la constante 1 représente la richesse non financière de l'agent.}.
+
+Notations
+
+@. Justifier que l'on a $q_t=\overline{q}=\frac{1}{R-1}$
+
+@. Écrire la contrainte de budget de chaque agent $i \in p,r$.
+
+@. Donner la formule pour la position nette du pays en fonction $x^p_t$, $x^r_t$ et $R$.
+
+
+On suppose que l'agent $i$ choisit $x^i_t$ de manière à maximiser son utilité intertemporelle:
+
+$$\sum_{t\geq 0} \beta_i^{t} \frac{{c^i_t}^{1-\sigma}}{1-\sigma} + \varphi_i \frac{\left( W^i_t \right)^{1-\eta_i}}{1-\eta_i}$$
+
+@. En écrivant les conditions de premier ordre montrer que l'on a (CHECK)
+
+$$\overline{q}=\beta \left(\frac{c_{t+1}}{c_t}\right)^{-\sigma} + \varphi_i \frac (1)$$
+
+On part d'un état stationnaire pour lequel $y_t=\overline{y}$, $\zeta_t=\overline{\zeta}$ où l'on suppose que ces conditions de premier ordre sont satisfaites pour $\overline{x^p}=\overline{x^r}=0$.
+
+On s'intéresse maintenant à l'effet sur l'etat stationnaire d'une augmentation permanente de $\overline{\zeta}$. 
+
+@. Dans quel sens varient $\overline{x^p}$ et $\overline{x^r}$
+
+On suppose maintenant que les different paramètres du modèle sont calibrés de manière à ce que la propension marginale à épargner de l'agent $t$  soit égale à 10% et celle de l'agent $r$ soit égale à 50%.
+
+@. Ces chiffres vous paraissent-ils réalistes ? Que peut-on dire d'après ce modèle concernant l'effet d'une augmentation des inégalités sur la position nette du pays à long terme ?

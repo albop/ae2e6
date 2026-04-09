@@ -1,0 +1,21 @@
+\frametitle{État stationnaire}
+\phantomsection\label{uxe9tat-stationnaire}
+L'état stationnaire déterministe vérifie :
+
+\[f(\overline{y},\overline{y}, \overline{y}, 0)= 0\]
+
+Souvent, il existe une solution en forme fermée.
+
+Sinon, il faut recourir à un solveur numérique pour résoudre
+
+\[\overline{y}\rightarrow f(\overline{y},\overline{y}, \overline{y}, 0)\]
+
+\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, opacitybacktitle=0.6, rightrule=.15mm, colback=white, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Tip}, colframe=quarto-callout-tip-color-frame, arc=.35mm, left=2mm, toprule=.15mm, titlerule=0mm, breakable, toptitle=1mm, opacityback=0, bottomrule=.15mm]
+
+Dans dynare, les valeurs d'état stationnaire sont fournies dans le bloc
+\texttt{steadystate\_model;\ ...\ ;\ end;}. On peut vérifier qu'elles
+sont correctes avec l'instruction \texttt{check;}.
+
+Pour trouver numériquement l'état stationnaire : \texttt{steady;}.
+
+\end{tcolorbox}

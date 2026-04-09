@@ -24,3 +24,7 @@ tempita = ">=0.6.0,<0.7"
 altair = ">=6.0.0,<7"
 dbnomics = ">=1.2.3,<2"
 statsmodels = ">=0.14.6,<0.15"
+
+[tasks]
+build-session1-pages = "python scripts/generate_session1_pages.py && quarto render tutorials/session_1/index.qmd && quarto render tutorials/session_1/index_correction.qmd"
+build-session1-site = "python scripts/generate_session1_pages.py && quarto render"
