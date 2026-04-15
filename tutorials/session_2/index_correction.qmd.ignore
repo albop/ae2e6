@@ -1,0 +1,274 @@
+---
+title: First steps with Dynare and moment matching.
+# subtitle: Business Cycles and Fluctuations - AE2E6
+# format:
+#   ipynb:
+#     output_file: problem_correction_python.ipynb
+#   html:
+#     output-file: problem_correction_python.html
+# resources:
+#   - '*.mod'
+# listing:
+#   id: mod-listings
+#   contents:
+#     - '*.mod'
+#   fields:
+#     - filename
+# jupyter:
+#   kernelspec:
+#     display_name: Python 3
+#     language: python
+#     name: python3
+---
+
+
+
+Uncomment the following lines to install needed packages (if not already present).
+
+```{python}
+# Uncomment the next lines the first time you run.
+# %pip install dynare dbnomics pandas matplotlib statsmodels
+```
+
+# Using Dynare
+
+Download the [rbc](rbc.mod) modfile.
+
+```{python}
+from dyno import dynare
+```
+
+__Open the RBC model and solve the model. Fix the mistakes in the modfile if any.__
+
+```{python}
+# report = dynare("rbc.mod")
+# report
+```
+
+(if needed, download the correct model [here](rbc_fixed.mod) )
+
+__Inspect the various elements of the solution (decision rule, unconditional moments, simulations).__
+
+```{python}
+# report = dynare("rbc.mod")
+# report # inspect the report object to find the various elements of the solution
+```
+
+__Interpret the effect of a productivity shock. How does it depend on the productivity?__
+
+
+
+# Computing moments in the data
+
+__Download US time series from the world bank for: real gdp, investment, consumption, hours worked.__
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from dbnomics import fetch_series
+from statsmodels.tsa.filters.hp_filter import hpfilter
+```
+
+```{python}
+series_ids = [
+    "OECD/QNA/USA.P5.LNBQRSA.Q",      # investment
+    "OECD/QNA/USA.B1_GS1.LNBQRSA.Q",  # GDP
+    "OECD/QNA/USA.P3.LNBQRSA.Q",      # consumption
+]
+
+frames = []
+for sid in series_ids:
+    tmp = fetch_series(sid)[["period", "value"]].copy()
+    tmp["Subject"] = sid.split("/")[2].split(".")[1]
+    frames.append(tmp)
+
+df_long = pd.concat(frames, ignore_index=True)
+```
+
+```{python}
+# Keep only the relevant data, in long format.
+df_long = df_long[["Subject", "period", "value"]]
+```
+
+```{python}
+df = df_long.pivot(index="period", columns="Subject", values="value").reset_index()
+```
+
+```{python}
+df = df.sort_values("period").dropna().reset_index(drop=True)
+```
+
+```{python}
+df = df.rename(
+    columns={
+        "period": "period",
+        "P5": "investment",
+        "B1_GS1": "gdp",
+        "P3": "consumption",
+    }
+)
+```
+
+```{python}
+fig, axes = plt.subplots(3, 1, figsize=(10, 8), sharex=True)
+axes[0].plot(df["period"], df["investment"], label="investment")
+axes[0].legend()
+axes[1].plot(df["period"], df["gdp"], label="gdp")
+axes[1].legend()
+axes[2].plot(df["period"], df["consumption"], label="consumption")
+axes[2].legend()
+plt.tight_layout()
+plt.show()
+```
+
+__Detrend all series.__
+
+```{python}
+# Detrend the consumption series.
+series = df["consumption"]
+_, trend = hpfilter(series, lamb=1600)
+cycle = (series - trend) / trend
+df["consumption_trend"] = trend
+df["consumption_cycle"] = cycle
+```
+
+```{python}
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+axes[0].plot(series.values, label="consumption")
+axes[0].plot(trend.values, label="trend")
+axes[0].set_title("consumption")
+axes[0].legend()
+axes[1].plot(cycle.values)
+axes[1].set_title("consumption (cycle)")
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+# Detrend GDP.
+series = df["gdp"]
+_, trend = hpfilter(series, lamb=1600)
+cycle = (series - trend) / trend
+df["gdp_trend"] = trend
+df["gdp_cycle"] = cycle
+```
+
+```{python}
+# Detrend the investment series.
+series = df["investment"]
+_, trend = hpfilter(series, lamb=1600)
+cycle = (series - trend) / trend
+df["investment_trend"] = trend
+df["investment_cycle"] = cycle
+```
+
+__Compute the correlations between the detrended series. Compute the ratios $\frac{\sigma(investment)}{\sigma(gdp)}$ and $\frac{\sigma (consumption)}{\sigma (gdp)}$. Compare with the RBC model and comment.__
+
+```{python}
+# Keep only the relevant part of the dataframe.
+relevant_df = df[["gdp_cycle", "investment_cycle", "consumption_cycle"]]
+```
+
+```{python}
+# Convert the dataframe to a NumPy matrix.
+mat = relevant_df.to_numpy()
+```
+
+```{python}
+relevant_df.corr()
+```
+
+```{python}
+std_y = relevant_df["gdp_cycle"].std()
+std_i = relevant_df["investment_cycle"].std()
+std_c = relevant_df["consumption_cycle"].std()
+```
+
+```{python}
+print(f"sigma(i)/sigma(y): {std_i/std_y}")
+print(f"sigma(c)/sigma(y): {std_c/std_y}")
+```
+
+# Small Open Economy
+
+Start from the same rbc [model](rbc_fixed.mod).
+Assume the representative agent can save $b^{\star}_t$ as foreign assets, remunerated at a constant interest rate $r^{\star}-1$.
+
+__Write the new budget constraint for the representative household.__
+
+A une date donnee t, le menage epargne $b^{\star}_t$ sous forme de titres etrangers et recoit le remboursement de son epargne
+de la periode precedente $b^{\star}_{t-1}$ plus les interets afferents $(r^{\star} - 1)b^{\star}_{t-1}$ . Par rapport au modele de base, la contrainte
+budgetaire en t devient donc :
+
+$$c_t + i_t + b^ {\star}_t \leq w_t n_t + r_t k_{t-1} + r^ {\star} b^{\star}_{t-1}$$
+
+and the lagrangian is:
+
+
+$$\mathcal{L} = E_t \sum_{j=0}^\infty \beta^j\left[\log c_{t+j} + \chi \dfrac{(1-n_{t+j})^{1-\eta}}{1-\eta} \right.$$
+
+$$+\lambda_{t+j} (w_{t+j}n_{t+j} + r_{t+j}k_{t+j-1} - c_{t+j}-k_{t+j} + (1-\delta)k_{t+j-1} + r^* b^*_{t+j-1} - b^*_{t+j} )\Bigg]$$
+
+
+__Write the new optimality condition.__
+
+Il faut ajouter au modele la condition d'optimalite par rapport a $b^{\star}_t$ : le menage representatif choisit le niveau d'epargne
+en titres etrangers qui maximise son utilite intertemporelle sous contrainte. On trouve :
+
+$$ -\lambda_t + \beta E_t[\lambda_{t+1}r^*]=0$$
+soit :
+$$ \frac{1}{c_t}=\beta r^* E_t\left[\frac{1}{c_{t+1}} \right]$$
+
+__What is the long run constraint on interest rate $r^{\star}$?__
+
+A l'etat stationnaire, cette equation implique $r^{\star}= \frac{1}{\beta}$ . Bien que $r^{\star}$ represente un taux d'interet decide a l'etranger, $\frac{1}{\beta}$
+est sa seule valeur compatible avec l'existence d'un equilibre de long terme dans le modele. En effet, il ne peut pas y
+avoir d'opportunite d'arbitrage a l'equilibre : tous les placements ont la meme rentabilite.
+
+__Update the modfile (set $\overline{b^{\star}}=0$)__
+
+Pour mettre a jour le fichier .mod, il faut declarer la nouvelle variable $b^{\star}$ et le nouveau parametre $r^\star$ en lui donnant la
+valeur $\frac{1}{\beta}$ . Il faut ajouter au modele la condition d'optimalite ci-dessus et mettre a jour l'equation donnant l'equilibre
+sur le marche des biens. En effet, cette equation est obtenue en equilibre general a partir de la contrainte budgetaire du
+menage. En petite economie ouverte, on a :
+
+$$c_t + i_t + b^{\star}_t = w_t n_t + r_t k_{t-1} + r^{\star} b^{\star}_{t-1}$$
+
+Or l'entreprise, supposee en concurrence parfaite, ne fait pas de profit. Donc $y_t = w_t n_t + r_t k_{t-1}$ et :
+
+$$c_t + i_t + b^{\star}_t - r^{\star} b^{\star}_{t-1} = y_t$$
+
+Ensuite, on remarque que le modele statique ne determine pas le niveau de $b^{\star}$ a l'etat stationnaire ; on choisit de le fixer
+a 0 de sorte que l'etat stationnaire des autres variables du modele ne soit pas affecte. On ajoute donc $b^{\star}=0$ dans le
+bloc steady_state_model;.
+
+__Print theoretical moments. Comment.__
+
+On voit que Dynare ne parvient pas a calculer les moments (moyennes et variances) de certaines variables. De plus, les
+irfs ne reviennent pas tous a 0.
+
+__Simulate the model over 100 periods. Comment.__
+
+Avec la commande check;, on voit que le modele a une valeur propre de module egal a 1 [PAS DANS Dynare Julia]. Dans Dynare, ceci ne provoque
+pas d'erreur par rapport aux conditions de Blanchard et Kahn mais est problematique : le modele a une racine unitaire
+et n'est donc pas stationnaire. En effet, il manque au modele une force de rappel : si les menages sont transitoirement
+incites epargner plus sous forme de titres etrangers, rien ne les incite ensuite de facon endogene a baisser cette epargne
+vers son niveau initial - la remuneration de cette epargne etant toujours la meme.
+
+__Assume the foreign interest rate depends on the amount of foreign assets__
+
+$$r^{\star}=\frac{1}{\beta} + exp(-\kappa b^{\star}_t) - 1$$
+
+__with $\kappa=0.01$. How do you interpret the equation for $r^{\star}_t$. How should you modify the model equations?__
+
+Plus le menage detient de titres etrangers, moins ceux-ci sont remunerateurs. Inversement, plus le menage est
+endette vis-a-vis de l'etranger $(b^{\star} < 0)$, plus les preteurs etrangers vont exiger un taux d'interet eleve. On peut donc
+interpreter le terme $exp(-\kappa b^{\star}_t ) - 1$ comme une prime de risque sur le taux d'interet etranger.
+Pour mettre a jour le fichier .mod, il faut declarer a present $r^{\star}$ comme une variable et non un parametre, declarer sa
+valeur a l'etat stationnaire $r^{\star} = \frac{1}{\beta}$ dans le bloc steady_state_model; et enfin ajouter l'equation ci-dessus dans le bloc
+model;.
+
+Si on ne change pas les conditions d'Euler, cela revient a supposer que les consommateurs/le gouvernment n'internalisent pas l'effet de leur emprunt sur le taux d'interet.
+
+__Update the modfile and comment on the generated moments. Do they depend on the choice of $\kappa$?__

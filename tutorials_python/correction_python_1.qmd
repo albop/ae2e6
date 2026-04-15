@@ -1,0 +1,536 @@
+---
+title: 'VAR Process in python'
+subtitle: Business Cycles and Fluctuations - AE2E6
+format:
+  ipynb:
+    output_file: correction.ipynb
+  html:
+    output_file: correction.html
+jupyter: python3
+execute:
+    enabled: false
+---
+
+
+::: {.callout-note collapse="true" title="Objectives"}
+
+
+- Introduce Julia environment
+    - run cells
+    - basic types: numbers, strings, vectors, matrices
+    - functions
+    - simple plots
+- Simulate AR1 models
+    - impulse response functions
+    - stochastic simulations
+        - conditional / unconditional moments
+    - develop intuition about eigenvalues / ergodic distributions
+
+:::   
+
+# Manipulating AR1 Models
+
+We consider here a simple autoregressive model:
+
+$$y_t = A y_{t-1} + B e_t$$
+
+where $y_t=(y^1_t, y^2_t)$ a vector of variables and  $e_t=(e^1_t, e^2_t)$ a normal i.i.d. multivariate process defined by covariance matrix $\Sigma \in R^p \times R^p$.
+
+We start by choosing: 
+
+$$A = \begin{bmatrix}\rho & 2 \\ 0 & \lambda\end{bmatrix}$$
+
+$$B = \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}$$
+
+$$\Sigma = \begin{bmatrix}0.05 & 0.005 \\ 0.005 & 0.01\end{bmatrix}$$
+
+__Define python variables for matrices $A, B, \Sigma$.__
+
+```{python}
+import numpy as np
+
+# Parameters
+ρ = 0.3
+λ = 0.5
+
+# Matrices
+A = np.array([[ρ, 2.0],
+              [0.0, λ]])
+```
+
+```{python}
+# B is the identity matrix
+np.eye(2, dtype=float) # pay attention to use floats rather than integers
+```
+
+```{python}
+Σ= np.array([[0.05,  0.005],
+                  [0.005, 0.01]], dtype=float)
+```
+
+
+Compute (programmatically) the eigenvalues of A.
+
+```{python}
+eigvals = np.linalg.eigvals(A)
+print(eigvals) ## no surprise: these are equal to λ, ρ
+```
+
+```{python}
+v = np.array([0.0, 1.0])
+A @ v
+```
+
+__Simulate the response to a one deviation shock to $e^1_t$ and $e^2_t$ over 10 periods.__
+
+```{python}
+# Initial shocks (pay attention: diagonal elements are variances)
+e0_1 = np.array([np.sqrt(Σ[0, 0]), 0.0])
+e0_2 = np.array([0.0, np.sqrt(Σ[1, 1])])
+
+# Simulation horizons
+T = 10
+
+sim_y_1 = np.column_stack([
+    np.linalg.matrix_power(A, n) @ e0_1
+    for n in range(T + 1)
+])
+
+sim_y_2 = np.column_stack([
+    np.linalg.matrix_power(A, n) @ e0_2
+    for n in range(T + 1)
+])
+```
+
+__Plot the result using Plots.jl__
+
+```{python}
+import matplotlib.pyplot as plt
+
+plt.plot(sim_y_1[0, :])
+plt.xlabel("t")
+plt.ylabel("y₁")
+plt.title("Impulse response of y₁ to shock e₁")
+plt.show()
+```
+
+```{python}
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+
+# y1
+axes[0].plot(sim_y_1[0, :])
+axes[0].set_title(r"$y_1$")
+
+# y2
+axes[1].plot(sim_y_1[1, :])
+axes[1].set_title(r"$y_2$")
+
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+plt.figure(figsize=(6,4))
+
+plt.plot(sim_y_1[0, :], label=r"$y_1$")
+plt.plot(sim_y_1[1, :], label=r"$y_2$")
+
+plt.title(r"Response to shock $e_1$")
+plt.legend()
+
+plt.show()
+```
+
+```{python}
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9,4))
+
+# ---- y1 ----
+ax1.plot(sim_y_1[0,:], label=r"$e_1$")
+ax1.plot(sim_y_1[1,:], label=r"$e_2$")
+ax1.set_title(r"$y_1$")
+ax1.legend()
+
+# ---- y2 ----
+ax2.plot(sim_y_2[0,:], label=r"$e_1$")
+ax2.plot(sim_y_2[1,:], label=r"$e_2$")
+ax2.set_title(r"$y_2$")
+ax2.legend()
+
+plt.tight_layout()
+plt.show()
+```
+
+# Let's combine everything
+
+pl1 = plot(  sim_y_1[1,:], label="\$e_2\$", title="\$y_1\$" )
+plot!(pl1,sim_y_1[2,:], label="\$e_2\$")
+pl2 = plot(  sim_y_2[1,:], label="\$e_2\$", title="\$y_2\$" )
+plot!(pl2,sim_y_2[2,:], label="\$e_2\$", legend=false)
+plot(pl1, pl2)
+
+__What do you get if one eigenvalue is equal to 1? Greater than 1?__
+
+```{python}
+rho = 0.3
+lam = 1.0
+
+A = np.array([[rho, 2.0],
+              [0.0, lam]])
+
+
+e0_1 = np.array([np.sqrt(Σ[0,0]), 0.0])
+e0_2 = np.array([0.0, np.sqrt(Σ[1,1])])
+
+T = 10
+
+# Simulation équivalente à hcat([A^n * e0 for n in 0:10]...)
+sim_y_1 = np.column_stack([np.linalg.matrix_power(A, n) @ e0_1 for n in range(T+1)])
+sim_y_2 = np.column_stack([np.linalg.matrix_power(A, n) @ e0_2 for n in range(T+1)])
+
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9,4))
+
+# y1
+ax1.plot(sim_y_1[0, :], label=r"$e_1$")
+ax1.plot(sim_y_1[1, :], label=r"$e_2$")
+ax1.set_title(r"$y_1$")
+ax1.legend()
+
+# y2
+ax2.plot(sim_y_2[0, :], label=r"$e_1$")
+ax2.plot(sim_y_2[1, :], label=r"$e_2$")
+ax2.set_title(r"$y_2$")
+ax2.legend()
+
+plt.tight_layout()
+plt.show()
+```
+
+
+We see that the shock $e_1$ has a persistent effect on $y_2$. It is associated to the unit root.
+The new steady-state is not the original one.
+
+```{python}
+# explosive case
+ρ = 0.3
+λ = 1.02
+
+A = np.array([[ρ, 2.0],
+              [0.0, λ]])
+
+e0_1 = np.array([np.sqrt(Σ[0,0]), 0.0])
+e0_2 = np.array([0.0, np.sqrt(Σ[1,1])])
+
+T = 10
+
+
+sim_y_1 = np.column_stack([np.linalg.matrix_power(A, n) @ e0_1 for n in range(T+1)])
+sim_y_2 = np.column_stack([np.linalg.matrix_power(A, n) @ e0_2 for n in range(T+1)])
+
+# --- Plot ---
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9,4))
+
+# y1
+ax1.plot(sim_y_1[0, :], label=r"$e_1$")
+ax1.plot(sim_y_1[1, :], label=r"$e_2$")
+ax1.set_title(r"$y_1$")
+ax1.legend()
+
+# y2
+ax2.plot(sim_y_2[0, :], label=r"$e_1$")
+ax2.plot(sim_y_2[1, :], label=r"$e_2$")
+ax2.set_title(r"$y_2$")
+ax2.legend()
+
+plt.tight_layout()
+plt.show()
+```
+
+Now the variable $y_2$ diverges.
+Note that $y_1$ does not diverge because of the specific initial shock (colinear to [1,0]). 
+
+__Import the Distributions package. Use `MvNormal` to compute draws from a multivariate distribution with covariance matrix $\Sigma$__
+
+```{python}
+# ATTENTION, CHANGER LA CONSIGNE, PUISQUE ICI ON UTILISERA PAS MVNORMAL
+```
+
+```{python}
+# En Julia : MvNormal(Σ) suppose moyenne nulle
+mu = np.zeros(2)
+
+# équivalent de dis = MvNormal(Σ)
+# en Python on ne crée pas forcément un objet, mais on peut :
+def draw():
+    return np.random.multivariate_normal(mu, Σ)
+
+
+print(draw())
+
+
+random_points = [draw() for _ in range(1000)]
+
+
+x = [e[0] for e in random_points]
+y = [e[1] for e in random_points]
+
+plt.scatter(x, y)
+plt.show()
+```
+
+```{python}
+from matplotlib.patches import Ellipse
+
+
+mu = np.array([0.0, 0.0])
+n_std = 2
+N = 1000
+
+# --- random draws: equivalent to random_points = [rand(dis) for i=1:1000] ---
+random_points = np.random.multivariate_normal(mu, Σ, size=N)
+
+# --- helper: covariance ellipse like covellipse! ---
+def add_cov_ellipse(ax, mean, cov, n_std=2, **kwargs):
+    # eigen-decomposition
+    vals, vecs = np.linalg.eigh(cov)
+    order = vals.argsort()[::-1]
+    vals, vecs = vals[order], vecs[:, order]
+
+    # angle of the largest eigenvector (degrees)
+    angle = np.degrees(np.arctan2(vecs[1, 0], vecs[0, 0]))
+
+    # ellipse radii = n_std * sqrt(eigenvalues)
+    width, height = 2 * n_std * np.sqrt(vals)
+
+    ell = Ellipse(xy=mean, width=width, height=height, angle=angle, fill=False, **kwargs)
+    ax.add_patch(ell)
+    return ell
+
+
+fig, ax = plt.subplots(figsize=(5, 5))
+
+ax.scatter(random_points[:, 0], random_points[:, 1], label="e", alpha=0.5)
+add_cov_ellipse(ax, mu, Σ, n_std=n_std, label="cov")
+
+ax.set_xlabel(r"$e_1$")
+ax.set_ylabel(r"$e_2$")
+ax.set_aspect("equal", adjustable="box")
+ax.legend()
+
+plt.show()
+```
+
+__Perform a stochastic simulation over 20 periods starting with a one standard-deviation in $e_2$.__
+
+```{python}
+# return to old value of A
+ρ = 0.3
+λ = 0.5
+
+A = np.array([[ρ , 2],
+             [ 0 , λ]])
+```
+
+```{python}
+def simulate(A, B, Σ, e0=None, T=20, rng=None):
+   
+  #  A = np.asarray(A, dtype=float)
+   # B = np.asarray(B, dtype=float)
+    
+
+    n = A.shape[0]   #dimension de y_t
+    m = Σ.shape[0]   #dimension des chocs
+
+    if e0 is None:
+        e0 = np.zeros(m, dtype=float)
+    else:
+        e0 = np.asarray(e0, dtype=float)
+
+    if rng is None:
+        rng = np.random.default_rng()
+
+    # sim = [B*e0]
+    y = B @ e0
+    sim = [y]
+
+    for _ in range(T):
+        # e1 = rand(MvNormal(Σ))
+        e1 = rng.multivariate_normal(mean=np.zeros(m), cov=Σ)
+
+        # y1 = A*y0 + B*e1
+        y = A @ sim[-1] + B @ e1
+
+        sim.append(y)
+
+    # return hcat(sim...)
+    return np.column_stack(sim)
+```
+
+```{python}
+sim = simulate(A, B, Σ, e0_2)
+```
+
+```{python}
+T = sim.shape[1] - 1
+t = np.arange(T+1)
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9,4))
+
+ax1.plot(t, sim[0, :])
+ax1.set_title(r"$y_1$")
+
+ax2.plot(t, sim[1, :])
+ax2.set_title(r"$y_2$")
+
+plt.tight_layout()
+plt.show()
+```
+
+Much harder to intepret results from a single simulation...
+
+__Perform K=500 stochastic simulations over 20 periods starting with a one standard-deviation in $e_2$. Plot the result.__
+
+```{python}
+K = 500
+sims = [simulate(A, B, Σ, e0_2) for _ in range(K)]
+```
+
+```{python}
+
+# empiler dans un seul tableau en 3D 
+#(axe 0: les simulations, 
+#ax1: la variable (0 pour y_1, 1 pour y_2)
+#axe 2: temps)
+
+S = np.stack(sims, axis=0)  #transforme liste en tableau
+K, n, T1 = S.shape    #valeur de yi au temps t dans simulation k
+t = np.arange(T1)
+
+# y1 stats
+mean_1 = S[:, 0, :].mean(axis=0)    
+std_1  = S[:, 0, :].std(axis=0, ddof=1)
+
+# y2 stats
+mean_2 = S[:, 1, :].mean(axis=0)
+std_2  = S[:, 1, :].std(axis=0, ddof=1)
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
+
+# --- y1 spaghetti ---
+for k in range(K):
+    ax1.plot(t, S[k, 0, :], alpha=0.01, linewidth=1)  # color default; see note below
+ax1.plot(t, mean_1, linewidth=2)
+ax1.plot(t, mean_1 - std_1, linestyle="--", linewidth=1.5)
+ax1.plot(t, mean_1 + std_1, linestyle="--", linewidth=1.5)
+ax1.set_title(r"$y_1$")
+
+# --- y2 spaghetti ---
+for k in range(K):
+    ax2.plot(t, S[k, 1, :], alpha=0.01, linewidth=1)
+ax2.plot(t, mean_2, linewidth=2)
+ax2.plot(t, mean_2 - std_2, linestyle="--", linewidth=1.5)
+ax2.plot(t, mean_2 + std_2, linestyle="--", linewidth=1.5)
+ax2.set_title(r"$y_2$")
+
+plt.tight_layout()
+plt.show()
+```
+
+We observe that:
+
+1. the *expected* response is similar to the determinstic irf we computed before
+2. volatility makes predictions hard..
+3. it looks like the unconditional volatility converges after a few periods
+
+__Ergodic Distribution.__
+
+It can be shown that the ergodic distribution of a VAR1 is a multivariate normal law, with covariance matrix $\Omega$.
+
+This matrix is a solution to the equation $\Omega = A \Omega A' + B \Sigma B'$.
+
+A simple algorithm to find it consist in applying the recurrence $\Omega_n = A \Omega_{n-1} A' + B \Sigma B'$ until convergence, starting with $\Omega_0 =0$.
+
+Implement this algorithm.
+
+```{python}
+def ergodic_steady_state(A, B, Σ, N=1000, tol_eta=1e-8):
+    
+  #  A = np.asarray(A, dtype=float)
+  #  B = np.asarray(B, dtype=float)
+  #  Σ = np.asarray(Σ, dtype=float)
+
+    #initilisation Omega0
+    n = A.shape[0]
+    Omega0 = np.zeros((n, n), dtype=float)
+
+    for _ in range(N):
+        Omega = A @ Omega0 @ A.T + B @ Σ @ B.T
+        eta = np.max(np.abs(Omega - Omega0)) #critère d'arret
+        if eta < tol_eta:
+            return Omega
+        Omega0 = Omega
+
+    raise RuntimeError("No convergence")
+```
+
+__Compare the result with the empirical ergodic distribution obtained from the simulations__
+
+```{python}
+random_final_points = [sim[:, -1] for sim in sims]
+#on prend le point final de chaque trajectoire
+#ne permettra d'avoir une distribution ergodique que si T suffisaament grand
+#sorte de burn-in
+```
+
+```{python}
+Omega = ergodic_steady_state(A, B, Σ)
+```
+
+```{python}
+pts = np.array(random_final_points)   # shape (K, n)
+
+empirical_cov = np.cov(pts, rowvar=False) #calcul covariance theorique stationnaire omega via iteration
+
+print(empirical_cov)
+```
+
+```{python}
+def add_cov_ellipse(ax, mean, cov, n_std=2, **kwargs):
+    vals, vecs = np.linalg.eigh(cov)
+    order = vals.argsort()[::-1]
+    vals, vecs = vals[order], vecs[:, order]
+
+    angle = np.degrees(np.arctan2(vecs[1, 0], vecs[0, 0]))
+    width, height = 2 * n_std * np.sqrt(vals)
+
+    #centre de l'ellipse
+    ell = Ellipse(xy=mean, width=width, height=height, angle=angle,
+                  fill=False, **kwargs)
+    ax.add_patch(ell)
+    return ell
+
+# --- random_final_points: list of length K, each point shape (2,) ---
+pts = np.array(random_final_points)   # shape (K, 2)
+
+fig, ax = plt.subplots(figsize=(6,6))
+
+# scatter points
+ax.scatter(pts[:, 0], pts[:, 1], label="e", alpha=0.2)
+
+# covariance ellipse from Omega
+add_cov_ellipse(ax, mean=np.array([0.0, 0.0]), cov=Omega, n_std=2, label="cov")
+
+# expected path: average_1, average_2 are arrays of length T+1
+average_1 = S[:, 0, :].mean(axis=0)
+average_2 = S[:, 1, :].mean(axis=0)
+ax.plot(average_1, average_2, color="black", label="expected path")
+
+ax.set_xlabel(r"$e_1$")
+ax.set_ylabel(r"$e_2$")
+ax.set_aspect("equal", adjustable="box")
+ax.legend()
+
+plt.show()
+```
+
+
