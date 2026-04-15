@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26" />
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-067f8ab80d092ae3595f7402c2c9b667.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.32">
 
   <meta name="author" content="Pablo Winant">
   <meta name="dcterms.date" content="2025-03-12">
@@ -13,6 +18,9 @@
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -25,7 +33,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -118,11 +126,11 @@
     }
   </style>
 </head>
-<body>
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Résolution des modèles DSGE</h1>
   <p class="subtitle">Macro II - Fluctuations - ENSAE, 2024-2025</p>
 
@@ -147,7 +155,7 @@ Pablo Winant
 </nav>
 </section>
 <section>
-<section id="introduction" class="title-slide slide level1">
+<section id="introduction" class="title-slide slide level1 center">
 <h1>Introduction</h1>
 
 </section>
@@ -164,9 +172,8 @@ Pablo Winant
 </ul>
 </div>
 </div><div class="column" style="width:20%;">
-<p><img data-src="assets/lucifer.jpg" class="fragment" /></p>
-</div>
-</div>
+<p><img data-src="assets/lucifer.jpg" class="fragment"></p>
+</div></div>
 <div class="fragment">
 <div class="fragment">
 <p>Cela a des implications importantes :</p>
@@ -212,12 +219,11 @@ Pablo Winant
 </div><div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="assets/michel.jpeg" /></p>
+<p><img data-src="assets/michel.jpeg"></p>
 <figcaption>Michel Juillard</figcaption>
 </figure>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="modèles-dsge-dans-les-institutions" class="slide level2">
 <h2>Modèles DSGE dans les institutions</h2>
@@ -249,7 +255,7 @@ Pablo Winant
 <p>Au passage, nous discuterons de certaines tendances</p>
 </section></section>
 <section>
-<section id="résolution-dun-modèle" class="title-slide slide level1">
+<section id="résolution-dun-modèle" class="title-slide slide level1 center">
 <h1>Résolution d’un modèle</h1>
 
 </section>
@@ -277,11 +283,20 @@ Pablo Winant
 <li><span class="math inline">\(g\)</span> telle que <span class="math display">\[\forall t, y_t = g(y_{t-1},\epsilon_t)\]</span></li>
 </ul>
 </div>
-</div>
-</div>
+</div></div>
 <aside class="notes">
 <p>La situation est différente lorsqu’on réalise une simulation en prévision parfaite.</p>
-</aside>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="le-timing-des-équations" class="slide level2">
 <h2>Le timing des équations</h2>
@@ -289,7 +304,7 @@ Pablo Winant
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
-<i class='callout-icon'></i>
+<i class="callout-icon"></i>
 </div>
 <p><strong>Tip</strong></p>
 </div>
@@ -343,7 +358,7 @@ Pablo Winant
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
-<i class='callout-icon'></i>
+<i class="callout-icon"></i>
 </div>
 <p><strong>Tip</strong></p>
 </div>
@@ -355,21 +370,21 @@ Pablo Winant
 </div>
 </section>
 <section id="le-système-implicite" class="slide level2" data-auto-animate="true">
-<h2 data-auto-animate="true">Le système implicite</h2>
+<h2 data-id="quarto-animate-title">Le système implicite</h2>
 <p>En remplaçant la solution <span class="math display">\[y_t = \color{red}{g}(y_{t-1},\epsilon_t)\]</span> dans le système <span class="math display">\[\mathbb{E}_t \left[ f(y_{t+1}, y_t, y_{t-1}, \epsilon_t) \right]= 0\]</span></p>
 <p>on obtient :</p>
 <p><span class="math display">\[\mathbb{E}_t \left[ f(\color{red}{g}(\color{red}{g}(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), \color{red}{g}(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0\]</span></p>
 <p>C’est une équation qui définit implicitement la fonction <span class="math inline">\(\color{red}{g}()\)</span></p>
 </section>
 <section id="lespace-détat" class="slide level2" data-auto-animate="true">
-<h2 data-auto-animate="true">L’espace d’état</h2>
+<h2 data-id="quarto-animate-title">L’espace d’état</h2>
 <p><span class="math display">\[\mathbb{E}_t \left[ f(\color{red}{g}(\color{red}{g}(y_{t-1},\epsilon_{t}),\epsilon_{t+1}), \color{red}{g}(y_{t-1},\epsilon_t), y_{t-1}, \epsilon_t) \right]= 0\]</span></p>
 <p>Dans cette expression, <span class="math inline">\(y_{t-1},\epsilon_t\)</span> est l’espace d’état :</p>
 <ul>
 <li>il contient toute l’information disponible en <span class="math inline">\(t\)</span> pour prédire l’évolution future de <span class="math inline">\((y_s)_{s\geq t}\)</span></li>
 </ul>
 <div class="fragment">
-<p>En supprimant les indices temporels, l’équation doit être satisfaite pour toute réalisation de <span class="math inline">\((y,\epsilon)\)</span> <span class="math display">\[\forall (y,\epsilon)\  \Phi(\color{red}{g})(y,\epsilon) = \mathbb{E}_{\epsilon&#39;} \left[ f(\color{red}{g}(\color{red}{g}(y,\epsilon),\epsilon&#39;), \color{red}{g}(y,\epsilon), y, \epsilon) \right]= 0\]</span></p>
+<p>En supprimant les indices temporels, l’équation doit être satisfaite pour toute réalisation de <span class="math inline">\((y,\epsilon)\)</span> <span class="math display">\[\forall (y,\epsilon)\  \Phi(\color{red}{g})(y,\epsilon) = \mathbb{E}_{\epsilon'} \left[ f(\color{red}{g}(\color{red}{g}(y,\epsilon),\epsilon'), \color{red}{g}(y,\epsilon), y, \epsilon) \right]= 0\]</span></p>
 <p>C’est une équation fonctionnelle <span class="math inline">\(\Phi(\color{red}{g})=0\)</span></p>
 </div>
 </section>
@@ -377,13 +392,13 @@ Pablo Winant
 <h2>Chocs anticipés</h2>
 <p>Approximation du premier ordre :</p>
 <ul>
-<li>Supposer <span class="math inline">\(|\epsilon|&lt;&lt;1\)</span>,<span class="math inline">\(|\epsilon&#39;|&lt;&lt;1\)</span></li>
+<li>Supposer <span class="math inline">\(|\epsilon|&lt;&lt;1\)</span>,<span class="math inline">\(|\epsilon'|&lt;&lt;1\)</span></li>
 </ul>
 <p>Effectuer un développement de Taylor par rapport au choc futur :</p>
 <p><span class="math display">\[\begin{align}
-&amp; &amp; \mathbb{E}_{\color{green}{\epsilon&#39;}} \left[ f(g(g(y,\epsilon),\color{green}{\epsilon&#39;}), g(y,\epsilon), y, \epsilon) \right]  \\
-= &amp; &amp;  \mathbb{E}_{\color{green}{\epsilon&#39;}}\left[ f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) \right] \\
-  &amp; &amp; +  \mathbb{E}_{\color{green}{\epsilon&#39;}} \left[ f^{\prime}_{y_{t+1}}(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) g^{\prime}_{\epsilon} \color{green}{\epsilon&#39;}\right] + o(\epsilon^{\prime}) \\
+&amp; &amp; \mathbb{E}_{\color{green}{\epsilon'}} \left[ f(g(g(y,\epsilon),\color{green}{\epsilon'}), g(y,\epsilon), y, \epsilon) \right]  \\
+= &amp; &amp;  \mathbb{E}_{\color{green}{\epsilon'}}\left[ f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) \right] \\
+  &amp; &amp; +  \mathbb{E}_{\color{green}{\epsilon'}} \left[ f^{\prime}_{y_{t+1}}(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon) g^{\prime}_{\epsilon} \color{green}{\epsilon'}\right] + o(\epsilon^{\prime}) \\
 \approx &amp; &amp; f(g(g(y,\epsilon),0), g(y,\epsilon), y, \epsilon)
 \end{align}\]</span></p>
 <div class="fragment">
@@ -424,7 +439,17 @@ Pablo Winant
 <p>-&gt; la plus grande valeur propre de <span class="math inline">\(X\)</span> doit être inférieure à 1</p>
 <aside class="notes">
 <p>Développer l’intuition en dimension 1.</p>
-</aside>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </div>
 </section>
 <section id="multiplicité-des-solutions" class="slide level2">
@@ -499,7 +524,7 @@ Pablo Winant
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
-<i class='callout-icon'></i>
+<i class="callout-icon"></i>
 </div>
 <p><strong>Critère de Blanchard-Kahn</strong></p>
 </div>
@@ -561,7 +586,7 @@ Pablo Winant
 </div>
 </section></section>
 <section>
-<section id="sec-conclusion" class="title-slide slide level1">
+<section id="sec-conclusion" class="title-slide slide level1 center">
 <h1>Conclusion</h1>
 
 </section>
@@ -598,11 +623,11 @@ Pablo Winant
 </section>
 <section id="à-venir" class="slide level2">
 <h2>À venir</h2>
-<p><img data-src="assets/ea0.jpg" /></p>
-<p>De nombreux modèles</p>
+
+<img data-src="assets/ea0.jpg" class="r-stretch"><p>De nombreux modèles</p>
 </section></section>
 <section>
-<section id="sec:linear_time_iteration" class="title-slide slide level1">
+<section id="sec:linear_time_iteration" class="title-slide slide level1 center">
 <h1>Annexe : itération temporelle linéaire</h1>
 
 </section>
@@ -648,35 +673,28 @@ Pablo Winant
 <section id="itération-temporelle-linéaire-4" class="slide level2">
 <h2>Itération temporelle linéaire (4)</h2>
 <p>Définir <span class="math display">\[M(\lambda) = A\lambda^2 + B \lambda + C\]</span></p>
-<p>Pour toute solution <span class="math inline">\(X\)</span>, <span class="math inline">\(M(\lambda)\)</span> peut être factorisée comme : <a href="#/fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Pour toute solution <span class="math inline">\(X\)</span>, <span class="math inline">\(M(\lambda)\)</span> peut être factorisée comme : <sup>1</sup></p>
 <p><span class="math display">\[M(\lambda)=(\lambda A + A X + B)(\lambda I -X)\]</span></p>
 <p>et</p>
 <p><span class="math display">\[det(M(\lambda)) = \underbrace{det(\lambda A + A X + B)}_{Q(\lambda)}det(\lambda I -X)\]</span></p>
-<p>Par construction, <span class="math inline">\(Q(\lambda)\)</span> est un polynôme dont les racines sont celles qui ne sont pas sélectionnées par la solution, c.-à-d. <span class="math inline">\(\Lambda\setminus Sp(X)\)</span>.</p>
-</section>
+<p>Par construction, <span class="math inline">\(Q(\lambda)\)</span> est un polynôme dont les racines sont celles qui ne sont pas sélectionnées par la solution, c.-à-d.&nbsp;<span class="math inline">\(\Lambda\setminus Sp(X)\)</span>.</p>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Cas particulier du théorème de Bezout. Facile à vérifier dans ce cas</p></li></ol></aside></section>
 <section id="itération-temporelle-linéaire-5" class="slide level2">
 <h2>Itération temporelle linéaire (5)</h2>
 <p>Pour <span class="math inline">\(\lambda \neq 0\)</span> on a :</p>
 <p><span class="math display">\[\lambda \in Sp((A X +B )^{-1} A)\]</span> <span class="math display">\[\iff\tdet( (A X +B )^{-1})A - I\lambda )=0\]</span> <span class="math display">\[\iff\tdet( \frac{1}{\lambda} A - I (A X +B )  )=0\]</span> <span class="math display">\[\iff Q(\frac{1}{\lambda})=0\]</span> <span class="math display">\[\iff \frac{1}{\lambda} \in G \setminus Sp(X)\]</span></p>
 <p>En mots, <span class="math inline">\((AX+B)^{-1}\)</span> contient toutes les valeurs propres qui ont été rejetées par la sélection de <span class="math inline">\(X\)</span>.</p>
 <p>En particulier, <span class="math inline">\(\rho((AX+B)^{-1})A)=1/\min(G\setminus Sp(X))\)</span></p>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGF0aXRsZQ==">Résolution des modèles DSGE – Macro II - Fluctuations - Part II</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=">Résolution des modèles DSGE – Macro II - Fluctuations - Part II</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZHRpdGxl">Résolution des modèles DSGE – Macro II - Fluctuations - Part II</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGFzaXRlbmFtZQ==">Macro II - Fluctuations - Part II</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==">Macro II - Fluctuations - ENSAE, 2024-2025</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZGRkZXNj">Macro II - Fluctuations - ENSAE, 2024-2025</span></p>
-</div>
-<div class="quarto-auto-generated-content" style="display: none;">
+
+
+</section></section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 
 </div>
-</div>
-</section></section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Cas particulier du théorème de Bezout. Facile à vérifier dans ce cas<a href="#/fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="../../site_libs/revealjs/dist/reveal.js"></script>
@@ -698,7 +716,17 @@ Pablo Winant
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
-      Reveal.initialize({ 
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
         // Display controls in the bottom right corner
         controls: false,
 
@@ -867,7 +895,8 @@ Pablo Winant
         },
 
         // reveal.js plugins
-        plugins: [
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
           RevealMath,
           RevealNotes,
           RevealSearch,
@@ -875,7 +904,7 @@ Pablo Winant
         ]
       });
     </script>
-    <script id = "quarto-html-after-body" type="application/javascript">
+    <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
         tabsets.forEach(function(tabset) {
@@ -1043,5 +1072,6 @@ Pablo Winant
         }
       });
       </script>
-    </body>
-</html>
+    
+
+</body></html>

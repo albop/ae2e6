@@ -6,18 +6,21 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-067f8ab80d092ae3595f7402c2c9b667.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.32">
 
   <meta name="author" content="Pablo Winant">
   <meta name="dcterms.date" content="2025-04-01">
-  <title>Macro II - Fluctuations - Part II – Intro to Heterogeneity</title>
+  <title>Macro II - Fluctuations - Part II – Introduction à l’hétérogénéité</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -30,7 +33,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -128,7 +131,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Intro to Heterogeneity</h1>
+  <h1 class="title">Introduction à l’hétérogénéité</h1>
   <p class="subtitle">Macro II - Fluctuations - ENSAE, 2024-2025</p>
 
 <div class="quarto-title-authors">
@@ -144,129 +147,128 @@ Pablo Winant
 <nav role="doc-toc"> 
 <h2 id="toc-title">Plan</h2>
 <ul>
-<li><a href="#/heterogeneity-in-models" id="/toc-heterogeneity-in-models">Heterogeneity in models</a></li>
-<li><a href="#/inequality-leverage-and-crisis" id="/toc-inequality-leverage-and-crisis">Inequality, Leverage and Crisis</a></li>
+<li><a href="#/hétérogénéité-dans-les-modèles" id="/toc-hétérogénéité-dans-les-modèles">Hétérogénéité dans les modèles</a></li>
+<li><a href="#/inégalités-levier-et-crise" id="/toc-inégalités-levier-et-crise">Inégalités, levier et crise</a></li>
 </ul>
 </nav>
 </section>
 <section>
-<section id="heterogeneity-in-models" class="title-slide slide level1 center">
-<h1>Heterogeneity in models</h1>
+<section id="hétérogénéité-dans-les-modèles" class="title-slide slide level1 center">
+<h1>Hétérogénéité dans les modèles</h1>
 
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<p>DSGE models are often criticized for unrealistic assumptions</p>
+<p>Les modèles DSGE sont souvent critiqués pour leurs hypothèses peu réalistes.</p>
 <div class="fragment">
-<p>Example:</p>
+<p>Exemple :</p>
 <ul>
-<li><p><a href="https://www.cairn.info/revue-de-l-ofce-2012-5-page-67.htm"><em>Macroeconomic Policy in DSGE and Agent-Based Models</em></a> from Revue de l’OFCE</p></li>
-<li><p><em>In that respect, the Great Recessions has revealed to be a natural experiment for economic analysis, showing the inadequacy of the predominant theoretical frameworks. Indeed, an increasing number of leading economists claim that the current ’’economic crisis is a crisis for economic theory’’ (Kirman, 2010; Colander et al., 2009; Krugman, 2009, 2011; Caballero, 2010; Stiglitz, 2011; Kay, 2011; Dosi, 2011; Delong, 2011). The basic assumptions of mainstream DSGE models, e.g.&nbsp;rational expectations, representative agents, perfect markets etc., prevent the understanding of basic phenomena underlying the current economic crisis</em></p></li>
+<li><p><a href="https://www.cairn.info/revue-de-l-ofce-2012-5-page-67.htm"><em>Macroeconomic Policy in DSGE and Agent-Based Models</em></a> dans la Revue de l’OFCE</p></li>
+<li><p><em>À cet égard, la Grande Récession s’est révélée être une expérience naturelle pour l’analyse économique, montrant l’inadéquation des cadres théoriques dominants. En effet, un nombre croissant d’économistes de premier plan affirment que l’actuelle « crise économique est une crise de la théorie économique » (Kirman, 2010 ; Colander et al., 2009 ; Krugman, 2009, 2011 ; Caballero, 2010 ; Stiglitz, 2011 ; Kay, 2011 ; Dosi, 2011 ; Delong, 2011). Les hypothèses de base des modèles DSGE dominants, par exemple les anticipations rationnelles, les agents représentatifs, les marchés parfaits, etc., empêchent de comprendre les phénomènes fondamentaux à l’origine de la crise économique actuelle.</em></p></li>
 </ul>
 </div>
 <div class="fragment">
-<p>But:</p>
+<p>Mais :</p>
 <ul>
-<li><p>mainstream models typically incorporate many non classical elements. For instance New Keynesian models feature imperfect competition</p></li>
-<li><p>one must distinguish mainstream models from DSGE methodology</p>
+<li><p>les modèles dominants incorporent en général de nombreux éléments non classiques. Par exemple, les modèles néo-keynésiens intègrent la concurrence imparfaite.</p></li>
+<li><p>il faut distinguer les modèles dominants de la méthodologie DSGE.</p>
 <ul>
-<li>today: DSGE model with rather radical conclusion</li>
+<li>aujourd’hui : un modèle DSGE avec une conclusion plutôt radicale.</li>
 </ul></li>
 </ul>
 </div>
 </section>
-<section id="representative-agent" class="slide level2">
-<h2>Representative Agent</h2>
+<section id="agent-représentatif" class="slide level2">
+<h2>Agent représentatif</h2>
 <p>&nbsp;&nbsp;</p>
-<p>Under the <strong>Representative agent</strong> assumption</p>
+<p>Sous l’hypothèse d’<strong>agent représentatif</strong></p>
 <ul>
-<li>aggregate choices are made as the result of a single optimization problem</li>
-<li>☡ there might restrictions on what is internalized by the agent</li>
+<li>les choix agrégés résultent d’un seul problème d’optimisation ;</li>
+<li>☡ il peut y avoir des restrictions sur ce qui est internalisé par l’agent.</li>
 </ul>
 <div class="fragment">
-<p>&nbsp; Is it a simplifying assumption?</p>
+<p>Est-ce une hypothèse simplificatrice ? Ou est-ce en réalité équivalent à l’agrégation de nombreux problèmes d’optimisation ?</p>
 </div>
 <div class="fragment">
+<p>Si oui, il faut une théorie de l’agrégation<sup>1</sup>…</p>
+</div>
+<div class="fragment">
+<p>… qui se brise rapidement (par exemple quand les fonctions d’utilité sont hétérogènes).</p>
 <p>&nbsp;</p>
-<p>Or is it actually equivalent to the aggregation of many optimization problems?</p>
+<p><strong>Exemple</strong> pour le modèle néoclassique / RBC:</p>
+<ul>
+<li>le secteur productif peut être agrégé car les entreprises sont de type Cobb-Douglas, en comptition parfaite) ;</li>
+<li>les consommateurs peuvent être agrégés si leur utilité est logarithmique et qu’il n’y a pas d’incertitude.</li>
+</ul>
+<!-- ## Exemple avec le modèle néoclassique
+
+Considérons trois versions du modèle néoclassique :
+
+- entièrement décentralisée (beaucoup d'entreprises, beaucoup de consommateurs) ;
+- agent représentatif ;
+- problème du planificateur.
+
+Remarque :
+
+- pour le modèle néoclassique, il existe une théorie d'agrégation du secteur productif (les entreprises sont de type Cobb-Douglas) ;
+- deux hypothèses sont nécessaires pour agréger les consommateurs : utilité logarithmique et absence d'incertitude. -->
 </div>
-<div class="fragment">
-<p>&nbsp;&nbsp;</p>
-<p>For the latter one needs a theory of aggregation<sup>1</sup></p>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>voir <a href="https://www.sciencedirect.com/science/article/pii/S0014292123001265">Household heterogeneity in macroeconomic models: A historical perspective</a> (ou un <a href="https://beatricecherrier.wordpress.com/2018/11/28/heterogeneous-agent-macroeconomics-has-a-long-history-and-it-raises-many-questions/">blog</a> plus ancien) pour l’histoire des agents hétérogènes.</p></li></ol></aside></section>
+<section id="agents-hétérogènes" class="slide level2">
+<h2>Agents hétérogènes</h2>
+<p>Certains économistes ont reconnu très tôt la nécessité de modéliser explicitement l’hétérogénéité.</p>
 <ul>
-<li>… which quickly breaks down (for instance when utility fonction are heterogenous)</li>
-</ul>
-</div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>check <a href="https://www.sciencedirect.com/science/article/pii/S0014292123001265">Household heterogeneity in macroeconomic models: A historical perspective</a> (or an older <a href="https://beatricecherrier.wordpress.com/2018/11/28/heterogeneous-agent-macroeconomics-has-a-long-history-and-it-raises-many-questions/">blog</a>) for history of heterogenous agents</p></li></ol></aside></section>
-<section id="example-with-the-neoclassical-model" class="slide level2">
-<h2>Example with the Neoclassical Model</h2>
-<p>Let’s consider three versions of the neoclassical model</p>
+<li><p><strong>Économie de Bewley</strong> (1977)</p>
 <ul>
-<li>fully decentralized (many firms, many consumers)</li>
-<li>representative agent</li>
-<li>planner problem</li>
-</ul>
-<p>Note:</p>
+<li>dotation stochastique idiosyncratique ;</li>
+<li>modèle consommation-épargne avec contraintes d’emprunt ;</li>
+<li>conduit à de l’<em>hétérogénéité ex post</em> (contraints/non contraints), donc à des réactions différentes.</li>
+</ul></li>
+<li><p><strong>Économie de Huggett</strong> (1993)</p>
 <ul>
-<li>for the neoclassical model, there is a theory of aggregation for the production sector (firms are Cobb-Douglas)</li>
-<li>two assumptions are needed to aggregate consumers: log-utility and no uncertainty</li>
+<li><em>hétérogénéité ex ante</em> supplémentaire dans le processus de revenu <em>idiosyncratique</em>.</li>
+</ul></li>
+<li><p><strong>Modèle d’Aiyagari</strong> (1994)</p>
+<ul>
+<li>l’épargne est investie pour accumuler du capital agrégé ;</li>
+<li>modèle consommation-épargne avec contraintes d’emprunt ;</li>
+<li>chocs de productivité idiosyncratiques (salaire).</li>
+</ul></li>
+<li><p><strong>Modèle de Krusell et Smith</strong> (1998)</p>
+<ul>
+<li>Aiyagari + chocs agrégés (<span class="math inline">\(\approx\)</span> RBC + hétérogénéité) ;</li>
+</ul></li>
 </ul>
+<p>Ces modèles exigent des techniques de calcul particulières et étaient mal compris sur le plan mathématique.</p>
 </section>
-<section id="heterogenous-agents" class="slide level2">
-<h2>Heterogenous Agents</h2>
-<p>Some economists have recognized early the need to explicitly model heterogeneity.</p>
-<ul>
-<li><p><strong>1977: Bewley</strong></p>
-<ul>
-<li>idiosyncratic stochastic endowment</li>
-<li>consumption-savings model with borrowing constraints</li>
-<li>leads to <em>ex-post heterogeneity</em> (constrained/unconstrained) hence different reactions</li>
-</ul></li>
-<li><p><strong>Huggett Economy</strong> (1993)</p>
-<ul>
-<li>additional <em>ex-ante heterogeneity</em> in <em>idiosyncratic</em> income process</li>
-</ul></li>
-<li><p><strong>Ayiagari Model</strong> (1994)</p>
-<ul>
-<li>savings are invested to accumulate aggregate capital</li>
-<li>consumption-savings model with borrowing constraints</li>
-<li>idiosyncratic productivity shocks (salary)</li>
-</ul></li>
-<li><p><strong>Krussell Smith Model</strong> (1998)</p>
-<ul>
-<li>Ayagari + aggregate shocks</li>
-</ul></li>
-</ul>
-<p>Those models require special computational techniques and were poorly understood mathematically</p>
-</section>
-<section id="mean-field-games-and-heterogenous-agents-models" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Mean Field Games and Heterogenous Agents Models</h2>
-<p><strong>2012</strong> Ben Moll did a talk at IMA (UK)</p>
+<section id="jeux-à-champ-moyen-et-modèles-à-agents-hétérogènes" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Jeux à champ moyen et modèles à agents hétérogènes</h2>
+<p><strong>2012</strong> Ben Moll donne un exposé à l’IMA (Royaume-Uni).</p>
 <div class="fragment">
 <p><img data-src="assets/ben_moll.png"></p>
 </div>
 <div class="fragment">
-<p>Economists and world class mathematicians exchanged on <em>mean field games</em></p>
+<p>Économistes et mathématiciens de tout premier plan échangent autour des <em>jeux à champ moyen</em>.</p>
 <ul>
-<li>a class of mathematical problems which encompasses heterogenous agents models</li>
-<li>a bit math intense (stochastic calculus, viscosity theory, …)</li>
+<li>une classe de problèmes mathématiques qui englobe les modèles à agents hétérogènes ;</li>
+<li>assez exigeante mathématiquement (calcul stochastique, théorie de la viscosité, …).</li>
 </ul>
 </div>
 </section>
-<section id="mean-field-games-and-heterogenous-agents-models-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Mean Field Games and Heterogenous Agents Models</h2>
+<section id="jeux-à-champ-moyen-et-modèles-à-agents-hétérogènes-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Jeux à champ moyen et modèles à agents hétérogènes</h2>
 <div class="columns">
 <div class="column" style="width:30%;">
-<p><strong>2012</strong> Ben Moll did a talk at IMA (UK)</p>
+<p><strong>2012</strong> Ben Moll donne un exposé à l’IMA (Royaume-Uni).</p>
 <p><img data-src="assets/ben_moll.png"></p>
 </div><div class="column">
-<p><strong>Result</strong>: a new stream of heterogenous agents papers</p>
+<p><strong>Résultat</strong> : une nouvelle vague d’articles sur les agents hétérogènes.</p>
 <ul>
-<li><p>PDE Models in Macroeconomics (2014) with Achdou, Bueary, Lasry, Lions</p></li>
-<li><p>The Dynamics of Inequality (2016) with Gabaix, Lasry, Lions</p></li>
-<li><p>Monetary Policy According to HANK (2018) with Kaplan and Violante</p>
+<li><p>PDE Models in Macroeconomics (2014), avec Achdou, Bueary, Lasry, Lions</p></li>
+<li><p>The Dynamics of Inequality (2016), avec Gabaix, Lasry, Lions</p></li>
+<li><p>Monetary Policy According to HANK (2018), avec Kaplan et Violante</p>
 <ul>
-<li>that one was hugely successfull</li>
+<li>celui-ci a eu un succès énorme.</li>
 </ul></li>
 </ul>
 </div></div>
@@ -274,40 +276,40 @@ Pablo Winant
 <section id="hank-hank-hank" class="slide level2">
 <h2>HANK, HANK HANK, …</h2>
 <ul>
-<li><p><em>Monetary Policy According to HANK</em> (2018), by Moll, Kaplan and Violante</p>
+<li><p><em>Monetary Policy According to HANK</em> (2018), de Moll, Kaplan et Violante</p>
 <ul>
-<li>HANK: Heterogenous Agents New Keynesian</li>
-<li>study unequal consequences of monetary policies</li>
-<li>a new baseline model for <a href="https://www.imf.org/en/Publications/fandd/issues/2023/03/modern-monetary-policy-kaplan-moll-violante">central banks</a></li>
+<li>HANK : Heterogeneous Agents New Keynesian ;</li>
+<li>étudie les conséquences inégales des politiques monétaires ;</li>
+<li>un nouveau modèle de référence pour les <a href="https://www.imf.org/en/Publications/fandd/issues/2023/03/modern-monetary-policy-kaplan-moll-violante">banques centrales</a>.</li>
 </ul></li>
 </ul>
 <div class="fragment">
 <div class="enumerate">
 <ul>
-<li><p>Stimulated a whole literature<sup>1</sup></p>
+<li><p>A stimulé toute une littérature<sup>1</sup></p>
 <ul>
 <li><em>Understanding HANK: Insights from a PRANK</em><sup>2</sup></li>
 <li><em>When HANK meets SAM</em></li>
 <li><em>HANK beyond FIRE</em></li>
 <li><em>Aggregate Demand: THANK (Tractable HANK) and TANK</em> by Florin Bilbiie
 <ul>
-<li>main point: you don’t need more than two agents to get the main insights</li>
+<li>idée principale : il n’est pas nécessaire d’avoir plus de deux agents pour obtenir les principaux résultats.</li>
 </ul></li>
 </ul></li>
 </ul>
 </div>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>the ones in the list are not necessary the most representative</p></li><li id="fn3"><p>pseudo representative new-keynesian model</p></li></ol></aside></section>
-<section id="heterogenous-consumers" class="slide level2">
-<h2>Heterogenous consumers</h2>
-<p>Why does it matter to model consumer’s heterogeneity?</p>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>les références listées ne sont pas forcément les plus représentatives</p></li><li id="fn3"><p>pseudo modèle néo-keynésien représentatif</p></li></ol></aside></section>
+<section id="consommateurs-hétérogènes" class="slide level2">
+<h2>Consommateurs hétérogènes</h2>
+<p>Pourquoi est-il important de modéliser l’hétérogénéité des consommateurs ?</p>
 <div class="fragment">
 <ul>
-<li>To reproduce realistic consumption decisions.</li>
+<li>Pour reproduire des décisions de consommation réalistes.</li>
 </ul>
 </div>
 <div class="fragment">
-<p>Classically, we make the difference between two kinds of agents:</p>
+<p>Classiquement, on distingue deux types d’agents :</p>
 <div class="columns">
 <div class="column">
 <div class="callout callout-note callout-titled callout-style-default">
@@ -316,16 +318,16 @@ Pablo Winant
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Ricardian Households</strong></p>
+<p><strong>Ménages ricardiens</strong></p>
 </div>
 <div class="callout-content">
-<p>Agents who can freely reallocate consumption intertemporally.</p>
-<p>They have a high marginal propensity to consume out of additional income.</p>
+<p>Agents qui peuvent réallouer librement leur consommation dans le temps.</p>
+<p>Ils ont une forte propension marginale à consommer à partir d’un revenu additionnel.</p>
 </div>
 </div>
 </div>
 <p>&nbsp;&nbsp;</p>
-<p>Ricardian households choose not to consume more today, in order to consume more tomorrow.</p>
+<p>Les ménages ricardiens choisissent de ne pas consommer davantage aujourd’hui afin de consommer davantage demain.</p>
 </div><div class="column">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -333,84 +335,84 @@ Pablo Winant
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Keynesian Households</strong></p>
+<p><strong>Ménages keynésiens</strong></p>
 </div>
 <div class="callout-content">
-<p>Agents whose consumption in the current period is limited by a binding credit constraint. Either they can’t borrow at all or the amount they can borrow is limited today.</p>
-<p>They have a high marginal propensity to consume out of additional income.</p>
+<p>Agents dont la consommation de la période courante est limitée par une contrainte de crédit active. Soit ils ne peuvent pas emprunter du tout, soit le montant qu’ils peuvent emprunter est limité aujourd’hui.</p>
+<p>Ils ont une forte propension marginale à consommer à partir d’un revenu additionnel.</p>
 </div>
 </div>
 </div>
-<p>Keynesian Households consume today as much as they can.</p>
+<p>Les ménages keynésiens consomment aujourd’hui autant qu’ils le peuvent.</p>
 </div></div>
 </div>
 <div class="fragment">
-<p>The representative agent assumes everyone is ricardian.</p>
-<p>What does the data say?</p>
+<p>L’agent représentatif suppose que tout le monde est ricardien.</p>
+<p>Que disent les données ?</p>
 </div>
 </section>
 <section class="slide level2">
 
-<p>Let’s have a look at the MPC distribution for France.<sup>1</sup></p>
+<p>Regardons la distribution des PMC en France.<sup>1</sup></p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/mpc_1.png" style="width:60.0%"></p>
-<figcaption>Self-Reported MPC from Transitory Income Shock</figcaption>
+<figcaption>PMC auto-déclarée suite à un choc transitoire de revenu</figcaption>
 </figure>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn4"><p>From <u>From Fiscal Policy and MPC Heterogeneity</u>, Tullio Jappelli and Luigi Pistaferri, American Economic Journal: Macroeconomics, 2014</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn4"><p>D’après <u>From Fiscal Policy and MPC Heterogeneity</u>, Tullio Jappelli et Luigi Pistaferri, American Economic Journal: Macroeconomics, 2014</p></li></ol></aside></section>
 <section class="slide level2">
 
 
-<img data-src="assets/mpc_2.png" style="width:60.0%" class="r-stretch quarto-figure-center"><p class="caption">Average MPC by Cash-on-Hand Percentiles</p><div class="fragment">
-<p>Apparently MPC is well predicted by Cash-in-hand (amount of money left to household after having made all compulsory payments).</p>
+<img data-src="assets/mpc_2.png" style="width:60.0%" class="r-stretch quarto-figure-center"><p class="caption">PMC moyenne par percentiles de liquidité disponible</p><div class="fragment">
+<p>Il semble que la PMC soit bien prédite par le cash-in-hand (montant d’argent restant au ménage après tous les paiements obligatoires).</p>
 </div>
 </section>
 <section class="slide level2">
 
 
-<img data-src="assets/mpc_3.png" style="width:60.0%" class="r-stretch quarto-figure-center"><p class="caption">Wealth distribution</p></section>
+<img data-src="assets/mpc_3.png" style="width:60.0%" class="r-stretch quarto-figure-center"><p class="caption">Distribution du patrimoine</p></section>
 <section class="slide level2">
 
 
-<img data-src="assets/mpc_4.png" style="width:60.0%" class="r-stretch quarto-figure-center"><p class="caption">Wealth decomposition</p><div class="fragment">
-<p>Agents in the middle of the wealth distribution have a mortgage, whose interests leaves very little to spend after payments. They have lower cash-in-hand hence higher marginal propensity to consume (than rich agents).</p>
+<img data-src="assets/mpc_4.png" style="width:60.0%" class="r-stretch quarto-figure-center"><p class="caption">Décomposition du patrimoine</p><div class="fragment">
+<p>Les agents au milieu de la distribution de patrimoine ont un crédit immobilier dont les intérêts laissent très peu à dépenser après paiements. Ils ont donc un cash-in-hand plus faible, et une propension marginale à consommer plus élevée (que les agents riches).</p>
 </div>
 </section>
-<section id="wealthy-hand-to-mouth-agents" class="slide level2">
-<h2>Wealthy Hand to Mouth agents</h2>
-<p>We have just seen that agents in the middle of the wealth distribution, hold a wider proportion of wealth in illiquid assets (housing)</p>
+<section id="agents-wealthy-hand-to-mouth" class="slide level2">
+<h2>Agents « wealthy hand-to-mouth »</h2>
+<p>On vient de voir que les agents situés au milieu de la distribution de patrimoine détiennent une plus grande part de leur richesse sous forme d’actifs illiquides (immobilier).</p>
 <ul>
-<li>Their cash in hand (available for immediate purchase) is reduced. A sizable fraction of ther income goes into repaying their loan…).</li>
-<li>They have higher MPC</li>
-<li>They also react to interest rates changes (notably those who have floating interest rates)</li>
-<li>“Monetary Policy According to HANK”, 2018, Kaplan, Moll and Violante, stress out the role of “wealthy hand to mouth” and the need to take their existence to evaluate the influence of monetary policies.</li>
+<li>Leur cash in hand (disponible pour des achats immédiats) est réduit. Une part importante de leur revenu sert à rembourser leur emprunt.</li>
+<li>Ils ont une PMC plus élevée.</li>
+<li>Ils réagissent aussi aux variations de taux d’intérêt (notamment ceux qui ont des taux variables).</li>
+<li>« Monetary Policy According to HANK » (2018), Kaplan, Moll et Violante, souligne le rôle des « wealthy hand-to-mouth » et la nécessité de prendre leur existence en compte pour évaluer l’influence des politiques monétaires.</li>
 </ul>
 </section>
-<section id="how-do-we-model-differences-in-mpc" class="slide level2">
-<h2>How do we model differences in MPC?</h2>
+<section id="comment-modéliser-les-différences-de-pmc" class="slide level2">
+<h2>Comment modéliser les différences de PMC ?</h2>
 <ul>
-<li class="fragment"><p>Specify several kinds of agents:</p>
+<li class="fragment"><p>Spécifier plusieurs types d’agents :</p>
 <ul>
-<li class="fragment">ricardians</li>
-<li class="fragment">hand to mouth (consumption = income)</li>
-<li class="fragment"><em>ex-ante</em> heterogeneity</li>
+<li class="fragment">ricardiens ;</li>
+<li class="fragment">hand-to-mouth (consommation = revenu) ;</li>
+<li class="fragment">-&gt; hétérogénéité <em>ex ante</em>.</li>
 </ul></li>
-<li class="fragment"><p>By endogenizing borrowing constraint with borrowing constraint</p>
+<li class="fragment"><p>En endogénéisant la contrainte d’emprunt</p>
 <ul>
-<li class="fragment">requires nonlinear solution</li>
-<li class="fragment"><em>ex-post</em> heterogeneity</li>
-<li class="fragment">with potential idiosyncratic parameters like time-discount (<em>ex-ante</em> heterogeneity)</li>
+<li class="fragment">nécessite une résolution non linéaire ;</li>
+<li class="fragment">hétérogénéité <em>ex post</em> ;</li>
+<li class="fragment">avec éventuellement des paramètres idiosyncratiques comme le facteur d’actualisation - - -&gt;(<em>hétérogénéité ex ante</em>).</li>
 </ul></li>
-<li class="fragment"><p>By using preference for wealth</p>
+<li class="fragment"><p>En introduisant une préférence pour la richesse</p>
 <ul>
-<li class="fragment">coming next</li>
+<li class="fragment">c’est ce qui suit.</li>
 </ul></li>
 </ul>
 </section></section>
 <section>
-<section id="inequality-leverage-and-crisis" class="title-slide slide level1 center">
-<h1>Inequality, Leverage and Crisis</h1>
+<section id="inégalités-levier-et-crise" class="title-slide slide level1 center">
+<h1>Inégalités, levier et crise</h1>
 
 </section>
 <section id="section-1" class="slide level2">
@@ -425,26 +427,26 @@ Pablo Winant
 </section>
 <section id="introduction" class="slide level2">
 <h2>Introduction</h2>
-<p>The 2007 financial crisis, was initially as <em>subprime mortgage crisis</em></p>
+<p>La crise financière de 2007 a d’abord été une crise des prêts hypothécaires <em>subprimes</em>.</p>
 <ul>
-<li class="fragment">high indebtedness from low income households</li>
-<li class="fragment">fueled by easy credit (low i.r.) and high house prices</li>
-<li class="fragment">debt-securitization
+<li class="fragment">fort endettement des ménages à bas revenus ;</li>
+<li class="fragment">alimenté par un crédit facile (taux faibles) et des prix de l’immobilier élevés ;</li>
+<li class="fragment">titrisation de la dette
 <ul>
-<li class="fragment">even for high risk debt (<em>subprimes</em>)</li>
-<li class="fragment">of which 90% had variable interest rates and/or balloon payments</li>
+<li class="fragment">y compris pour des dettes très risquées (<em>subprimes</em>) ;</li>
+<li class="fragment">dont 90 % avaient des taux variables et/ou des paiements ballon ;</li>
 </ul></li>
-<li class="fragment">(moderate) rise in interest rates
+<li class="fragment">hausse (modérée) des taux d’intérêt
 <ul>
-<li class="fragment">bursting of the housing buble</li>
-<li class="fragment">households were unable to refinance their loans</li>
-<li class="fragment">… and defaulted</li>
+<li class="fragment">éclatement de la bulle immobilière ;</li>
+<li class="fragment">les ménages n’ont pas pu refinancer leurs prêts ;</li>
+<li class="fragment">… et ont fait défaut ;</li>
 </ul></li>
-<li class="fragment">mbs market collapsed…</li>
-<li class="fragment">… and with it the whole financial sector</li>
+<li class="fragment">le marché des MBS s’est effondré…</li>
+<li class="fragment">… et avec lui l’ensemble du secteur financier.</li>
 </ul>
 <div class="fragment">
-<p>Ok, but from a macro perspective, what fueled such high levels of borrowing?</p>
+<p>D’accord, mais d’un point de vue macroéconomique, qu’est-ce qui a alimenté de tels niveaux d’endettement ?</p>
 </div>
 </section>
 <section id="section-2" class="slide level2">
@@ -452,28 +454,28 @@ Pablo Winant
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/debt_inequality.png"></p>
-<figcaption>Leverage and Inequality</figcaption>
+<figcaption>Levier et inégalités</figcaption>
 </figure>
 </div>
-<p>A similar pattern emerged before the great recession and before the great depression:<sup>1</sup></p>
+<p>Un schéma similaire est apparu avant la Grande Récession et avant la Grande Dépression :<sup>1</sup></p>
 <ul>
-<li>parallel increases in <em>income inequality</em> and debt over income ratios</li>
+<li>hausses parallèles des <em>inégalités de revenu</em> et du ratio dette/revenu.</li>
 </ul>
-<aside><ol class="aside-footnotes"><li id="fn5"><p>inequality data from Saez and Zucman</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn5"><p>données d’inégalités issues de Saez et Zucman</p></li></ol></aside></section>
 <section id="section-3" class="slide level2">
 <h2></h2>
 
-<img data-src="assets/wealth_inequality.png" class="r-stretch quarto-figure-center"><p class="caption">Wealth Inequality</p><p>Increase in <em>wealth inequality</em> is consistent.</p>
+<img data-src="assets/wealth_inequality.png" class="r-stretch quarto-figure-center"><p class="caption">Inégalités de patrimoine</p><p>La hausse des <em>inégalités de patrimoine</em> est cohérente.</p>
 </section>
 <section id="section-4" class="slide level2">
 <h2></h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/crisis_probability.png"></p>
-<figcaption>Crisis Probability</figcaption>
+<figcaption>Probabilité de crise</figcaption>
 </figure>
 </div>
-<p>Econometric measures of household default risk <sup>1</sup> rose consistently.</p>
+<p>Les mesures économétriques du risque de défaut des ménages <sup>1</sup> augmentent de façon soutenue.</p>
 <!-- ##
 
 ![Crisis Probability](assets/crisis_probability.png)
@@ -481,74 +483,93 @@ Pablo Winant
 ##
 
 ![Sensitivity](assets/sensitivity.png) -->
-<aside><ol class="aside-footnotes"><li id="fn6"><p>From Schularick and Taylor (2014)</p></li></ol></aside></section>
-<section id="model" class="slide level2">
-<h2>Model</h2>
-<p>What could link rising income inequality to increased borrowing by bottom-earners?</p>
-<p>Intuition:</p>
+<aside><ol class="aside-footnotes"><li id="fn6"><p>D’après Schularick et Taylor (2014)</p></li></ol></aside></section>
+<section id="modèle" class="slide level2">
+<h2>Modèle</h2>
+<p>Qu’est-ce qui pourrait relier la hausse des inégalités de revenu à l’augmentation de l’endettement des ménages du bas de la distribution ?</p>
+<p>Intuition :</p>
 <ul>
-<li>top-earners have higher marginal propensity to save</li>
-<li>when their income increases they lend to bottom earners</li>
-<li>and rising debt increases the risk of default</li>
+<li>les hauts revenus ont une propension marginale à épargner plus élevée ;</li>
+<li>quand leur revenu augmente, ils prêtent aux bas revenus ;</li>
+<li>et la hausse de la dette augmente le risque de défaut.</li>
 </ul>
-<p>Let’s see how to model that in DSGE fashion (ommiting default risk for the sake of simplicity)</p>
+<p>Voyons comment modéliser cela dans un cadre DSGE (en omettant le risque de défaut pour simplifier).</p>
 </section>
-<section id="endowments" class="slide level2">
-<h2>Endowments</h2>
-<p>We consider and endowment economy:</p>
+<section id="dotations" class="slide level2">
+<h2>Dotations</h2>
+<p>On considère une économie de dotation :</p>
 <ul>
-<li>Total output</li>
+<li>Production totale</li>
 </ul>
 <p><span class="math display">\[y_t = (1-\rho_y) \overline{y} + \rho_y y_{t-1} + \epsilon_{y,t}\]</span></p>
 <ul>
-<li>Inequality shock</li>
+<li>Choc d’inégalités</li>
 </ul>
 <p><span class="math display">\[z_t = (1-\rho_z) \overline{z} + \rho_z z_{t-1} + \epsilon_{z,t}\]</span></p>
-<p>Comments:</p>
+<p>Commentaires :</p>
 <ul>
-<li><p><span class="math inline">\(z_t\)</span> is the fraction of the total output that is received by top-earners. The rest is received by bottom earners.</p></li>
-<li><p>We assume there is a faction <span class="math inline">\(\chi\)</span> of top earners.</p></li>
-<li><p>our goal is to study the effect of a persistent inequality shock (with <span class="math inline">\(\rho_z=1\)</span>)</p>
+<li><p><span class="math inline">\(z_t\)</span> est la fraction de la production totale reçue par les hauts revenus. Le reste est reçu par les bas revenus.</p></li>
+<li><p>On suppose qu’il existe une fraction <span class="math inline">\(\chi\)</span> de hauts revenus.</p></li>
+<li><p>notre objectif est d’étudier l’effet d’un choc d’inégalités persistant (avec <span class="math inline">\(\rho_z=1\)</span>)</p>
 <ul>
-<li>we need a way to model nonzero marginal propensity to save out of a persistent income shock</li>
+<li>il nous faut donc un mécanisme permettant une propension marginale à épargner non nulle après un choc de revenu persistant.</li>
 </ul></li>
 </ul>
 </section>
-<section id="top-earners" class="slide level2">
-<h2>Top Earners</h2>
-<p>We choose the following utility function for top earners: <span class="math display">\[U_t = E_t \sum_{k\geq0}^{\infty} \beta^k_{\tau} \left\{ \frac{\left(c^{\tau}_{t+k}\right)^ {1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}} + \varphi \frac{\left( 1+b_{t+k}\frac{1-\chi}{\chi}\right)^{1-\frac{1}{\eta}}}{1-\frac{1}{\eta}} \right\}\]</span></p>
+<section id="hauts-revenus" class="slide level2">
+<h2>Hauts revenus</h2>
+<p>On choisit la fonction d’utilité suivante pour les hauts revenus : <span class="math display">\[U_t = E_t \sum_{k\geq0}^{\infty} \beta^k_{\tau} \left\{ \frac{\left(c^{\tau}_{t+k}\right)^ {1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}} + \varphi \frac{\left( 1+b_{t+k}\frac{1-\chi}{\chi}\right)^{1-\frac{1}{\eta}}}{1-\frac{1}{\eta}} \right\}\]</span></p>
 <div class="fragment">
-<p>Consumption: <span class="math display">\[c^{\tau}_t = y_t z_t \frac{1}{\chi} + \left(b_{t-1}-b_t p_t\right)\frac{1-\chi}{\chi}\]</span> where <span class="math inline">\(b_t\)</span> is debt holdings and <span class="math inline">\(p_t\)</span> the price of it <span class="math inline">\(1/r_t\)</span></p>
+<p>Consommation : <span class="math display">\[c^{\tau}_t = y_t z_t \frac{1}{\chi} + \left(b_{t-1}-b_t p_t\right)\frac{1-\chi}{\chi}\]</span> où <span class="math inline">\(b_t\)</span> désigne les détentions de dette et <span class="math inline">\(p_t\)</span> son prix, soit <span class="math inline">\(1/r_t\)</span>.</p>
 </div>
 <div class="fragment">
-<p>Optimality condition from <span class="math inline">\(\max U_t\)</span></p>
+<p>Condition d’optimalité issue de <span class="math inline">\(\max U_t\)</span></p>
 <p><span class="math display">\[p_t = \beta_{\tau} E_t\left[ \left( \frac{c^{\tau}_{t+1}}{c^{\tau}_t}\right)^ {-\frac{1}{\sigma}}\right] + \varphi \frac{\left(1+b_t \frac{1-\chi}{\chi}\right)^ {-\frac{1}{\eta}}}{\left(c_t^{\tau}\right)^ {-\frac{1}{\sigma}}}\]</span></p>
 </div>
 </section>
-<section id="preference-for-wealth" class="slide level2">
-<h2>Preference for Wealth</h2>
-<p>The preference for wealth can be justified as:</p>
+<section id="préférence-pour-la-richesse" class="slide level2">
+<h2>Préférence pour la richesse</h2>
+<p>La préférence pour la richesse peut se justifier par :</p>
 <ul>
-<li>a preference for social status</li>
-<li>capitalist spirit</li>
+<li>une préférence pour le statut social ;</li>
+<li>l’esprit du capitalisme.</li>
 </ul>
-<p>It implies a steady-state supply of lending for any income level:</p>
+<p><strong>Intuitivement</strong>: les utilités de la consommation et de la richesse sont complémentaires. Si la consommation augmente, les individus veulent détenir plus de richesse. C’est ce qui ce passe lorsque le revenu augmente de manière permanente: la consommation augmente mécaniquement.</p>
+<p><strong>Remarque</strong>: sans la préférence pour la richesse, la condition <span class="math inline">\(c_t = c_{t+1}\)</span> implique qu’une augmentation permanente du revenu entraîne une augmentation équivalente de la consommation, ce qui conduit à une propension marginale à consommer de 100 % après un choc de revenu permanent.</p>
+</section>
+<section id="préférence-pour-la-richesse-condition-déquilibre" class="slide level2">
+<h2>Préférence pour la richesse: condition d’équilibre</h2>
+<p>On peut réécrire la condition d’Euler à l’état d’équilibre:</p>
 <div class="columns">
 <div class="column">
-<p><img data-src="assets/steady-state.png"></p>
+<p><span class="math display">\[
+\frac{\color{blue}{p}-\beta_\tau}{\varphi}
+=
+\frac{\left(\overline{y}\,\overline{\color{red}{z}}\,\frac{1}{\chi}+\overline{\color{green}{b}}(1-\color{blue}{p})\frac{1-\chi}{\chi}\right)^{\frac{1}{\sigma}}}{\left(1+\overline{\color{green}{b}}\frac{1-\chi}{\chi}\right)^{\frac{1}{\eta}}}
+\]</span></p>
 </div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="assets/supply.png"></p>
+<figcaption>Offre de Prêts. Choc de revenu <span class="math inline">\(\Delta \overline{\color{red}{z}}=0.1\)</span></figcaption>
+</figure>
+</div>
 </div></div>
-<p>Which in turn implies non-zero marginal propensity to save from a permanent income shock (in the short and the long run)</p>
-<p>Parameters <span class="math inline">\(\eta\)</span> and <span class="math inline">\(\varphi\)</span> are not observed, but can be chosen in order to match real world MPC (50% for top earners).</p>
+<p>La condition montre l’offre de prêt <span class="math inline">\(\overline{\color{green}{b}}\)</span> à l’équilibre (i.e.&nbsp;l’épargne des hauts revenus) en fonction du taux s(<span class="math inline">\(r=1/\color{blue}{p}\)</span>).</p>
+<p>Elle implique aussi une augmentation de l’offre de prêt d’équilibre lorsque la part <span class="math inline">\(\overline{\color{red}{z}}\)</span> des hauts revenus augmente (déplacement vers la droite de la courbe d’offre de prêt).</p>
+<ul>
+<li class="fragment">la PMC est non nulle à long terme après un choc de revenu permanent</li>
+<li class="fragment">c’est aussi le cas à court terme (cf simulations)</li>
+<li class="fragment">Les paramètres <span class="math inline">\(\eta\)</span> et <span class="math inline">\(\varphi\)</span> ne sont pas observés, mais peuvent être choisis pour reproduire la PMC observée dans les données (50 % pour les hauts revenus).</li>
+</ul>
 </section>
-<section id="bottom-earners" class="slide level2">
-<h2>Bottom Earners</h2>
-<p>Bottom earners are standard:</p>
+<section id="bas-revenus" class="slide level2">
+<h2>Bas revenus</h2>
+<p>Les bas revenus sont standards :</p>
 <p><span class="math display">\[V_t = E_t \sum_{k \geq 0}^{\infty} \beta^k_b \left( \frac{\left(c_{t+k}^b\right)^ {1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}} \right)\]</span></p>
-<p>Budget constraint:</p>
+<p>Contrainte budgétaire :</p>
 <p><span class="math display">\[c^b_t = y_t(1-z_t)\frac{1}{1-\chi} + \left(b_t p_t - b_{t-1}\right)\]</span></p>
-<p>Optimality condition from <span class="math inline">\(\max V_t\)</span></p>
+<p>Condition d’optimalité issue de <span class="math inline">\(\max V_t\)</span></p>
 <p><span class="math display">\[p_t = \beta^b E_t \left[ \left( \frac{c_{t+1}^b}{c_t^b}\right)^{-\frac{1}{\sigma}} \right]\]</span></p>
 </section>
 <section id="section-5" class="slide level2">
@@ -558,11 +579,11 @@ Pablo Winant
 <section id="section-6" class="slide level2">
 <h2></h2>
 
-<img data-src="assets/inequality_shock.png" class="r-stretch quarto-figure-center"><p class="caption">Inequality Shock</p></section>
+<img data-src="assets/inequality_shock.png" class="r-stretch quarto-figure-center"><p class="caption">Choc d’inégalités</p></section>
 <section id="section-7" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"></h2>
 
-<img data-src="assets/baseline.png" class="r-stretch quarto-figure-center"><p class="caption">Pseudo-Historical Simulation</p></section>
+<img data-src="assets/baseline.png" class="r-stretch quarto-figure-center"><p class="caption">Simulation pseudo-historique</p></section>
 <section id="section-8" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"></h2>
 <div class="columns">
@@ -570,14 +591,22 @@ Pablo Winant
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="assets/baseline.png"></p>
-<figcaption>Pseudo-Historical Simulation</figcaption>
+<figcaption>Simulation pseudo-historique</figcaption>
 </figure>
 </div>
 </div><div class="column">
-<p>In the simulation we use historical values for the driving shocks (output and inequality).</p>
-<p>What is the predictive power of the model:</p>
+<p><strong>Conclusion</strong></p>
+<p>Dans la simulation, nous utilisons les valeurs historiques des chocs exogènes (production et inégalités).</p>
+<p>On reproduit assez bien l’évolution du ratio dette/PIB de 1983 à 2010:</p>
 <ul>
-<li>we match <em>one</em> moment: the evolution of debt/gdep from 1983 to 2010</li>
+<li>on peut expliquer lla hausse de l’endettement des ménages par la hausse des inégalités de revenu</li>
+</ul>
+<p>Le modèle entier contient aussi un mécanisme de défaut des ménages, que l’on a omis ici.</p>
+<p>&nbsp;</p>
+<p><strong>Discussion</strong>: quel est le pouvoir prédictif du modèle ?</p>
+<ul>
+<li>on reproduit <em>un seul</em> moment : ratio dette/PIB de 1983 à 2010</li>
+<li>il pourrait exister d’autres mécanismes un chocs sur les anticipations des revenus futurs ou sur les taux d’intérêt</li>
 </ul>
 </div></div>
 

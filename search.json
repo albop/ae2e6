@@ -1,10 +1,10 @@
 [
   {
-    "objectID": "tutorials/session_2/index_correction.html",
-    "href": "tutorials/session_2/index_correction.html",
-    "title": "Premiers pas avec Dynare et appariement des moments.",
+    "objectID": "tutorials_python/correction_python_1.html",
+    "href": "tutorials_python/correction_python_1.html",
+    "title": "VAR Process in python",
     "section": "",
-    "text": "NoteObjectifs\n\n\n\n\n\n\nModifier un fichier mod avec une extension du modèle.\nComparer les solutions du modèle pour différentes paramétrisations.\n\n\n\n\n\n\n\n\n\n\nTipFichiers mod\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nrbc.mod\n\n\n\n\n\n\n\n\n\n\n\nrbc_fixed.mod\n\n\n\n\n\n\n\n\n\n\n\nrbc_open.mod\n\n\n\n\n\nNo matching items\n\n\n\n\n\nUtilisation des fichiers mod Dynare.\nTéléchargez le fichier mod rbc.\n\n\nCode\nfrom dyno import dynare\n\n\nOuvrez le modèle RBC et résolvez-le. Corrigez les erreurs du fichier mod s’il y en a.\n\n\nCode\n# report = dynare(\"rbc.mod\")\n# report\n\n\n(si besoin, téléchargez le modèle corrigé ici )\nInspectez les différents éléments de la solution (règle de décision, moments inconditionnels, simulations).\n\n\nCode\n# report = dynare(\"rbc.mod\")\n# report # inspectez l'objet report pour trouver les différents éléments de la solution\n\n\nInterprétez l’effet d’un choc de productivité. Comment dépend-il de la persistance du choc ?\n\n\nCalcul des moments dans les données\nTéléchargez les séries temporelles des États-Unis depuis la Banque mondiale pour : PIB réel, investissement, consommation, heures travaillées.\n\n\nCode\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nfrom dbnomics import fetch_series\nfrom statsmodels.tsa.filters.hp_filter import hpfilter\n\n\n\n\nCode\nseries_ids = [\n    \"OECD/QNA/USA.P5.LNBQRSA.Q\",      # investissement\n    \"OECD/QNA/USA.B1_GS1.LNBQRSA.Q\",  # PIB\n    \"OECD/QNA/USA.P3.LNBQRSA.Q\",      # consommation\n]\n\nframes = []\nfor sid in series_ids:\n    tmp = fetch_series(sid)[[\"period\", \"value\"]].copy()\n    tmp[\"Subject\"] = sid.split(\"/\")[2].split(\".\")[1]\n    frames.append(tmp)\n\ndf_long = pd.concat(frames, ignore_index=True)\n\n\n\n\nCode\n# Ne garder que les données pertinentes, au format long.\ndf_long = df_long[[\"Subject\", \"period\", \"value\"]]\n\n\n\n\nCode\ndf = df_long.pivot(index=\"period\", columns=\"Subject\", values=\"value\").reset_index()\n\n\n\n\nCode\ndf = df.sort_values(\"period\").dropna().reset_index(drop=True)\n\n\n\n\nCode\ndf = df.rename(\n    columns={\n        \"period\": \"period\",\n        \"P5\": \"investment\",\n        \"B1_GS1\": \"gdp\",\n        \"P3\": \"consumption\",\n    }\n)\n\n\n\n\nCode\nfig, axes = plt.subplots(3, 1, figsize=(10, 8), sharex=True)\naxes[0].plot(df[\"period\"], df[\"investment\"], label=\"investment\")\naxes[0].legend()\naxes[1].plot(df[\"period\"], df[\"gdp\"], label=\"gdp\")\naxes[1].legend()\naxes[2].plot(df[\"period\"], df[\"consumption\"], label=\"consumption\")\naxes[2].legend()\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\nDétrendez toutes les séries.\n\n\nCode\n# Détrender la série de consommation.\nseries = df[\"consumption\"]\n_, trend = hpfilter(series, lamb=1600)\ncycle = (series - trend) / trend\ndf[\"consumption_trend\"] = trend\ndf[\"consumption_cycle\"] = cycle\n\n\n\n\nCode\nfig, axes = plt.subplots(1, 2, figsize=(10, 4))\naxes[0].plot(series.values, label=\"consumption\")\naxes[0].plot(trend.values, label=\"trend\")\naxes[0].set_title(\"consommation\")\naxes[0].legend()\naxes[1].plot(cycle.values)\naxes[1].set_title(\"consommation (cycle)\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Détrender le PIB.\nseries = df[\"gdp\"]\n_, trend = hpfilter(series, lamb=1600)\ncycle = (series - trend) / trend\ndf[\"gdp_trend\"] = trend\ndf[\"gdp_cycle\"] = cycle\n\n\n\n\nCode\n# Détrender la série d'investissement.\nseries = df[\"investment\"]\n_, trend = hpfilter(series, lamb=1600)\ncycle = (series - trend) / trend\ndf[\"investment_trend\"] = trend\ndf[\"investment_cycle\"] = cycle\n\n\nCalculez les corrélations entre les séries détrendées. Calculez les ratios \\(\\frac{\\sigma(investment)}{\\sigma(gdp)}\\) et \\(\\frac{\\sigma (consumption)}{\\sigma (gdp)}\\). Comparez avec le modèle RBC et commentez.\n\n\nCode\n# Ne garder que la partie pertinente du DataFrame.\nrelevant_df = df[[\"gdp_cycle\", \"investment_cycle\", \"consumption_cycle\"]]\n\n\n\n\nCode\n# Convertir le dataframe en matrice NumPy.\nmat = relevant_df.to_numpy()\n\n\n\n\nCode\nrelevant_df.corr()\n\n\n\n\n\n\n\n\nSubject\ngdp_cycle\ninvestment_cycle\nconsumption_cycle\n\n\nSubject\n\n\n\n\n\n\n\ngdp_cycle\n1.000000\n0.909062\n0.850059\n\n\ninvestment_cycle\n0.909062\n1.000000\n0.650094\n\n\nconsumption_cycle\n0.850059\n0.650094\n1.000000\n\n\n\n\n\n\n\n\n\nCode\nstd_y = relevant_df[\"gdp_cycle\"].std()\nstd_i = relevant_df[\"investment_cycle\"].std()\nstd_c = relevant_df[\"consumption_cycle\"].std()\n\n\n\n\nCode\nprint(f\"sigma(i)/sigma(y) : {std_i/std_y}\")\nprint(f\"sigma(c)/sigma(y) : {std_c/std_y}\")\n\n\nsigma(i)/sigma(y) : 3.320828267976935\nsigma(c)/sigma(y) : 0.6950802322322035\n\n\n\n\nPetite économie ouverte\nPartez du même modèle rbc. Supposez que l’agent représentatif puisse épargner \\(b^{\\star}_t\\) en actifs étrangers, rémunérés à un taux d’intérêt constant \\(r^{\\star}-1\\).\nÉcrivez la nouvelle contrainte budgétaire du ménage représentatif.\nÀ une date donnée \\(t\\), le ménage épargne \\(b^{\\star}_t\\) sous forme de titres étrangers et reçoit le remboursement de son épargne de la période précédente \\(b^{\\star}_{t-1}\\) plus les intérêts afférents \\((r^{\\star} - 1)b^{\\star}_{t-1}\\). Par rapport au modèle de base, la contrainte budgétaire en \\(t\\) devient donc :\n\\[c_t + i_t + b^ {\\star}_t \\leq w_t n_t + r_t k_{t-1} + r^ {\\star} b^{\\star}_{t-1}\\]\net le lagrangien est :\n\\[\\mathcal{L} = E_t \\sum_{j=0}^\\infty \\beta^j\\left[\\log c_{t+j} + \\chi \\dfrac{(1-n_{t+j})^{1-\\eta}}{1-\\eta} \\right.\\]\n\\[+\\lambda_{t+j} (w_{t+j}n_{t+j} + r_{t+j}k_{t+j-1} - c_{t+j}-k_{t+j} + (1-\\delta)k_{t+j-1} + r^* b^*_{t+j-1} - b^*_{t+j} )\\Bigg]\\]\nÉcrivez la nouvelle condition d’optimalité.\nIl faut ajouter au modèle la condition d’optimalité par rapport à \\(b^{\\star}_t\\) : le ménage représentatif choisit le niveau d’épargne en titres étrangers qui maximise son utilité intertemporelle sous contrainte. On trouve :\n\\[ -\\lambda_t + \\beta E_t[\\lambda_{t+1}r^*]=0\\] soit : \\[ \\frac{1}{c_t}=\\beta r^* E_t\\left[\\frac{1}{c_{t+1}} \\right]\\]\nQuelle est la contrainte de long terme sur le taux d’intérêt \\(r^{\\star}\\) ?\nÀ l’état stationnaire, cette équation implique \\(r^{\\star}= \\frac{1}{\\beta}\\). Bien que \\(r^{\\star}\\) représente un taux d’intérêt décidé à l’étranger, \\(\\frac{1}{\\beta}\\) est sa seule valeur compatible avec l’existence d’un équilibre de long terme dans le modèle. En effet, il ne peut pas y avoir d’opportunité d’arbitrage à l’équilibre : tous les placements ont la même rentabilité.\nMettez à jour le fichier mod (fixez \\(\\overline{b^{\\star}}=0\\))\nPour mettre à jour le fichier .mod, il faut déclarer la nouvelle variable \\(b^{\\star}\\) et le nouveau paramètre \\(r^\\star\\) en lui donnant la valeur \\(\\frac{1}{\\beta}\\). Il faut ajouter au modèle la condition d’optimalité ci-dessus et mettre à jour l’équation donnant l’équilibre sur le marché des biens. En effet, cette équation est obtenue en équilibre général à partir de la contrainte budgétaire du ménage. En petite économie ouverte, on a :\n\\[c_t + i_t + b^{\\star}_t = w_t n_t + r_t k_{t-1} + r^{\\star} b^{\\star}_{t-1}\\]\nOr l’entreprise, supposée en concurrence parfaite, ne fait pas de profit. Donc \\(y_t = w_t n_t + r_t k_{t-1}\\) et :\n\\[c_t + i_t + b^{\\star}_t - r^{\\star} b^{\\star}_{t-1} = y_t\\]\nEnsuite, on remarque que le modèle statique ne détermine pas le niveau de \\(b^{\\star}\\) à l’état stationnaire ; on choisit de le fixer à 0 de sorte que l’état stationnaire des autres variables du modèle ne soit pas affecté. On ajoute donc \\(b^{\\star}=0\\) dans le bloc steady_state_model;.\nAffichez les moments théoriques. Commentez.\nOn voit que Dynare ne parvient pas à calculer les moments (moyennes et variances) de certaines variables. De plus, les IRFs ne reviennent pas toutes à 0.\nSimulez le modèle sur 100 périodes. Commentez.\nAvec la commande check;, on voit que le modèle a une valeur propre de module égal à 1. Dans Dynare, ceci ne provoque pas d’erreur par rapport aux conditions de Blanchard et Kahn mais est problématique : le modèle a une racine unitaire et n’est donc pas stationnaire. En effet, il manque au modèle une force de rappel : si les ménages sont transitoirement incités à épargner plus sous forme de titres étrangers, rien ne les incite ensuite de façon endogène à baisser cette épargne vers son niveau initial, la rémunération de cette épargne étant toujours la même.\nSupposez que le taux d’intérêt étranger dépend du niveau d’actifs étrangers\n\\[r^{\\star}=\\frac{1}{\\beta} + exp(-\\kappa b^{\\star}_t) - 1\\]\navec \\(\\kappa=0.01\\). Comment interprétez-vous l’équation de \\(r^{\\star}_t\\) ? Comment faut-il modifier les équations du modèle ?\nPlus le ménage détient de titres étrangers, moins ceux-ci sont rémunérateurs. Inversement, plus le ménage est endetté vis-à-vis de l’étranger \\((b^{\\star} &lt; 0)\\), plus les prêteurs étrangers vont exiger un taux d’intérêt élevé. On peut donc interpréter le terme \\(exp(-\\kappa b^{\\star}_t ) - 1\\) comme une prime de risque sur le taux d’intérêt étranger. Pour mettre à jour le fichier .mod, il faut déclarer à présent \\(r^{\\star}\\) comme une variable et non un paramètre, déclarer sa valeur à l’état stationnaire \\(r^{\\star} = \\frac{1}{\\beta}\\) dans le bloc steady_state_model; et enfin ajouter l’équation ci-dessus dans le bloc model;.\nSi on ne change pas les conditions d’Euler, cela revient à supposer que les consommateurs/le gouvernement n’internalisent pas l’effet de leur emprunt sur le taux d’intérêt.\nMettez à jour le fichier mod et commentez les moments obtenus. Dépendent-ils du choix de \\(\\kappa\\) ?"
+    "text": "NoteObjectives\n\n\n\n\n\n\nIntroduce Julia environment\n\nrun cells\nbasic types: numbers, strings, vectors, matrices\nfunctions\nsimple plots\n\nSimulate AR1 models\n\nimpulse response functions\nstochastic simulations\n\nconditional / unconditional moments\n\ndevelop intuition about eigenvalues / ergodic distributions\n\n\n\n\n\n\nManipulating AR1 Models\nWe consider here a simple autoregressive model:\n\\[y_t = A y_{t-1} + B e_t\\]\nwhere \\(y_t=(y^1_t, y^2_t)\\) a vector of variables and \\(e_t=(e^1_t, e^2_t)\\) a normal i.i.d. multivariate process defined by covariance matrix \\(\\Sigma \\in R^p \\times R^p\\).\nWe start by choosing:\n\\[A = \\begin{bmatrix}\\rho & 2 \\\\ 0 & \\lambda\\end{bmatrix}\\]\n\\[B = \\begin{bmatrix}1 & 0 \\\\ 0 & 1\\end{bmatrix}\\]\n\\[\\Sigma = \\begin{bmatrix}0.05 & 0.005 \\\\ 0.005 & 0.01\\end{bmatrix}\\]\nDefine python variables for matrices \\(A, B, \\Sigma\\).\n\nimport numpy as np\n\n# Parameters\nρ = 0.3\nλ = 0.5\n\n# Matrices\nA = np.array([[ρ, 2.0],\n              [0.0, λ]])\n\n\n# B is the identity matrix\nnp.eye(2, dtype=float) # pay attention to use floats rather than integers\n\n\nΣ= np.array([[0.05,  0.005],\n                  [0.005, 0.01]], dtype=float)\n\nCompute (programmatically) the eigenvalues of A.\n\neigvals = np.linalg.eigvals(A)\nprint(eigvals) ## no surprise: these are equal to λ, ρ\n\n\nv = np.array([0.0, 1.0])\nA @ v\n\nSimulate the response to a one deviation shock to \\(e^1_t\\) and \\(e^2_t\\) over 10 periods.\n\n# Initial shocks (pay attention: diagonal elements are variances)\ne0_1 = np.array([np.sqrt(Σ[0, 0]), 0.0])\ne0_2 = np.array([0.0, np.sqrt(Σ[1, 1])])\n\n# Simulation horizons\nT = 10\n\nsim_y_1 = np.column_stack([\n    np.linalg.matrix_power(A, n) @ e0_1\n    for n in range(T + 1)\n])\n\nsim_y_2 = np.column_stack([\n    np.linalg.matrix_power(A, n) @ e0_2\n    for n in range(T + 1)\n])\n\nPlot the result using Plots.jl\n\nimport matplotlib.pyplot as plt\n\nplt.plot(sim_y_1[0, :])\nplt.xlabel(\"t\")\nplt.ylabel(\"y₁\")\nplt.title(\"Impulse response of y₁ to shock e₁\")\nplt.show()\n\n\nfig, axes = plt.subplots(1, 2, figsize=(10, 4))\n\n# y1\naxes[0].plot(sim_y_1[0, :])\naxes[0].set_title(r\"$y_1$\")\n\n# y2\naxes[1].plot(sim_y_1[1, :])\naxes[1].set_title(r\"$y_2$\")\n\nplt.tight_layout()\nplt.show()\n\n\nplt.figure(figsize=(6,4))\n\nplt.plot(sim_y_1[0, :], label=r\"$y_1$\")\nplt.plot(sim_y_1[1, :], label=r\"$y_2$\")\n\nplt.title(r\"Response to shock $e_1$\")\nplt.legend()\n\nplt.show()\n\n\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9,4))\n\n# ---- y1 ----\nax1.plot(sim_y_1[0,:], label=r\"$e_1$\")\nax1.plot(sim_y_1[1,:], label=r\"$e_2$\")\nax1.set_title(r\"$y_1$\")\nax1.legend()\n\n# ---- y2 ----\nax2.plot(sim_y_2[0,:], label=r\"$e_1$\")\nax2.plot(sim_y_2[1,:], label=r\"$e_2$\")\nax2.set_title(r\"$y_2$\")\nax2.legend()\n\nplt.tight_layout()\nplt.show()\n\n\n\nLet’s combine everything\npl1 = plot( sim_y_1[1,:], label=“$e_2$”, title=“$y_1$” ) plot!(pl1,sim_y_1[2,:], label=“$e_2$”) pl2 = plot( sim_y_2[1,:], label=“$e_2$”, title=“$y_2$” ) plot!(pl2,sim_y_2[2,:], label=“$e_2$”, legend=false) plot(pl1, pl2)\nWhat do you get if one eigenvalue is equal to 1? Greater than 1?\n\nrho = 0.3\nlam = 1.0\n\nA = np.array([[rho, 2.0],\n              [0.0, lam]])\n\n\ne0_1 = np.array([np.sqrt(Σ[0,0]), 0.0])\ne0_2 = np.array([0.0, np.sqrt(Σ[1,1])])\n\nT = 10\n\n# Simulation équivalente à hcat([A^n * e0 for n in 0:10]...)\nsim_y_1 = np.column_stack([np.linalg.matrix_power(A, n) @ e0_1 for n in range(T+1)])\nsim_y_2 = np.column_stack([np.linalg.matrix_power(A, n) @ e0_2 for n in range(T+1)])\n\n\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9,4))\n\n# y1\nax1.plot(sim_y_1[0, :], label=r\"$e_1$\")\nax1.plot(sim_y_1[1, :], label=r\"$e_2$\")\nax1.set_title(r\"$y_1$\")\nax1.legend()\n\n# y2\nax2.plot(sim_y_2[0, :], label=r\"$e_1$\")\nax2.plot(sim_y_2[1, :], label=r\"$e_2$\")\nax2.set_title(r\"$y_2$\")\nax2.legend()\n\nplt.tight_layout()\nplt.show()\n\nWe see that the shock \\(e_1\\) has a persistent effect on \\(y_2\\). It is associated to the unit root. The new steady-state is not the original one.\n\n# explosive case\nρ = 0.3\nλ = 1.02\n\nA = np.array([[ρ, 2.0],\n              [0.0, λ]])\n\ne0_1 = np.array([np.sqrt(Σ[0,0]), 0.0])\ne0_2 = np.array([0.0, np.sqrt(Σ[1,1])])\n\nT = 10\n\n\nsim_y_1 = np.column_stack([np.linalg.matrix_power(A, n) @ e0_1 for n in range(T+1)])\nsim_y_2 = np.column_stack([np.linalg.matrix_power(A, n) @ e0_2 for n in range(T+1)])\n\n# --- Plot ---\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9,4))\n\n# y1\nax1.plot(sim_y_1[0, :], label=r\"$e_1$\")\nax1.plot(sim_y_1[1, :], label=r\"$e_2$\")\nax1.set_title(r\"$y_1$\")\nax1.legend()\n\n# y2\nax2.plot(sim_y_2[0, :], label=r\"$e_1$\")\nax2.plot(sim_y_2[1, :], label=r\"$e_2$\")\nax2.set_title(r\"$y_2$\")\nax2.legend()\n\nplt.tight_layout()\nplt.show()\n\nNow the variable \\(y_2\\) diverges. Note that \\(y_1\\) does not diverge because of the specific initial shock (colinear to [1,0]).\nImport the Distributions package. Use MvNormal to compute draws from a multivariate distribution with covariance matrix \\(\\Sigma\\)\n\n# ATTENTION, CHANGER LA CONSIGNE, PUISQUE ICI ON UTILISERA PAS MVNORMAL\n\n\n# En Julia : MvNormal(Σ) suppose moyenne nulle\nmu = np.zeros(2)\n\n# équivalent de dis = MvNormal(Σ)\n# en Python on ne crée pas forcément un objet, mais on peut :\ndef draw():\n    return np.random.multivariate_normal(mu, Σ)\n\n\nprint(draw())\n\n\nrandom_points = [draw() for _ in range(1000)]\n\n\nx = [e[0] for e in random_points]\ny = [e[1] for e in random_points]\n\nplt.scatter(x, y)\nplt.show()\n\n\nfrom matplotlib.patches import Ellipse\n\n\nmu = np.array([0.0, 0.0])\nn_std = 2\nN = 1000\n\n# --- random draws: equivalent to random_points = [rand(dis) for i=1:1000] ---\nrandom_points = np.random.multivariate_normal(mu, Σ, size=N)\n\n# --- helper: covariance ellipse like covellipse! ---\ndef add_cov_ellipse(ax, mean, cov, n_std=2, **kwargs):\n    # eigen-decomposition\n    vals, vecs = np.linalg.eigh(cov)\n    order = vals.argsort()[::-1]\n    vals, vecs = vals[order], vecs[:, order]\n\n    # angle of the largest eigenvector (degrees)\n    angle = np.degrees(np.arctan2(vecs[1, 0], vecs[0, 0]))\n\n    # ellipse radii = n_std * sqrt(eigenvalues)\n    width, height = 2 * n_std * np.sqrt(vals)\n\n    ell = Ellipse(xy=mean, width=width, height=height, angle=angle, fill=False, **kwargs)\n    ax.add_patch(ell)\n    return ell\n\n\nfig, ax = plt.subplots(figsize=(5, 5))\n\nax.scatter(random_points[:, 0], random_points[:, 1], label=\"e\", alpha=0.5)\nadd_cov_ellipse(ax, mu, Σ, n_std=n_std, label=\"cov\")\n\nax.set_xlabel(r\"$e_1$\")\nax.set_ylabel(r\"$e_2$\")\nax.set_aspect(\"equal\", adjustable=\"box\")\nax.legend()\n\nplt.show()\n\nPerform a stochastic simulation over 20 periods starting with a one standard-deviation in \\(e_2\\).\n\n# return to old value of A\nρ = 0.3\nλ = 0.5\n\nA = np.array([[ρ , 2],\n             [ 0 , λ]])\n\n\ndef simulate(A, B, Σ, e0=None, T=20, rng=None):\n   \n  #  A = np.asarray(A, dtype=float)\n   # B = np.asarray(B, dtype=float)\n    \n\n    n = A.shape[0]   #dimension de y_t\n    m = Σ.shape[0]   #dimension des chocs\n\n    if e0 is None:\n        e0 = np.zeros(m, dtype=float)\n    else:\n        e0 = np.asarray(e0, dtype=float)\n\n    if rng is None:\n        rng = np.random.default_rng()\n\n    # sim = [B*e0]\n    y = B @ e0\n    sim = [y]\n\n    for _ in range(T):\n        # e1 = rand(MvNormal(Σ))\n        e1 = rng.multivariate_normal(mean=np.zeros(m), cov=Σ)\n\n        # y1 = A*y0 + B*e1\n        y = A @ sim[-1] + B @ e1\n\n        sim.append(y)\n\n    # return hcat(sim...)\n    return np.column_stack(sim)\n\n\nsim = simulate(A, B, Σ, e0_2)\n\n\nT = sim.shape[1] - 1\nt = np.arange(T+1)\n\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9,4))\n\nax1.plot(t, sim[0, :])\nax1.set_title(r\"$y_1$\")\n\nax2.plot(t, sim[1, :])\nax2.set_title(r\"$y_2$\")\n\nplt.tight_layout()\nplt.show()\n\nMuch harder to intepret results from a single simulation…\nPerform K=500 stochastic simulations over 20 periods starting with a one standard-deviation in \\(e_2\\). Plot the result.\n\nK = 500\nsims = [simulate(A, B, Σ, e0_2) for _ in range(K)]\n\n\n# empiler dans un seul tableau en 3D \n#(axe 0: les simulations, \n#ax1: la variable (0 pour y_1, 1 pour y_2)\n#axe 2: temps)\n\nS = np.stack(sims, axis=0)  #transforme liste en tableau\nK, n, T1 = S.shape    #valeur de yi au temps t dans simulation k\nt = np.arange(T1)\n\n# y1 stats\nmean_1 = S[:, 0, :].mean(axis=0)    \nstd_1  = S[:, 0, :].std(axis=0, ddof=1)\n\n# y2 stats\nmean_2 = S[:, 1, :].mean(axis=0)\nstd_2  = S[:, 1, :].std(axis=0, ddof=1)\n\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))\n\n# --- y1 spaghetti ---\nfor k in range(K):\n    ax1.plot(t, S[k, 0, :], alpha=0.01, linewidth=1)  # color default; see note below\nax1.plot(t, mean_1, linewidth=2)\nax1.plot(t, mean_1 - std_1, linestyle=\"--\", linewidth=1.5)\nax1.plot(t, mean_1 + std_1, linestyle=\"--\", linewidth=1.5)\nax1.set_title(r\"$y_1$\")\n\n# --- y2 spaghetti ---\nfor k in range(K):\n    ax2.plot(t, S[k, 1, :], alpha=0.01, linewidth=1)\nax2.plot(t, mean_2, linewidth=2)\nax2.plot(t, mean_2 - std_2, linestyle=\"--\", linewidth=1.5)\nax2.plot(t, mean_2 + std_2, linestyle=\"--\", linewidth=1.5)\nax2.set_title(r\"$y_2$\")\n\nplt.tight_layout()\nplt.show()\n\nWe observe that:\n\nthe expected response is similar to the determinstic irf we computed before\nvolatility makes predictions hard..\nit looks like the unconditional volatility converges after a few periods\n\nErgodic Distribution.\nIt can be shown that the ergodic distribution of a VAR1 is a multivariate normal law, with covariance matrix \\(\\Omega\\).\nThis matrix is a solution to the equation \\(\\Omega = A \\Omega A' + B \\Sigma B'\\).\nA simple algorithm to find it consist in applying the recurrence \\(\\Omega_n = A \\Omega_{n-1} A' + B \\Sigma B'\\) until convergence, starting with \\(\\Omega_0 =0\\).\nImplement this algorithm.\n\ndef ergodic_steady_state(A, B, Σ, N=1000, tol_eta=1e-8):\n    \n  #  A = np.asarray(A, dtype=float)\n  #  B = np.asarray(B, dtype=float)\n  #  Σ = np.asarray(Σ, dtype=float)\n\n    #initilisation Omega0\n    n = A.shape[0]\n    Omega0 = np.zeros((n, n), dtype=float)\n\n    for _ in range(N):\n        Omega = A @ Omega0 @ A.T + B @ Σ @ B.T\n        eta = np.max(np.abs(Omega - Omega0)) #critère d'arret\n        if eta &lt; tol_eta:\n            return Omega\n        Omega0 = Omega\n\n    raise RuntimeError(\"No convergence\")\n\nCompare the result with the empirical ergodic distribution obtained from the simulations\n\nrandom_final_points = [sim[:, -1] for sim in sims]\n#on prend le point final de chaque trajectoire\n#ne permettra d'avoir une distribution ergodique que si T suffisaament grand\n#sorte de burn-in\n\n\nOmega = ergodic_steady_state(A, B, Σ)\n\n\npts = np.array(random_final_points)   # shape (K, n)\n\nempirical_cov = np.cov(pts, rowvar=False) #calcul covariance theorique stationnaire omega via iteration\n\nprint(empirical_cov)\n\n\ndef add_cov_ellipse(ax, mean, cov, n_std=2, **kwargs):\n    vals, vecs = np.linalg.eigh(cov)\n    order = vals.argsort()[::-1]\n    vals, vecs = vals[order], vecs[:, order]\n\n    angle = np.degrees(np.arctan2(vecs[1, 0], vecs[0, 0]))\n    width, height = 2 * n_std * np.sqrt(vals)\n\n    #centre de l'ellipse\n    ell = Ellipse(xy=mean, width=width, height=height, angle=angle,\n                  fill=False, **kwargs)\n    ax.add_patch(ell)\n    return ell\n\n# --- random_final_points: list of length K, each point shape (2,) ---\npts = np.array(random_final_points)   # shape (K, 2)\n\nfig, ax = plt.subplots(figsize=(6,6))\n\n# scatter points\nax.scatter(pts[:, 0], pts[:, 1], label=\"e\", alpha=0.2)\n\n# covariance ellipse from Omega\nadd_cov_ellipse(ax, mean=np.array([0.0, 0.0]), cov=Omega, n_std=2, label=\"cov\")\n\n# expected path: average_1, average_2 are arrays of length T+1\naverage_1 = S[:, 0, :].mean(axis=0)\naverage_2 = S[:, 1, :].mean(axis=0)\nax.plot(average_1, average_2, color=\"black\", label=\"expected path\")\n\nax.set_xlabel(r\"$e_1$\")\nax.set_ylabel(r\"$e_2$\")\nax.set_aspect(\"equal\", adjustable=\"box\")\nax.legend()\n\nplt.show()"
   },
   {
     "objectID": "tutorials/session_1/index.html",
@@ -634,7 +634,7 @@
     "href": "slides/session_2/index.html#unit-root",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Unit root",
-    "text": "Unit root\nStill with the same formula: \\[c_0 = \\frac{r}{1+r}\\left\\{ (1+r) a_{-1} + \\sum_{t=0}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nWhat is the effect of an increase in \\(a_{-1}\\)?\n- consumption rises permanently\n- $a_t$ is constant, equal to $a_{-1}$\n- agent consumes small amount $r$ corresponding to interests paid forever on $a_{-1}$\n\nthis will correspond to a unit root in the solution"
+    "text": "Unit root\nStill with the same formula: \\[c_0 = \\frac{r}{1+r}\\left\\{ (1+r) a_{-1} + \\sum_{t=0}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nWhat is the effect of an increase in \\(a_{-1}\\)?\n- consumption rises permanently\n- $a_t$ is constant, equal to $a_{-1}$\n- agent consumes small amount $r$ corresponding to interests paid forever on $a_{-1}$\n\nthis will correspond to a unit root in the solution &lt;!– ## Exercise\n\nFrom the first order conditions\n\\[\\begin{align}\nu^{\\prime}(c_t) & = & \\lambda_t \\\\\n\\lambda_t & = &  \\beta (1+r) \\lambda_{t+1}\n\\end{align}\\]\nassuming \\(u(c_t) = \\log (c_t)\\), can you get the equation for the law of motion of \\(a_t\\) and show the presence of a unit root? –&gt;"
   },
   {
     "objectID": "slides/session_2/index.html#adding-capital",
@@ -781,7 +781,7 @@
     "href": "slides/session_2/handout.html#unit-root",
     "title": "Petite Économie Ouverte (IRBC)",
     "section": "Unit root",
-    "text": "Unit root\nStill with the same formula: \\[c_0 = \\frac{r}{1+r}\\left\\{ (1+r) a_{-1} + \\sum_{t=0}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nWhat is the effect of an increase in \\(a_{-1}\\)?\n- consumption rises permanently\n- $a_t$ is constant, equal to $a_{-1}$\n- agent consumes small amount $r$ corresponding to interests paid forever on $a_{-1}$\n\nthis will correspond to a unit root in the solution"
+    "text": "Unit root\nStill with the same formula: \\[c_0 = \\frac{r}{1+r}\\left\\{ (1+r) a_{-1} + \\sum_{t=0}^{\\infty} \\frac{y_t}{(1+r)^t}\\right\\}\\]\nWhat is the effect of an increase in \\(a_{-1}\\)?\n- consumption rises permanently\n- $a_t$ is constant, equal to $a_{-1}$\n- agent consumes small amount $r$ corresponding to interests paid forever on $a_{-1}$\n\nthis will correspond to a unit root in the solution &lt;!– ## Exercise\n\nFrom the first order conditions\n\\[\\begin{align}\nu^{\\prime}(c_t) & = & \\lambda_t \\\\\n\\lambda_t & = &  \\beta (1+r) \\lambda_{t+1}\n\\end{align}\\]\nassuming \\(u(c_t) = \\log (c_t)\\), can you get the equation for the law of motion of \\(a_t\\) and show the presence of a unit root? –&gt;"
   },
   {
     "objectID": "slides/session_2/handout.html#adding-capital",
@@ -1313,7 +1313,7 @@
     "href": "index.html#agenda-des-cours",
     "title": "Macro II - Fluctuations - Part II",
     "section": "Agenda des Cours",
-    "text": "Agenda des Cours\n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n\n\n\n\n\nMar 18, 2025\n\n\nRésolution des modèles DSGE\n\n\n\n\n\n\nMar 25, 2025\n\n\nPetite Économie Ouverte (IRBC)\n\n\n\n\n\n\nApr 1, 2025\n\n\nIntro to Heterogeneity\n\n\n\n\n\n\nApr 15, 2025\n\n\nFinancial Intermediation\n\n\n\n\n\n\nNo matching items"
+    "text": "Agenda des Cours\n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\n\n\n\n\n\nMar 18, 2025\n\n\nRésolution des modèles DSGE\n\n\n\n\n\n\nMar 25, 2025\n\n\nPetite Économie Ouverte (IRBC)\n\n\n\n\n\n\nApr 1, 2025\n\n\nIntroduction à l’hétérogénéité\n\n\n\n\n\n\nApr 15, 2025\n\n\nFinancial Intermediation\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html#tutoriels",
@@ -1535,352 +1535,352 @@
   {
     "objectID": "slides/session_3/handout.html",
     "href": "slides/session_3/handout.html",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "DSGE models are often criticized for unrealistic assumptions\n. . .\nExample:\n\nMacroeconomic Policy in DSGE and Agent-Based Models from Revue de l’OFCE\nIn that respect, the Great Recessions has revealed to be a natural experiment for economic analysis, showing the inadequacy of the predominant theoretical frameworks. Indeed, an increasing number of leading economists claim that the current ’’economic crisis is a crisis for economic theory’’ (Kirman, 2010; Colander et al., 2009; Krugman, 2009, 2011; Caballero, 2010; Stiglitz, 2011; Kay, 2011; Dosi, 2011; Delong, 2011). The basic assumptions of mainstream DSGE models, e.g. rational expectations, representative agents, perfect markets etc., prevent the understanding of basic phenomena underlying the current economic crisis\n\n. . .\nBut:\n\nmainstream models typically incorporate many non classical elements. For instance New Keynesian models feature imperfect competition\none must distinguish mainstream models from DSGE methodology\n\ntoday: DSGE model with rather radical conclusion\n\n\n\n\n\n  \nUnder the Representative agent assumption\n\naggregate choices are made as the result of a single optimization problem\n☡ there might restrictions on what is internalized by the agent\n\n. . .\n  Is it a simplifying assumption?\n. . .\n \nOr is it actually equivalent to the aggregation of many optimization problems?\n. . .\n  \nFor the latter one needs a theory of aggregation1\n\n… which quickly breaks down (for instance when utility fonction are heterogenous)\n\n\n\n\nLet’s consider three versions of the neoclassical model\n\nfully decentralized (many firms, many consumers)\nrepresentative agent\nplanner problem\n\nNote:\n\nfor the neoclassical model, there is a theory of aggregation for the production sector (firms are Cobb-Douglas)\ntwo assumptions are needed to aggregate consumers: log-utility and no uncertainty\n\n\n\n\nSome economists have recognized early the need to explicitly model heterogeneity.\n\n1977: Bewley\n\nidiosyncratic stochastic endowment\nconsumption-savings model with borrowing constraints\nleads to ex-post heterogeneity (constrained/unconstrained) hence different reactions\n\nHuggett Economy (1993)\n\nadditional ex-ante heterogeneity in idiosyncratic income process\n\nAyiagari Model (1994)\n\nsavings are invested to accumulate aggregate capital\nconsumption-savings model with borrowing constraints\nidiosyncratic productivity shocks (salary)\n\nKrussell Smith Model (1998)\n\nAyagari + aggregate shocks\n\n\nThose models require special computational techniques and were poorly understood mathematically\n\n\n\n2012 Ben Moll did a talk at IMA (UK)\n. . .\n\n. . .\nEconomists and world class mathematicians exchanged on mean field games\n\na class of mathematical problems which encompasses heterogenous agents models\na bit math intense (stochastic calculus, viscosity theory, …)\n\n\n\n\n\n\n2012 Ben Moll did a talk at IMA (UK)\n\n\nResult: a new stream of heterogenous agents papers\n\nPDE Models in Macroeconomics (2014) with Achdou, Bueary, Lasry, Lions\nThe Dynamics of Inequality (2016) with Gabaix, Lasry, Lions\nMonetary Policy According to HANK (2018) with Kaplan and Violante\n\nthat one was hugely successfull\n\n\n\n\n\n\n\n\nMonetary Policy According to HANK (2018), by Moll, Kaplan and Violante\n\nHANK: Heterogenous Agents New Keynesian\nstudy unequal consequences of monetary policies\na new baseline model for central banks\n\n\n. . .\n\n\nStimulated a whole literature2\n\nUnderstanding HANK: Insights from a PRANK3\nWhen HANK meets SAM\nHANK beyond FIRE\nAggregate Demand: THANK (Tractable HANK) and TANK by Florin Bilbiie\n\nmain point: you don’t need more than two agents to get the main insights\n\n\n\n\n\n\n\nWhy does it matter to model consumer’s heterogeneity?\n. . .\n\nTo reproduce realistic consumption decisions.\n\n. . .\nClassically, we make the difference between two kinds of agents:\n\n\n\n\n\n\n\n\nNoteRicardian Households\n\n\n\nAgents who can freely reallocate consumption intertemporally.\nThey have a high marginal propensity to consume out of additional income.\n\n\n  \nRicardian households choose not to consume more today, in order to consume more tomorrow.\n\n\n\n\n\n\n\nNoteKeynesian Households\n\n\n\nAgents whose consumption in the current period is limited by a binding credit constraint. Either they can’t borrow at all or the amount they can borrow is limited today.\nThey have a high marginal propensity to consume out of additional income.\n\n\nKeynesian Households consume today as much as they can.\n\n\n. . .\nThe representative agent assumes everyone is ricardian.\nWhat does the data say?\n\nLet’s have a look at the MPC distribution for France.4\n\n\n\nSelf-Reported MPC from Transitory Income Shock\n\n\n\n\n\n\nAverage MPC by Cash-on-Hand Percentiles\n\n\n. . .\nApparently MPC is well predicted by Cash-in-hand (amount of money left to household after having made all compulsory payments).\n\n\n\n\nWealth distribution\n\n\n\n\n\n\nWealth decomposition\n\n\n. . .\nAgents in the middle of the wealth distribution have a mortgage, whose interests leaves very little to spend after payments. They have lower cash-in-hand hence higher marginal propensity to consume (than rich agents).\n\n\n\n\nWe have just seen that agents in the middle of the wealth distribution, hold a wider proportion of wealth in illiquid assets (housing)\n\nTheir cash in hand (available for immediate purchase) is reduced. A sizable fraction of ther income goes into repaying their loan…).\nThey have higher MPC\nThey also react to interest rates changes (notably those who have floating interest rates)\n“Monetary Policy According to HANK”, 2018, Kaplan, Moll and Violante, stress out the role of “wealthy hand to mouth” and the need to take their existence to evaluate the influence of monetary policies.\n\n\n\n\n\n\n\nSpecify several kinds of agents:\n\nricardians\nhand to mouth (consumption = income)\nex-ante heterogeneity\n\nBy endogenizing borrowing constraint with borrowing constraint\n\nrequires nonlinear solution\nex-post heterogeneity\nwith potential idiosyncratic parameters like time-discount (ex-ante heterogeneity)\n\nBy using preference for wealth\n\ncoming next"
+    "text": "Les modèles DSGE sont souvent critiqués pour leurs hypothèses peu réalistes.\n. . .\nExemple :\n\nMacroeconomic Policy in DSGE and Agent-Based Models dans la Revue de l’OFCE\nÀ cet égard, la Grande Récession s’est révélée être une expérience naturelle pour l’analyse économique, montrant l’inadéquation des cadres théoriques dominants. En effet, un nombre croissant d’économistes de premier plan affirment que l’actuelle « crise économique est une crise de la théorie économique » (Kirman, 2010 ; Colander et al., 2009 ; Krugman, 2009, 2011 ; Caballero, 2010 ; Stiglitz, 2011 ; Kay, 2011 ; Dosi, 2011 ; Delong, 2011). Les hypothèses de base des modèles DSGE dominants, par exemple les anticipations rationnelles, les agents représentatifs, les marchés parfaits, etc., empêchent de comprendre les phénomènes fondamentaux à l’origine de la crise économique actuelle.\n\n. . .\nMais :\n\nles modèles dominants incorporent en général de nombreux éléments non classiques. Par exemple, les modèles néo-keynésiens intègrent la concurrence imparfaite.\nil faut distinguer les modèles dominants de la méthodologie DSGE.\n\naujourd’hui : un modèle DSGE avec une conclusion plutôt radicale.\n\n\n\n\n\n  \nSous l’hypothèse d’agent représentatif\n\nles choix agrégés résultent d’un seul problème d’optimisation ;\n☡ il peut y avoir des restrictions sur ce qui est internalisé par l’agent.\n\n. . .\nEst-ce une hypothèse simplificatrice ? Ou est-ce en réalité équivalent à l’agrégation de nombreux problèmes d’optimisation ?\n. . .\nSi oui, il faut une théorie de l’agrégation1…\n. . .\n… qui se brise rapidement (par exemple quand les fonctions d’utilité sont hétérogènes).\n \nExemple pour le modèle néoclassique / RBC:\n\nle secteur productif peut être agrégé car les entreprises sont de type Cobb-Douglas, en comptition parfaite) ;\nles consommateurs peuvent être agrégés si leur utilité est logarithmique et qu’il n’y a pas d’incertitude.\n\n\n\n\n\nCertains économistes ont reconnu très tôt la nécessité de modéliser explicitement l’hétérogénéité.\n\nÉconomie de Bewley (1977)\n\ndotation stochastique idiosyncratique ;\nmodèle consommation-épargne avec contraintes d’emprunt ;\nconduit à de l’hétérogénéité ex post (contraints/non contraints), donc à des réactions différentes.\n\nÉconomie de Huggett (1993)\n\nhétérogénéité ex ante supplémentaire dans le processus de revenu idiosyncratique.\n\nModèle d’Aiyagari (1994)\n\nl’épargne est investie pour accumuler du capital agrégé ;\nmodèle consommation-épargne avec contraintes d’emprunt ;\nchocs de productivité idiosyncratiques (salaire).\n\nModèle de Krusell et Smith (1998)\n\nAiyagari + chocs agrégés (\\(\\approx\\) RBC + hétérogénéité) ;\n\n\nCes modèles exigent des techniques de calcul particulières et étaient mal compris sur le plan mathématique.\n\n\n\n2012 Ben Moll donne un exposé à l’IMA (Royaume-Uni).\n. . .\n\n. . .\nÉconomistes et mathématiciens de tout premier plan échangent autour des jeux à champ moyen.\n\nune classe de problèmes mathématiques qui englobe les modèles à agents hétérogènes ;\nassez exigeante mathématiquement (calcul stochastique, théorie de la viscosité, …).\n\n\n\n\n\n\n2012 Ben Moll donne un exposé à l’IMA (Royaume-Uni).\n\n\nRésultat : une nouvelle vague d’articles sur les agents hétérogènes.\n\nPDE Models in Macroeconomics (2014), avec Achdou, Bueary, Lasry, Lions\nThe Dynamics of Inequality (2016), avec Gabaix, Lasry, Lions\nMonetary Policy According to HANK (2018), avec Kaplan et Violante\n\ncelui-ci a eu un succès énorme.\n\n\n\n\n\n\n\n\nMonetary Policy According to HANK (2018), de Moll, Kaplan et Violante\n\nHANK : Heterogeneous Agents New Keynesian ;\nétudie les conséquences inégales des politiques monétaires ;\nun nouveau modèle de référence pour les banques centrales.\n\n\n. . .\n\n\nA stimulé toute une littérature2\n\nUnderstanding HANK: Insights from a PRANK3\nWhen HANK meets SAM\nHANK beyond FIRE\nAggregate Demand: THANK (Tractable HANK) and TANK by Florin Bilbiie\n\nidée principale : il n’est pas nécessaire d’avoir plus de deux agents pour obtenir les principaux résultats.\n\n\n\n\n\n\n\nPourquoi est-il important de modéliser l’hétérogénéité des consommateurs ?\n. . .\n\nPour reproduire des décisions de consommation réalistes.\n\n. . .\nClassiquement, on distingue deux types d’agents :\n\n\n\n\n\n\n\n\nNoteMénages ricardiens\n\n\n\nAgents qui peuvent réallouer librement leur consommation dans le temps.\nIls ont une forte propension marginale à consommer à partir d’un revenu additionnel.\n\n\n  \nLes ménages ricardiens choisissent de ne pas consommer davantage aujourd’hui afin de consommer davantage demain.\n\n\n\n\n\n\n\nNoteMénages keynésiens\n\n\n\nAgents dont la consommation de la période courante est limitée par une contrainte de crédit active. Soit ils ne peuvent pas emprunter du tout, soit le montant qu’ils peuvent emprunter est limité aujourd’hui.\nIls ont une forte propension marginale à consommer à partir d’un revenu additionnel.\n\n\nLes ménages keynésiens consomment aujourd’hui autant qu’ils le peuvent.\n\n\n. . .\nL’agent représentatif suppose que tout le monde est ricardien.\nQue disent les données ?\n\nRegardons la distribution des PMC en France.4\n\n\n\nPMC auto-déclarée suite à un choc transitoire de revenu\n\n\n\n\n\n\nPMC moyenne par percentiles de liquidité disponible\n\n\n. . .\nIl semble que la PMC soit bien prédite par le cash-in-hand (montant d’argent restant au ménage après tous les paiements obligatoires).\n\n\n\n\nDistribution du patrimoine\n\n\n\n\n\n\nDécomposition du patrimoine\n\n\n. . .\nLes agents au milieu de la distribution de patrimoine ont un crédit immobilier dont les intérêts laissent très peu à dépenser après paiements. Ils ont donc un cash-in-hand plus faible, et une propension marginale à consommer plus élevée (que les agents riches).\n\n\n\n\nOn vient de voir que les agents situés au milieu de la distribution de patrimoine détiennent une plus grande part de leur richesse sous forme d’actifs illiquides (immobilier).\n\nLeur cash in hand (disponible pour des achats immédiats) est réduit. Une part importante de leur revenu sert à rembourser leur emprunt.\nIls ont une PMC plus élevée.\nIls réagissent aussi aux variations de taux d’intérêt (notamment ceux qui ont des taux variables).\n« Monetary Policy According to HANK » (2018), Kaplan, Moll et Violante, souligne le rôle des « wealthy hand-to-mouth » et la nécessité de prendre leur existence en compte pour évaluer l’influence des politiques monétaires.\n\n\n\n\n\n\n\nSpécifier plusieurs types d’agents :\n\nricardiens ;\nhand-to-mouth (consommation = revenu) ;\n-&gt; hétérogénéité ex ante.\n\nEn endogénéisant la contrainte d’emprunt\n\nnécessite une résolution non linéaire ;\nhétérogénéité ex post ;\navec éventuellement des paramètres idiosyncratiques comme le facteur d’actualisation - - -&gt;(hétérogénéité ex ante).\n\nEn introduisant une préférence pour la richesse\n\nc’est ce qui suit."
   },
   {
     "objectID": "slides/session_3/handout.html#section",
     "href": "slides/session_3/handout.html#section",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "DSGE models are often criticized for unrealistic assumptions\n. . .\nExample:\n\nMacroeconomic Policy in DSGE and Agent-Based Models from Revue de l’OFCE\nIn that respect, the Great Recessions has revealed to be a natural experiment for economic analysis, showing the inadequacy of the predominant theoretical frameworks. Indeed, an increasing number of leading economists claim that the current ’’economic crisis is a crisis for economic theory’’ (Kirman, 2010; Colander et al., 2009; Krugman, 2009, 2011; Caballero, 2010; Stiglitz, 2011; Kay, 2011; Dosi, 2011; Delong, 2011). The basic assumptions of mainstream DSGE models, e.g. rational expectations, representative agents, perfect markets etc., prevent the understanding of basic phenomena underlying the current economic crisis\n\n. . .\nBut:\n\nmainstream models typically incorporate many non classical elements. For instance New Keynesian models feature imperfect competition\none must distinguish mainstream models from DSGE methodology\n\ntoday: DSGE model with rather radical conclusion"
+    "text": "Les modèles DSGE sont souvent critiqués pour leurs hypothèses peu réalistes.\n. . .\nExemple :\n\nMacroeconomic Policy in DSGE and Agent-Based Models dans la Revue de l’OFCE\nÀ cet égard, la Grande Récession s’est révélée être une expérience naturelle pour l’analyse économique, montrant l’inadéquation des cadres théoriques dominants. En effet, un nombre croissant d’économistes de premier plan affirment que l’actuelle « crise économique est une crise de la théorie économique » (Kirman, 2010 ; Colander et al., 2009 ; Krugman, 2009, 2011 ; Caballero, 2010 ; Stiglitz, 2011 ; Kay, 2011 ; Dosi, 2011 ; Delong, 2011). Les hypothèses de base des modèles DSGE dominants, par exemple les anticipations rationnelles, les agents représentatifs, les marchés parfaits, etc., empêchent de comprendre les phénomènes fondamentaux à l’origine de la crise économique actuelle.\n\n. . .\nMais :\n\nles modèles dominants incorporent en général de nombreux éléments non classiques. Par exemple, les modèles néo-keynésiens intègrent la concurrence imparfaite.\nil faut distinguer les modèles dominants de la méthodologie DSGE.\n\naujourd’hui : un modèle DSGE avec une conclusion plutôt radicale."
   },
   {
-    "objectID": "slides/session_3/handout.html#representative-agent",
-    "href": "slides/session_3/handout.html#representative-agent",
-    "title": "Intro to Heterogeneity",
+    "objectID": "slides/session_3/handout.html#agent-représentatif",
+    "href": "slides/session_3/handout.html#agent-représentatif",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Under the Representative agent assumption\n\naggregate choices are made as the result of a single optimization problem\n☡ there might restrictions on what is internalized by the agent\n\n. . .\n  Is it a simplifying assumption?\n. . .\n \nOr is it actually equivalent to the aggregation of many optimization problems?\n. . .\n  \nFor the latter one needs a theory of aggregation1\n\n… which quickly breaks down (for instance when utility fonction are heterogenous)"
+    "text": "Sous l’hypothèse d’agent représentatif\n\nles choix agrégés résultent d’un seul problème d’optimisation ;\n☡ il peut y avoir des restrictions sur ce qui est internalisé par l’agent.\n\n. . .\nEst-ce une hypothèse simplificatrice ? Ou est-ce en réalité équivalent à l’agrégation de nombreux problèmes d’optimisation ?\n. . .\nSi oui, il faut une théorie de l’agrégation1…\n. . .\n… qui se brise rapidement (par exemple quand les fonctions d’utilité sont hétérogènes).\n \nExemple pour le modèle néoclassique / RBC:\n\nle secteur productif peut être agrégé car les entreprises sont de type Cobb-Douglas, en comptition parfaite) ;\nles consommateurs peuvent être agrégés si leur utilité est logarithmique et qu’il n’y a pas d’incertitude."
   },
   {
-    "objectID": "slides/session_3/handout.html#example-with-the-neoclassical-model",
-    "href": "slides/session_3/handout.html#example-with-the-neoclassical-model",
-    "title": "Intro to Heterogeneity",
+    "objectID": "slides/session_3/handout.html#agents-hétérogènes",
+    "href": "slides/session_3/handout.html#agents-hétérogènes",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Let’s consider three versions of the neoclassical model\n\nfully decentralized (many firms, many consumers)\nrepresentative agent\nplanner problem\n\nNote:\n\nfor the neoclassical model, there is a theory of aggregation for the production sector (firms are Cobb-Douglas)\ntwo assumptions are needed to aggregate consumers: log-utility and no uncertainty"
+    "text": "Certains économistes ont reconnu très tôt la nécessité de modéliser explicitement l’hétérogénéité.\n\nÉconomie de Bewley (1977)\n\ndotation stochastique idiosyncratique ;\nmodèle consommation-épargne avec contraintes d’emprunt ;\nconduit à de l’hétérogénéité ex post (contraints/non contraints), donc à des réactions différentes.\n\nÉconomie de Huggett (1993)\n\nhétérogénéité ex ante supplémentaire dans le processus de revenu idiosyncratique.\n\nModèle d’Aiyagari (1994)\n\nl’épargne est investie pour accumuler du capital agrégé ;\nmodèle consommation-épargne avec contraintes d’emprunt ;\nchocs de productivité idiosyncratiques (salaire).\n\nModèle de Krusell et Smith (1998)\n\nAiyagari + chocs agrégés (\\(\\approx\\) RBC + hétérogénéité) ;\n\n\nCes modèles exigent des techniques de calcul particulières et étaient mal compris sur le plan mathématique."
   },
   {
-    "objectID": "slides/session_3/handout.html#heterogenous-agents",
-    "href": "slides/session_3/handout.html#heterogenous-agents",
-    "title": "Intro to Heterogeneity",
+    "objectID": "slides/session_3/handout.html#jeux-à-champ-moyen-et-modèles-à-agents-hétérogènes",
+    "href": "slides/session_3/handout.html#jeux-à-champ-moyen-et-modèles-à-agents-hétérogènes",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Some economists have recognized early the need to explicitly model heterogeneity.\n\n1977: Bewley\n\nidiosyncratic stochastic endowment\nconsumption-savings model with borrowing constraints\nleads to ex-post heterogeneity (constrained/unconstrained) hence different reactions\n\nHuggett Economy (1993)\n\nadditional ex-ante heterogeneity in idiosyncratic income process\n\nAyiagari Model (1994)\n\nsavings are invested to accumulate aggregate capital\nconsumption-savings model with borrowing constraints\nidiosyncratic productivity shocks (salary)\n\nKrussell Smith Model (1998)\n\nAyagari + aggregate shocks\n\n\nThose models require special computational techniques and were poorly understood mathematically"
+    "text": "2012 Ben Moll donne un exposé à l’IMA (Royaume-Uni).\n. . .\n\n. . .\nÉconomistes et mathématiciens de tout premier plan échangent autour des jeux à champ moyen.\n\nune classe de problèmes mathématiques qui englobe les modèles à agents hétérogènes ;\nassez exigeante mathématiquement (calcul stochastique, théorie de la viscosité, …)."
   },
   {
-    "objectID": "slides/session_3/handout.html#mean-field-games-and-heterogenous-agents-models",
-    "href": "slides/session_3/handout.html#mean-field-games-and-heterogenous-agents-models",
-    "title": "Intro to Heterogeneity",
+    "objectID": "slides/session_3/handout.html#jeux-à-champ-moyen-et-modèles-à-agents-hétérogènes-1",
+    "href": "slides/session_3/handout.html#jeux-à-champ-moyen-et-modèles-à-agents-hétérogènes-1",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "2012 Ben Moll did a talk at IMA (UK)\n. . .\n\n. . .\nEconomists and world class mathematicians exchanged on mean field games\n\na class of mathematical problems which encompasses heterogenous agents models\na bit math intense (stochastic calculus, viscosity theory, …)"
-  },
-  {
-    "objectID": "slides/session_3/handout.html#mean-field-games-and-heterogenous-agents-models-1",
-    "href": "slides/session_3/handout.html#mean-field-games-and-heterogenous-agents-models-1",
-    "title": "Intro to Heterogeneity",
-    "section": "",
-    "text": "2012 Ben Moll did a talk at IMA (UK)\n\n\nResult: a new stream of heterogenous agents papers\n\nPDE Models in Macroeconomics (2014) with Achdou, Bueary, Lasry, Lions\nThe Dynamics of Inequality (2016) with Gabaix, Lasry, Lions\nMonetary Policy According to HANK (2018) with Kaplan and Violante\n\nthat one was hugely successfull"
+    "text": "2012 Ben Moll donne un exposé à l’IMA (Royaume-Uni).\n\n\nRésultat : une nouvelle vague d’articles sur les agents hétérogènes.\n\nPDE Models in Macroeconomics (2014), avec Achdou, Bueary, Lasry, Lions\nThe Dynamics of Inequality (2016), avec Gabaix, Lasry, Lions\nMonetary Policy According to HANK (2018), avec Kaplan et Violante\n\ncelui-ci a eu un succès énorme."
   },
   {
     "objectID": "slides/session_3/handout.html#hank-hank-hank",
     "href": "slides/session_3/handout.html#hank-hank-hank",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Monetary Policy According to HANK (2018), by Moll, Kaplan and Violante\n\nHANK: Heterogenous Agents New Keynesian\nstudy unequal consequences of monetary policies\na new baseline model for central banks\n\n\n. . .\n\n\nStimulated a whole literature2\n\nUnderstanding HANK: Insights from a PRANK3\nWhen HANK meets SAM\nHANK beyond FIRE\nAggregate Demand: THANK (Tractable HANK) and TANK by Florin Bilbiie\n\nmain point: you don’t need more than two agents to get the main insights"
+    "text": "Monetary Policy According to HANK (2018), de Moll, Kaplan et Violante\n\nHANK : Heterogeneous Agents New Keynesian ;\nétudie les conséquences inégales des politiques monétaires ;\nun nouveau modèle de référence pour les banques centrales.\n\n\n. . .\n\n\nA stimulé toute une littérature2\n\nUnderstanding HANK: Insights from a PRANK3\nWhen HANK meets SAM\nHANK beyond FIRE\nAggregate Demand: THANK (Tractable HANK) and TANK by Florin Bilbiie\n\nidée principale : il n’est pas nécessaire d’avoir plus de deux agents pour obtenir les principaux résultats."
   },
   {
-    "objectID": "slides/session_3/handout.html#heterogenous-consumers",
-    "href": "slides/session_3/handout.html#heterogenous-consumers",
-    "title": "Intro to Heterogeneity",
+    "objectID": "slides/session_3/handout.html#consommateurs-hétérogènes",
+    "href": "slides/session_3/handout.html#consommateurs-hétérogènes",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Why does it matter to model consumer’s heterogeneity?\n. . .\n\nTo reproduce realistic consumption decisions.\n\n. . .\nClassically, we make the difference between two kinds of agents:\n\n\n\n\n\n\n\n\nNoteRicardian Households\n\n\n\nAgents who can freely reallocate consumption intertemporally.\nThey have a high marginal propensity to consume out of additional income.\n\n\n  \nRicardian households choose not to consume more today, in order to consume more tomorrow.\n\n\n\n\n\n\n\nNoteKeynesian Households\n\n\n\nAgents whose consumption in the current period is limited by a binding credit constraint. Either they can’t borrow at all or the amount they can borrow is limited today.\nThey have a high marginal propensity to consume out of additional income.\n\n\nKeynesian Households consume today as much as they can.\n\n\n. . .\nThe representative agent assumes everyone is ricardian.\nWhat does the data say?\n\nLet’s have a look at the MPC distribution for France.4\n\n\n\nSelf-Reported MPC from Transitory Income Shock\n\n\n\n\n\n\nAverage MPC by Cash-on-Hand Percentiles\n\n\n. . .\nApparently MPC is well predicted by Cash-in-hand (amount of money left to household after having made all compulsory payments).\n\n\n\n\nWealth distribution\n\n\n\n\n\n\nWealth decomposition\n\n\n. . .\nAgents in the middle of the wealth distribution have a mortgage, whose interests leaves very little to spend after payments. They have lower cash-in-hand hence higher marginal propensity to consume (than rich agents)."
+    "text": "Pourquoi est-il important de modéliser l’hétérogénéité des consommateurs ?\n. . .\n\nPour reproduire des décisions de consommation réalistes.\n\n. . .\nClassiquement, on distingue deux types d’agents :\n\n\n\n\n\n\n\n\nNoteMénages ricardiens\n\n\n\nAgents qui peuvent réallouer librement leur consommation dans le temps.\nIls ont une forte propension marginale à consommer à partir d’un revenu additionnel.\n\n\n  \nLes ménages ricardiens choisissent de ne pas consommer davantage aujourd’hui afin de consommer davantage demain.\n\n\n\n\n\n\n\nNoteMénages keynésiens\n\n\n\nAgents dont la consommation de la période courante est limitée par une contrainte de crédit active. Soit ils ne peuvent pas emprunter du tout, soit le montant qu’ils peuvent emprunter est limité aujourd’hui.\nIls ont une forte propension marginale à consommer à partir d’un revenu additionnel.\n\n\nLes ménages keynésiens consomment aujourd’hui autant qu’ils le peuvent.\n\n\n. . .\nL’agent représentatif suppose que tout le monde est ricardien.\nQue disent les données ?\n\nRegardons la distribution des PMC en France.4\n\n\n\nPMC auto-déclarée suite à un choc transitoire de revenu\n\n\n\n\n\n\nPMC moyenne par percentiles de liquidité disponible\n\n\n. . .\nIl semble que la PMC soit bien prédite par le cash-in-hand (montant d’argent restant au ménage après tous les paiements obligatoires).\n\n\n\n\nDistribution du patrimoine\n\n\n\n\n\n\nDécomposition du patrimoine\n\n\n. . .\nLes agents au milieu de la distribution de patrimoine ont un crédit immobilier dont les intérêts laissent très peu à dépenser après paiements. Ils ont donc un cash-in-hand plus faible, et une propension marginale à consommer plus élevée (que les agents riches)."
   },
   {
-    "objectID": "slides/session_3/handout.html#wealthy-hand-to-mouth-agents",
-    "href": "slides/session_3/handout.html#wealthy-hand-to-mouth-agents",
-    "title": "Intro to Heterogeneity",
+    "objectID": "slides/session_3/handout.html#agents-wealthy-hand-to-mouth",
+    "href": "slides/session_3/handout.html#agents-wealthy-hand-to-mouth",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "We have just seen that agents in the middle of the wealth distribution, hold a wider proportion of wealth in illiquid assets (housing)\n\nTheir cash in hand (available for immediate purchase) is reduced. A sizable fraction of ther income goes into repaying their loan…).\nThey have higher MPC\nThey also react to interest rates changes (notably those who have floating interest rates)\n“Monetary Policy According to HANK”, 2018, Kaplan, Moll and Violante, stress out the role of “wealthy hand to mouth” and the need to take their existence to evaluate the influence of monetary policies."
+    "text": "On vient de voir que les agents situés au milieu de la distribution de patrimoine détiennent une plus grande part de leur richesse sous forme d’actifs illiquides (immobilier).\n\nLeur cash in hand (disponible pour des achats immédiats) est réduit. Une part importante de leur revenu sert à rembourser leur emprunt.\nIls ont une PMC plus élevée.\nIls réagissent aussi aux variations de taux d’intérêt (notamment ceux qui ont des taux variables).\n« Monetary Policy According to HANK » (2018), Kaplan, Moll et Violante, souligne le rôle des « wealthy hand-to-mouth » et la nécessité de prendre leur existence en compte pour évaluer l’influence des politiques monétaires."
   },
   {
-    "objectID": "slides/session_3/handout.html#how-do-we-model-differences-in-mpc",
-    "href": "slides/session_3/handout.html#how-do-we-model-differences-in-mpc",
-    "title": "Intro to Heterogeneity",
+    "objectID": "slides/session_3/handout.html#comment-modéliser-les-différences-de-pmc",
+    "href": "slides/session_3/handout.html#comment-modéliser-les-différences-de-pmc",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Specify several kinds of agents:\n\nricardians\nhand to mouth (consumption = income)\nex-ante heterogeneity\n\nBy endogenizing borrowing constraint with borrowing constraint\n\nrequires nonlinear solution\nex-post heterogeneity\nwith potential idiosyncratic parameters like time-discount (ex-ante heterogeneity)\n\nBy using preference for wealth\n\ncoming next"
+    "text": "Spécifier plusieurs types d’agents :\n\nricardiens ;\nhand-to-mouth (consommation = revenu) ;\n-&gt; hétérogénéité ex ante.\n\nEn endogénéisant la contrainte d’emprunt\n\nnécessite une résolution non linéaire ;\nhétérogénéité ex post ;\navec éventuellement des paramètres idiosyncratiques comme le facteur d’actualisation - - -&gt;(hétérogénéité ex ante).\n\nEn introduisant une préférence pour la richesse\n\nc’est ce qui suit."
   },
   {
     "objectID": "slides/session_3/handout.html#section-1",
     "href": "slides/session_3/handout.html#section-1",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
     "text": "Inequality, Leverage and Crisis, Kumhof, Rancière, Winant (2015)"
   },
   {
     "objectID": "slides/session_3/handout.html#introduction",
     "href": "slides/session_3/handout.html#introduction",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "Introduction",
-    "text": "Introduction\nThe 2007 financial crisis, was initially as subprime mortgage crisis\n\n\nhigh indebtedness from low income households\nfueled by easy credit (low i.r.) and high house prices\ndebt-securitization\n\neven for high risk debt (subprimes)\nof which 90% had variable interest rates and/or balloon payments\n\n(moderate) rise in interest rates\n\nbursting of the housing buble\nhouseholds were unable to refinance their loans\n… and defaulted\n\nmbs market collapsed…\n… and with it the whole financial sector\n\n\n. . .\nOk, but from a macro perspective, what fueled such high levels of borrowing?"
+    "text": "Introduction\nLa crise financière de 2007 a d’abord été une crise des prêts hypothécaires subprimes.\n\n\nfort endettement des ménages à bas revenus ;\nalimenté par un crédit facile (taux faibles) et des prix de l’immobilier élevés ;\ntitrisation de la dette\n\ny compris pour des dettes très risquées (subprimes) ;\ndont 90 % avaient des taux variables et/ou des paiements ballon ;\n\nhausse (modérée) des taux d’intérêt\n\néclatement de la bulle immobilière ;\nles ménages n’ont pas pu refinancer leurs prêts ;\n… et ont fait défaut ;\n\nle marché des MBS s’est effondré…\n… et avec lui l’ensemble du secteur financier.\n\n\n. . .\nD’accord, mais d’un point de vue macroéconomique, qu’est-ce qui a alimenté de tels niveaux d’endettement ?"
   },
   {
     "objectID": "slides/session_3/handout.html#section-2",
     "href": "slides/session_3/handout.html#section-2",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Leverage and Inequality\n\n\nA similar pattern emerged before the great recession and before the great depression:5\n\nparallel increases in income inequality and debt over income ratios"
+    "text": "Levier et inégalités\n\n\nUn schéma similaire est apparu avant la Grande Récession et avant la Grande Dépression :5\n\nhausses parallèles des inégalités de revenu et du ratio dette/revenu."
   },
   {
     "objectID": "slides/session_3/handout.html#section-3",
     "href": "slides/session_3/handout.html#section-3",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Wealth Inequality\n\n\nIncrease in wealth inequality is consistent."
+    "text": "Inégalités de patrimoine\n\n\nLa hausse des inégalités de patrimoine est cohérente."
   },
   {
     "objectID": "slides/session_3/handout.html#section-4",
     "href": "slides/session_3/handout.html#section-4",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Crisis Probability\n\n\nEconometric measures of household default risk 6 rose consistently."
+    "text": "Probabilité de crise\n\n\nLes mesures économétriques du risque de défaut des ménages 6 augmentent de façon soutenue."
   },
   {
-    "objectID": "slides/session_3/handout.html#model",
-    "href": "slides/session_3/handout.html#model",
-    "title": "Intro to Heterogeneity",
-    "section": "Model",
-    "text": "Model\nWhat could link rising income inequality to increased borrowing by bottom-earners?\nIntuition:\n\ntop-earners have higher marginal propensity to save\nwhen their income increases they lend to bottom earners\nand rising debt increases the risk of default\n\nLet’s see how to model that in DSGE fashion (ommiting default risk for the sake of simplicity)"
+    "objectID": "slides/session_3/handout.html#modèle",
+    "href": "slides/session_3/handout.html#modèle",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Modèle",
+    "text": "Modèle\nQu’est-ce qui pourrait relier la hausse des inégalités de revenu à l’augmentation de l’endettement des ménages du bas de la distribution ?\nIntuition :\n\nles hauts revenus ont une propension marginale à épargner plus élevée ;\nquand leur revenu augmente, ils prêtent aux bas revenus ;\net la hausse de la dette augmente le risque de défaut.\n\nVoyons comment modéliser cela dans un cadre DSGE (en omettant le risque de défaut pour simplifier)."
   },
   {
-    "objectID": "slides/session_3/handout.html#endowments",
-    "href": "slides/session_3/handout.html#endowments",
-    "title": "Intro to Heterogeneity",
-    "section": "Endowments",
-    "text": "Endowments\nWe consider and endowment economy:\n\nTotal output\n\n\\[y_t = (1-\\rho_y) \\overline{y} + \\rho_y y_{t-1} + \\epsilon_{y,t}\\]\n\nInequality shock\n\n\\[z_t = (1-\\rho_z) \\overline{z} + \\rho_z z_{t-1} + \\epsilon_{z,t}\\]\nComments:\n\n\\(z_t\\) is the fraction of the total output that is received by top-earners. The rest is received by bottom earners.\nWe assume there is a faction \\(\\chi\\) of top earners.\nour goal is to study the effect of a persistent inequality shock (with \\(\\rho_z=1\\))\n\nwe need a way to model nonzero marginal propensity to save out of a persistent income shock"
+    "objectID": "slides/session_3/handout.html#dotations",
+    "href": "slides/session_3/handout.html#dotations",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Dotations",
+    "text": "Dotations\nOn considère une économie de dotation :\n\nProduction totale\n\n\\[y_t = (1-\\rho_y) \\overline{y} + \\rho_y y_{t-1} + \\epsilon_{y,t}\\]\n\nChoc d’inégalités\n\n\\[z_t = (1-\\rho_z) \\overline{z} + \\rho_z z_{t-1} + \\epsilon_{z,t}\\]\nCommentaires :\n\n\\(z_t\\) est la fraction de la production totale reçue par les hauts revenus. Le reste est reçu par les bas revenus.\nOn suppose qu’il existe une fraction \\(\\chi\\) de hauts revenus.\nnotre objectif est d’étudier l’effet d’un choc d’inégalités persistant (avec \\(\\rho_z=1\\))\n\nil nous faut donc un mécanisme permettant une propension marginale à épargner non nulle après un choc de revenu persistant."
   },
   {
-    "objectID": "slides/session_3/handout.html#top-earners",
-    "href": "slides/session_3/handout.html#top-earners",
-    "title": "Intro to Heterogeneity",
-    "section": "Top Earners",
-    "text": "Top Earners\nWe choose the following utility function for top earners: \\[U_t = E_t \\sum_{k\\geq0}^{\\infty} \\beta^k_{\\tau} \\left\\{ \\frac{\\left(c^{\\tau}_{t+k}\\right)^ {1-\\frac{1}{\\sigma}}}{1-\\frac{1}{\\sigma}} + \\varphi \\frac{\\left( 1+b_{t+k}\\frac{1-\\chi}{\\chi}\\right)^{1-\\frac{1}{\\eta}}}{1-\\frac{1}{\\eta}} \\right\\}\\]\n. . .\nConsumption: \\[c^{\\tau}_t = y_t z_t \\frac{1}{\\chi} + \\left(b_{t-1}-b_t p_t\\right)\\frac{1-\\chi}{\\chi}\\] where \\(b_t\\) is debt holdings and \\(p_t\\) the price of it \\(1/r_t\\)\n. . .\nOptimality condition from \\(\\max U_t\\)\n\\[p_t = \\beta_{\\tau} E_t\\left[ \\left( \\frac{c^{\\tau}_{t+1}}{c^{\\tau}_t}\\right)^ {-\\frac{1}{\\sigma}}\\right] + \\varphi \\frac{\\left(1+b_t \\frac{1-\\chi}{\\chi}\\right)^ {-\\frac{1}{\\eta}}}{\\left(c_t^{\\tau}\\right)^ {-\\frac{1}{\\sigma}}}\\]"
+    "objectID": "slides/session_3/handout.html#hauts-revenus",
+    "href": "slides/session_3/handout.html#hauts-revenus",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Hauts revenus",
+    "text": "Hauts revenus\nOn choisit la fonction d’utilité suivante pour les hauts revenus : \\[U_t = E_t \\sum_{k\\geq0}^{\\infty} \\beta^k_{\\tau} \\left\\{ \\frac{\\left(c^{\\tau}_{t+k}\\right)^ {1-\\frac{1}{\\sigma}}}{1-\\frac{1}{\\sigma}} + \\varphi \\frac{\\left( 1+b_{t+k}\\frac{1-\\chi}{\\chi}\\right)^{1-\\frac{1}{\\eta}}}{1-\\frac{1}{\\eta}} \\right\\}\\]\n. . .\nConsommation : \\[c^{\\tau}_t = y_t z_t \\frac{1}{\\chi} + \\left(b_{t-1}-b_t p_t\\right)\\frac{1-\\chi}{\\chi}\\] où \\(b_t\\) désigne les détentions de dette et \\(p_t\\) son prix, soit \\(1/r_t\\).\n. . .\nCondition d’optimalité issue de \\(\\max U_t\\)\n\\[p_t = \\beta_{\\tau} E_t\\left[ \\left( \\frac{c^{\\tau}_{t+1}}{c^{\\tau}_t}\\right)^ {-\\frac{1}{\\sigma}}\\right] + \\varphi \\frac{\\left(1+b_t \\frac{1-\\chi}{\\chi}\\right)^ {-\\frac{1}{\\eta}}}{\\left(c_t^{\\tau}\\right)^ {-\\frac{1}{\\sigma}}}\\]"
   },
   {
-    "objectID": "slides/session_3/handout.html#preference-for-wealth",
-    "href": "slides/session_3/handout.html#preference-for-wealth",
-    "title": "Intro to Heterogeneity",
-    "section": "Preference for Wealth",
-    "text": "Preference for Wealth\nThe preference for wealth can be justified as:\n\na preference for social status\ncapitalist spirit\n\nIt implies a steady-state supply of lending for any income level:\n\n\n\n\n\n\n\nWhich in turn implies non-zero marginal propensity to save from a permanent income shock (in the short and the long run)\nParameters \\(\\eta\\) and \\(\\varphi\\) are not observed, but can be chosen in order to match real world MPC (50% for top earners)."
+    "objectID": "slides/session_3/handout.html#préférence-pour-la-richesse",
+    "href": "slides/session_3/handout.html#préférence-pour-la-richesse",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Préférence pour la richesse",
+    "text": "Préférence pour la richesse\nLa préférence pour la richesse peut se justifier par :\n\nune préférence pour le statut social ;\nl’esprit du capitalisme.\n\nIntuitivement: les utilités de la consommation et de la richesse sont complémentaires. Si la consommation augmente, les individus veulent détenir plus de richesse. C’est ce qui ce passe lorsque le revenu augmente de manière permanente: la consommation augmente mécaniquement.\nRemarque: sans la préférence pour la richesse, la condition \\(c_t = c_{t+1}\\) implique qu’une augmentation permanente du revenu entraîne une augmentation équivalente de la consommation, ce qui conduit à une propension marginale à consommer de 100 % après un choc de revenu permanent."
   },
   {
-    "objectID": "slides/session_3/handout.html#bottom-earners",
-    "href": "slides/session_3/handout.html#bottom-earners",
-    "title": "Intro to Heterogeneity",
-    "section": "Bottom Earners",
-    "text": "Bottom Earners\nBottom earners are standard:\n\\[V_t = E_t \\sum_{k \\geq 0}^{\\infty} \\beta^k_b \\left( \\frac{\\left(c_{t+k}^b\\right)^ {1-\\frac{1}{\\sigma}}}{1-\\frac{1}{\\sigma}} \\right)\\]\nBudget constraint:\n\\[c^b_t = y_t(1-z_t)\\frac{1}{1-\\chi} + \\left(b_t p_t - b_{t-1}\\right)\\]\nOptimality condition from \\(\\max V_t\\)\n\\[p_t = \\beta^b E_t \\left[ \\left( \\frac{c_{t+1}^b}{c_t^b}\\right)^{-\\frac{1}{\\sigma}} \\right]\\]"
+    "objectID": "slides/session_3/handout.html#préférence-pour-la-richesse-condition-déquilibre",
+    "href": "slides/session_3/handout.html#préférence-pour-la-richesse-condition-déquilibre",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Préférence pour la richesse: condition d’équilibre",
+    "text": "Préférence pour la richesse: condition d’équilibre\nOn peut réécrire la condition d’Euler à l’état d’équilibre:\n\n\n\\[\n\\frac{\\color{blue}{p}-\\beta_\\tau}{\\varphi}\n=\n\\frac{\\left(\\overline{y}\\,\\overline{\\color{red}{z}}\\,\\frac{1}{\\chi}+\\overline{\\color{green}{b}}(1-\\color{blue}{p})\\frac{1-\\chi}{\\chi}\\right)^{\\frac{1}{\\sigma}}}{\\left(1+\\overline{\\color{green}{b}}\\frac{1-\\chi}{\\chi}\\right)^{\\frac{1}{\\eta}}}\n\\]\n\n\n\n\nOffre de Prêts. Choc de revenu \\(\\Delta \\overline{\\color{red}{z}}=0.1\\)\n\n\n\n\nLa condition montre l’offre de prêt \\(\\overline{\\color{green}{b}}\\) à l’équilibre (i.e. l’épargne des hauts revenus) en fonction du taux s(\\(r=1/\\color{blue}{p}\\)).\nElle implique aussi une augmentation de l’offre de prêt d’équilibre lorsque la part \\(\\overline{\\color{red}{z}}\\) des hauts revenus augmente (déplacement vers la droite de la courbe d’offre de prêt).\n\n\nla PMC est non nulle à long terme après un choc de revenu permanent\nc’est aussi le cas à court terme (cf simulations)\nLes paramètres \\(\\eta\\) et \\(\\varphi\\) ne sont pas observés, mais peuvent être choisis pour reproduire la PMC observée dans les données (50 % pour les hauts revenus)."
+  },
+  {
+    "objectID": "slides/session_3/handout.html#bas-revenus",
+    "href": "slides/session_3/handout.html#bas-revenus",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Bas revenus",
+    "text": "Bas revenus\nLes bas revenus sont standards :\n\\[V_t = E_t \\sum_{k \\geq 0}^{\\infty} \\beta^k_b \\left( \\frac{\\left(c_{t+k}^b\\right)^ {1-\\frac{1}{\\sigma}}}{1-\\frac{1}{\\sigma}} \\right)\\]\nContrainte budgétaire :\n\\[c^b_t = y_t(1-z_t)\\frac{1}{1-\\chi} + \\left(b_t p_t - b_{t-1}\\right)\\]\nCondition d’optimalité issue de \\(\\max V_t\\)\n\\[p_t = \\beta^b E_t \\left[ \\left( \\frac{c_{t+1}^b}{c_t^b}\\right)^{-\\frac{1}{\\sigma}} \\right]\\]"
   },
   {
     "objectID": "slides/session_3/handout.html#section-5",
     "href": "slides/session_3/handout.html#section-5",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
     "text": "Calibration"
   },
   {
     "objectID": "slides/session_3/handout.html#section-6",
     "href": "slides/session_3/handout.html#section-6",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Inequality Shock"
+    "text": "Choc d’inégalités"
   },
   {
     "objectID": "slides/session_3/handout.html#section-7",
     "href": "slides/session_3/handout.html#section-7",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Pseudo-Historical Simulation"
+    "text": "Simulation pseudo-historique"
   },
   {
     "objectID": "slides/session_3/handout.html#section-8",
     "href": "slides/session_3/handout.html#section-8",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Pseudo-Historical Simulation\n\n\n\nIn the simulation we use historical values for the driving shocks (output and inequality).\nWhat is the predictive power of the model:\n\nwe match one moment: the evolution of debt/gdep from 1983 to 2010"
+    "text": "Simulation pseudo-historique\n\n\n\nConclusion\nDans la simulation, nous utilisons les valeurs historiques des chocs exogènes (production et inégalités).\nOn reproduit assez bien l’évolution du ratio dette/PIB de 1983 à 2010:\n\non peut expliquer lla hausse de l’endettement des ménages par la hausse des inégalités de revenu\n\nLe modèle entier contient aussi un mécanisme de défaut des ménages, que l’on a omis ici.\n \nDiscussion: quel est le pouvoir prédictif du modèle ?\n\non reproduit un seul moment : ratio dette/PIB de 1983 à 2010\nil pourrait exister d’autres mécanismes un chocs sur les anticipations des revenus futurs ou sur les taux d’intérêt"
   },
   {
     "objectID": "slides/session_3/handout.html#footnotes",
     "href": "slides/session_3/handout.html#footnotes",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\ncheck Household heterogeneity in macroeconomic models: A historical perspective (or an older blog) for history of heterogenous agents↩︎\nthe ones in the list are not necessary the most representative↩︎\npseudo representative new-keynesian model↩︎\nFrom From Fiscal Policy and MPC Heterogeneity, Tullio Jappelli and Luigi Pistaferri, American Economic Journal: Macroeconomics, 2014↩︎\ninequality data from Saez and Zucman↩︎\nFrom Schularick and Taylor (2014)↩︎"
+    "text": "Footnotes\n\n\nvoir Household heterogeneity in macroeconomic models: A historical perspective (ou un blog plus ancien) pour l’histoire des agents hétérogènes.↩︎\nles références listées ne sont pas forcément les plus représentatives↩︎\npseudo modèle néo-keynésien représentatif↩︎\nD’après From Fiscal Policy and MPC Heterogeneity, Tullio Jappelli et Luigi Pistaferri, American Economic Journal: Macroeconomics, 2014↩︎\ndonnées d’inégalités issues de Saez et Zucman↩︎\nD’après Schularick et Taylor (2014)↩︎"
   },
   {
     "objectID": "slides/session_3/index.html#section",
     "href": "slides/session_3/index.html#section",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "DSGE models are often criticized for unrealistic assumptions\n\nExample:\n\nMacroeconomic Policy in DSGE and Agent-Based Models from Revue de l’OFCE\nIn that respect, the Great Recessions has revealed to be a natural experiment for economic analysis, showing the inadequacy of the predominant theoretical frameworks. Indeed, an increasing number of leading economists claim that the current ’’economic crisis is a crisis for economic theory’’ (Kirman, 2010; Colander et al., 2009; Krugman, 2009, 2011; Caballero, 2010; Stiglitz, 2011; Kay, 2011; Dosi, 2011; Delong, 2011). The basic assumptions of mainstream DSGE models, e.g. rational expectations, representative agents, perfect markets etc., prevent the understanding of basic phenomena underlying the current economic crisis\n\n\n\nBut:\n\nmainstream models typically incorporate many non classical elements. For instance New Keynesian models feature imperfect competition\none must distinguish mainstream models from DSGE methodology\n\ntoday: DSGE model with rather radical conclusion"
+    "text": "Les modèles DSGE sont souvent critiqués pour leurs hypothèses peu réalistes.\n\nExemple :\n\nMacroeconomic Policy in DSGE and Agent-Based Models dans la Revue de l’OFCE\nÀ cet égard, la Grande Récession s’est révélée être une expérience naturelle pour l’analyse économique, montrant l’inadéquation des cadres théoriques dominants. En effet, un nombre croissant d’économistes de premier plan affirment que l’actuelle « crise économique est une crise de la théorie économique » (Kirman, 2010 ; Colander et al., 2009 ; Krugman, 2009, 2011 ; Caballero, 2010 ; Stiglitz, 2011 ; Kay, 2011 ; Dosi, 2011 ; Delong, 2011). Les hypothèses de base des modèles DSGE dominants, par exemple les anticipations rationnelles, les agents représentatifs, les marchés parfaits, etc., empêchent de comprendre les phénomènes fondamentaux à l’origine de la crise économique actuelle.\n\n\n\nMais :\n\nles modèles dominants incorporent en général de nombreux éléments non classiques. Par exemple, les modèles néo-keynésiens intègrent la concurrence imparfaite.\nil faut distinguer les modèles dominants de la méthodologie DSGE.\n\naujourd’hui : un modèle DSGE avec une conclusion plutôt radicale."
   },
   {
-    "objectID": "slides/session_3/index.html#representative-agent",
-    "href": "slides/session_3/index.html#representative-agent",
-    "title": "Intro to Heterogeneity",
-    "section": "Representative Agent",
-    "text": "Representative Agent\n  \nUnder the Representative agent assumption\n\naggregate choices are made as the result of a single optimization problem\n☡ there might restrictions on what is internalized by the agent\n\n\n  Is it a simplifying assumption?\n\n\n \nOr is it actually equivalent to the aggregation of many optimization problems?\n\n\n  \nFor the latter one needs a theory of aggregation1\n\n… which quickly breaks down (for instance when utility fonction are heterogenous)\n\n\ncheck Household heterogeneity in macroeconomic models: A historical perspective (or an older blog) for history of heterogenous agents"
+    "objectID": "slides/session_3/index.html#agent-représentatif",
+    "href": "slides/session_3/index.html#agent-représentatif",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Agent représentatif",
+    "text": "Agent représentatif\n  \nSous l’hypothèse d’agent représentatif\n\nles choix agrégés résultent d’un seul problème d’optimisation ;\n☡ il peut y avoir des restrictions sur ce qui est internalisé par l’agent.\n\n\nEst-ce une hypothèse simplificatrice ? Ou est-ce en réalité équivalent à l’agrégation de nombreux problèmes d’optimisation ?\n\n\nSi oui, il faut une théorie de l’agrégation1…\n\n\n… qui se brise rapidement (par exemple quand les fonctions d’utilité sont hétérogènes).\n \nExemple pour le modèle néoclassique / RBC:\n\nle secteur productif peut être agrégé car les entreprises sont de type Cobb-Douglas, en comptition parfaite) ;\nles consommateurs peuvent être agrégés si leur utilité est logarithmique et qu’il n’y a pas d’incertitude.\n\n\n\nvoir Household heterogeneity in macroeconomic models: A historical perspective (ou un blog plus ancien) pour l’histoire des agents hétérogènes."
   },
   {
-    "objectID": "slides/session_3/index.html#example-with-the-neoclassical-model",
-    "href": "slides/session_3/index.html#example-with-the-neoclassical-model",
-    "title": "Intro to Heterogeneity",
-    "section": "Example with the Neoclassical Model",
-    "text": "Example with the Neoclassical Model\nLet’s consider three versions of the neoclassical model\n\nfully decentralized (many firms, many consumers)\nrepresentative agent\nplanner problem\n\nNote:\n\nfor the neoclassical model, there is a theory of aggregation for the production sector (firms are Cobb-Douglas)\ntwo assumptions are needed to aggregate consumers: log-utility and no uncertainty"
+    "objectID": "slides/session_3/index.html#agents-hétérogènes",
+    "href": "slides/session_3/index.html#agents-hétérogènes",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Agents hétérogènes",
+    "text": "Agents hétérogènes\nCertains économistes ont reconnu très tôt la nécessité de modéliser explicitement l’hétérogénéité.\n\nÉconomie de Bewley (1977)\n\ndotation stochastique idiosyncratique ;\nmodèle consommation-épargne avec contraintes d’emprunt ;\nconduit à de l’hétérogénéité ex post (contraints/non contraints), donc à des réactions différentes.\n\nÉconomie de Huggett (1993)\n\nhétérogénéité ex ante supplémentaire dans le processus de revenu idiosyncratique.\n\nModèle d’Aiyagari (1994)\n\nl’épargne est investie pour accumuler du capital agrégé ;\nmodèle consommation-épargne avec contraintes d’emprunt ;\nchocs de productivité idiosyncratiques (salaire).\n\nModèle de Krusell et Smith (1998)\n\nAiyagari + chocs agrégés (\\(\\approx\\) RBC + hétérogénéité) ;\n\n\nCes modèles exigent des techniques de calcul particulières et étaient mal compris sur le plan mathématique."
   },
   {
-    "objectID": "slides/session_3/index.html#heterogenous-agents",
-    "href": "slides/session_3/index.html#heterogenous-agents",
-    "title": "Intro to Heterogeneity",
-    "section": "Heterogenous Agents",
-    "text": "Heterogenous Agents\nSome economists have recognized early the need to explicitly model heterogeneity.\n\n1977: Bewley\n\nidiosyncratic stochastic endowment\nconsumption-savings model with borrowing constraints\nleads to ex-post heterogeneity (constrained/unconstrained) hence different reactions\n\nHuggett Economy (1993)\n\nadditional ex-ante heterogeneity in idiosyncratic income process\n\nAyiagari Model (1994)\n\nsavings are invested to accumulate aggregate capital\nconsumption-savings model with borrowing constraints\nidiosyncratic productivity shocks (salary)\n\nKrussell Smith Model (1998)\n\nAyagari + aggregate shocks\n\n\nThose models require special computational techniques and were poorly understood mathematically"
+    "objectID": "slides/session_3/index.html#jeux-à-champ-moyen-et-modèles-à-agents-hétérogènes",
+    "href": "slides/session_3/index.html#jeux-à-champ-moyen-et-modèles-à-agents-hétérogènes",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Jeux à champ moyen et modèles à agents hétérogènes",
+    "text": "Jeux à champ moyen et modèles à agents hétérogènes\n2012 Ben Moll donne un exposé à l’IMA (Royaume-Uni).\n\n\n\n\nÉconomistes et mathématiciens de tout premier plan échangent autour des jeux à champ moyen.\n\nune classe de problèmes mathématiques qui englobe les modèles à agents hétérogènes ;\nassez exigeante mathématiquement (calcul stochastique, théorie de la viscosité, …)."
   },
   {
-    "objectID": "slides/session_3/index.html#mean-field-games-and-heterogenous-agents-models",
-    "href": "slides/session_3/index.html#mean-field-games-and-heterogenous-agents-models",
-    "title": "Intro to Heterogeneity",
-    "section": "Mean Field Games and Heterogenous Agents Models",
-    "text": "Mean Field Games and Heterogenous Agents Models\n2012 Ben Moll did a talk at IMA (UK)\n\n\n\n\nEconomists and world class mathematicians exchanged on mean field games\n\na class of mathematical problems which encompasses heterogenous agents models\na bit math intense (stochastic calculus, viscosity theory, …)"
-  },
-  {
-    "objectID": "slides/session_3/index.html#mean-field-games-and-heterogenous-agents-models-1",
-    "href": "slides/session_3/index.html#mean-field-games-and-heterogenous-agents-models-1",
-    "title": "Intro to Heterogeneity",
-    "section": "Mean Field Games and Heterogenous Agents Models",
-    "text": "Mean Field Games and Heterogenous Agents Models\n\n\n2012 Ben Moll did a talk at IMA (UK)\n\n\nResult: a new stream of heterogenous agents papers\n\nPDE Models in Macroeconomics (2014) with Achdou, Bueary, Lasry, Lions\nThe Dynamics of Inequality (2016) with Gabaix, Lasry, Lions\nMonetary Policy According to HANK (2018) with Kaplan and Violante\n\nthat one was hugely successfull"
+    "objectID": "slides/session_3/index.html#jeux-à-champ-moyen-et-modèles-à-agents-hétérogènes-1",
+    "href": "slides/session_3/index.html#jeux-à-champ-moyen-et-modèles-à-agents-hétérogènes-1",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Jeux à champ moyen et modèles à agents hétérogènes",
+    "text": "Jeux à champ moyen et modèles à agents hétérogènes\n\n\n2012 Ben Moll donne un exposé à l’IMA (Royaume-Uni).\n\n\nRésultat : une nouvelle vague d’articles sur les agents hétérogènes.\n\nPDE Models in Macroeconomics (2014), avec Achdou, Bueary, Lasry, Lions\nThe Dynamics of Inequality (2016), avec Gabaix, Lasry, Lions\nMonetary Policy According to HANK (2018), avec Kaplan et Violante\n\ncelui-ci a eu un succès énorme."
   },
   {
     "objectID": "slides/session_3/index.html#hank-hank-hank",
     "href": "slides/session_3/index.html#hank-hank-hank",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "HANK, HANK HANK, …",
-    "text": "HANK, HANK HANK, …\n\nMonetary Policy According to HANK (2018), by Moll, Kaplan and Violante\n\nHANK: Heterogenous Agents New Keynesian\nstudy unequal consequences of monetary policies\na new baseline model for central banks\n\n\n\n\n\nStimulated a whole literature1\n\nUnderstanding HANK: Insights from a PRANK2\nWhen HANK meets SAM\nHANK beyond FIRE\nAggregate Demand: THANK (Tractable HANK) and TANK by Florin Bilbiie\n\nmain point: you don’t need more than two agents to get the main insights\n\n\n\n\n\nthe ones in the list are not necessary the most representativepseudo representative new-keynesian model"
+    "text": "HANK, HANK HANK, …\n\nMonetary Policy According to HANK (2018), de Moll, Kaplan et Violante\n\nHANK : Heterogeneous Agents New Keynesian ;\nétudie les conséquences inégales des politiques monétaires ;\nun nouveau modèle de référence pour les banques centrales.\n\n\n\n\n\nA stimulé toute une littérature1\n\nUnderstanding HANK: Insights from a PRANK2\nWhen HANK meets SAM\nHANK beyond FIRE\nAggregate Demand: THANK (Tractable HANK) and TANK by Florin Bilbiie\n\nidée principale : il n’est pas nécessaire d’avoir plus de deux agents pour obtenir les principaux résultats.\n\n\n\n\n\nles références listées ne sont pas forcément les plus représentativespseudo modèle néo-keynésien représentatif"
   },
   {
-    "objectID": "slides/session_3/index.html#heterogenous-consumers",
-    "href": "slides/session_3/index.html#heterogenous-consumers",
-    "title": "Intro to Heterogeneity",
-    "section": "Heterogenous consumers",
-    "text": "Heterogenous consumers\nWhy does it matter to model consumer’s heterogeneity?\n\n\nTo reproduce realistic consumption decisions.\n\n\n\nClassically, we make the difference between two kinds of agents:\n\n\n\n\n\n\n\n\nRicardian Households\n\n\nAgents who can freely reallocate consumption intertemporally.\nThey have a high marginal propensity to consume out of additional income.\n\n\n\n  \nRicardian households choose not to consume more today, in order to consume more tomorrow.\n\n\n\n\n\n\n\nKeynesian Households\n\n\nAgents whose consumption in the current period is limited by a binding credit constraint. Either they can’t borrow at all or the amount they can borrow is limited today.\nThey have a high marginal propensity to consume out of additional income.\n\n\n\nKeynesian Households consume today as much as they can.\n\n\n\nThe representative agent assumes everyone is ricardian.\nWhat does the data say?"
+    "objectID": "slides/session_3/index.html#consommateurs-hétérogènes",
+    "href": "slides/session_3/index.html#consommateurs-hétérogènes",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Consommateurs hétérogènes",
+    "text": "Consommateurs hétérogènes\nPourquoi est-il important de modéliser l’hétérogénéité des consommateurs ?\n\n\nPour reproduire des décisions de consommation réalistes.\n\n\n\nClassiquement, on distingue deux types d’agents :\n\n\n\n\n\n\n\n\nMénages ricardiens\n\n\nAgents qui peuvent réallouer librement leur consommation dans le temps.\nIls ont une forte propension marginale à consommer à partir d’un revenu additionnel.\n\n\n\n  \nLes ménages ricardiens choisissent de ne pas consommer davantage aujourd’hui afin de consommer davantage demain.\n\n\n\n\n\n\n\nMénages keynésiens\n\n\nAgents dont la consommation de la période courante est limitée par une contrainte de crédit active. Soit ils ne peuvent pas emprunter du tout, soit le montant qu’ils peuvent emprunter est limité aujourd’hui.\nIls ont une forte propension marginale à consommer à partir d’un revenu additionnel.\n\n\n\nLes ménages keynésiens consomment aujourd’hui autant qu’ils le peuvent.\n\n\n\nL’agent représentatif suppose que tout le monde est ricardien.\nQue disent les données ?"
   },
   {
-    "objectID": "slides/session_3/index.html#wealthy-hand-to-mouth-agents",
-    "href": "slides/session_3/index.html#wealthy-hand-to-mouth-agents",
-    "title": "Intro to Heterogeneity",
-    "section": "Wealthy Hand to Mouth agents",
-    "text": "Wealthy Hand to Mouth agents\nWe have just seen that agents in the middle of the wealth distribution, hold a wider proportion of wealth in illiquid assets (housing)\n\nTheir cash in hand (available for immediate purchase) is reduced. A sizable fraction of ther income goes into repaying their loan…).\nThey have higher MPC\nThey also react to interest rates changes (notably those who have floating interest rates)\n“Monetary Policy According to HANK”, 2018, Kaplan, Moll and Violante, stress out the role of “wealthy hand to mouth” and the need to take their existence to evaluate the influence of monetary policies."
+    "objectID": "slides/session_3/index.html#agents-wealthy-hand-to-mouth",
+    "href": "slides/session_3/index.html#agents-wealthy-hand-to-mouth",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Agents « wealthy hand-to-mouth »",
+    "text": "Agents « wealthy hand-to-mouth »\nOn vient de voir que les agents situés au milieu de la distribution de patrimoine détiennent une plus grande part de leur richesse sous forme d’actifs illiquides (immobilier).\n\nLeur cash in hand (disponible pour des achats immédiats) est réduit. Une part importante de leur revenu sert à rembourser leur emprunt.\nIls ont une PMC plus élevée.\nIls réagissent aussi aux variations de taux d’intérêt (notamment ceux qui ont des taux variables).\n« Monetary Policy According to HANK » (2018), Kaplan, Moll et Violante, souligne le rôle des « wealthy hand-to-mouth » et la nécessité de prendre leur existence en compte pour évaluer l’influence des politiques monétaires."
   },
   {
-    "objectID": "slides/session_3/index.html#how-do-we-model-differences-in-mpc",
-    "href": "slides/session_3/index.html#how-do-we-model-differences-in-mpc",
-    "title": "Intro to Heterogeneity",
-    "section": "How do we model differences in MPC?",
-    "text": "How do we model differences in MPC?\n\nSpecify several kinds of agents:\n\nricardians\nhand to mouth (consumption = income)\nex-ante heterogeneity\n\nBy endogenizing borrowing constraint with borrowing constraint\n\nrequires nonlinear solution\nex-post heterogeneity\nwith potential idiosyncratic parameters like time-discount (ex-ante heterogeneity)\n\nBy using preference for wealth\n\ncoming next"
+    "objectID": "slides/session_3/index.html#comment-modéliser-les-différences-de-pmc",
+    "href": "slides/session_3/index.html#comment-modéliser-les-différences-de-pmc",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Comment modéliser les différences de PMC ?",
+    "text": "Comment modéliser les différences de PMC ?\n\nSpécifier plusieurs types d’agents :\n\nricardiens ;\nhand-to-mouth (consommation = revenu) ;\n-&gt; hétérogénéité ex ante.\n\nEn endogénéisant la contrainte d’emprunt\n\nnécessite une résolution non linéaire ;\nhétérogénéité ex post ;\navec éventuellement des paramètres idiosyncratiques comme le facteur d’actualisation - - -&gt;(hétérogénéité ex ante).\n\nEn introduisant une préférence pour la richesse\n\nc’est ce qui suit."
   },
   {
     "objectID": "slides/session_3/index.html#section-1",
     "href": "slides/session_3/index.html#section-1",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
     "text": "Inequality, Leverage and Crisis, Kumhof, Rancière, Winant (2015)"
   },
   {
     "objectID": "slides/session_3/index.html#introduction",
     "href": "slides/session_3/index.html#introduction",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "Introduction",
-    "text": "Introduction\nThe 2007 financial crisis, was initially as subprime mortgage crisis\n\nhigh indebtedness from low income households\nfueled by easy credit (low i.r.) and high house prices\ndebt-securitization\n\neven for high risk debt (subprimes)\nof which 90% had variable interest rates and/or balloon payments\n\n(moderate) rise in interest rates\n\nbursting of the housing buble\nhouseholds were unable to refinance their loans\n… and defaulted\n\nmbs market collapsed…\n… and with it the whole financial sector\n\n\nOk, but from a macro perspective, what fueled such high levels of borrowing?"
+    "text": "Introduction\nLa crise financière de 2007 a d’abord été une crise des prêts hypothécaires subprimes.\n\nfort endettement des ménages à bas revenus ;\nalimenté par un crédit facile (taux faibles) et des prix de l’immobilier élevés ;\ntitrisation de la dette\n\ny compris pour des dettes très risquées (subprimes) ;\ndont 90 % avaient des taux variables et/ou des paiements ballon ;\n\nhausse (modérée) des taux d’intérêt\n\néclatement de la bulle immobilière ;\nles ménages n’ont pas pu refinancer leurs prêts ;\n… et ont fait défaut ;\n\nle marché des MBS s’est effondré…\n… et avec lui l’ensemble du secteur financier.\n\n\nD’accord, mais d’un point de vue macroéconomique, qu’est-ce qui a alimenté de tels niveaux d’endettement ?"
   },
   {
     "objectID": "slides/session_3/index.html#section-2",
     "href": "slides/session_3/index.html#section-2",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Leverage and Inequality\n\n\nA similar pattern emerged before the great recession and before the great depression:1\n\nparallel increases in income inequality and debt over income ratios\n\ninequality data from Saez and Zucman"
+    "text": "Levier et inégalités\n\n\nUn schéma similaire est apparu avant la Grande Récession et avant la Grande Dépression :1\n\nhausses parallèles des inégalités de revenu et du ratio dette/revenu.\n\ndonnées d’inégalités issues de Saez et Zucman"
   },
   {
     "objectID": "slides/session_3/index.html#section-3",
     "href": "slides/session_3/index.html#section-3",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Wealth InequalityIncrease in wealth inequality is consistent."
+    "text": "Inégalités de patrimoineLa hausse des inégalités de patrimoine est cohérente."
   },
   {
     "objectID": "slides/session_3/index.html#section-4",
     "href": "slides/session_3/index.html#section-4",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Crisis Probability\n\n\nEconometric measures of household default risk 1 rose consistently.\n\nFrom Schularick and Taylor (2014)"
+    "text": "Probabilité de crise\n\n\nLes mesures économétriques du risque de défaut des ménages 1 augmentent de façon soutenue.\n\nD’après Schularick et Taylor (2014)"
   },
   {
-    "objectID": "slides/session_3/index.html#model",
-    "href": "slides/session_3/index.html#model",
-    "title": "Intro to Heterogeneity",
-    "section": "Model",
-    "text": "Model\nWhat could link rising income inequality to increased borrowing by bottom-earners?\nIntuition:\n\ntop-earners have higher marginal propensity to save\nwhen their income increases they lend to bottom earners\nand rising debt increases the risk of default\n\nLet’s see how to model that in DSGE fashion (ommiting default risk for the sake of simplicity)"
+    "objectID": "slides/session_3/index.html#modèle",
+    "href": "slides/session_3/index.html#modèle",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Modèle",
+    "text": "Modèle\nQu’est-ce qui pourrait relier la hausse des inégalités de revenu à l’augmentation de l’endettement des ménages du bas de la distribution ?\nIntuition :\n\nles hauts revenus ont une propension marginale à épargner plus élevée ;\nquand leur revenu augmente, ils prêtent aux bas revenus ;\net la hausse de la dette augmente le risque de défaut.\n\nVoyons comment modéliser cela dans un cadre DSGE (en omettant le risque de défaut pour simplifier)."
   },
   {
-    "objectID": "slides/session_3/index.html#endowments",
-    "href": "slides/session_3/index.html#endowments",
-    "title": "Intro to Heterogeneity",
-    "section": "Endowments",
-    "text": "Endowments\nWe consider and endowment economy:\n\nTotal output\n\n\\[y_t = (1-\\rho_y) \\overline{y} + \\rho_y y_{t-1} + \\epsilon_{y,t}\\]\n\nInequality shock\n\n\\[z_t = (1-\\rho_z) \\overline{z} + \\rho_z z_{t-1} + \\epsilon_{z,t}\\]\nComments:\n\n\\(z_t\\) is the fraction of the total output that is received by top-earners. The rest is received by bottom earners.\nWe assume there is a faction \\(\\chi\\) of top earners.\nour goal is to study the effect of a persistent inequality shock (with \\(\\rho_z=1\\))\n\nwe need a way to model nonzero marginal propensity to save out of a persistent income shock"
+    "objectID": "slides/session_3/index.html#dotations",
+    "href": "slides/session_3/index.html#dotations",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Dotations",
+    "text": "Dotations\nOn considère une économie de dotation :\n\nProduction totale\n\n\\[y_t = (1-\\rho_y) \\overline{y} + \\rho_y y_{t-1} + \\epsilon_{y,t}\\]\n\nChoc d’inégalités\n\n\\[z_t = (1-\\rho_z) \\overline{z} + \\rho_z z_{t-1} + \\epsilon_{z,t}\\]\nCommentaires :\n\n\\(z_t\\) est la fraction de la production totale reçue par les hauts revenus. Le reste est reçu par les bas revenus.\nOn suppose qu’il existe une fraction \\(\\chi\\) de hauts revenus.\nnotre objectif est d’étudier l’effet d’un choc d’inégalités persistant (avec \\(\\rho_z=1\\))\n\nil nous faut donc un mécanisme permettant une propension marginale à épargner non nulle après un choc de revenu persistant."
   },
   {
-    "objectID": "slides/session_3/index.html#top-earners",
-    "href": "slides/session_3/index.html#top-earners",
-    "title": "Intro to Heterogeneity",
-    "section": "Top Earners",
-    "text": "Top Earners\nWe choose the following utility function for top earners: \\[U_t = E_t \\sum_{k\\geq0}^{\\infty} \\beta^k_{\\tau} \\left\\{ \\frac{\\left(c^{\\tau}_{t+k}\\right)^ {1-\\frac{1}{\\sigma}}}{1-\\frac{1}{\\sigma}} + \\varphi \\frac{\\left( 1+b_{t+k}\\frac{1-\\chi}{\\chi}\\right)^{1-\\frac{1}{\\eta}}}{1-\\frac{1}{\\eta}} \\right\\}\\]\n\nConsumption: \\[c^{\\tau}_t = y_t z_t \\frac{1}{\\chi} + \\left(b_{t-1}-b_t p_t\\right)\\frac{1-\\chi}{\\chi}\\] where \\(b_t\\) is debt holdings and \\(p_t\\) the price of it \\(1/r_t\\)\n\n\nOptimality condition from \\(\\max U_t\\)\n\\[p_t = \\beta_{\\tau} E_t\\left[ \\left( \\frac{c^{\\tau}_{t+1}}{c^{\\tau}_t}\\right)^ {-\\frac{1}{\\sigma}}\\right] + \\varphi \\frac{\\left(1+b_t \\frac{1-\\chi}{\\chi}\\right)^ {-\\frac{1}{\\eta}}}{\\left(c_t^{\\tau}\\right)^ {-\\frac{1}{\\sigma}}}\\]"
+    "objectID": "slides/session_3/index.html#hauts-revenus",
+    "href": "slides/session_3/index.html#hauts-revenus",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Hauts revenus",
+    "text": "Hauts revenus\nOn choisit la fonction d’utilité suivante pour les hauts revenus : \\[U_t = E_t \\sum_{k\\geq0}^{\\infty} \\beta^k_{\\tau} \\left\\{ \\frac{\\left(c^{\\tau}_{t+k}\\right)^ {1-\\frac{1}{\\sigma}}}{1-\\frac{1}{\\sigma}} + \\varphi \\frac{\\left( 1+b_{t+k}\\frac{1-\\chi}{\\chi}\\right)^{1-\\frac{1}{\\eta}}}{1-\\frac{1}{\\eta}} \\right\\}\\]\n\nConsommation : \\[c^{\\tau}_t = y_t z_t \\frac{1}{\\chi} + \\left(b_{t-1}-b_t p_t\\right)\\frac{1-\\chi}{\\chi}\\] où \\(b_t\\) désigne les détentions de dette et \\(p_t\\) son prix, soit \\(1/r_t\\).\n\n\nCondition d’optimalité issue de \\(\\max U_t\\)\n\\[p_t = \\beta_{\\tau} E_t\\left[ \\left( \\frac{c^{\\tau}_{t+1}}{c^{\\tau}_t}\\right)^ {-\\frac{1}{\\sigma}}\\right] + \\varphi \\frac{\\left(1+b_t \\frac{1-\\chi}{\\chi}\\right)^ {-\\frac{1}{\\eta}}}{\\left(c_t^{\\tau}\\right)^ {-\\frac{1}{\\sigma}}}\\]"
   },
   {
-    "objectID": "slides/session_3/index.html#preference-for-wealth",
-    "href": "slides/session_3/index.html#preference-for-wealth",
-    "title": "Intro to Heterogeneity",
-    "section": "Preference for Wealth",
-    "text": "Preference for Wealth\nThe preference for wealth can be justified as:\n\na preference for social status\ncapitalist spirit\n\nIt implies a steady-state supply of lending for any income level:\n\n\n\n\n\n\nWhich in turn implies non-zero marginal propensity to save from a permanent income shock (in the short and the long run)\nParameters \\(\\eta\\) and \\(\\varphi\\) are not observed, but can be chosen in order to match real world MPC (50% for top earners)."
+    "objectID": "slides/session_3/index.html#préférence-pour-la-richesse",
+    "href": "slides/session_3/index.html#préférence-pour-la-richesse",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Préférence pour la richesse",
+    "text": "Préférence pour la richesse\nLa préférence pour la richesse peut se justifier par :\n\nune préférence pour le statut social ;\nl’esprit du capitalisme.\n\nIntuitivement: les utilités de la consommation et de la richesse sont complémentaires. Si la consommation augmente, les individus veulent détenir plus de richesse. C’est ce qui ce passe lorsque le revenu augmente de manière permanente: la consommation augmente mécaniquement.\nRemarque: sans la préférence pour la richesse, la condition \\(c_t = c_{t+1}\\) implique qu’une augmentation permanente du revenu entraîne une augmentation équivalente de la consommation, ce qui conduit à une propension marginale à consommer de 100 % après un choc de revenu permanent."
   },
   {
-    "objectID": "slides/session_3/index.html#bottom-earners",
-    "href": "slides/session_3/index.html#bottom-earners",
-    "title": "Intro to Heterogeneity",
-    "section": "Bottom Earners",
-    "text": "Bottom Earners\nBottom earners are standard:\n\\[V_t = E_t \\sum_{k \\geq 0}^{\\infty} \\beta^k_b \\left( \\frac{\\left(c_{t+k}^b\\right)^ {1-\\frac{1}{\\sigma}}}{1-\\frac{1}{\\sigma}} \\right)\\]\nBudget constraint:\n\\[c^b_t = y_t(1-z_t)\\frac{1}{1-\\chi} + \\left(b_t p_t - b_{t-1}\\right)\\]\nOptimality condition from \\(\\max V_t\\)\n\\[p_t = \\beta^b E_t \\left[ \\left( \\frac{c_{t+1}^b}{c_t^b}\\right)^{-\\frac{1}{\\sigma}} \\right]\\]"
+    "objectID": "slides/session_3/index.html#préférence-pour-la-richesse-condition-déquilibre",
+    "href": "slides/session_3/index.html#préférence-pour-la-richesse-condition-déquilibre",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Préférence pour la richesse: condition d’équilibre",
+    "text": "Préférence pour la richesse: condition d’équilibre\nOn peut réécrire la condition d’Euler à l’état d’équilibre:\n\n\n\\[\n\\frac{\\color{blue}{p}-\\beta_\\tau}{\\varphi}\n=\n\\frac{\\left(\\overline{y}\\,\\overline{\\color{red}{z}}\\,\\frac{1}{\\chi}+\\overline{\\color{green}{b}}(1-\\color{blue}{p})\\frac{1-\\chi}{\\chi}\\right)^{\\frac{1}{\\sigma}}}{\\left(1+\\overline{\\color{green}{b}}\\frac{1-\\chi}{\\chi}\\right)^{\\frac{1}{\\eta}}}\n\\]\n\n\n\n\nOffre de Prêts. Choc de revenu \\(\\Delta \\overline{\\color{red}{z}}=0.1\\)\n\n\n\nLa condition montre l’offre de prêt \\(\\overline{\\color{green}{b}}\\) à l’équilibre (i.e. l’épargne des hauts revenus) en fonction du taux s(\\(r=1/\\color{blue}{p}\\)).\nElle implique aussi une augmentation de l’offre de prêt d’équilibre lorsque la part \\(\\overline{\\color{red}{z}}\\) des hauts revenus augmente (déplacement vers la droite de la courbe d’offre de prêt).\n\nla PMC est non nulle à long terme après un choc de revenu permanent\nc’est aussi le cas à court terme (cf simulations)\nLes paramètres \\(\\eta\\) et \\(\\varphi\\) ne sont pas observés, mais peuvent être choisis pour reproduire la PMC observée dans les données (50 % pour les hauts revenus)."
+  },
+  {
+    "objectID": "slides/session_3/index.html#bas-revenus",
+    "href": "slides/session_3/index.html#bas-revenus",
+    "title": "Introduction à l’hétérogénéité",
+    "section": "Bas revenus",
+    "text": "Bas revenus\nLes bas revenus sont standards :\n\\[V_t = E_t \\sum_{k \\geq 0}^{\\infty} \\beta^k_b \\left( \\frac{\\left(c_{t+k}^b\\right)^ {1-\\frac{1}{\\sigma}}}{1-\\frac{1}{\\sigma}} \\right)\\]\nContrainte budgétaire :\n\\[c^b_t = y_t(1-z_t)\\frac{1}{1-\\chi} + \\left(b_t p_t - b_{t-1}\\right)\\]\nCondition d’optimalité issue de \\(\\max V_t\\)\n\\[p_t = \\beta^b E_t \\left[ \\left( \\frac{c_{t+1}^b}{c_t^b}\\right)^{-\\frac{1}{\\sigma}} \\right]\\]"
   },
   {
     "objectID": "slides/session_3/index.html#section-5",
     "href": "slides/session_3/index.html#section-5",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
     "text": "Calibration"
   },
   {
     "objectID": "slides/session_3/index.html#section-6",
     "href": "slides/session_3/index.html#section-6",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Inequality Shock"
+    "text": "Choc d’inégalités"
   },
   {
     "objectID": "slides/session_3/index.html#section-7",
     "href": "slides/session_3/index.html#section-7",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Pseudo-Historical Simulation"
+    "text": "Simulation pseudo-historique"
   },
   {
     "objectID": "slides/session_3/index.html#section-8",
     "href": "slides/session_3/index.html#section-8",
-    "title": "Intro to Heterogeneity",
+    "title": "Introduction à l’hétérogénéité",
     "section": "",
-    "text": "Pseudo-Historical Simulation\n\n\n\nIn the simulation we use historical values for the driving shocks (output and inequality).\nWhat is the predictive power of the model:\n\nwe match one moment: the evolution of debt/gdep from 1983 to 2010"
+    "text": "Simulation pseudo-historique\n\n\n\nConclusion\nDans la simulation, nous utilisons les valeurs historiques des chocs exogènes (production et inégalités).\nOn reproduit assez bien l’évolution du ratio dette/PIB de 1983 à 2010:\n\non peut expliquer lla hausse de l’endettement des ménages par la hausse des inégalités de revenu\n\nLe modèle entier contient aussi un mécanisme de défaut des ménages, que l’on a omis ici.\n \nDiscussion: quel est le pouvoir prédictif du modèle ?\n\non reproduit un seul moment : ratio dette/PIB de 1983 à 2010\nil pourrait exister d’autres mécanismes un chocs sur les anticipations des revenus futurs ou sur les taux d’intérêt"
   },
   {
     "objectID": "slides/session_4/source.html",
@@ -1894,7 +1894,7 @@
     "href": "tutorials/corrections.html",
     "title": "Corrections",
     "section": "",
-    "text": "Date\n\n\n\nTitle\n\n\n\n\n\n\n\n\n \n\n\nBases de Python et processus VAR - Correction\n\n\n\n\n\n\n \n\n\nPremiers pas avec Dynare et appariement des moments.\n\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\n\nTitle\n\n\n\n\n\n\n\n\n \n\n\nBases de Python et processus VAR - Correction\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "tutorials/session_1/index_correction.html",
@@ -1971,13 +1971,13 @@
     "href": "tutorials/session_1/index_correction.html#iteration-temporelle",
     "title": "Bases de Python et processus VAR - Correction",
     "section": "Iteration Temporelle",
-    "text": "Iteration Temporelle\nL’algorithme d’itération temporelle consiste à itérer la fonction \\(X_{n+1}=T(X_n)\\) où \\(X_{n+1}\\) satisfait \\[A X_n X_{n+1} + B X_{n+1} + C = 0\\].\n\nRésoudre le systeme matriciel du second ordre par iteration temporelle.\n\n\n\n\n\nÀ chaque itération, on doit résoudre une équation linéaire en \\(X_{n+1}\\) dont la solution est donnée par:\n\\[X_{n+1} = - (A X_n + B)^{-1} C\\]\n\n\nCode\n# on part d'une valeur initiale aléatoire pour X0\n\nX0 = np.random.rand(2, 2)\nfor i in range(1000):\n    # Resoudre AX_n X_{n+1} + B X_{n+1} + C = 0 pour X_{n+1}\n    # Ce qui revient a resoudre une equation lineaire en X_{n+1}\n    X1 = np.linalg.solve(-(A @ X0 + B), C)\n    \n    if np.max(np.abs(X1 - X0)) &lt; 1e-8:\n        print(f\"Convergence atteinte apres {i} iterations.\")\n        break\n    \n    X0 = X1\n\n\nConvergence atteinte apres 24 iterations.\n\n\n\n\nVérifier que la solution satisfait les équations matricielles.\n\n\n\n\n\n\n\nCode\n# Verifier que la solution satisfait les equations matricielles\nres = A @ X1 @ X1 + B @ X1 + C\nres_X = np.linalg.norm(res, ord=np.inf)\nprint(f\"Residual equation for X: {res_X:.2e}\")\n\n\nResidual equation for X: 4.78e-09\n\n\n\n\nCalculer la valeur de Y.\n\n\nOn obtient Y en résolvant la deuxième équation matricielle, ce qui donne \\(Y = - (A X + B)^{-1} D\\).\n\n\nCode\nY = np.linalg.solve(-(A @ X1 + B), D)"
+    "text": "Iteration Temporelle\nL’algorithme d’itération temporelle consiste à itérer la fonction \\(X_{n+1}=T(X_n)\\) où \\(X_{n+1}\\) satisfait \\[A X_n X_{n+1} + B X_{n+1} + C = 0\\].\n\nRésoudre le systeme matriciel du second ordre par iteration temporelle.\n\n\n\n\n\nÀ chaque itération, on doit résoudre une équation linéaire en \\(X_{n+1}\\) dont la solution est donnée par:\n\\[X_{n+1} = - (A X_n + B)^{-1} C\\]\n\n\nCode\n# on part d'une valeur initiale aléatoire pour X0\n\nX0 = np.random.rand(2, 2)\nfor i in range(1000):\n    # Resoudre AX_n X_{n+1} + B X_{n+1} + C = 0 pour X_{n+1}\n    # Ce qui revient a resoudre une equation lineaire en X_{n+1}\n    X1 = np.linalg.solve(-(A @ X0 + B), C)\n    \n    if np.max(np.abs(X1 - X0)) &lt; 1e-8:\n        print(f\"Convergence atteinte apres {i} iterations.\")\n        break\n    \n    X0 = X1\n\n\nConvergence atteinte apres 24 iterations.\n\n\n\n\nVérifier que la solution satisfait les équations matricielles.\n\n\n\n\n\n\n\nCode\n# Verifier que la solution satisfait les equations matricielles\nres = A @ X1 @ X1 + B @ X1 + C\nres_X = np.linalg.norm(res, ord=np.inf)\nprint(f\"Residual equation for X: {res_X:.2e}\")\n\n\nResidual equation for X: 6.31e-09\n\n\n\n\nCalculer la valeur de Y.\n\n\nOn obtient Y en résolvant la deuxième équation matricielle, ce qui donne \\(Y = - (A X + B)^{-1} D\\).\n\n\nCode\nY = np.linalg.solve(-(A @ X1 + B), D)"
   },
   {
     "objectID": "tutorials/session_1/index_correction.html#méthode-de-schur-généralisée-qz",
     "href": "tutorials/session_1/index_correction.html#méthode-de-schur-généralisée-qz",
     "title": "Bases de Python et processus VAR - Correction",
     "section": "Méthode de Schur généralisée (QZ)",
-    "text": "Méthode de Schur généralisée (QZ)\nLa fonction suivante calcule la solution du système matriciel du second ordre en utilisant la méthode de Schur généralisée (QZ).\nCette méthode est plus robuste que l’iteration temporelle et permet d’analyser l’ensemble des valeurs propres du système pour vérifier les conditions de stabilité.\n\n\nCode\nimport numpy as np\nfrom scipy.linalg import ordqz\n\n\ndef solve_second_order_qz(A, B, C, D, tol=1e-10, return_eigvals=False):\n    \"\"\"\n    Résout AX^2 + BX + C = 0 (branche stable) puis Y via (AX+B)Y + D = 0.\n\n    Retourne:\n      X, Y, eigvals, diagnostics\n    \"\"\"\n    A = np.asarray(A, dtype=float)\n    B = np.asarray(B, dtype=float)\n    C = np.asarray(C, dtype=float)\n    D = np.asarray(D, dtype=float)\n\n    n = A.shape[0]\n    I = np.eye(n)\n    Z = np.zeros((n, n))\n\n    # Companion pencil pour P(lambda)=A lambda^2 + B lambda + C\n    M = np.block([[Z, I], [-C, -B]])\n    N = np.block([[I, Z], [Z, A]])\n\n    S, T, alpha, beta, Q, Zqz = ordqz(M, N, sort=\"iuc\")\n    eigvals = (alpha / beta)\n    eigvals.sort()\n\n    if return_eigvals:\n        return eigvals\n\n\n    n_stable = np.sum(np.abs(eigvals) &lt; 1 - tol)\n    if n_stable != n:\n        raise ValueError(\n            f\"Nombre de racines stables = {n_stable}, attendu = {n}.\"\n        )\n\n    U = Zqz[:, :n]\n    U1 = U[:n, :]\n    U2 = U[n:, :]\n\n    if np.linalg.cond(U1) &gt; 1 / np.sqrt(np.finfo(float).eps):\n        raise ValueError(\"U1 est mal conditionnée : solution numérique instable.\")\n\n    X = np.real_if_close(U2 @ np.linalg.inv(U1))\n\n    G = A @ X + B\n    Y = np.linalg.solve(-G, D)\n\n    # Diagnostics de cohérence\n    res_X = np.linalg.norm(A @ X @ X + B @ X + C, ord=np.inf)\n    res_Y = np.linalg.norm((A @ X + B) @ Y + D, ord=np.inf)\n\n    diagnostics = {\n        \"eigvals\": eigvals,\n        \"n_stable\": int(n_stable),\n        \"residual_X\": float(res_X),\n        \"residual_Y\": float(res_Y),\n    }\n    return X, Y, eigvals, diagnostics\n\n\n\nCalculer les valeurs propres du système. Le système est-il stable ? Bien déterminé ?\n\n\n\n\n\n\n\nCode\neigvals = solve_second_order_qz(A, B, C, D, return_eigvals=True)\neigvals\n\n\narray([0.6+0.j, 0.7+0.j, 1.4+0.j, 1.5+0.j])\n\n\nOn observe exactement deux valeurs propres de module strictement inférieur à 1, ce qui correspond à une unique branche stable.\n\n\nVérifier que la solution obtenue satisfait le système et qu’elle est approximativement la même que celle obtenue par l’itération temporelle. Quelles sont ses valeurs propres ?\n\n\n\n\n\n\n\nCode\nX_qz, Y_qz, eigvals_qz, diagnostics = solve_second_order_qz(A, B, C, D)\nprint(\"Solution par QZ:\")\nprint(\"X:\")\nprint(X_qz)\nprint(\"Y:\")\nprint(Y_qz)\nprint(\"Diagnostics:\")\nprint(diagnostics)\n\n\nSolution par QZ:\nX:\n[[0.7 0. ]\n [0.  0.6]]\nY:\n[[0.71428571]\n [0.33333333]]\nDiagnostics:\n{'eigvals': array([0.6+0.j, 0.7+0.j, 1.4+0.j, 1.5+0.j]), 'n_stable': 2, 'residual_X': 2.220446049250313e-16, 'residual_Y': 5.551115123125783e-17}\n\n\nCalculons les valeurs propres de la solution\n\n\nCode\nprint(\"Sp(X_qz):\")\nprint(np.linalg.eigvals(X_qz))\n\n\nSp(X_qz):\n[0.7 0.6]\n\n\nCe sont bien celles qui ont été sélectionnées parmi les valeurs propres généralisées du système.\nVerifions que la solution satisfait les equations matricielles\n\n\nCode\nres_X_qz = A @ X_qz @ X_qz + B @ X_qz + C\nres_Y_qz = (A @ X_qz + B) @ Y_qz + D\nprint(f\"Residual equation for X (QZ): {np.linalg.norm(res_X_qz, ord=np.inf):.2e}\")\nprint(f\"Residual equation for Y (QZ): {np.linalg.norm(res_Y_qz, ord=np.inf):.2e}\")\n\n\nResidual equation for X (QZ): 2.22e-16\nResidual equation for Y (QZ): 5.55e-17\n\n\nOn peut enfin comparer la solution obtenue par QZ avec celle obtenue par iteration temporelle.\n\n\nCode\n# Comparons avec la solution par iteration temporelle:\nprint(\"Solution par iteration temporelle:\")\nprint(\"X:\")\nprint(X1)\n\n\nSolution par iteration temporelle:\nX:\n[[6.99999994e-01 3.29526657e-10]\n [1.41678598e-09 6.00000000e-01]]"
+    "text": "Méthode de Schur généralisée (QZ)\nLa fonction suivante calcule la solution du système matriciel du second ordre en utilisant la méthode de Schur généralisée (QZ).\nCette méthode est plus robuste que l’iteration temporelle et permet d’analyser l’ensemble des valeurs propres du système pour vérifier les conditions de stabilité.\n\n\nCode\nimport numpy as np\nfrom scipy.linalg import ordqz\n\n\ndef solve_second_order_qz(A, B, C, D, tol=1e-10, return_eigvals=False):\n    \"\"\"\n    Résout AX^2 + BX + C = 0 (branche stable) puis Y via (AX+B)Y + D = 0.\n\n    Retourne:\n      X, Y, eigvals, diagnostics\n    \"\"\"\n    A = np.asarray(A, dtype=float)\n    B = np.asarray(B, dtype=float)\n    C = np.asarray(C, dtype=float)\n    D = np.asarray(D, dtype=float)\n\n    n = A.shape[0]\n    I = np.eye(n)\n    Z = np.zeros((n, n))\n\n    # Companion pencil pour P(lambda)=A lambda^2 + B lambda + C\n    M = np.block([[Z, I], [-C, -B]])\n    N = np.block([[I, Z], [Z, A]])\n\n    S, T, alpha, beta, Q, Zqz = ordqz(M, N, sort=\"iuc\")\n    eigvals = (alpha / beta)\n    eigvals.sort()\n\n    if return_eigvals:\n        return eigvals\n\n\n    n_stable = np.sum(np.abs(eigvals) &lt; 1 - tol)\n    if n_stable != n:\n        raise ValueError(\n            f\"Nombre de racines stables = {n_stable}, attendu = {n}.\"\n        )\n\n    U = Zqz[:, :n]\n    U1 = U[:n, :]\n    U2 = U[n:, :]\n\n    if np.linalg.cond(U1) &gt; 1 / np.sqrt(np.finfo(float).eps):\n        raise ValueError(\"U1 est mal conditionnée : solution numérique instable.\")\n\n    X = np.real_if_close(U2 @ np.linalg.inv(U1))\n\n    G = A @ X + B\n    Y = np.linalg.solve(-G, D)\n\n    # Diagnostics de cohérence\n    res_X = np.linalg.norm(A @ X @ X + B @ X + C, ord=np.inf)\n    res_Y = np.linalg.norm((A @ X + B) @ Y + D, ord=np.inf)\n\n    diagnostics = {\n        \"eigvals\": eigvals,\n        \"n_stable\": int(n_stable),\n        \"residual_X\": float(res_X),\n        \"residual_Y\": float(res_Y),\n    }\n    return X, Y, eigvals, diagnostics\n\n\n\nCalculer les valeurs propres du système. Le système est-il stable ? Bien déterminé ?\n\n\n\n\n\n\n\nCode\neigvals = solve_second_order_qz(A, B, C, D, return_eigvals=True)\neigvals\n\n\narray([0.6+0.j, 0.7+0.j, 1.4+0.j, 1.5+0.j])\n\n\nOn observe exactement deux valeurs propres de module strictement inférieur à 1, ce qui correspond à une unique branche stable.\n\n\nVérifier que la solution obtenue satisfait le système et qu’elle est approximativement la même que celle obtenue par l’itération temporelle. Quelles sont ses valeurs propres ?\n\n\n\n\n\n\n\nCode\nX_qz, Y_qz, eigvals_qz, diagnostics = solve_second_order_qz(A, B, C, D)\nprint(\"Solution par QZ:\")\nprint(\"X:\")\nprint(X_qz)\nprint(\"Y:\")\nprint(Y_qz)\nprint(\"Diagnostics:\")\nprint(diagnostics)\n\n\nSolution par QZ:\nX:\n[[0.7 0. ]\n [0.  0.6]]\nY:\n[[0.71428571]\n [0.33333333]]\nDiagnostics:\n{'eigvals': array([0.6+0.j, 0.7+0.j, 1.4+0.j, 1.5+0.j]), 'n_stable': 2, 'residual_X': 2.220446049250313e-16, 'residual_Y': 5.551115123125783e-17}\n\n\nCalculons les valeurs propres de la solution\n\n\nCode\nprint(\"Sp(X_qz):\")\nprint(np.linalg.eigvals(X_qz))\n\n\nSp(X_qz):\n[0.7 0.6]\n\n\nCe sont bien celles qui ont été sélectionnées parmi les valeurs propres généralisées du système.\nVerifions que la solution satisfait les equations matricielles\n\n\nCode\nres_X_qz = A @ X_qz @ X_qz + B @ X_qz + C\nres_Y_qz = (A @ X_qz + B) @ Y_qz + D\nprint(f\"Residual equation for X (QZ): {np.linalg.norm(res_X_qz, ord=np.inf):.2e}\")\nprint(f\"Residual equation for Y (QZ): {np.linalg.norm(res_Y_qz, ord=np.inf):.2e}\")\n\n\nResidual equation for X (QZ): 2.22e-16\nResidual equation for Y (QZ): 5.55e-17\n\n\nOn peut enfin comparer la solution obtenue par QZ avec celle obtenue par iteration temporelle.\n\n\nCode\n# Comparons avec la solution par iteration temporelle:\nprint(\"Solution par iteration temporelle:\")\nprint(\"X:\")\nprint(X1)\n\n\nSolution par iteration temporelle:\nX:\n[[6.99999991e-01 2.17176079e-10]\n [4.04060906e-10 6.00000000e-01]]"
   }
 ]
