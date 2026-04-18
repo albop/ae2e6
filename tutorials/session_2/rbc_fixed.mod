@@ -40,3 +40,7 @@ end;
 shocks;
 var epsilon; stderr .009;
 end;
+
+steady; % calcul de l'état stationnaire
+check; % test des résidus 
+stoch_simul(periods=100); % calcul des simulations avec T=100

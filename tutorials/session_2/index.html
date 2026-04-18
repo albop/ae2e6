@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Premiers pas avec Dynare et appariement des moments. – Macro II - Fluctuations - Part II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-listing/list.min.js"></script>
+<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e04086fab2259e68405aa0399fd2ba10.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-mod-listings .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-filename',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-filename","listing-file-modified"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-mod-listings'] = new List('listing-mod-listings', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#utilisation-des-fichiers-mod-dynare." id="toc-utilisation-des-fichiers-mod-dynare." class="nav-link active" data-scroll-target="#utilisation-des-fichiers-mod-dynare.">Utilisation des fichiers mod Dynare.</a></li>
+  <li><a href="#calcul-des-moments-dans-les-données" id="toc-calcul-des-moments-dans-les-données" class="nav-link" data-scroll-target="#calcul-des-moments-dans-les-données">Calcul des moments dans les données</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.ipynb" download="index.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Premiers pas avec Dynare et appariement des moments.</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Cycles et fluctuations - AE2E6</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled" title="Objectifs">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Objectifs
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Apprendre à utiliser les fichiers mod de Dynare.</li>
+<li>Apprendre à calculer des moments dans les données et à les comparer avec ceux du modèle.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Fichiers mod">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fichiers mod
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="listing-mod-listings" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1776477250539">
+<div class="body">
+
+</div>
+<div class="metadata">
+<a href="../../tutorials/session_2/rbc.mod" class="no-external">
+<div class="metadata-value listing-filename">
+rbc.mod
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1776483409183">
+<div class="body">
+
+</div>
+<div class="metadata">
+<a href="../../tutorials/session_2/rbc_fixed.mod" class="no-external">
+<div class="metadata-value listing-filename">
+rbc_fixed.mod
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1718573648753">
+<div class="body">
+
+</div>
+<div class="metadata">
+<a href="../../tutorials/session_2/rbc_open.mod" class="no-external">
+<div class="metadata-value listing-filename">
+rbc_open.mod
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</div>
+</div>
+</div>
+<section id="utilisation-des-fichiers-mod-dynare." class="level1">
+<h1>Utilisation des fichiers mod Dynare.</h1>
+<p>Téléchargez le fichier mod <a href="rbc.mod">rbc</a>.</p>
+<div id="e331a77b" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dyno <span class="im">import</span> dynare</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><strong>Ouvrez le modèle RBC et résolvez-le. Corrigez les erreurs du fichier mod s’il y en a.</strong></p>
+<div id="dce440d7" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dynare(<span class="st">"rbc_fixed.mod"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<h3 class="anchored" data-anchor-id="utilisation-des-fichiers-mod-dynare.">Model: rbc_fixed</h3>
+
+<table class="caption-top table table-sm table-striped small">
+<tbody>
+<tr class="odd">
+<td>equations</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>variables</td>
+<td>9</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>&nbsp;&nbsp;endogenous</td>
+<td>8</td>
+<td>c, r, w, n, k, i, y, a</td>
+</tr>
+<tr class="even">
+<td>&nbsp;&nbsp;exogenous</td>
+<td>1</td>
+<td>epsilon</td>
+</tr>
+<tr class="odd">
+<td>constants</td>
+<td>7</td>
+<td>alpha, beta, delta, eta, khi, nss, rho</td>
+</tr>
+</tbody>
+</table>
+
+
+<br><h3 class="anchored">Check</h3><br><div style="margin:10px 0 14px 0;"><div style="font-weight:600;color:#0f172a;margin-bottom:6px;">Residuals</div><div style="overflow-x:auto;">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+eq 1
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+eq 2
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+eq 3
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+8.88178e-16
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+eq 4
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+eq 5
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+eq 6
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+eq 7
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+-6.93889e-18
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+eq 8
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+</tr>
+</tbody>
+</table>
+</div></div><br><div style="margin:10px 0 14px 0;"><div style="font-weight:600;color:#0f172a;margin-bottom:6px;">Generalized Eigenvalues</div><div style="overflow-x:auto;">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+1
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+2
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+3
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+4
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+5
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+6
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+7
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0.941906
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+8
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0.95
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+9
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+1.07784
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+10
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+inf
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+11
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+inf
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+12
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+inf
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+13
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+inf
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+14
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+inf
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+15
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+inf
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+16
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+inf
+</div></td>
+</tr>
+</tbody>
+</table>
+</div></div><br>
+        <h3 class="anchored">Decision Rule</h3>
+        <h4 class="anchored">Steady-state</h4>
+        
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">c</th>
+<th data-quarto-table-cell-role="th">r</th>
+<th data-quarto-table-cell-role="th">w</th>
+<th data-quarto-table-cell-role="th">n</th>
+<th data-quarto-table-cell-role="th">k</th>
+<th data-quarto-table-cell-role="th">i</th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">a</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.739618</td>
+<td>0.040228</td>
+<td>1.889055</td>
+<td>0.33</td>
+<td>7.63246</td>
+<td>0.190811</td>
+<td>0.93043</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+        <h4 class="anchored">Jacobian</h4>
+        
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">c[t-1]</th>
+<th data-quarto-table-cell-role="th">r[t-1]</th>
+<th data-quarto-table-cell-role="th">w[t-1]</th>
+<th data-quarto-table-cell-role="th">n[t-1]</th>
+<th data-quarto-table-cell-role="th">k[t-1]</th>
+<th data-quarto-table-cell-role="th">i[t-1]</th>
+<th data-quarto-table-cell-role="th">y[t-1]</th>
+<th data-quarto-table-cell-role="th">a[t-1]</th>
+<th data-quarto-table-cell-role="th">epsilon[t]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">c[t]</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.052398</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.312418</td>
+<td>0.328861</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">r[t]</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>-0.004436</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.055505</td>
+<td>0.058427</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">w[t]</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.102600</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.394746</td>
+<td>1.468153</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">n[t]</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>-0.011077</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.211670</td>
+<td>0.222810</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">k[t]</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.941906</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.971346</td>
+<td>1.022470</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">i[t]</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>-0.033094</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.971346</td>
+<td>1.022470</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">y[t]</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.019304</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.283764</td>
+<td>1.351331</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">a[t]</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.950000</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+        <br><h3 class="anchored">Moments</h3><br><h4 class="anchored">Unconditional Moments</h4><br>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">c</th>
+<th data-quarto-table-cell-role="th">r</th>
+<th data-quarto-table-cell-role="th">w</th>
+<th data-quarto-table-cell-role="th">n</th>
+<th data-quarto-table-cell-role="th">k</th>
+<th data-quarto-table-cell-role="th">i</th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">a</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">c</th>
+<td>0.000735</td>
+<td>-0.000004</td>
+<td>0.001996</td>
+<td>0.000042</td>
+<td>0.009911</td>
+<td>0.000366</td>
+<td>0.001101</td>
+<td>0.000675</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">r</th>
+<td>-0.000004</td>
+<td>0.000002</td>
+<td>0.000004</td>
+<td>0.000005</td>
+<td>-0.000142</td>
+<td>0.000020</td>
+<td>0.000016</td>
+<td>0.000015</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">w</th>
+<td>0.001996</td>
+<td>0.000004</td>
+<td>0.005562</td>
+<td>0.000165</td>
+<td>0.026063</td>
+<td>0.001208</td>
+<td>0.003204</td>
+<td>0.002007</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">n</th>
+<td>0.000042</td>
+<td>0.000005</td>
+<td>0.000165</td>
+<td>0.000020</td>
+<td>0.000266</td>
+<td>0.000097</td>
+<td>0.000139</td>
+<td>0.000100</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">k</th>
+<td>0.009911</td>
+<td>-0.000142</td>
+<td>0.026063</td>
+<td>0.000266</td>
+<td>0.138681</td>
+<td>0.003674</td>
+<td>0.013585</td>
+<td>0.008075</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">i</th>
+<td>0.000366</td>
+<td>0.000020</td>
+<td>0.001208</td>
+<td>0.000097</td>
+<td>0.003674</td>
+<td>0.000501</td>
+<td>0.000868</td>
+<td>0.000596</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">y</th>
+<td>0.001101</td>
+<td>0.000016</td>
+<td>0.003204</td>
+<td>0.000139</td>
+<td>0.013585</td>
+<td>0.000868</td>
+<td>0.001969</td>
+<td>0.001271</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">a</th>
+<td>0.000675</td>
+<td>0.000015</td>
+<td>0.002007</td>
+<td>0.000100</td>
+<td>0.008075</td>
+<td>0.000596</td>
+<td>0.001271</td>
+<td>0.000831</td>
+</tr>
+</tbody>
+</table>
+<br><h4 class="anchored">Conditional Moments</h4><br>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">c</th>
+<th data-quarto-table-cell-role="th">r</th>
+<th data-quarto-table-cell-role="th">w</th>
+<th data-quarto-table-cell-role="th">n</th>
+<th data-quarto-table-cell-role="th">k</th>
+<th data-quarto-table-cell-role="th">i</th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">a</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">c</th>
+<td>0.000009</td>
+<td>1.556356e-06</td>
+<td>0.000039</td>
+<td>0.000006</td>
+<td>0.000027</td>
+<td>0.000027</td>
+<td>0.000036</td>
+<td>0.000027</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">r</th>
+<td>0.000002</td>
+<td>2.765077e-07</td>
+<td>0.000007</td>
+<td>0.000001</td>
+<td>0.000005</td>
+<td>0.000005</td>
+<td>0.000006</td>
+<td>0.000005</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">w</th>
+<td>0.000039</td>
+<td>6.948125e-06</td>
+<td>0.000175</td>
+<td>0.000026</td>
+<td>0.000122</td>
+<td>0.000122</td>
+<td>0.000161</td>
+<td>0.000119</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">n</th>
+<td>0.000006</td>
+<td>1.054464e-06</td>
+<td>0.000026</td>
+<td>0.000004</td>
+<td>0.000018</td>
+<td>0.000018</td>
+<td>0.000024</td>
+<td>0.000018</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">k</th>
+<td>0.000027</td>
+<td>4.838899e-06</td>
+<td>0.000122</td>
+<td>0.000018</td>
+<td>0.000085</td>
+<td>0.000085</td>
+<td>0.000112</td>
+<td>0.000083</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">i</th>
+<td>0.000027</td>
+<td>4.838899e-06</td>
+<td>0.000122</td>
+<td>0.000018</td>
+<td>0.000085</td>
+<td>0.000085</td>
+<td>0.000112</td>
+<td>0.000083</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">y</th>
+<td>0.000036</td>
+<td>6.395255e-06</td>
+<td>0.000161</td>
+<td>0.000024</td>
+<td>0.000112</td>
+<td>0.000112</td>
+<td>0.000148</td>
+<td>0.000109</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">a</th>
+<td>0.000027</td>
+<td>4.732560e-06</td>
+<td>0.000119</td>
+<td>0.000018</td>
+<td>0.000083</td>
+<td>0.000083</td>
+<td>0.000109</td>
+<td>0.000081</td>
+</tr>
+</tbody>
+</table>
+<br><h3 class="anchored">Simulation</h3><br><svg xmlns="http://www.w3.org/2000/svg" width="520" height="708" viewbox="0 0 520 708" role="img" aria-label="Simulation charts"><rect width="100%" height="100%" fill="white"></rect><line x1="12" y1="16" x2="30" y2="16" stroke="#0f766e" stroke-width="2"></line><text x="36" y="20" font-size="12" fill="#334155">epsilon</text><line x1="36" y1="164.00" x2="240" y2="164.00" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"></line><rect x="36" y="46" width="204" height="118" fill="none" stroke="#cbd5e1" stroke-width="1"></rect><text x="36" y="40" font-size="13" font-weight="600" fill="#0f172a">c</text><text x="36" y="182" font-size="11" fill="#64748b">0</text><text x="232" y="182" text-anchor="end" font-size="11" fill="#64748b">100</text><text x="30" y="56" text-anchor="end" font-size="11" fill="#64748b">0.00474</text><text x="30" y="164" text-anchor="end" font-size="11" fill="#64748b">0</text><polyline fill="none" stroke="#0f766e" stroke-width="2" points="36.00,164.00 38.04,90.33 40.08,82.01 42.12,74.80 44.16,68.62 46.20,63.35 48.24,58.94 50.28,55.29 52.32,52.35 54.36,50.04 56.40,48.30 58.44,47.08 60.48,46.33 62.52,46.00 64.56,46.05 66.60,46.43 68.64,47.12 70.68,48.07 72.72,49.26 74.76,50.66 76.80,52.24 78.84,53.98 80.88,55.85 82.92,57.85 84.96,59.94 87.00,62.11 89.04,64.35 91.08,66.64 93.12,68.98 95.16,71.35 97.20,73.73 99.24,76.13 101.28,78.53 103.32,80.93 105.36,83.31 107.40,85.68 109.44,88.03 111.48,90.35 113.52,92.64 115.56,94.90 117.60,97.12 119.64,99.30 121.68,101.44 123.72,103.54 125.76,105.59 127.80,107.59 129.84,109.55 131.88,111.46 133.92,113.32 135.96,115.14 138.00,116.90 140.04,118.62 142.08,120.28 144.12,121.90 146.16,123.47 148.20,125.00 150.24,126.47 152.28,127.90 154.32,129.29 156.36,130.63 158.40,131.92 160.44,133.18 162.48,134.39 164.52,135.55 166.56,136.68 168.60,137.77 170.64,138.82 172.68,139.84 174.72,140.81 176.76,141.76 178.80,142.66 180.84,143.54 182.88,144.38 184.92,145.19 186.96,145.97 189.00,146.72 191.04,147.44 193.08,148.13 195.12,148.80 197.16,149.44 199.20,150.05 201.24,150.64 203.28,151.21 205.32,151.76 207.36,152.28 209.40,152.78 211.44,153.27 213.48,153.73 215.52,154.17 217.56,154.60 219.60,155.01 221.64,155.40 223.68,155.77 225.72,156.13 227.76,156.48 229.80,156.81 231.84,157.12 233.88,157.43 235.92,157.72 237.96,157.99 240.00,158.26"></polyline><line x1="296" y1="140.27" x2="500" y2="140.27" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"></line><rect x="296" y="46" width="204" height="118" fill="none" stroke="#cbd5e1" stroke-width="1"></rect><text x="296" y="40" font-size="13" font-weight="600" fill="#0f172a">r</text><text x="296" y="182" font-size="11" fill="#64748b">0</text><text x="492" y="182" text-anchor="end" font-size="11" fill="#64748b">100</text><text x="290" y="56" text-anchor="end" font-size="11" fill="#64748b">0.000526</text><text x="290" y="164" text-anchor="end" font-size="11" fill="#64748b">-0.000132</text><polyline fill="none" stroke="#0f766e" stroke-width="2" points="296.00,140.27 298.04,46.00 300.08,58.03 302.12,69.04 304.16,79.09 306.20,88.26 308.24,96.63 310.28,104.23 312.32,111.14 314.36,117.41 316.40,123.09 318.44,128.22 320.48,132.84 322.52,137.00 324.56,140.74 326.60,144.07 328.64,147.05 330.68,149.69 332.72,152.03 334.76,154.09 336.80,155.89 338.84,157.46 340.88,158.81 342.92,159.96 344.96,160.94 347.00,161.75 349.04,162.42 351.08,162.95 353.12,163.36 355.16,163.66 357.20,163.86 359.24,163.97 361.28,164.00 363.32,163.96 365.36,163.85 367.40,163.69 369.44,163.47 371.48,163.21 373.52,162.92 375.56,162.58 377.60,162.22 379.64,161.83 381.68,161.42 383.72,160.99 385.76,160.55 387.80,160.09 389.84,159.63 391.88,159.15 393.92,158.68 395.96,158.20 398.00,157.71 400.04,157.23 402.08,156.75 404.12,156.27 406.16,155.80 408.20,155.33 410.24,154.86 412.28,154.41 414.32,153.95 416.36,153.51 418.40,153.08 420.44,152.65 422.48,152.23 424.52,151.83 426.56,151.43 428.60,151.04 430.64,150.66 432.68,150.29 434.72,149.93 436.76,149.58 438.80,149.24 440.84,148.91 442.88,148.59 444.92,148.27 446.96,147.97 449.00,147.68 451.04,147.40 453.08,147.12 455.12,146.86 457.16,146.60 459.20,146.35 461.24,146.11 463.28,145.88 465.32,145.66 467.36,145.44 469.40,145.23 471.44,145.03 473.48,144.84 475.52,144.66 477.56,144.48 479.60,144.30 481.64,144.14 483.68,143.98 485.72,143.82 487.76,143.68 489.80,143.53 491.84,143.40 493.88,143.26 495.92,143.14 497.96,143.02 500.00,142.90"></polyline><line x1="36" y1="334.00" x2="240" y2="334.00" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"></line><rect x="36" y="216" width="204" height="118" fill="none" stroke="#cbd5e1" stroke-width="1"></rect><text x="36" y="210" font-size="13" font-weight="600" fill="#0f172a">w</text><text x="36" y="352" font-size="11" fill="#64748b">0</text><text x="232" y="352" text-anchor="end" font-size="11" fill="#64748b">100</text><text x="30" y="226" text-anchor="end" font-size="11" fill="#64748b">0.014</text><text x="30" y="334" text-anchor="end" font-size="11" fill="#64748b">0</text><polyline fill="none" stroke="#0f766e" stroke-width="2" points="36.00,334.00 38.04,222.66 40.08,220.28 42.12,218.47 44.16,217.19 46.20,216.38 48.24,216.00 50.28,216.00 52.32,216.35 54.36,217.00 56.40,217.92 58.44,219.08 60.48,220.45 62.52,222.01 64.56,223.73 66.60,225.59 68.64,227.57 70.68,229.65 72.72,231.81 74.76,234.05 76.80,236.34 78.84,238.67 80.88,241.03 82.92,243.42 84.96,245.81 87.00,248.21 89.04,250.61 91.08,253.00 93.12,255.37 95.16,257.72 97.20,260.05 99.24,262.34 101.28,264.60 103.32,266.83 105.36,269.02 107.40,271.16 109.44,273.26 111.48,275.32 113.52,277.33 115.56,279.30 117.60,281.21 119.64,283.08 121.68,284.90 123.72,286.67 125.76,288.40 127.80,290.07 129.84,291.69 131.88,293.27 133.92,294.80 135.96,296.28 138.00,297.72 140.04,299.11 142.08,300.46 144.12,301.76 146.16,303.01 148.20,304.23 150.24,305.40 152.28,306.54 154.32,307.63 156.36,308.69 158.40,309.71 160.44,310.69 162.48,311.64 164.52,312.55 166.56,313.42 168.60,314.27 170.64,315.08 172.68,315.87 174.72,316.62 176.76,317.35 178.80,318.04 180.84,318.71 182.88,319.36 184.92,319.97 186.96,320.57 189.00,321.14 191.04,321.69 193.08,322.21 195.12,322.72 197.16,323.20 199.20,323.67 201.24,324.12 203.28,324.54 205.32,324.95 207.36,325.35 209.40,325.72 211.44,326.09 213.48,326.43 215.52,326.76 217.56,327.08 219.60,327.39 221.64,327.68 223.68,327.96 225.72,328.23 227.76,328.48 229.80,328.73 231.84,328.96 233.88,329.19 235.92,329.40 237.96,329.61 240.00,329.81"></polyline><line x1="296" y1="322.71" x2="500" y2="322.71" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"></line><rect x="296" y="216" width="204" height="118" fill="none" stroke="#cbd5e1" stroke-width="1"></rect><text x="296" y="210" font-size="13" font-weight="600" fill="#0f172a">n</text><text x="296" y="352" font-size="11" fill="#64748b">0</text><text x="492" y="352" text-anchor="end" font-size="11" fill="#64748b">100</text><text x="290" y="226" text-anchor="end" font-size="11" fill="#64748b">0.00201</text><text x="290" y="334" text-anchor="end" font-size="11" fill="#64748b">-0.000212</text><polyline fill="none" stroke="#0f766e" stroke-width="2" points="296.00,322.71 298.04,216.00 300.08,226.76 302.12,236.67 304.16,245.78 306.20,254.16 308.24,261.86 310.28,268.92 312.32,275.40 314.36,281.33 316.40,286.76 318.44,291.72 320.48,296.25 322.52,300.38 324.56,304.14 326.60,307.56 328.64,310.67 330.68,313.48 332.72,316.02 334.76,318.32 336.80,320.38 338.84,322.24 340.88,323.90 342.92,325.39 344.96,326.70 347.00,327.87 349.04,328.91 351.08,329.81 353.12,330.60 355.16,331.28 357.20,331.87 359.24,332.37 361.28,332.78 363.32,333.13 365.36,333.41 367.40,333.62 369.44,333.79 371.48,333.90 373.52,333.97 375.56,334.00 377.60,333.99 379.64,333.95 381.68,333.89 383.72,333.79 385.76,333.68 387.80,333.54 389.84,333.39 391.88,333.22 393.92,333.04 395.96,332.85 398.00,332.65 400.04,332.44 402.08,332.23 404.12,332.01 406.16,331.79 408.20,331.56 410.24,331.33 412.28,331.10 414.32,330.87 416.36,330.64 418.40,330.41 420.44,330.19 422.48,329.96 424.52,329.74 426.56,329.52 428.60,329.31 430.64,329.09 432.68,328.89 434.72,328.68 436.76,328.48 438.80,328.29 440.84,328.09 442.88,327.91 444.92,327.72 446.96,327.55 449.00,327.37 451.04,327.20 453.08,327.04 455.12,326.88 457.16,326.73 459.20,326.58 461.24,326.43 463.28,326.29 465.32,326.15 467.36,326.02 469.40,325.89 471.44,325.77 473.48,325.65 475.52,325.53 477.56,325.42 479.60,325.32 481.64,325.21 483.68,325.11 485.72,325.01 487.76,324.92 489.80,324.83 491.84,324.74 493.88,324.66 495.92,324.58 497.96,324.50 500.00,324.43"></polyline><line x1="36" y1="504.00" x2="240" y2="504.00" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"></line><rect x="36" y="386" width="204" height="118" fill="none" stroke="#cbd5e1" stroke-width="1"></rect><text x="36" y="380" font-size="13" font-weight="600" fill="#0f172a">k</text><text x="36" y="522" font-size="11" fill="#64748b">0</text><text x="232" y="522" text-anchor="end" font-size="11" fill="#64748b">100</text><text x="30" y="396" text-anchor="end" font-size="11" fill="#64748b">0.0645</text><text x="30" y="504" text-anchor="end" font-size="11" fill="#64748b">0</text><polyline fill="none" stroke="#0f766e" stroke-width="2" points="36.00,504.00 38.04,487.16 40.08,472.13 42.12,458.78 44.16,446.96 46.20,436.56 48.24,427.44 50.28,419.51 52.32,412.65 54.36,406.78 56.40,401.81 58.44,397.67 60.48,394.26 62.52,391.53 64.56,389.42 66.60,387.86 68.64,386.81 70.68,386.20 72.72,386.00 74.76,386.16 76.80,386.65 78.84,387.43 80.88,388.47 82.92,389.73 84.96,391.19 87.00,392.83 89.04,394.61 91.08,396.53 93.12,398.55 95.16,400.67 97.20,402.87 99.24,405.13 101.28,407.44 103.32,409.79 105.36,412.16 107.40,414.55 109.44,416.95 111.48,419.35 113.52,421.74 115.56,424.12 117.60,426.48 119.64,428.82 121.68,431.13 123.72,433.41 125.76,435.66 127.80,437.86 129.84,440.03 131.88,442.16 133.92,444.24 135.96,446.27 138.00,448.26 140.04,450.20 142.08,452.10 144.12,453.94 146.16,455.74 148.20,457.49 150.24,459.19 152.28,460.84 154.32,462.44 156.36,463.99 158.40,465.50 160.44,466.96 162.48,468.38 164.52,469.75 166.56,471.07 168.60,472.35 170.64,473.59 172.68,474.79 174.72,475.94 176.76,477.06 178.80,478.13 180.84,479.17 182.88,480.17 184.92,481.14 186.96,482.07 189.00,482.96 191.04,483.82 193.08,484.66 195.12,485.45 197.16,486.22 199.20,486.96 201.24,487.67 203.28,488.36 205.32,489.02 207.36,489.65 209.40,490.26 211.44,490.84 213.48,491.40 215.52,491.94 217.56,492.45 219.60,492.95 221.64,493.42 223.68,493.88 225.72,494.32 227.76,494.74 229.80,495.14 231.84,495.53 233.88,495.90 235.92,496.25 237.96,496.59 240.00,496.92"></polyline><line x1="296" y1="500.28" x2="500" y2="500.28" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"></line><rect x="296" y="386" width="204" height="118" fill="none" stroke="#cbd5e1" stroke-width="1"></rect><text x="296" y="380" font-size="13" font-weight="600" fill="#0f172a">i</text><text x="296" y="522" font-size="11" fill="#64748b">0</text><text x="492" y="522" text-anchor="end" font-size="11" fill="#64748b">100</text><text x="290" y="396" text-anchor="end" font-size="11" fill="#64748b">0.0092</text><text x="290" y="504" text-anchor="end" font-size="11" fill="#64748b">-0.0003</text><polyline fill="none" stroke="#0f766e" stroke-width="2" points="296.00,500.28 298.04,386.00 300.08,395.50 302.12,404.30 304.16,412.45 306.20,420.00 308.24,426.99 310.28,433.46 312.32,439.44 314.36,444.97 316.40,450.08 318.44,454.80 320.48,459.15 322.52,463.16 324.56,466.86 326.60,470.27 328.64,473.41 330.68,476.29 332.72,478.94 334.76,481.38 336.80,483.61 338.84,485.65 340.88,487.53 342.92,489.24 344.96,490.81 347.00,492.24 349.04,493.54 351.08,494.72 353.12,495.80 355.16,496.77 357.20,497.65 359.24,498.45 361.28,499.17 363.32,499.82 365.36,500.40 367.40,500.92 369.44,501.38 371.48,501.79 373.52,502.15 375.56,502.47 377.60,502.75 379.64,502.99 381.68,503.20 383.72,503.38 385.76,503.53 387.80,503.66 389.84,503.76 391.88,503.84 393.92,503.90 395.96,503.95 398.00,503.98 400.04,504.00 402.08,504.00 404.12,503.99 406.16,503.97 408.20,503.95 410.24,503.91 412.28,503.87 414.32,503.83 416.36,503.77 418.40,503.72 420.44,503.65 422.48,503.59 424.52,503.52 426.56,503.45 428.60,503.38 430.64,503.31 432.68,503.23 434.72,503.16 436.76,503.08 438.80,503.01 440.84,502.93 442.88,502.86 444.92,502.78 446.96,502.71 449.00,502.63 451.04,502.56 453.08,502.49 455.12,502.42 457.16,502.35 459.20,502.28 461.24,502.21 463.28,502.15 465.32,502.08 467.36,502.02 469.40,501.96 471.44,501.90 473.48,501.84 475.52,501.79 477.56,501.73 479.60,501.68 481.64,501.63 483.68,501.58 485.72,501.53 487.76,501.48 489.80,501.43 491.84,501.39 493.88,501.35 495.92,501.31 497.96,501.27 500.00,501.23"></polyline><line x1="36" y1="674.00" x2="240" y2="674.00" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"></line><rect x="36" y="556" width="204" height="118" fill="none" stroke="#cbd5e1" stroke-width="1"></rect><text x="36" y="550" font-size="13" font-weight="600" fill="#0f172a">y</text><text x="36" y="692" font-size="11" fill="#64748b">0</text><text x="232" y="692" text-anchor="end" font-size="11" fill="#64748b">100</text><text x="30" y="566" text-anchor="end" font-size="11" fill="#64748b">0.0122</text><text x="30" y="674" text-anchor="end" font-size="11" fill="#64748b">0</text><polyline fill="none" stroke="#0f766e" stroke-width="2" points="36.00,674.00 38.04,556.00 40.08,560.18 42.12,564.24 44.16,568.20 46.20,572.05 48.24,575.79 50.28,579.43 52.32,582.95 54.36,586.37 56.40,589.68 58.44,592.89 60.48,596.00 62.52,599.01 64.56,601.92 66.60,604.73 68.64,607.45 70.68,610.07 72.72,612.61 74.76,615.06 76.80,617.42 78.84,619.69 80.88,621.89 82.92,624.00 84.96,626.04 87.00,628.00 89.04,629.89 91.08,631.71 93.12,633.46 95.16,635.15 97.20,636.77 99.24,638.33 101.28,639.82 103.32,641.26 105.36,642.64 107.40,643.97 109.44,645.25 111.48,646.47 113.52,647.65 115.56,648.78 117.60,649.86 119.64,650.90 121.68,651.90 123.72,652.86 125.76,653.78 127.80,654.66 129.84,655.50 131.88,656.31 133.92,657.08 135.96,657.82 138.00,658.54 140.04,659.22 142.08,659.87 144.12,660.50 146.16,661.09 148.20,661.67 150.24,662.22 152.28,662.74 154.32,663.24 156.36,663.72 158.40,664.18 160.44,664.62 162.48,665.05 164.52,665.45 166.56,665.83 168.60,666.20 170.64,666.56 172.68,666.89 174.72,667.21 176.76,667.52 178.80,667.82 180.84,668.10 182.88,668.37 184.92,668.62 186.96,668.87 189.00,669.10 191.04,669.33 193.08,669.54 195.12,669.75 197.16,669.94 199.20,670.13 201.24,670.31 203.28,670.48 205.32,670.64 207.36,670.80 209.40,670.94 211.44,671.09 213.48,671.22 215.52,671.35 217.56,671.47 219.60,671.59 221.64,671.70 223.68,671.81 225.72,671.91 227.76,672.01 229.80,672.10 231.84,672.19 233.88,672.28 235.92,672.36 237.96,672.43 240.00,672.51"></polyline><line x1="296" y1="674.00" x2="500" y2="674.00" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"></line><rect x="296" y="556" width="204" height="118" fill="none" stroke="#cbd5e1" stroke-width="1"></rect><text x="296" y="550" font-size="13" font-weight="600" fill="#0f172a">a</text><text x="296" y="692" font-size="11" fill="#64748b">0</text><text x="492" y="692" text-anchor="end" font-size="11" fill="#64748b">100</text><text x="290" y="566" text-anchor="end" font-size="11" fill="#64748b">0.009</text><text x="290" y="674" text-anchor="end" font-size="11" fill="#64748b">0</text><polyline fill="none" stroke="#0f766e" stroke-width="2" points="296.00,674.00 298.04,556.00 300.08,561.90 302.12,567.51 304.16,572.83 306.20,577.89 308.24,582.69 310.28,587.26 312.32,591.60 314.36,595.72 316.40,599.63 318.44,603.35 320.48,606.88 322.52,610.24 324.56,613.43 326.60,616.45 328.64,619.33 330.68,622.07 332.72,624.66 334.76,627.13 336.80,629.47 338.84,631.70 340.88,633.81 342.92,635.82 344.96,637.73 347.00,639.55 349.04,641.27 351.08,642.90 353.12,644.46 355.16,645.94 357.20,647.34 359.24,648.67 361.28,649.94 363.32,651.14 365.36,652.28 367.40,653.37 369.44,654.40 371.48,655.38 373.52,656.31 375.56,657.20 377.60,658.04 379.64,658.84 381.68,659.59 383.72,660.31 385.76,661.00 387.80,661.65 389.84,662.27 391.88,662.85 393.92,663.41 395.96,663.94 398.00,664.44 400.04,664.92 402.08,665.37 404.12,665.81 406.16,666.22 408.20,666.60 410.24,666.97 412.28,667.33 414.32,667.66 416.36,667.98 418.40,668.28 420.44,668.56 422.48,668.84 424.52,669.09 426.56,669.34 428.60,669.57 430.64,669.79 432.68,670.00 434.72,670.20 436.76,670.39 438.80,670.57 440.84,670.75 442.88,670.91 444.92,671.06 446.96,671.21 449.00,671.35 451.04,671.48 453.08,671.61 455.12,671.73 457.16,671.84 459.20,671.95 461.24,672.05 463.28,672.15 465.32,672.24 467.36,672.33 469.40,672.41 471.44,672.49 473.48,672.57 475.52,672.64 477.56,672.71 479.60,672.77 481.64,672.83 483.68,672.89 485.72,672.95 487.76,673.00 489.80,673.05 491.84,673.10 493.88,673.14 495.92,673.19 497.96,673.23 500.00,673.26"></polyline></svg>
+</div>
+</div>
+<p>(si besoin, téléchargez le modèle corrigé <a href="rbc_fixed.mod">ici</a> )</p>
+<p><strong>Inspectez les différents éléments de la solution (règle de décision, moments inconditionnels, simulations).</strong></p>
+<p>Ces éléments sont présents dans le rapport de la question précédente. On peut aussi y accéder en inspectant l’objet renvoyé par la fonction dynare.</p>
+<div id="5ae34c96" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"rbc_fixed.mod"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># report. # inspectez l'objet report pour trouver les différents éléments de la solution</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="5956dcb7" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><strong>Interprétez l’effet d’un choc de productivité. Comment dépend-il de la persistance du choc ?</strong></p>
+<div id="39e07228" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="calcul-des-moments-dans-les-données" class="level1">
+<h1>Calcul des moments dans les données</h1>
+<p><strong>Téléchargez les séries temporelles des États-Unis depuis la Banque mondiale pour : PIB réel, investissement, consommation, heures travaillées.</strong></p>
+<p>Utilisons le code suivant pour télécharger les données et les préparer pour l’analyse. Nous allons utiliser la bibliothèque <code>dbnomics</code> pour importer les données de l’OCDE (pour ça il suffit de trouver les identifiants des séries sur le site de DBNomics).</p>
+<div id="a3d09d55" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dbnomics <span class="im">import</span> fetch_series</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.filters.hp_filter <span class="im">import</span> hpfilter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="626a45ea" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>series_ids <span class="op">=</span> [</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.P5.LNBQRSA.Q"</span>,      <span class="co"># investissement</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.B1_GS1.LNBQRSA.Q"</span>,  <span class="co"># PIB</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.P3.LNBQRSA.Q"</span>,      <span class="co"># consommation</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>frames <span class="op">=</span> []</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sid <span class="kw">in</span> series_ids:</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    tmp <span class="op">=</span> fetch_series(sid)[[<span class="st">"period"</span>, <span class="st">"value"</span>]].copy()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    tmp[<span class="st">"Subject"</span>] <span class="op">=</span> sid.split(<span class="st">"/"</span>)[<span class="dv">2</span>].split(<span class="st">"."</span>)[<span class="dv">1</span>]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    frames.append(tmp)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>df_long <span class="op">=</span> pd.concat(frames, ignore_index<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="7b8178af" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ne garder que les données pertinentes, au format long.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_long <span class="op">=</span> df_long[[<span class="st">"Subject"</span>, <span class="st">"period"</span>, <span class="st">"value"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="80df9c47" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df_long.pivot(index<span class="op">=</span><span class="st">"period"</span>, columns<span class="op">=</span><span class="st">"Subject"</span>, values<span class="op">=</span><span class="st">"value"</span>).reset_index()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="4f52976c" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.sort_values(<span class="st">"period"</span>).dropna().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="4bccd0ac" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.rename(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>{</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"period"</span>: <span class="st">"period"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"P5"</span>: <span class="st">"investment"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"B1_GS1"</span>: <span class="st">"gdp"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"P3"</span>: <span class="st">"consumption"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>On peut maintenant tracer les séries temporelles:</p>
+<div id="5c7c7946" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><strong>Détrendez toutes les séries.</strong></p>
+<div id="c952f87f" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détrender la série de consommation.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> df[<span class="st">"consumption"</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>_, trend <span class="op">=</span> hpfilter(series, lamb<span class="op">=</span><span class="dv">1600</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>cycle <span class="op">=</span> (series <span class="op">-</span> trend) <span class="op">/</span> trend</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"consumption_trend"</span>] <span class="op">=</span> trend</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"consumption_cycle"</span>] <span class="op">=</span> cycle</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="3da45ff0" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(series.values, label<span class="op">=</span><span class="st">"consumption"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(trend.values, label<span class="op">=</span><span class="st">"trend"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"consommation"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend()</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(cycle.values)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"consommation (cycle)"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-1.png" width="950" height="373" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="eece89bd" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détrender le PIB.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="e80514f4" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détrender la série d'investissement.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><strong>Calculez les corrélations entre les séries détrendées. Calculez les ratios <span class="math inline">\(\frac{\sigma(investment)}{\sigma(gdp)}\)</span> et <span class="math inline">\(\frac{\sigma (consumption)}{\sigma (gdp)}\)</span>. Comparez avec le modèle RBC et commentez.</strong></p>
+<div id="4b528304" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>On peux calculer l’équivalent des ces ratios dans le modèle, en calculant les volatilités conditionnelles (en log)</p>
+<div id="4c1cbd5d" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dr <span class="op">=</span> report.solution.decision_rule</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Σ<span class="dv">0</span> <span class="op">=</span> dr.Y <span class="op">@</span> dr.Σ <span class="op">@</span> dr.Y.T <span class="co"># volatilité conditionelle</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> dr.x0 <span class="co"># steady-state</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>std_model <span class="op">=</span> np.diag(Σ<span class="dv">0</span>) <span class="op">/</span> x <span class="co"># volatilités conditionnelles en en log</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>variable_names <span class="op">=</span> dr.symbols[<span class="st">'endogenous'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="c9bb6cab" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/albop\.github\.io\/ae2e6\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Premiers pas avec Dynare et appariement des moments.</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Cycles et fluctuations - AE2E6"</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="an">resources:</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">    - "*.mod"</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="an">listing:</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">    id: mod-listings</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">    contents:</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">        - "*.mod"</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">    fields: [filename]</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">  ipynb: default</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true" title="Objectifs"}</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Apprendre à utiliser les fichiers mod de Dynare.</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Apprendre à calculer des moments dans les données et à les comparer avec ceux du modèle.</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>::: </span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Fichiers mod" collapse="true"}</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>:::: {#mod-listings}</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="fu"># Utilisation des fichiers mod Dynare.</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>Téléchargez le fichier mod <span class="co">[</span><span class="ot">rbc</span><span class="co">](rbc.mod)</span>.</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dyno <span class="im">import</span> dynare</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>__Ouvrez le modèle RBC et résolvez-le. Corrigez les erreurs du fichier mod s'il y en a.__</span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>dynare(<span class="st">"rbc_fixed.mod"</span>)</span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>(si besoin, téléchargez le modèle corrigé <span class="co">[</span><span class="ot">ici</span><span class="co">](rbc_fixed.mod)</span> )</span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>__Inspectez les différents éléments de la solution (règle de décision, moments inconditionnels, simulations).__</span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>Ces éléments sont présents dans le rapport de la question précédente. On peut aussi y accéder en inspectant l'objet renvoyé par la fonction dynare.</span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"rbc_fixed.mod"</span>)</span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a><span class="co"># report. # inspectez l'objet report pour trouver les différents éléments de la solution</span></span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb20-70"><a href="#cb20-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-71"><a href="#cb20-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a>__Interprétez l'effet d'un choc de productivité. Comment dépend-il de la persistance du choc ?__</span>
+<span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-77"><a href="#cb20-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-78"><a href="#cb20-78" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb20-79"><a href="#cb20-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-81"><a href="#cb20-81" aria-hidden="true" tabindex="-1"></a><span class="fu"># Calcul des moments dans les données</span></span>
+<span id="cb20-82"><a href="#cb20-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-83"><a href="#cb20-83" aria-hidden="true" tabindex="-1"></a>__Téléchargez les séries temporelles des États-Unis depuis la Banque mondiale pour : PIB réel, investissement, consommation, heures travaillées.__</span>
+<span id="cb20-84"><a href="#cb20-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-85"><a href="#cb20-85" aria-hidden="true" tabindex="-1"></a>Utilisons le code suivant pour télécharger les données et les préparer pour l'analyse. Nous allons utiliser la bibliothèque <span class="in">`dbnomics`</span> pour importer les données de l'OCDE (pour ça il suffit de trouver les identifiants des séries sur le site de DBNomics).</span>
+<span id="cb20-86"><a href="#cb20-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-89"><a href="#cb20-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-90"><a href="#cb20-90" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb20-91"><a href="#cb20-91" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb20-92"><a href="#cb20-92" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb20-93"><a href="#cb20-93" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dbnomics <span class="im">import</span> fetch_series</span>
+<span id="cb20-94"><a href="#cb20-94" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.filters.hp_filter <span class="im">import</span> hpfilter</span>
+<span id="cb20-95"><a href="#cb20-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-96"><a href="#cb20-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-99"><a href="#cb20-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-100"><a href="#cb20-100" aria-hidden="true" tabindex="-1"></a>series_ids <span class="op">=</span> [</span>
+<span id="cb20-101"><a href="#cb20-101" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.P5.LNBQRSA.Q"</span>,      <span class="co"># investissement</span></span>
+<span id="cb20-102"><a href="#cb20-102" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.B1_GS1.LNBQRSA.Q"</span>,  <span class="co"># PIB</span></span>
+<span id="cb20-103"><a href="#cb20-103" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OECD/QNA/USA.P3.LNBQRSA.Q"</span>,      <span class="co"># consommation</span></span>
+<span id="cb20-104"><a href="#cb20-104" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb20-105"><a href="#cb20-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-106"><a href="#cb20-106" aria-hidden="true" tabindex="-1"></a>frames <span class="op">=</span> []</span>
+<span id="cb20-107"><a href="#cb20-107" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sid <span class="kw">in</span> series_ids:</span>
+<span id="cb20-108"><a href="#cb20-108" aria-hidden="true" tabindex="-1"></a>    tmp <span class="op">=</span> fetch_series(sid)[[<span class="st">"period"</span>, <span class="st">"value"</span>]].copy()</span>
+<span id="cb20-109"><a href="#cb20-109" aria-hidden="true" tabindex="-1"></a>    tmp[<span class="st">"Subject"</span>] <span class="op">=</span> sid.split(<span class="st">"/"</span>)[<span class="dv">2</span>].split(<span class="st">"."</span>)[<span class="dv">1</span>]</span>
+<span id="cb20-110"><a href="#cb20-110" aria-hidden="true" tabindex="-1"></a>    frames.append(tmp)</span>
+<span id="cb20-111"><a href="#cb20-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-112"><a href="#cb20-112" aria-hidden="true" tabindex="-1"></a>df_long <span class="op">=</span> pd.concat(frames, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-113"><a href="#cb20-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-114"><a href="#cb20-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-117"><a href="#cb20-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-118"><a href="#cb20-118" aria-hidden="true" tabindex="-1"></a><span class="co"># Ne garder que les données pertinentes, au format long.</span></span>
+<span id="cb20-119"><a href="#cb20-119" aria-hidden="true" tabindex="-1"></a>df_long <span class="op">=</span> df_long[[<span class="st">"Subject"</span>, <span class="st">"period"</span>, <span class="st">"value"</span>]]</span>
+<span id="cb20-120"><a href="#cb20-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-121"><a href="#cb20-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-125"><a href="#cb20-125" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df_long.pivot(index<span class="op">=</span><span class="st">"period"</span>, columns<span class="op">=</span><span class="st">"Subject"</span>, values<span class="op">=</span><span class="st">"value"</span>).reset_index()</span>
+<span id="cb20-126"><a href="#cb20-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-127"><a href="#cb20-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-130"><a href="#cb20-130" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-131"><a href="#cb20-131" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.sort_values(<span class="st">"period"</span>).dropna().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-132"><a href="#cb20-132" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-133"><a href="#cb20-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-136"><a href="#cb20-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-137"><a href="#cb20-137" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.rename(</span>
+<span id="cb20-138"><a href="#cb20-138" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>{</span>
+<span id="cb20-139"><a href="#cb20-139" aria-hidden="true" tabindex="-1"></a>        <span class="st">"period"</span>: <span class="st">"period"</span>,</span>
+<span id="cb20-140"><a href="#cb20-140" aria-hidden="true" tabindex="-1"></a>        <span class="st">"P5"</span>: <span class="st">"investment"</span>,</span>
+<span id="cb20-141"><a href="#cb20-141" aria-hidden="true" tabindex="-1"></a>        <span class="st">"B1_GS1"</span>: <span class="st">"gdp"</span>,</span>
+<span id="cb20-142"><a href="#cb20-142" aria-hidden="true" tabindex="-1"></a>        <span class="st">"P3"</span>: <span class="st">"consumption"</span>,</span>
+<span id="cb20-143"><a href="#cb20-143" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb20-144"><a href="#cb20-144" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-145"><a href="#cb20-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-146"><a href="#cb20-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-147"><a href="#cb20-147" aria-hidden="true" tabindex="-1"></a>On peut maintenant tracer les séries temporelles:</span>
+<span id="cb20-148"><a href="#cb20-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-151"><a href="#cb20-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-152"><a href="#cb20-152" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb20-153"><a href="#cb20-153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-154"><a href="#cb20-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-155"><a href="#cb20-155" aria-hidden="true" tabindex="-1"></a>__Détrendez toutes les séries.__</span>
+<span id="cb20-156"><a href="#cb20-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-159"><a href="#cb20-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-160"><a href="#cb20-160" aria-hidden="true" tabindex="-1"></a><span class="co"># Détrender la série de consommation.</span></span>
+<span id="cb20-161"><a href="#cb20-161" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> df[<span class="st">"consumption"</span>]</span>
+<span id="cb20-162"><a href="#cb20-162" aria-hidden="true" tabindex="-1"></a>_, trend <span class="op">=</span> hpfilter(series, lamb<span class="op">=</span><span class="dv">1600</span>)</span>
+<span id="cb20-163"><a href="#cb20-163" aria-hidden="true" tabindex="-1"></a>cycle <span class="op">=</span> (series <span class="op">-</span> trend) <span class="op">/</span> trend</span>
+<span id="cb20-164"><a href="#cb20-164" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"consumption_trend"</span>] <span class="op">=</span> trend</span>
+<span id="cb20-165"><a href="#cb20-165" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"consumption_cycle"</span>] <span class="op">=</span> cycle</span>
+<span id="cb20-166"><a href="#cb20-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-167"><a href="#cb20-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-170"><a href="#cb20-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-171"><a href="#cb20-171" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb20-172"><a href="#cb20-172" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(series.values, label<span class="op">=</span><span class="st">"consumption"</span>)</span>
+<span id="cb20-173"><a href="#cb20-173" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(trend.values, label<span class="op">=</span><span class="st">"trend"</span>)</span>
+<span id="cb20-174"><a href="#cb20-174" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"consommation"</span>)</span>
+<span id="cb20-175"><a href="#cb20-175" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend()</span>
+<span id="cb20-176"><a href="#cb20-176" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(cycle.values)</span>
+<span id="cb20-177"><a href="#cb20-177" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"consommation (cycle)"</span>)</span>
+<span id="cb20-178"><a href="#cb20-178" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb20-179"><a href="#cb20-179" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb20-180"><a href="#cb20-180" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-181"><a href="#cb20-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-184"><a href="#cb20-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-185"><a href="#cb20-185" aria-hidden="true" tabindex="-1"></a><span class="co"># Détrender le PIB.</span></span>
+<span id="cb20-186"><a href="#cb20-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-187"><a href="#cb20-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-190"><a href="#cb20-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-191"><a href="#cb20-191" aria-hidden="true" tabindex="-1"></a><span class="co"># Détrender la série d'investissement.</span></span>
+<span id="cb20-192"><a href="#cb20-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-193"><a href="#cb20-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-194"><a href="#cb20-194" aria-hidden="true" tabindex="-1"></a>__Calculez les corrélations entre les séries détrendées. Calculez les ratios $\frac{\sigma(investment)}{\sigma(gdp)}$ et $\frac{\sigma (consumption)}{\sigma (gdp)}$. Comparez avec le modèle RBC et commentez.__</span>
+<span id="cb20-195"><a href="#cb20-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-198"><a href="#cb20-198" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-199"><a href="#cb20-199" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb20-200"><a href="#cb20-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-201"><a href="#cb20-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-202"><a href="#cb20-202" aria-hidden="true" tabindex="-1"></a>On peux calculer l'équivalent des ces ratios dans le modèle, en calculant les volatilités conditionnelles (en log)</span>
+<span id="cb20-203"><a href="#cb20-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-206"><a href="#cb20-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-207"><a href="#cb20-207" aria-hidden="true" tabindex="-1"></a>dr <span class="op">=</span> report.solution.decision_rule</span>
+<span id="cb20-208"><a href="#cb20-208" aria-hidden="true" tabindex="-1"></a>Σ<span class="dv">0</span> <span class="op">=</span> dr.Y <span class="op">@</span> dr.Σ <span class="op">@</span> dr.Y.T <span class="co"># volatilité conditionelle</span></span>
+<span id="cb20-209"><a href="#cb20-209" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> dr.x0 <span class="co"># steady-state</span></span>
+<span id="cb20-210"><a href="#cb20-210" aria-hidden="true" tabindex="-1"></a>std_model <span class="op">=</span> np.diag(Σ<span class="dv">0</span>) <span class="op">/</span> x <span class="co"># volatilités conditionnelles en en log</span></span>
+<span id="cb20-211"><a href="#cb20-211" aria-hidden="true" tabindex="-1"></a>variable_names <span class="op">=</span> dr.symbols[<span class="st">'endogenous'</span>]</span>
+<span id="cb20-212"><a href="#cb20-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-213"><a href="#cb20-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-216"><a href="#cb20-216" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-217"><a href="#cb20-217" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb20-218"><a href="#cb20-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
