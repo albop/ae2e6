@@ -1,5 +1,5 @@
 ---
-title: "Intro to Heterogeneity"
+title: "Introduction à l'hétérogénéité"
 date: 2025/04/1
 subtitle: "Macro II - Fluctuations - ENSAE, 2024-2025"
 author: Pablo Winant
@@ -18,107 +18,107 @@ format:
         output-file: handout.html
 ---
 
-# Heterogeneity in models
+# Hétérogénéité dans les modèles
 
 ##
 
-DSGE models are often criticized for unrealistic assumptions
+Les modèles DSGE sont souvent critiqués pour leurs hypothèses peu réalistes.
 
 . . .
 
 
-Example:
+Exemple :
 
-- [*Macroeconomic Policy in DSGE and Agent-Based Models*](https://www.cairn.info/revue-de-l-ofce-2012-5-page-67.htm) from Revue de l'OFCE
+- [*Macroeconomic Policy in DSGE and Agent-Based Models*](https://www.cairn.info/revue-de-l-ofce-2012-5-page-67.htm) dans la Revue de l'OFCE
 
-- *In that respect, the Great Recessions has revealed to be a natural experiment for economic analysis, showing the inadequacy of the predominant theoretical frameworks. Indeed, an increasing number of leading economists claim that the current ’’economic crisis is a crisis for economic theory’’ (Kirman, 2010; Colander et al., 2009; Krugman, 2009, 2011; Caballero, 2010; Stiglitz, 2011; Kay, 2011; Dosi, 2011; Delong, 2011). The basic assumptions of mainstream DSGE models, e.g. rational expectations, representative agents, perfect markets etc., prevent the understanding of basic phenomena underlying the current economic crisis*
+- *À cet égard, la Grande Récession s'est révélée être une expérience naturelle pour l'analyse économique, montrant l'inadéquation des cadres théoriques dominants. En effet, un nombre croissant d'économistes de premier plan affirment que l'actuelle « crise économique est une crise de la théorie économique » (Kirman, 2010 ; Colander et al., 2009 ; Krugman, 2009, 2011 ; Caballero, 2010 ; Stiglitz, 2011 ; Kay, 2011 ; Dosi, 2011 ; Delong, 2011). Les hypothèses de base des modèles DSGE dominants, par exemple les anticipations rationnelles, les agents représentatifs, les marchés parfaits, etc., empêchent de comprendre les phénomènes fondamentaux à l'origine de la crise économique actuelle.*
 
 . . .
 
 
-But:
+Mais :
 
-- mainstream models typically incorporate many non classical elements. For instance New Keynesian models feature imperfect competition
+- les modèles dominants incorporent en général de nombreux éléments non classiques. Par exemple, les modèles néo-keynésiens intègrent la concurrence imparfaite.
 
-- one must distinguish mainstream models from DSGE methodology
-    - today: DSGE model with rather radical conclusion
+- il faut distinguer les modèles dominants de la méthodologie DSGE.
+    - aujourd'hui : un modèle DSGE avec une conclusion plutôt radicale.
 
-## Representative Agent
+## Agent représentatif
 
 \ \ 
 
-Under the __Representative agent__ assumption
+Sous l'hypothèse d'__agent représentatif__
 
-- aggregate choices are made as the result of a single optimization problem
-- ☡ there might restrictions on what is internalized by the agent
+- les choix agrégés résultent d'un seul problème d'optimisation ;
+- ☡ il peut y avoir des restrictions sur ce qui est internalisé par l'agent.
 
 . . .
+
+Est-ce une hypothèse simplificatrice ? Ou est-ce en réalité équivalent à l'agrégation de nombreux problèmes d'optimisation ?
+
+. . . 
+
+Si oui, il faut une théorie de l'agrégation[^cherrier]...
+
+. . .
+
+... qui se brise rapidement (par exemple quand les fonctions d'utilité sont hétérogènes).
 
 \ 
-Is it a simplifying assumption?
 
-. . .
+__Exemple__ pour le modèle néoclassique / RBC:
 
-\ 
+- le secteur productif peut être agrégé car les entreprises sont de type Cobb-Douglas, en comptition parfaite) ;
+- les consommateurs peuvent être agrégés si leur utilité est logarithmique et qu'il n'y a pas d'incertitude.
 
-Or is it actually equivalent to the aggregation of many optimization problems?
 
-. . .
+[^cherrier]: voir [Household heterogeneity in macroeconomic models: A historical perspective](https://www.sciencedirect.com/science/article/pii/S0014292123001265) (ou un [blog](https://beatricecherrier.wordpress.com/2018/11/28/heterogeneous-agent-macroeconomics-has-a-long-history-and-it-raises-many-questions/) plus ancien) pour l'histoire des agents hétérogènes.
 
-\ \ 
 
-For the latter one needs a theory of aggregation[^cherrier]
+<!-- ## Exemple avec le modèle néoclassique
+
+Considérons trois versions du modèle néoclassique :
+
+- entièrement décentralisée (beaucoup d'entreprises, beaucoup de consommateurs) ;
+- agent représentatif ;
+- problème du planificateur.
+
+Remarque :
+
+- pour le modèle néoclassique, il existe une théorie d'agrégation du secteur productif (les entreprises sont de type Cobb-Douglas) ;
+- deux hypothèses sont nécessaires pour agréger les consommateurs : utilité logarithmique et absence d'incertitude. -->
+
+
+## Agents hétérogènes
+
+Certains économistes ont reconnu très tôt la nécessité de modéliser explicitement l'hétérogénéité.
+
+- __Économie de Bewley__ (1977)
+
+    - dotation stochastique idiosyncratique ;
+    - modèle consommation-épargne avec contraintes d'emprunt ;
+    - conduit à de l'*hétérogénéité ex post* (contraints/non contraints), donc à des réactions différentes.
+
+- __Économie de Huggett__ (1993)
     
-- ... which quickly breaks down (for instance when utility fonction are heterogenous)
+    - *hétérogénéité ex ante* supplémentaire dans le processus de revenu *idiosyncratique*.
+
+- __Modèle d'Aiyagari__ (1994)
+
+    - l'épargne est investie pour accumuler du capital agrégé ;
+    - modèle consommation-épargne avec contraintes d'emprunt ;
+    - chocs de productivité idiosyncratiques (salaire).
+
+- __Modèle de Krusell et Smith__ (1998)
+
+    - Aiyagari + chocs agrégés ($\approx$ RBC + hétérogénéité) ;
+
+Ces modèles exigent des techniques de calcul particulières et étaient mal compris sur le plan mathématique.
 
 
-[^cherrier]: check [Household heterogeneity in macroeconomic models: A historical perspective](https://www.sciencedirect.com/science/article/pii/S0014292123001265) (or an older [blog](https://beatricecherrier.wordpress.com/2018/11/28/heterogeneous-agent-macroeconomics-has-a-long-history-and-it-raises-many-questions/)) for history of heterogenous agents
+## Jeux à champ moyen et modèles à agents hétérogènes {auto-animate="true"}
 
-
-## Example with the Neoclassical Model
-
-Let's consider three versions of the neoclassical model
-
-- fully decentralized (many firms, many consumers)
-- representative agent
-- planner problem
-
-Note:
-
-- for the neoclassical model, there is a theory of aggregation for the production sector (firms are Cobb-Douglas)
-- two assumptions are needed to aggregate consumers: log-utility and no uncertainty
-
-
-## Heterogenous Agents
-
-Some economists have recognized early the need to explicitly model heterogeneity.
-
-- __1977: Bewley__
-
-    - idiosyncratic stochastic endowment
-    - consumption-savings model with borrowing constraints
-    - leads to *ex-post heterogeneity* (constrained/unconstrained) hence  different reactions
-
-- __Huggett Economy__ (1993)
-    
-    - additional *ex-ante heterogeneity* in *idiosyncratic* income process
-
-- __Ayiagari Model__ (1994)
-
-    - savings are invested to accumulate aggregate capital
-    - consumption-savings model with borrowing constraints
-    - idiosyncratic productivity shocks (salary)
-
-- __Krussell Smith Model__ (1998)
-
-    - Ayagari + aggregate shocks
-
-Those models require special computational techniques and were poorly understood mathematically
-
-
-## Mean Field Games and Heterogenous Agents Models {auto-animate="true"}
-
-__2012__ Ben Moll did a talk at IMA (UK)
+__2012__ Ben Moll donne un exposé à l'IMA (Royaume-Uni).
 
 . . .
 
@@ -126,20 +126,20 @@ __2012__ Ben Moll did a talk at IMA (UK)
 
 . . .
 
-Economists and world class mathematicians exchanged on *mean field games*
+Économistes et mathématiciens de tout premier plan échangent autour des *jeux à champ moyen*.
 
-- a class of mathematical problems which encompasses heterogenous agents models
-- a bit math intense (stochastic calculus, viscosity theory, ...)
+- une classe de problèmes mathématiques qui englobe les modèles à agents hétérogènes ;
+- assez exigeante mathématiquement (calcul stochastique, théorie de la viscosité, ...).
 
 
 
-## Mean Field Games and Heterogenous Agents Models  {auto-animate="true"}
+## Jeux à champ moyen et modèles à agents hétérogènes {auto-animate="true"}
 
 ::: columns
 
 :::: {.column width=30%}
 
-__2012__ Ben Moll did a talk at IMA (UK)
+__2012__ Ben Moll donne un exposé à l'IMA (Royaume-Uni).
 
 ![ ](assets/ben_moll.png)
 
@@ -147,15 +147,15 @@ __2012__ Ben Moll did a talk at IMA (UK)
 
 :::: column
 
-__Result__: a new stream of heterogenous agents papers
+__Résultat__ : une nouvelle vague d'articles sur les agents hétérogènes.
 
-- PDE Models in Macroeconomics (2014) with Achdou, Bueary, Lasry, Lions
+- PDE Models in Macroeconomics (2014), avec Achdou, Bueary, Lasry, Lions
 
-- The Dynamics of Inequality (2016) with Gabaix, Lasry, Lions
+- The Dynamics of Inequality (2016), avec Gabaix, Lasry, Lions
 
-- Monetary Policy According to HANK (2018) with Kaplan and Violante
+- Monetary Policy According to HANK (2018), avec Kaplan et Violante
     
-    - that one was hugely successfull
+    - celui-ci a eu un succès énorme.
 
 ::::
 
@@ -164,41 +164,41 @@ __Result__: a new stream of heterogenous agents papers
 
 ## HANK, HANK HANK, ...
 
-- *Monetary Policy According to HANK* (2018), by Moll, Kaplan and Violante
+- *Monetary Policy According to HANK* (2018), de Moll, Kaplan et Violante
 
-    - HANK: Heterogenous Agents New Keynesian
-    - study unequal consequences of monetary policies
-    - a new baseline model for [central banks](https://www.imf.org/en/Publications/fandd/issues/2023/03/modern-monetary-policy-kaplan-moll-violante)
+    - HANK : Heterogeneous Agents New Keynesian ;
+    - étudie les conséquences inégales des politiques monétaires ;
+    - un nouveau modèle de référence pour les [banques centrales](https://www.imf.org/en/Publications/fandd/issues/2023/03/modern-monetary-policy-kaplan-moll-violante).
 
 . . .
 
 ::: {.enumerate}
 
-- Stimulated a whole literature[^representative]
+- A stimulé toute une littérature[^representative]
 
     - *Understanding HANK: Insights from a PRANK*[^prank]
     - *When HANK meets SAM*
     - *HANK beyond FIRE*
     - *Aggregate Demand: THANK (Tractable HANK) and TANK* by Florin Bilbiie
-        - main point: you don't need more than two agents to get the main insights
+        - idée principale : il n'est pas nécessaire d'avoir plus de deux agents pour obtenir les principaux résultats.
 
 :::
 
-[^prank]: pseudo representative new-keynesian model
-[^representative]: the ones in the list are not necessary the most representative
+[^prank]: pseudo modèle néo-keynésien représentatif
+[^representative]: les références listées ne sont pas forcément les plus représentatives
 
 
-## Heterogenous consumers
+## Consommateurs hétérogènes
 
-Why does it matter to model consumer's heterogeneity?
-
-. . .
-
-- To reproduce realistic consumption decisions.
+Pourquoi est-il important de modéliser l'hétérogénéité des consommateurs ?
 
 . . .
 
-Classically, we make the difference between two kinds of agents:
+- Pour reproduire des décisions de consommation réalistes.
+
+. . .
+
+Classiquement, on distingue deux types d'agents :
 
 ::: columns
 
@@ -206,32 +206,32 @@ Classically, we make the difference between two kinds of agents:
 
 ::::: {.callout-note}
 
-#### Ricardian Households
+#### Ménages ricardiens
 
-Agents who can freely reallocate consumption intertemporally.
+Agents qui peuvent réallouer librement leur consommation dans le temps.
 
-They have a high marginal propensity to consume out of additional income.
+Ils ont une forte propension marginale à consommer à partir d'un revenu additionnel.
 
 :::::
 
 \ \ 
 
 
-Ricardian households choose not to consume more today, in order to consume more tomorrow.
+Les ménages ricardiens choisissent de ne pas consommer davantage aujourd'hui afin de consommer davantage demain.
 
 ::::
 :::: column
 
 ::::: {.callout-note}
 
-#### Keynesian Households
-Agents whose consumption in the current period is limited by a binding credit constraint. Either they can't borrow at all or the amount they can borrow is limited today.
+#### Ménages keynésiens
+Agents dont la consommation de la période courante est limitée par une contrainte de crédit active. Soit ils ne peuvent pas emprunter du tout, soit le montant qu'ils peuvent emprunter est limité aujourd'hui.
 
-They have a high marginal propensity to consume out of additional income.
+Ils ont une forte propension marginale à consommer à partir d'un revenu additionnel.
 
 :::::
 
-Keynesian Households consume today as much as they can.
+Les ménages keynésiens consomment aujourd'hui autant qu'ils le peuvent.
 
 ::::
 :::
@@ -239,79 +239,79 @@ Keynesian Households consume today as much as they can.
 . . .
 
 
-The representative agent assumes everyone is ricardian.
+L'agent représentatif suppose que tout le monde est ricardien.
 
 
 
 
-What does the data say?
-
----
-
-
-Let's have a look at the MPC distribution for France.[^mpc_1_source]
-
-![Self-Reported MPC from Transitory Income Shock](assets/mpc_1.png){width=60%}
-
-
-[^mpc_1_source]: From <u>From Fiscal Policy and MPC Heterogeneity</u>,  Tullio Jappelli and Luigi Pistaferri, American Economic Journal: Macroeconomics, 2014
+Que disent les données ?
 
 ---
 
-![Average MPC by Cash-on-Hand Percentiles](assets/mpc_2.png){width=60%}
+
+Regardons la distribution des PMC en France.[^mpc_1_source]
+
+![PMC auto-déclarée suite à un choc transitoire de revenu](assets/mpc_1.png){width=60%}
+
+
+[^mpc_1_source]: D'après <u>From Fiscal Policy and MPC Heterogeneity</u>, Tullio Jappelli et Luigi Pistaferri, American Economic Journal: Macroeconomics, 2014
+
+---
+
+![PMC moyenne par percentiles de liquidité disponible](assets/mpc_2.png){width=60%}
 
 . . .
 
-Apparently MPC is well predicted by Cash-in-hand (amount of money left to household after having made all compulsory payments).
+Il semble que la PMC soit bien prédite par le cash-in-hand (montant d'argent restant au ménage après tous les paiements obligatoires).
 
 ---
 
-![Wealth distribution](assets/mpc_3.png){width=60%}
+![Distribution du patrimoine](assets/mpc_3.png){width=60%}
 
 ---
 
-![Wealth decomposition](assets/mpc_4.png){width=60%}
+![Décomposition du patrimoine](assets/mpc_4.png){width=60%}
 
 . . . 
 
-Agents in the middle of the wealth distribution have a mortgage, whose interests leaves very little to spend after payments. They  have lower cash-in-hand hence higher marginal propensity to consume (than rich agents).
+Les agents au milieu de la distribution de patrimoine ont un crédit immobilier dont les intérêts laissent très peu à dépenser après paiements. Ils ont donc un cash-in-hand plus faible, et une propension marginale à consommer plus élevée (que les agents riches).
 
 ---
 
-## Wealthy Hand to Mouth agents
+## Agents « wealthy hand-to-mouth »
 
-We have just seen that agents in the middle of the wealth distribution, hold a wider proportion of wealth in illiquid assets (housing)
+On vient de voir que les agents situés au milieu de la distribution de patrimoine détiennent une plus grande part de leur richesse sous forme d'actifs illiquides (immobilier).
 
-- Their cash in hand (available for immediate purchase) is reduced. A sizable fraction of ther income goes into repaying their loan...).
-- They have higher MPC
-- They also react to interest rates changes (notably those who have floating interest rates)
-- “Monetary Policy According to HANK”, 2018, Kaplan, Moll and Violante, stress out the role of "wealthy hand to mouth" and the need to take their existence to evaluate the influence of monetary policies.
+- Leur cash in hand (disponible pour des achats immédiats) est réduit. Une part importante de leur revenu sert à rembourser leur emprunt.
+- Ils ont une PMC plus élevée.
+- Ils réagissent aussi aux variations de taux d'intérêt (notamment ceux qui ont des taux variables).
+- « Monetary Policy According to HANK » (2018), Kaplan, Moll et Violante, souligne le rôle des « wealthy hand-to-mouth » et la nécessité de prendre leur existence en compte pour évaluer l'influence des politiques monétaires.
 
 ---
 
-## How do we model differences in MPC?
+## Comment modéliser les différences de PMC ?
 
 ::: {.incremental}
 
-- Specify several kinds of agents:
+- Spécifier plusieurs types d'agents :
 
-    - ricardians
-    - hand to mouth (consumption = income)
-    - *ex-ante* heterogeneity
+    - ricardiens ;
+    - hand-to-mouth (consommation = revenu) ;
+    - -> hétérogénéité *ex ante*.
 
-- By endogenizing borrowing constraint with borrowing constraint
+- En endogénéisant la contrainte d'emprunt
 
-    - requires nonlinear solution
-    - *ex-post*  heterogeneity
-    - with potential idiosyncratic parameters like time-discount (*ex-ante* heterogeneity)
+    - nécessite une résolution non linéaire ;
+    - hétérogénéité *ex post* ;
+    - avec éventuellement des paramètres idiosyncratiques comme le facteur d'actualisation - - ->(*hétérogénéité ex ante*).
 
-- By using preference for wealth
+- En introduisant une préférence pour la richesse
     
-    - coming next
+    - c'est ce qui suit.
 
 :::
 
-# Inequality, Leverage and Crisis
+# Inégalités, levier et crise
 
 ## 
 
@@ -335,52 +335,52 @@ We have just seen that agents in the middle of the wealth distribution, hold a w
 
 ## Introduction
 
-The 2007 financial crisis, was initially as *subprime mortgage crisis*
+La crise financière de 2007 a d'abord été une crise des prêts hypothécaires *subprimes*.
 
 ::: {.incremental}
 
-- high indebtedness from low income households
-- fueled by easy credit (low i.r.) and high house prices
-- debt-securitization
-    - even for high risk debt (*subprimes*)
-    - of which 90% had  variable interest rates and/or balloon payments
-- (moderate) rise in interest rates
-    - bursting of the housing buble
-    - households were unable to refinance their loans
-    - ... and defaulted
-- mbs market collapsed...
-- ... and with it the whole financial sector
+- fort endettement des ménages à bas revenus ;
+- alimenté par un crédit facile (taux faibles) et des prix de l'immobilier élevés ;
+- titrisation de la dette
+    - y compris pour des dettes très risquées (*subprimes*) ;
+    - dont 90 % avaient des taux variables et/ou des paiements ballon ;
+- hausse (modérée) des taux d'intérêt
+    - éclatement de la bulle immobilière ;
+    - les ménages n'ont pas pu refinancer leurs prêts ;
+    - ... et ont fait défaut ;
+- le marché des MBS s'est effondré...
+- ... et avec lui l'ensemble du secteur financier.
 
 :::
 
 . . .
 
-Ok, but from a macro perspective, what fueled such high levels of borrowing?
+D'accord, mais d'un point de vue macroéconomique, qu'est-ce qui a alimenté de tels niveaux d'endettement ?
 
 
 ##
 
-![Leverage and Inequality](assets/debt_inequality.png)
+![Levier et inégalités](assets/debt_inequality.png)
 
-A similar pattern emerged before the great recession and before the great depression:[^saez]
+Un schéma similaire est apparu avant la Grande Récession et avant la Grande Dépression :[^saez]
 
-- parallel increases in *income inequality* and debt over income ratios
+- hausses parallèles des *inégalités de revenu* et du ratio dette/revenu.
 
-[^saez]: inequality data from Saez and Zucman
-
-##
-
-![Wealth Inequality](assets/wealth_inequality.png)
-
-Increase in *wealth inequality* is consistent.
+[^saez]: données d'inégalités issues de Saez et Zucman
 
 ##
 
-![Crisis Probability](assets/crisis_probability.png)
+![Inégalités de patrimoine](assets/wealth_inequality.png)
 
-Econometric measures of household default risk [^schularick] rose consistently.
+La hausse des *inégalités de patrimoine* est cohérente.
 
-[^schularick]: From Schularick and Taylor (2014) 
+##
+
+![Probabilité de crise](assets/crisis_probability.png)
+
+Les mesures économétriques du risque de défaut des ménages [^schularick] augmentent de façon soutenue.
+
+[^schularick]: D'après Schularick et Taylor (2014)
 
 <!-- ##
 
@@ -391,99 +391,118 @@ Econometric measures of household default risk [^schularick] rose consistently.
 ![Sensitivity](assets/sensitivity.png) -->
 
 
-## Model
+## Modèle
 
-What could link rising income inequality to increased borrowing by bottom-earners?
+Qu'est-ce qui pourrait relier la hausse des inégalités de revenu à l'augmentation de l'endettement des ménages du bas de la distribution ?
 
-Intuition:
+Intuition :
 
-- top-earners have higher marginal propensity to save
-- when their income increases they lend to bottom earners
-- and rising debt increases the risk of default
+- les hauts revenus ont une propension marginale à épargner plus élevée ;
+- quand leur revenu augmente, ils prêtent aux bas revenus ;
+- et la hausse de la dette augmente le risque de défaut.
 
-Let's see how to model that in DSGE fashion (ommiting default risk for the sake of simplicity)
+Voyons comment modéliser cela dans un cadre DSGE (en omettant le risque de défaut pour simplifier).
 
-## Endowments
-
-
-We consider and endowment economy:
+## Dotations
 
 
-- Total output
+On considère une économie de dotation :
+
+
+- Production totale
 
 $$y_t = (1-\rho_y) \overline{y} + \rho_y y_{t-1} + \epsilon_{y,t}$$
 
-- Inequality shock
+- Choc d'inégalités
 
 $$z_t = (1-\rho_z) \overline{z} + \rho_z z_{t-1} + \epsilon_{z,t}$$
 
 
-Comments:
+Commentaires :
 
-- $z_t$ is the fraction of the total output that is received by top-earners. The rest is received by bottom earners.
-- We assume there is a faction $\chi$ of top earners.
+- $z_t$ est la fraction de la production totale reçue par les hauts revenus. Le reste est reçu par les bas revenus.
+- On suppose qu'il existe une fraction $\chi$ de hauts revenus.
 
-- our goal is to study the effect of a persistent inequality shock (with $\rho_z=1$)
-    - we need a way to model nonzero marginal propensity to save out of a persistent income shock
+- notre objectif est d'étudier l'effet d'un choc d'inégalités persistant (avec $\rho_z=1$)
+    - il nous faut donc un mécanisme permettant une propension marginale à épargner non nulle après un choc de revenu persistant.
 
 
-## Top Earners
+## Hauts revenus
 
-We choose the following utility function for top earners: $$U_t = E_t \sum_{k\geq0}^{\infty} \beta^k_{\tau} \left\{ \frac{\left(c^{\tau}_{t+k}\right)^ {1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}} + \varphi \frac{\left( 1+b_{t+k}\frac{1-\chi}{\chi}\right)^{1-\frac{1}{\eta}}}{1-\frac{1}{\eta}} \right\}$$
-
-. . .
-
-Consumption: $$c^{\tau}_t = y_t z_t \frac{1}{\chi} + \left(b_{t-1}-b_t p_t\right)\frac{1-\chi}{\chi}$$ where $b_t$ is debt holdings and $p_t$ the price of it $1/r_t$
+On choisit la fonction d'utilité suivante pour les hauts revenus : $$U_t = E_t \sum_{k\geq0}^{\infty} \beta^k_{\tau} \left\{ \frac{\left(c^{\tau}_{t+k}\right)^ {1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}} + \varphi \frac{\left( 1+b_{t+k}\frac{1-\chi}{\chi}\right)^{1-\frac{1}{\eta}}}{1-\frac{1}{\eta}} \right\}$$
 
 . . .
 
+Consommation : $$c^{\tau}_t = y_t z_t \frac{1}{\chi} + \left(b_{t-1}-b_t p_t\right)\frac{1-\chi}{\chi}$$ où $b_t$ désigne les détentions de dette et $p_t$ son prix, soit $1/r_t$.
 
-Optimality condition from $\max U_t$
+. . .
+
+
+Condition d'optimalité issue de $\max U_t$
 
 $$p_t = \beta_{\tau} E_t\left[ \left( \frac{c^{\tau}_{t+1}}{c^{\tau}_t}\right)^ {-\frac{1}{\sigma}}\right] + \varphi \frac{\left(1+b_t \frac{1-\chi}{\chi}\right)^ {-\frac{1}{\eta}}}{\left(c_t^{\tau}\right)^ {-\frac{1}{\sigma}}}$$
 
 
-## Preference for Wealth
+## Préférence pour la richesse
 
-The preference for wealth can be justified as:
+La préférence pour la richesse peut se justifier par :
 
-- a preference for social status
--  capitalist spirit
+- une préférence pour le statut social ;
+- l'esprit du capitalisme.
 
-It implies a steady-state supply of lending for any income level:
+
+__Intuitivement__: les utilités de la consommation et de la richesse sont complémentaires. Si la consommation augmente, les individus veulent détenir plus de richesse. C'est ce qui ce passe lorsque le revenu augmente de manière permanente: la consommation augmente mécaniquement. 
+
+__Remarque__: sans la préférence pour la richesse, la condition $c_t = c_{t+1}$ implique qu'une augmentation permanente du revenu entraîne une augmentation équivalente de la consommation, ce qui conduit à une propension marginale à consommer de 100 % après un choc de revenu permanent.
+
+## Préférence pour la richesse: condition d'équilibre
+
+
+On peut réécrire la condition d'Euler à l'état d'équilibre:
 
 ::: columns
 
 :::: column
 
-![](assets/steady-state.png)
+$$
+\frac{\color{blue}{p}-\beta_\tau}{\varphi}
+=
+\frac{\left(\overline{y}\,\overline{\color{red}{z}}\,\frac{1}{\chi}+\overline{\color{green}{b}}(1-\color{blue}{p})\frac{1-\chi}{\chi}\right)^{\frac{1}{\sigma}}}{\left(1+\overline{\color{green}{b}}\frac{1-\chi}{\chi}\right)^{\frac{1}{\eta}}}
+$$
 
 ::::
 
 :::: column
 
-![](assets/supply.png)
+![Offre de Prêts. Choc de revenu $\Delta \overline{\color{red}{z}}=0.1$](assets/supply.png)
 
 ::::
 
 :::
 
-Which in turn implies non-zero marginal propensity to save from a permanent income shock (in the short and the long run)
+La condition montre l'offre de prêt $\overline{\color{green}{b}}$ à l'équilibre (i.e. l'épargne des hauts revenus) en fonction du taux s($r=1/\color{blue}{p}$).
 
-Parameters $\eta$ and $\varphi$ are not observed, but can be chosen in order to match real world MPC (50% for top earners).
+Elle implique aussi une augmentation de l'offre de prêt d'équilibre lorsque la part $\overline{\color{red}{z}}$ des hauts revenus augmente (déplacement vers la droite de la courbe d'offre de prêt).
 
+::: {.incremental}
 
-## Bottom Earners
+- la PMC est non nulle  à long terme après un choc de revenu permanent
+- c'est aussi le cas à court terme (cf simulations)
+- Les paramètres $\eta$ et $\varphi$ ne sont pas observés, mais peuvent être choisis pour reproduire la PMC observée dans les données (50 % pour les hauts revenus).
 
-Bottom earners are standard:
+:::
+
+## Bas revenus
+
+Les bas revenus sont standards :
 
 $$V_t = E_t \sum_{k \geq 0}^{\infty} \beta^k_b \left( \frac{\left(c_{t+k}^b\right)^ {1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}} \right)$$
 
-Budget constraint:
+Contrainte budgétaire :
 
 $$c^b_t = y_t(1-z_t)\frac{1}{1-\chi} + \left(b_t p_t - b_{t-1}\right)$$
 
-Optimality condition from $\max V_t$
+Condition d'optimalité issue de $\max V_t$
 
 $$p_t = \beta^b E_t \left[ \left( \frac{c_{t+1}^b}{c_t^b}\right)^{-\frac{1}{\sigma}} \right]$$
 
@@ -493,12 +512,12 @@ $$p_t = \beta^b E_t \left[ \left( \frac{c_{t+1}^b}{c_t^b}\right)^{-\frac{1}{\sig
 
 ##
 
-![Inequality Shock](assets/inequality_shock.png)
+![Choc d'inégalités](assets/inequality_shock.png)
 
 
 ## {auto-animate="true"}
 
-![Pseudo-Historical Simulation](assets/baseline.png)
+![Simulation pseudo-historique](assets/baseline.png)
 
 
 ## {auto-animate="true"}
@@ -507,17 +526,28 @@ $$p_t = \beta^b E_t \left[ \left( \frac{c_{t+1}^b}{c_t^b}\right)^{-\frac{1}{\sig
 
 :::: column
 
-![Pseudo-Historical Simulation](assets/baseline.png)
+![Simulation pseudo-historique](assets/baseline.png)
 
 ::::
 
 :::: column
 
-In the simulation we use historical values for the driving shocks (output and inequality).
+__Conclusion__
 
-What is the predictive power of the model:
+Dans la simulation, nous utilisons les valeurs historiques des chocs exogènes (production et inégalités).
 
-- we match *one* moment: the evolution of debt/gdep from 1983 to 2010
+On reproduit assez bien l'évolution du ratio dette/PIB de 1983 à 2010:
+
+- on peut expliquer lla hausse de l'endettement des ménages par la hausse des inégalités de revenu
+
+Le modèle entier contient aussi un mécanisme de défaut des ménages, que l'on a omis ici.
+
+\ 
+
+__Discussion__: quel est le pouvoir prédictif du modèle ?
+
+- on reproduit *un seul* moment :  ratio dette/PIB de 1983 à 2010
+- il pourrait exister d'autres mécanismes un chocs sur les anticipations des revenus futurs ou sur les taux d'intérêt
 
 ::::
 
