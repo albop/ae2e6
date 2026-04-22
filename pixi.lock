@@ -735,7 +735,7 @@ packages:
   timestamp: 1757442080351
 - conda: /home/pablo/Econforge/dyno.py
   name: dyno
-  version: 0.1.7.1
+  version: 0.1.7.4
   build: pyh4616a5c_0
   subdir: noarch
   variants:

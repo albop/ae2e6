@@ -18,6 +18,7 @@ listing:
     field-display-names: {title: "Tutoriels"}
     contents: 
       - tutorials/session_1/index.qmd
+      - tutorials/session_2/index.qmd
       # - slides/prep_*/wip.qmd
     fields: [title]
 ---

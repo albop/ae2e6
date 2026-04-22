@@ -42,15 +42,8 @@ from dyno import dynare
 
 __Ouvrez le modèle RBC et résolvez-le. Corrigez les erreurs du fichier mod s'il y en a.__
 
-Il y a plusieurs choses à corriger dans le fichier mod :
-
-- Une erreur de syntaxe ligne 17: il faut supprimer le signe `^` à la fin de la ligne.
-- *subtil*: une erreur de timing dans la fonction de production ligne ligne 20. Comme le capital utilisé dans la production est prédéterminé à la date t, il faut remplacer `k` par `k(-1)`.
-- la fonction check renvoie une erreur car le steady-state ne satisfait pas les équations. On peut rajouter `steady;` avant `check;` pour recalculer l'état stationnaire.
-- on peut ensuite décommenter la ligne `stoch_simul;` pour calculer la solution du modèle. Notons que le mode émulation dynare, accepte l'option `periods=100` pour changer l'horizon de simulation.
-
 ```{python}
-report = dynare("rbc_fixed.mod")
+dynare("rbc_fixed.mod")
 ```
 
 (si besoin, téléchargez le modèle corrigé [ici](rbc_fixed.mod) )
@@ -65,50 +58,14 @@ report = dynare("rbc_fixed.mod")
 ```
 
 ```{python}
-report.eigenvalues # les 2n valeurs propres du système linéarisé
+# TODO
 ```
 
-```{python}
-dr = report.solution.decision_rule # la solution
-# c'est un AR1 (y_t = X y_{t-1} + Y epsilon_t) où la matrice de covariance de epsilon_t est donnée par \Sigma
-print("X")
-print(dr.X)
-print("Y")
-print(dr.X)
-print("Σ")
-print(dr.Σ)
-```
-
-```{python}
-# Moments
-report.moments
-```
 
 __Interprétez l'effet d'un choc de productivité. Comment dépend-il de la persistance du choc ?__
 
-On voit que le choc de productivité augmente immédiatement la produciton l'investissement et la consommation. 
-On remarque que la consommation met plus de temps à attendre son maximum: dans les premières périodes,il faut en effet épargner pour pouvoir investir et profiter mieux du choc de la peristance du choc. Cela crée donc un arbitrage initial entre consommer le gain de productivité et l'investir pour en profiter plus dans le futur.
-
-En changeant la valeur dans le modèle du taux de dépréciation du capital, on peut voir un changement dans le forme du profil de consommation.
-
 ```{python}
-# bonus: 
-# on peut utiliser directement l'objet report.simulation.irfs pour faire des graphiques personalisés
-from matplotlib import pyplot as plt
-sim = report.simulation['epsilon'] # il s'agit d'une dataframe normale
-plt.subplot(131)
-plt.plot(sim['y'])
-plt.grid(True)
-plt.title("Production")
-plt.subplot(132)
-plt.plot(sim['i'])
-plt.grid(True)
-plt.title("Investissement")
-plt.subplot(133)
-plt.plot(sim['c'])
-plt.grid(True)
-plt.title("Consommation")
-plt.tight_layout()
+# TODO
 ```
 
 # Calcul des moments dans les données
@@ -168,15 +125,7 @@ df = df.rename(
 On peut maintenant tracer les séries temporelles:
 
 ```{python}
-fig, axes = plt.subplots(3, 1, figsize=(10, 8), sharex=True)
-axes[0].plot(df["period"], df["investment"], label="investment")
-axes[0].legend()
-axes[1].plot(df["period"], df["gdp"], label="gdp")
-axes[1].legend()
-axes[2].plot(df["period"], df["consumption"], label="consumption")
-axes[2].legend()
-plt.tight_layout()
-plt.show()
+# TODO
 ```
 
 __Détrendez toutes les séries.__
@@ -204,48 +153,16 @@ plt.show()
 
 ```{python}
 # Détrender le PIB.
-series = df["gdp"]
-_, trend = hpfilter(series, lamb=1600)
-cycle = (series - trend) / trend
-df["gdp_trend"] = trend
-df["gdp_cycle"] = cycle
 ```
 
 ```{python}
 # Détrender la série d'investissement.
-series = df["investment"]
-_, trend = hpfilter(series, lamb=1600)
-cycle = (series - trend) / trend
-df["investment_trend"] = trend
-df["investment_cycle"] = cycle
 ```
 
 __Calculez les corrélations entre les séries détrendées. Calculez les ratios $\frac{\sigma(investment)}{\sigma(gdp)}$ et $\frac{\sigma (consumption)}{\sigma (gdp)}$. Comparez avec le modèle RBC et commentez.__
 
 ```{python}
-# Ne garder que la partie pertinente du DataFrame.
-relevant_df = df[["gdp_cycle", "investment_cycle", "consumption_cycle"]]
-```
-
-```{python}
-# Convertir le dataframe en matrice NumPy.
-mat = relevant_df.to_numpy()
-```
-
-```{python}
-relevant_df.corr()
-```
-
-```{python}
-std_y = relevant_df["gdp_cycle"].std()
-std_i = relevant_df["investment_cycle"].std()
-std_c = relevant_df["consumption_cycle"].std()
-```
-
-```{python}
-print("Ratio de volatilité empiriques")
-print(f"sigma(i)/sigma(y) : {std_i/std_y}")
-print(f"sigma(c)/sigma(y) : {std_c/std_y}")
+# TODO
 ```
 
 On peux calculer l'équivalent des ces ratios dans le modèle, en calculant les volatilités conditionnelles (en log)
@@ -259,23 +176,5 @@ variable_names = dr.symbols['endogenous']
 ```
 
 ```{python}
-std_y_model = std_model[variable_names.index('y')]
-std_i_model = std_model[variable_names.index('i')]
-std_c_model = std_model[variable_names.index('c')]
+# TODO
 ```
-
-```{python}
-std_y_model = std_model[variable_names.index('y')]
-std_i_model = std_model[variable_names.index('i')]
-std_c_model = std_model[variable_names.index('c')]
-```
-
-```{python}
-print("Ratio de volatilité selon le modèle")
-print(f"sigma(i)/sigma(y) : {std_i_model/std_y_model}")
-print(f"sigma(c)/sigma(y) : {std_c_model/std_y_model}")
-```
-
-Dans le modèle comme dans les donées l'investissment est environ trois fois plus volatile que la consommation.
-En revanche, la consommation y est nettement moins volatile. C'est peut¼etre du à la plage des données différente 
-de celle utilisée pour calibrée le modèle RBC classique.
