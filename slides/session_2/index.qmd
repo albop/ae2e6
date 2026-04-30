@@ -1,7 +1,7 @@
 ---
 title: "Petite Économie Ouverte (IRBC)"
-date: 2025/03/25
-subtitle: "Macro II - Fluctuations - ENSAE, 2024-2025"
+date: 2026/04/1
+subtitle: "Macro II - Fluctuations - ENSAE, 2025-2026"
 author: Pablo Winant
 format:
     revealjs:
@@ -20,54 +20,56 @@ format:
 
 ---
 
-# Introduction and Basic Facts
+# Introduction et faits stylisés
 
-## Why a small open economy?
+## Pourquoi une petite économie ouverte ?
 
-
-What are the classical reasons to open economy to trade?
+Quelles sont les raisons classiques d'ouvrir l'économie au commerce ?
 
 ::: incremental
 
-- trade integration 
-    - taste for variety
-    - comparative advantage
-- financial integration
-    - smooth shock / insurance
+- intégration commerciale
+    - goût pour la variété
+    - avantage comparatif
+- intégration financière
+    - lissage des chocs / assurance
 
 :::
 
 
-## From RBC to IRBC
+## Du modèle RBC au modèle IRBC
 
-RBC models have been  very successful at matching Business Cycles
+Les modèles RBC ont connu un très grand succès pour reproduire les cycles économiques
 
-- (temporary) victory against keynesian view that short term fluctuations result from demand shocks
-- so successful that facts at odd with theoretical predictions have been called "puzzles"
-
-. . .
-
-It didn't take long before the same methodology was applied to International Business Cycles
+- victoire (temporaire) contre la vision keynésienne selon laquelle les fluctuations de court terme résultent de chocs de demande
 
 . . .
 
-Seminal Paper: 
+Il n'a pas fallu longtemps avant que la même méthodologie soit appliquée aux cycles économiques internationaux
 
-- [*International Real Business Cycles*](papers/Backus-InternationalRealBusiness-1992.pdf), Backus, Kehoe, Kydland (1992) (freshwater economists)
+. . .
 
-Very successful methodology:
+Article fondateur :
 
-- facts at odd with theoretical predictions have been called "puzzles"
+\ 
+
+- [*International Real Business Cycles*](papers/Backus-InternationalRealBusiness-1992.pdf), Backus, Kehoe, Kydland (1992)
+
+\ 
+
+Grand succès méthodologique :
+
+- les faits en contradiction avec les prédictions théoriques ont été appelés « puzzles »
 
 
-## IRBC Facts {auto-animate="true"}
+## Faits empiriques des IRBC {auto-animate="true"}
 
 ![Moments](assets/moments.png)
 
-From Kehoe,Kydland (1995)
+D'après Kehoe,Kydland (1995)
 
 
-## IRBC Facts {auto-animate="true"}
+## Faits empiriques des IRBC {auto-animate="true"}
 
 ::: columns
 :::: {.column width=20%}
@@ -77,19 +79,19 @@ From Kehoe,Kydland (1995)
 ::::
 :::: {.column width=80%}
 
-![Comoments](assets/comovements.png)
+![Correlations](assets/comovements.png)
 
 ::::
 :::
 
-## Stylized Facts
+## Faits stylisés
 
 ::: columns
 :::: {.column width=20%}
 
 ![Moments](assets/moments.png)
 
-![Comoments](assets/comovements.png)
+![Correlations](assets/comovements.png)
 
 ::::
 
@@ -98,23 +100,24 @@ From Kehoe,Kydland (1995)
 
 ::::: incremental
 
-Domestically:
+Au niveau national :
 
 :::::: {.fragment}
 
-- output more variable than consumption
-- output autocorrelated
-- productivity strongly procyclical
-- trade balance strongly countercyclcal
-- positive comovements in output
+- la production est plus volatile que la consommation
+- la production est autocorrélée
+- la productivité est fortement procyclique
+- autres variables corrélées positivement avec la production
+- balance commerciale est fortement contracyclique
 
 ::::::
 :::::: {.fragment}
 
-Internationally:
+Au niveau international :
 
-- smaller comovements in consumption
-    - Backus-Kehoe-Kydland puzzle
+- production corrélées positivement entre les pays
+- correlations de la consommation nettement plus faible
+    - Puzzle de Backus-Kehoe-Kydland
 
 ::::::
 
@@ -125,13 +128,13 @@ Internationally:
 
 . . .
 
-Can we replicate these moments with a BC model?
+Pouvons-nous reproduire ces moments avec un modèle de cycles économiques ?
 
-# Modeling a Small Open Economy
+# Modélisation d'une petite économie ouverte
 
-## Endowment model
+## Modèle de dotation
 
-Representative agents maximizes:
+L'agent représentatif maximise :
 $$\max_{c_t} \sum_{t=0}^{\infty} \beta^t u(c_t)$$
 $$c_t + a_{t} \leq y_t + (1+r) a_{t-1} $$
 
@@ -139,43 +142,43 @@ $$c_t + a_{t} \leq y_t + (1+r) a_{t-1} $$
 
 :::: {.fragment .current-visible}
 
-__Endowment economy__:
+__Économie de dotation__ :
 
-- income $(y_t)_t$ is exogenously given
-- for simplicity we assume it is deterministic
+- le revenu $(y_t)_t$ est donné de manière exogène
+- par souci de simplicité, on suppose qu'il est déterministe
 
-__Small open economy__:
+__Petite économie ouverte__ :
 
-- *open*:  can save $a_t$ which yields $a_{t+1}(1+r)$ in the next period
-- *small*: country takes world interest rate $r$ as given (no effect on world prices)
+- *ouverte* : peut épargner $a_t$ ce qui rapporte $a_{t+1}(1+r)$ à la période suivante
+- *petite* : le pays considère le taux d'intérêt mondial $r$ comme donné (pas d'effet sur les prix mondiaux)
 
 ::::
 :::: {.fragment .current-visible}
 
-We solve this problem with the terminal conditions:
+Nous résolvons ce problème avec les conditions aux limites :
 
-- $a_{-1}$ given[^initial_condition]
+- $a_{-1}$ donné[^initial_condition]
 - $\lim_{T\rightarrow\infty} \frac{a_{T}}{(1+r)^T}\geq0$ 
 
-    - *no-ponzi* condition
+    - condition de transversalité (aka no-Ponzi condition)
 
-The no-ponzi condition will in effect eliminate diverging solutions.
+La condition de pas de Ponzi va effectivement éliminer les solutions divergentes.
 
-In a first order approximation, it selects the right eigenvalues.
+Dans une approximation au premier ordre, elle sélectionne les bonnes valeurs propres.
 
 ::::
 :::
 
-[^initial_condition]: Note that initial condition is compatible with the dynare conventions we use here.
+[^initial_condition]: Notez que la condition initiale est compatible avec les conventions Dynare que nous utilisons ici.
 
-## Endowment model (3)
+## Modèle de dotation (3)
 
-We get the lagrangian:
+Nous obtenons le Lagrangien :
 
 $$\mathcal{L}= \sum_{t=0}^{\infty} \beta^t u(c_t) + \sum_{t=0}^{\infty} \beta^t \lambda_t \left(y_t + (1+r) a_{t-1} - c_t-a_{t} \right)$$
 
 
-First order conditions:
+Conditions du premier ordre :
 
 \begin{align}
 u^{\prime}(c_t)& =& \lambda_t \\
@@ -183,7 +186,7 @@ u^{\prime}(c_t)& =& \lambda_t \\
 \end{align}
 
 
-Under the *technical assumption* $\beta (1+r)=1$ we get $c_t=c_{t+1}$ then
+Sous l'*hypothèse technique* $\beta (1+r)=1$ nous obtenons $c_t=c_{t+1}$ et donc
 
 $$c_0 = \frac{r}{1+r}\left\{ (1+r) a_{-1} + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}$$
 
@@ -191,60 +194,73 @@ $$c_0 = \frac{r}{1+r}\left\{ (1+r) a_{-1} + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)
 
 ::: {.incremental}
 
-- consumption is determined by permanent income
-    - changes in initial wealth have permanent effects
-- *remark*: problem isomorphic to consumption-savings decisions
+- la consommation est déterminée par le revenu permanent
+    - les changements de richesse initiale ont des effets permanents
+- *remarque* : problème isomorphe aux décisions d'épargne-consommation
 
 :::
 
-## Current Account
+## Compte courant
 
 
-::: {.callout-tip title="Reminders on Current Account"}
+::: {.callout-tip title="Rappels sur le compte courant"}
 
-The __trade balance__ is exports-imports (here $y_t-c_t$)
+La __balance commerciale__ est les exportations moins les importations (ici $y_t-c_t$)
 
 
-The __current account__ is trade balance + net factor payments (here $y_t-c_t+r a_{t-1}$)
+Le __compte courant__ est la balance commerciale plus les revenus nets de facteurs (ici $y_t-c_t+r a_{t-1}$)
 
-Positive __current account__: additional lending to the rest of the world.
+Un __compte courant__ positif : le pays prête au reste du monde.
 
 :::
 
 . . .
 
 
-Using the formula from before
+En utilisant la formule d'avant
 
 $$CA_0 =  a_{-1} r + (1-\frac{r}{1+r}) y_0 - \frac{r}{1+r}\left\{ \sum_{t\geq1}^{\infty} \frac{y_t}{(1+r)^t}\right\}$$
 
 
 
-How does the current account reacts to income shocks?
+Comment le compte courant réagit-il aux chocs de revenu ?
+
+. . . 
+
+- le compte courant réagit positivement à un choc de revenu *temporaire*
+
+- et négativement aux anticipations de chocs futurs de revenu :
+    - C'est l'*approche intertemporelle* du compte courant
 
 
-- current account responds positively to *temporary* shock in income
+## Racine unitaire
 
-- and to news about future income shocks:
-    - This is the *intertemporal approach* to the current account
-
-
-## Unit root
-
-Still with the same formula:
+Reprenons la formule de la consommation :
 $$c_0 = \frac{r}{1+r}\left\{ (1+r) a_{-1} + \sum_{t=0}^{\infty} \frac{y_t}{(1+r)^t}\right\}$$
 
-What is the effect of an increase in $a_{-1}$?
+Rappelons aussi l'équation d'accumulation des actifs étrangers :
+$$a_t = (1+r) a_{t} + y_t - c_t$$
 
-    - consumption rises permanently
-    - $a_t$ is constant, equal to $a_{-1}$
-    - agent consumes small amount $r$ corresponding to interests paid forever on $a_{-1}$
 
-- this will correspond to a unit root in the solution
+Lorsque $a_{-1}$ augmente de $\Delta a_{-1}$, alors $c_0$ augmente de $r \Delta a_{-1}$.
+
+En conséqence $a_0$ augmente d'exactement $\Delta a_{-1}$ (car $a_0 = (1+r) a_{-1} + y_0 - c_0$).
+
+En itérant le raisonnement, $a_1, a_2, ...$ augmentent aussi d'exactement $\Delta a_{-1}$.
+
+Et les consomations $c_1, c_2, ...$ augmentent d'exactement $r \Delta a_{-1}$.
+
+. . .
+
+Une augmentation de la richesse initiale a un __effet permanent sur les actifs étrangers__ et la consommation.
+
+- cela correspondra à une racine unitaire dans la solution (valeur propre de module 1)
+
+
 <!-- 
-## Exercise
+## Exercice
 
-From the first order conditions 
+À partir des conditions du premier ordre 
 
 
 \begin{align}
@@ -253,90 +269,94 @@ u^{\prime}(c_t) & = & \lambda_t \\
 \end{align}
 
 
-assuming $u(c_t) = \log (c_t)$, can you get the equation for the law of motion of $a_t$  and show the presence of a unit root?
+en supposant $u(c_t) = \log (c_t)$, pouvez-vous obtenir l'équation de la loi de mouvement de $a_t$ et montrer la présence d'une racine unitaire ?
  -->
 
-## Adding capital
+## Ajout du capital
 
-We add capital and production to our endowment economy:
+Nous ajoutons le capital et la production à notre économie de dotation :
 $$y_t = z_t k_{t-1}^\alpha$$
 $$k_t = (1-\delta) k_{t-1} + i_{t}$$
 
-The aggregate resource constraint becomes:
+La contrainte de ressource agrégée devient :
 
 $$a_{t} + c_t + i_t = (1+r) a_{t-1} + y_t$$
 
-Now maximize $\sum_t \beta^ t U(c_t)$
+On maximise alors $\sum_t \beta^ t U(c_t)$
 
 . . .
 
-We get first order conditions
+Nous obtenons les conditions du premier ordre (exactement comme dans le RBC)
 
 $$\lambda_t = \beta \lambda_{t+1} (1+r)$$
 $$\lambda_t = \beta \lambda_{t+1}\left[ (1-\delta) + z_{t+1} f^{\prime}(k_{t}) \right]$$
 
-where $\lambda_t$ is lagrange multiplier associated to budget constraint.
+où $\lambda_t$ est le multiplicateur de Lagrange associé à la contrainte budgétaire.
 
 
-## Adding capital: optimality conditions
+## Ajout du capital : conditions d'optimalité
 
 
-Since $\lambda_t>0$ (constraint is always binding), we get:
+Puisque $\lambda_t>0$ (la contrainte est toujours active), nous obtenons :
 
 $$(1-\delta) + z_{t+1} f^{\prime}(k_{t}) = 1+r$$
 
 $$k_{t} = \left( \frac{r+\delta}{\alpha z_{t+1}}\right)^{\frac{1}{\alpha-1}}$$
 
-and investment $$i_t = \left( \frac{r+\delta}{\alpha z_{t+1}}\right)^{\frac{1}{\alpha-1}}- (1-\delta)\left( \frac{r+\delta}{\alpha z_{t}}\right)^{\frac{1}{\alpha-1}}$$
+et l'investissement $$i_t = \left( \frac{r+\delta}{\alpha z_{t+1}}\right)^{\frac{1}{\alpha-1}}- (1-\delta)\left( \frac{r+\delta}{\alpha z_{t}}\right)^{\frac{1}{\alpha-1}}$$
 
 
 . . .
 
-Here investment is fully determined by productivity shocks
+Ici l'investissement est entièrement déterminé par les chocs de productivité
 
-- too simple: no international dependence
+⇒ trop simple : 
+
+- très corrélé avec la productivité
+- pas de dépendance internationale
+- ajustment immédiat du capital
 
 <!-- 
-## The elusive gains of financial integration
+## Les gains insaisissables de l'intégration financière
 
-Side note:
+Note à côté :
 
-Cf: Gourinchas and Jeanne *The elusive gains from financial integration.
-The immediate adjustment of capital provides an upper bound on the gains from financial integration.
+Cf : Gourinchas et Jeanne *The elusive gains from financial integration.
+L'ajustement immédiat du capital fournit une limite supérieure aux gains de l'intégration financière.
  -->
 
-## Add friction to the investment
+## Ajout de frictions à l'investissement
 
 
-A possible solution: change the resource constraint such that adjusting capital is costly
+Une solution possible : modifier la contrainte de ressource de sorte que l'ajustement du capital soit coûteux
 
-For instance:
+Par exemple :
 
 $$a_{t} + c_t + i_t + \frac{\omega}{2}\frac{(k_{t}-k_{t-1})^ 2}{k_t} = (1+r)a_{t-1} + z f(k_{t-1})$$
 
 $$k_{t} = (1-\delta) k_{t-1} + i_t$$
 
-where $\omega$ is an adjustment friction.
+où $\omega$ est un paramètre de friction d'ajustement.
 
 . . .
 
-Typically, $\omega$ is chosen so that the model replicates $\frac{Var(i_t)}{Var(y_t)}$ from the data.
+En général, $\omega$ est choisi de sorte que le modèle reproduise $\frac{Var(i_t)}{Var(y_t)}$ à partir des données.
 
 . . .
 
-🔜 Cf tutorial.
+🔜 Cf tutoriel.
 
 
 
-# A benchmark Small Open Economy Model
+# Un modèle de petite économie ouverte de référence
 
-## A benchmark Small Open Economy Model
+## Un modèle de petite économie ouverte de référence
 
 ::: columns
 
 :::: column
 
-![Stephanie Schmitt Grohe and Martin Uribe](assets/economics-grohe.jpg){width=60%}
+![Stephanie Schmitt Grohe et Martin Uribe](assets/economics-grohe.jpg){width=60%}
 
 
 ::::
@@ -345,16 +365,16 @@ Typically, $\omega$ is chosen so that the model replicates $\frac{Var(i_t)}{Var(
 
 [*Closing Small Economy Models*](papers/1-s2.0-S0022199602000569-main.pdf), Schmitt Grohe and Uribe (2003), JIE
 
-- small open economy model with production, consumption-leisure tradeoff and capital adjustment costs
-    - = RBC+open+adj costs
-- perform some moments matching
-- compare different ways of stationarizing 
+- modèle de petite économie ouverte avec production, arbitrage consommation-loisir et coûts d'ajustement du capital
+    - = RBC + ouverture + coûts d'ajustement
+- réalise exercice de moment-matching
+- compare différentes façons de stationnariser le modèle (pour se débarrasser de la racine unitaire)
 
 
 ::::
 :::
 
-## The model
+## Le modèle
 
 $$\max_{c_t, n_t} \sum_{t=0}^{\infty} \beta^t u(c_t, n_t)$$
 
@@ -363,57 +383,57 @@ $$y_t = f(k_{t-1}, n_t, z_t)$$
 
 $$z_{t+1} = \rho z_t + \epsilon_{t+1}$$
 
-and $$u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^{1-\psi}
+et $$u(c, n) = \frac{1}{1-\sigma}\left(c^{\psi}(1-n)^{1-\psi}
 )\right)^{1-\sigma}$$
 
 
 . . .
 
 
-The term $\color{red}\pi$ is there to make the model stationary.
+Le terme $\color{red}\pi$ est là pour rendre le modèle stationnaire.
 
 
-## How to make the distribution stationary?
+## Comment rendre la distribution stationnaire ?
 
-The solution of the model exhibits a unit root:
+Sans $\color{red}\pi$ la solution du modèle présente une racine unitaire :
 
-$$a_t = a_{t-1} + ... \text{other variables in t-1} + \text{shocks in t}$$
+$$a_t = a_{t-1} + ... \text{autres variables en t-1} + \text{chocs en t}$$
 
 . . .
 
-Problem:
+Problème :
 
-- there isn't a unique deterministic steady-state
-- the ergodic distribution of the model variables is not defined
+- il n'existe pas d'état stationnaire déterministe unique
+- la distribution ergodique des variables du modèle n'est pas définie
 
-This raises practical issues (notably for estimation) for the *linear* model.
+Cela soulève des problèmes pratiques (notamment pour l'estimation) pour le modèle *linéaire*.
 
-- no unconditional moments
+- pas de moments sans condition
 
-## How to get rid of the unit root?
+## Comment se débarrasser de la racine unitaire ?
 
-*General idea*:
+*Idée générale* :
 
-- introduce a force that pulls the level of foreign assets towards equilibrium
+- introduire une force qui tire le niveau des actifs étrangers vers l'équilibre
 
-Schmitt Grohe and Uribe (2003) consider many options:
+Schmitt Grohe and Uribe (2003) considèrent de nombreuses options :
 
 ::: r-stack
 
 :::: {.fragment .current-visible}
 
-- debt-elastic interest rate:
+- taux d'intérêt élastique à la dette :
     $$1+r = 1+r^{\star} + \pi(a_d)$$
-    - with $\pi(0)=0$ and $\pi^{\prime}(0)>0$
-    - $\pi$ can be understood as a risk premium on rising debt
+    - avec $\pi(0)=0$ et $\pi^{\prime}(0)>0$
+    - $\pi$ peut être compris comme une prime de risque sur l'augmentation de la dette
 
 ::::
 
 :::: {.fragment}
 
-- endogenous time-discount (aka Usawa preferences) 
+- facteur d'actualisation endogène (alias préférences à la Uzawa)
     $$\beta(c_t) = (1+c_t)^{-\chi}$$
-- costs of adjustment for international portfolios
+- coûts d'ajustement pour les portefeuilles internationaux
 
 ::::
 
@@ -421,16 +441,16 @@ Schmitt Grohe and Uribe (2003) consider many options:
 
 . . .
 
-SGU show that the choice of the stationarization device has little effect for the dynamics (moments) of most variables
+SGU montrent que le choix du dispositif de stationnarisation a peu d'effet sur la dynamique (moments) de la plupart des variables
 
 
-## Calibration
+## Calibrage
 
 ::: columns
 
 :::: column
 
-| Parameters  | Values   |
+| Paramètres  | Valeurs  |
 |-------------|----------|
 | $σ$           | 2        |
 | $ψ$           | 1.45     |
@@ -441,7 +461,7 @@ SGU show that the choice of the stationarization device has little effect for th
 ::::
 :::: column
 
-| Parameters  | Values   |
+| Paramètres  | Valeurs  |
 |-------------|----------|
 | $δ$           | 0.1      |
 | $ρ$           | 0.42     |
@@ -454,20 +474,20 @@ SGU show that the choice of the stationarization device has little effect for th
 
 
 
-## Results
+## Résultats
 
-![Impulse Response Function](assets/sgu_irf.png){height=60%}
+![Fonction de réponse impulsionnelle](assets/sgu_irf.png){height=60%}
 
 ##
 
-![Moments (from SGU)](assets/sgu_moments.png){height=60%}
+![Moments (d'après SGU)](assets/sgu_moments.png){height=60%}
 
 ## Conclusions
 
-- The model matches unconditional correlations fairly well
-    - The stationarization device has little effect on the moments
-- Unconditional correlations are not that great
-    - a limitation of the moment matching method?
-- Correlation of consumption with output is too high
-    - and probably cross-correlation of consumption too low
-    - still the Backus-Kehoe-Kydland puzzle...
+- Le modèle reproduit assez bien les corrélations inconditionnelles
+    - Le dispositif de stationnarisation a peu d'effet sur les moments
+- Les corrélations conditionnelles ne sont pas très bonnes
+    - une limitation de la méthode de matching de moments ?
+- La corrélation de la consommation avec la production est trop élevée
+    - et la corrélation internationale des consommations est trop élevée dans le modèle
+    - ... toujours le puzzle de Backus-Kehoe-Kydland...

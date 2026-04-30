@@ -1,7 +1,7 @@
 ---
 title: "Introduction à l'hétérogénéité"
-date: 2025/04/1
-subtitle: "Macro II - Fluctuations - ENSAE, 2024-2025"
+date: 2026/04/15
+subtitle: "Macro II - Fluctuations - ENSAE, 2025-2026"
 author: Pablo Winant
 format:
     revealjs:

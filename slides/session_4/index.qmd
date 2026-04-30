@@ -1,7 +1,7 @@
 ---
-title: "Financial Intermediation"
-date: 2025/04/15
-subtitle: "Macro II - Fluctuations - ENSAE, 2024-2025"
+title: "Intermédiation financière"
+date: 2026/04/15
+subtitle: "Macro II - Fluctuations - ENSAE, 2025-2026"
 author: Pablo Winant
 
 format:
@@ -20,7 +20,7 @@ format:
 
 ---
 
-# The Importance of Financial Intermediaries
+# L'importance des intermediaires financiers
 
 
 
@@ -30,71 +30,77 @@ format:
 
 :::: column
 
-![Ben Bernanke: Nobel Prize Winner in 2022](assets/bernanke.png)
+![Ben Bernanke : laureat du prix Nobel en 2022](assets/bernanke.png)
 
 ::::
 :::: column
 
 __Ben Bernanke__
 
-- chairman of the Fed (2006-2014) succeeding Alan Greenspan
-- aka Helicopter Ben
-- was an expert of the Great Depression...
-  - gvt/cb should have printed more money
-- ...and had to face the Great Recession
-  - gvt/cb should have been more careful about the state of financial intermediaries
-- received the Nobel Prize in 2022 with Diamond and  Dybvig
-  - for their work on banks and their necessary bailouts 
-  during financial crises
-  - Bernanke (and others) incorporated realistic models of banks (from D&D) in DSGE models
 
-- His acceptance speech is [online](https://www.nobelprize.org/prizes/economic-sciences/2022/bernanke/biographical/)
+::::: {.incremental}
 
+- president de la Fed (2006-2014), succedant a Alan Greenspan
+- surnomme Helicopter Ben
+- etait un specialiste de la Grande Depression...
+  - l'Etat / la banque centrale auraient du creer davantage de monnaie
+- ...et a ensuite du faire face a la Grande Recession
+  - l'Etat / la banque centrale auraient du etre plus attentifs a la situation des intermediaires financiers
+- a recu le prix Nobel en 2022 avec Diamond et Dybvig
+  - pour leurs travaux sur les banques et la necessite de leur renflouement 
+  en periode de crise financiere
+  - Bernanke (et d'autres) a integre des modeles realistes de banques (issus de D&D) dans des modeles DSGE
+
+- Son discours de reception est [en ligne](https://www.nobelprize.org/prizes/economic-sciences/2022/bernanke/biographical/)
+
+:::::
 
 ::::
 
 :::
 
-##  Credit Markets
+##  Marches du credit
 
-Credit markets are crucial to understand:
+Les marches du credit sont cruciaux pour comprendre :
 
-- financial crises
-- the persistence of "garden-variety" recessions 
-- monetary policy
-- financial regulation and prudential policies
-  - now part of "macropru", which takes a big mindshare in central banks
+::: {.incremental}
 
+- les crises financieres
+- la persistance des recessions "ordinaires" 
+- la politique monetaire
+- la regulation financiere et les politiques prudentielles
+  - desormais integrees dans la "macropru", qui occupe une place importante dans les banques centrales
 
-## Issues with Credit 
+:::
+
+## Problemes lies au credit 
 
 
 ::: {.incremental}
 
-- Imperfect and asymmetric information
-  - borrowers know more about their financial capacity
-- -> Moral hazard: no incentive to behave in a way to make payment
-- -> Adverse selection problem
-  - riskier borrowers have more incentives to apply for funds
+- Information imparfaite et asymetrique
+  - les emprunteurs connaissent mieux leur capacite financiere
+- -> Alea moral : peu d'incitations a adopter un comportement assurant le remboursement
+- -> Probleme de selection adverse
+  - les emprunteurs les plus risques ont davantage interet a demander des fonds
 
-- Banks and other Lenders deal with these problems with various tools:
-  - long-term relationship
-  - screening
-  - monitoring
-  - restrictions on lenders (covenant[^covenant])
-  - collateral
-
+- Les banques et autres preteurs traitent ces problemes avec divers outils :
+  - relation de long terme
+  - filtrage (screening)
+  - restrictions imposees aux emprunteurs (covenant[^covenant])
+  - suivi (monitoring)
+  - collateraux
 :::
 
-[^covenant]: From Wikipedia: *A loan covenant is a condition in a commercial loan or bond issue that requires the borrower to fulfill certain conditions or which forbids the borrower from undertaking certain actions, or which possibly restricts certain activities to circumstances when other conditions are met*
+[^covenant]: D'apres Wikipedia : *Un covenant de pret est une clause d'un pret commercial ou d'une emission obligataire qui impose a l'emprunteur de respecter certaines conditions, lui interdit certaines actions, ou restreint certaines activites a des circonstances ou d'autres conditions sont satisfaites.*
 
 
-## External Finance Premium
+## Prime de financement externe
 
 
-::: {.callout-note title="External Finance Premium"}
+::: {.callout-note title="Prime de financement externe"}
 
-All-in cost of a loan for a given borrower    (including costs created by covenants and collateral requirements, etc.), less the safe rate of interest (for example, yields on government securities).
+Le cout total d'un pret pour un emprunteur donne (y compris les couts lies aux covenants, aux exigences de collateraux, etc.), moins le taux d'interet sans risque (par exemple le rendement des titres publics).
 
 :::
 
@@ -102,48 +108,48 @@ All-in cost of a loan for a given borrower    (including costs created by covena
 
 ::: {.incremental}
 
-- The external finance premium is the *cost* of intermediation
-  - it is a *distortion* that has macro implications
-- It is different for each borrower
-  - depends on size/risk
+- La prime de financement externe est le *cout* de l'intermediation
+  - c'est une *distorsion* aux consequences macroeconomiques
+- Elle est differente pour chaque emprunteur
+  - elle depend de la taille et du risque
 
 :::
 
 . . .
 
-A key insight from the literature on financial intermediation
+Un enseignement cle de la litterature sur l'intermediation financiere
 
-- EFP is determined the net worth of *both* borrowers and lenders
+- La PFE est determinee par la valeur nette de *l'emprunteur* et du *preteur*
 
 
 <!-- cf Groucho Marx "I wouldn't want to belong to a club that would have me as a member" -->
 
 ## 
 
-__Financial accelerator__[^finacc]:
+__Accelerateur financier__[^finacc] :
 
-- higher EFP: tighter credit standard, less lending, slows the economy
-- weaker economy reduces financial health of lenders/borrowers, raises EFP
+- une PFE plus elevee : credit plus strict, moins de prets, ralentissement de l'economie
+- une economie affaiblie degrade la sante financiere des preteurs et des emprunteurs, ce qui augmente la PFE
 
 . . .
 
-[^finacc]: The financial accelerator in macroeconomics is the process by which adverse shocks to the economy may be amplified by worsening financial market conditions.
+[^finacc]: En macroeconomie, l'accelerateur financier est le mecanisme par lequel des chocs negatifs peuvent etre amplifies par la deterioration des conditions financieres.
 
-![Measure of External Finance Premium[^gilchrist]](assets/gz_spread.png)
+![Mesure de la prime de financement externe[^gilchrist]](assets/gz_spread.png)
 
 
-[^gilchrist]: methodology from Gilchrst and Zakrajsek (2012)
+[^gilchrist]: methodologie de Gilchrist et Zakrajsek (2012)
 
-## The Great Recession
+## La Grande Recession
 
 ::: {.incremental}
 
-- Great Recession Resulted from "credit disruptions"
-- A large fraction of intermediaries were *shadow banks* (investment banks, mortgage companies, money market funds, ...) which
-  - did not have access for federal reserve loans like banks
-  - relied on short-term funding
-  - were *vulnerable* to bank runs 
-- Bernanke (2018) show that during the crisis, measures of financial panic (funding costs) predicted very well *real* quantities
+- La Grande Recession resulte de "ruptures de credit"
+- Une grande partie des intermediaires etaient des *shadow banks* (banques d'investissement, societes de credit hypothcaire, fonds monetaires, ...) qui
+  - n'avaient pas acces aux prets de la Federal Reserve comme les banques commerciales
+  - se financaient a court terme
+  - etaient *vulnerables* aux paniques bancaires
+- Bernanke (2018) montre que, pendant la crise, les mesures de panique financiere (couts de financement) predisaient tres bien les variables *reelles*
 
 :::
 
@@ -153,9 +159,9 @@ __Financial accelerator__[^finacc]:
 
 
 
-# Financial Business Cycles
+# Cycles financiers
 
-## Financial Business Cycles
+## Cycles financiers
 
 
 ::: columns
@@ -171,16 +177,16 @@ __Financial accelerator__[^finacc]:
 ::::: {.incremental}
 
 - Matteo Iacoviello
-  - works at Federal Reserve Board
-  - specialized in macro modeling especially on the housing market
+  - travaille au Federal Reserve Board
+  - specialise en modelisation macro, notamment sur le marche immobilier
 
 - [Financial business cycles](papers/FBC.pdf), Review of Economic Dynamics 2015
-  - DSGE model with a financial sector and financial shocks
-  - model is estimated
-  - result: recessions (cycles) are triggered by credit shocks
+  - modele DSGE avec secteur financier et chocs financiers
+  - le modele est estime
+  - resultat : les recessions (cycles) sont declenchees par des chocs de credit
 
-- Model is rather simple in terms of microfoundations
-  - ... explains why it is underpublished
+- Le modele est plutot simple du point de vue des microfondements
+  - ... ce qui explique qu'il soit relativement mal publié
 
 :::::
 
@@ -189,83 +195,83 @@ __Financial accelerator__[^finacc]:
 :::
 
 
-## Summary {auto-animate="true"}
+## Resume {auto-animate="true"}
 
-I consider a discrete-time economy.
+Je considere une economie en temps discret.
 
-The economy features three agents: households, bankers, and entrepreneurs. Each agent has a unit mass.
+L'economie comprend trois types d'agents : les menages, les banquiers et les entrepreneurs. Chaque type a une masse unitaire.
 
-Households work, consume and buy real estate, and make one-period deposits into a bank. The household sector in the aggregate is net saver. 
+Les menages travaillent, consomment et achetent de l'immobilier, et placent des depots a un periode aupres d'une banque. Le secteur des menages est agregativement epargnant net.
 
-Entrepreneurs accumulate real estate, hire households, and borrow from banks.
+Les entrepreneurs accumulent de l'immobilier, embauchent des menages et empruntent aux banques.
 
-In between the households and the entrepreneurs, bankers intermediate funds. The nature of the banking activity implies that bankers are borrowers when it comes to their relationship with households, and are lenders when it comes to their relationship with the credit-dependent sector – the entrepreneurs.
+Entre menages et entrepreneurs, les banquiers intermedient les fonds. La nature de l'activite bancaire implique que les banquiers sont emprunteurs vis-a-vis des menages, et preteurs vis-a-vis du secteur dependant du credit, c'est-a-dire les entrepreneurs.
 
-I design preferences in a way that two frictions coexist and interact in the model’s equilibrium: first, bankers are credit constrained in how much they can borrow from the patient savers; second, entrepreneurs are credit constrained in how much they can borrow from bankers.
+Les preferences sont construites de facon a ce que deux frictions coexistent et interagissent a l'equilibre : d'abord, les banquiers sont contraints dans la quantite qu'ils peuvent emprunter aux epargnants patients ; ensuite, les entrepreneurs sont contraints dans la quantite qu'ils peuvent emprunter aux banquiers.
 
 
-## Summary {auto-animate="true"}
+## Resume {auto-animate="true"}
 
-I consider a discrete-time economy.
+Je considere une economie en temps discret.
 
-The economy features three agents: <mark>households</mark>, <mark>bankers</mark>, and <mark>entrepreneurs</mark>. Each agent has a unit mass. 
+L'economie comprend trois types d'agents : <mark>les menages</mark>, <mark>les banquiers</mark> et <mark>les entrepreneurs</mark>. Chaque type a une masse unitaire.
 
-Households work, consume and buy <mark>real estate</mark>, and make one-period deposits into a bank. The <mark>household</mark> sector in the aggregate is <mark>net saver</mark>.
+Les menages travaillent, consomment et achetent de l'<mark>immobilier</mark>, et placent des depots a un periode dans une banque. Le secteur des <mark>menages</mark> est agregativement <mark>epargnant net</mark>.
 
-Entrepreneurs accumulate real estate, hire households, and borrow from banks.
+Les entrepreneurs accumulent de l'immobilier, embauchent des menages et empruntent aux banques.
 
-In between the households and the entrepreneurs, <mark>bankers intermediate funds</mark>. The nature of the banking activity implies that bankers are borrowers when it comes to their relationship with households, and are lenders when it comes to their relationship with the credit-dependent sector – the entrepreneurs. 
+Entre menages et entrepreneurs, <mark>les banquiers intermedient les fonds</mark>. La nature de l'activite bancaire implique que les banquiers sont emprunteurs vis-a-vis des menages et preteurs vis-a-vis du secteur dependant du credit, c'est-a-dire les entrepreneurs.
 
-I design preferences in a way that two frictions coexist and interact in the model’s equilibrium: first, <mark>bankers are credit constrained</mark> in how much they can borrow from the patient savers; second, <mark>entrepreneurs</mark> are credit constrained in how much they can borrow from bankers.
+Les preferences sont construites de facon a ce que deux frictions coexistent et interagissent a l'equilibre : d'abord, <mark>les banquiers sont contraints en credit</mark> dans la quantite qu'ils peuvent emprunter aux epargnants patients ; ensuite, <mark>les entrepreneurs</mark> sont contraints en credit dans la quantite qu'ils peuvent emprunter aux banquiers.
 
-## Households {auto-animate="true"}
+## Menages {auto-animate="true"}
 
-Representative agent chooses housing $H_{H,t}$, consumption $C_{T,t}$ and time spent working $N_{H,t}$ to solve
+L'agent representatif choisit le logement $H_{H,t}$, la consommation $C_{T,t}$ et le temps de travail $N_{H,t}$ pour resoudre
 
 $$\max E_t \sum_{t=0}^{\infty} \beta^t_H \left( \log C_{H,t} + j \log H_{H,t} + \tau \log(1-N_{H,t}) \right)$$
 
-where $\beta_{H,t}$ is the discount factor and $j,\tau$ two preference parameters.
+ou $\beta_{H,t}$ est le facteur d'actualisation et $j,\tau$ deux parametres de preference.
 
 . . .
  
-subject to the __Budget constraint__:
+sous la __contrainte budgetaire__ :
 
 $$C_{H,t} + D_t + q_t \left( H_{H,t}- H_{H,t-1} \right) = R_{H,t-1} D_{t-1} + W_{H,t} N_{H,t} + \epsilon_t$$
 
-where:
+ou :
 
-- $D_t$: bank deposits earning gross return $R_{H,t}$
-- $q_t$: price of housing
-- $W_t$: wage rate
-- $\epsilon_t$: a redistributive shock (proxy for default)
+- $D_t$ : depots bancaires remuneres au rendement brut $R_{H,t}$
+- $q_t$ : prix du logement
+- $W_t$ : salaire
+- $\epsilon_t$ : choc redistributif (proxy des defauts)
 
-## Households {auto-animate="true"}
+## Menages {auto-animate="true"}
 
 ::: columns
 
 :::: column
 
-Representative agent chooses housing $H_{H,t}$, consumption $C_{T,t}$ and time spent working $N_{H,t}$ to solve
+L'agent representatif choisit le logement $H_{H,t}$, la consommation $C_{T,t}$ et le temps de travail $N_{H,t}$ pour resoudre
 
 $$\max E_t \sum_{t=0}^{\infty} \beta^t_H \left( \log C_{H,t} + j \log H_{H,t} + \tau \log(1-N_{H,t}) \right)$$
 
-where $\beta_{H,t}$ is the discount factor and $j,\tau$ two preference parameters.
+ou $\beta_{H,t}$ est le facteur d'actualisation et $j,\tau$ deux parametres de preference.
  
-subject to the __Budget constraint__:
+sous la __contrainte budgetaire__ :
 
 $$C_{H,t} + D_t + q_t \left( H_{H,t}- H_{H,t-1} \right) = R_{H,t-1} D_{t-1} + W_{H,t} N_{H,t} + \epsilon_t$$
 
-where:
+ou :
 
-- $D_t$: bank deposits earning gross return $R_{H,t}$
-- $q_t$: price of housing
-- $W_t$: wage rate
-- $\epsilon_t$: a redistributive shock (proxy for default)
+- $D_t$ : depots bancaires remuneres au rendement brut $R_{H,t}$
+- $q_t$ : prix du logement
+- $W_t$ : salaire
+- $\epsilon_t$ : choc redistributif (proxy des defauts)
 
 ::::
 
 :::: column
-We can derive the following optimality conditions:
+On obtient les conditions d'optimalite suivantes :
 
 $$\frac{1}{C_{H,t}} = \beta_H E_t \left( \frac{1}{C_{H,t+1}} R_{H,t} \right)$$
 $$\frac{q_t}{C_{H,t}} = \frac{j}{H_{H,t}} + \beta_H E_t \left( \frac{q_{t+1}}{C_{H,t+1}}  \right)$$
@@ -276,45 +282,45 @@ $$\frac{W_{H,t}}{C_{H,t}} = \frac{\tau}{1-N_{H,t}}$$
 
 ## Entrepreneurs
 
-The representative entrepreneur chooses consumption $C_{E,t}$, housing $H_{H,t}$, production $Y_t$, worker's time $N_{H,t}$ $$\max E_0 \sum_{t=0}^{\infty} \beta^t_E \log C_{E,t}$$
+L'entrepreneur representatif choisit la consommation $C_{E,t}$, l'immobilier $H_{H,t}$, la production $Y_t$, le temps de travail $N_{E,t}$, la dette $L_{E,t}$: $$\max E_0 \sum_{t=0}^{\infty} \beta^t_E \log C_{E,t}$$
 
-subject to:
+sous :
 
-$$C_{E,t} + q_t \left( H_{E,t} - H_{E,t-1} \right) + R_{E,t} L_{E,t-1} + W_{H,t} N_{H,t} + a c_{EE,t} = Y_t + L_{E,t}$$
+$$C_{E,t} + q_t \left( H_{E,t} - H_{E,t-1} \right) + R_{E,t} L_{E,t-1} + W_{H,t} N_{E,t} + a c_{EE,t} = Y_t + L_{E,t}$$
 
-$$Y_t = H^{\nu}_{E,t-1} N^{1-\nu}_{H,t}$$
+$$Y_t = H^{\nu}_{E,t-1} N^{1-\nu}_{E,t}$$
 
 $$
-L_{E,t} \leq m_H E_t \left( \frac{q_{t+1}}{R_{E,t+1}}H_{E,t} \right) - m_N W_{H,t} N_{H,t}
+L_{E,t} \leq m_H E_t \left( \frac{q_{t+1}}{R_{E,t+1}}H_{E,t} \right) - m_N W_{H,t} N_{E,t}
 $$ {#eq-borrowing-constraint}
 
-- $L_{E,t}$ are loans to the entrepreneur with gross return $R_{E,t}$
+- $L_{E,t}$ sont les prets a l'entrepreneur, au rendement brut $R_{E,t}$
 
-- $c_{EE,t}=\frac{\phi_{EE}}{2}\frac{\left(L_{E,t}-L_{E,t-1}\right)}{L_E}$ with $L_E$ the steady-state of $L_{E,t}$ [^external_1]
-  - captures the fact that loans change slowly
+- $c_{EE,t}=\frac{\phi_{EE}}{2}\frac{\left(L_{E,t}-L_{E,t-1}\right)^  2}{L_E}$ avec $L_E$ l'etat stationnaire de $L_{E,t}$ 
+  - capte le fait que les prets evoluent lentement
 
-[^external_1]: the quadratic adjustment cost is assumed to be *external* to the banker
+<!-- [^external_1]: le cout d'ajustement quadratique est suppose *externe* au banquier -->
 
 ##
 
-Borrowing constraint:
+Contrainte d'emprunt :
 
 $$
 L_{E,t} \leq m_H E_t \left( \frac{q_{t+1}}{R_{E,t+1}}H_{E,t} \right) - m_N W_{H,t} N_{H,t}
 $$ {#eq-borrowing-constraint}
 
-- entrepreneurs cannot borrow more than a fraction $m_H$ of the expected value of their real estate stock
-- a fraction $m_N$ of the wage bill must be paid in advance
-  - entrepreneurs can't borrow to cover it
+- les entrepreneurs ne peuvent pas emprunter plus qu'une fraction $m_H$ de la valeur anticipee de leur stock immobilier
+- une fraction $m_N$ de la masse salariale doit etre payee d'avance
+  - les entrepreneurs ne peuvent pas emprunter pour la financer
 
-Assumption: entrepreneurs discount future more than housholds and bankers 
+Hypothese : les entrepreneurs actualisent davantage le futur que les menages et les banquiers 
 
-$$\beta_E < \frac{1}{\gamma_E \frac{1}{\beta_H} + (1-\gamma_E)\frac{1}{\beta_B}}$$ with $\gamma_E\in[0,1]$
+$$\beta_E < \frac{1}{\gamma_E \frac{1}{\beta_H} + (1-\gamma_E)\frac{1}{\beta_B}}$$ avec $\gamma_E\in[0,1]$
 
 
-## Entrepreneurs: optimality conditions
+## Entrepreneurs : conditions d'optimalite
 
-We get the following optimality conditions
+On obtient les conditions d'optimalite suivantes
 
 $$\left( 1- \lambda_{E,t} - \frac{\partial ac_{LE,t}}{\partial L_{E,t}}\right) \frac{1}{c_{E,t}} = \beta_E E_t \left( R_{E,t+1} \frac{1}{c_{E,t+11}}\right)$$
 
@@ -329,91 +335,97 @@ $$\left(
 $$\frac{(1-\nu)Y_t}{1+m_N \lambda_{E,t}}=W_{H,t} N_{H,t}$$
 
 
-__Comment__: credit constraint introduces a wedge between the cost of factors and their marginal product.
+__Commentaire__ : la contrainte de credit introduit un ecart entre le cout des facteurs et leur produit marginal.
 
-  - a distortion like a tax
+  - une distorsion comparable a une taxe
 
 
-## Bankers
+## Banquiers
 
-The representative banker maximizes private consumption $C_{B,t}$ 
+Le banquier representatif maximise sa consommation privee $C_{B,t}$ 
 
 $$\max E_0 \sum_{t=0}^{\infty} \beta^t_B \log C_{B,t}$$
 
 $$C_{B,t} + R_{H,t-1} D_{t-1} + L_{E,t} + a c_{EB,t} = D_t + R_{E,t} L_{E,t-1} - \epsilon_t$$
 
-where:
+ou :
 
-- $D_t$: households deposits
-- $L_{E,t}$: loans to entrepreneurs
-- $a c_{EB,t} = \frac{\phi_{EB}}{2} \frac{(L_{E,t-L_{E,t-1}})^2}{L_E}$ is quadratic adjustment cost[^external_2]
+- $D_t$ : depots des menages
+- $L_{E,t}$ : prets aux entrepreneurs
+- $a c_{EB,t} = \frac{\phi_{EB}}{2} \frac{(L_{E,t-L_{E,t-1}})^2}{L_E}$ est un cout d'ajustement quadratique[^external_2]
 
-- the ability to convert deposits into loans is limited by a borrowing constraint[^capital]
+- la capacite a transformer les depots en prets est limitee par une contrainte d'emprunt[^capital]
 
 $$D_t \leq \gamma_E \left( L_{E,t} - E_t \epsilon_{t+1} \right)$$
 
-[^external_2]: the quadratic adjustment cost is assumed to be *external* to the banker
-[^capital]: here it is equivalent to a more realistic restriction on the capital ratio
+[^external_2]: le cout d'ajustement quadratique est suppose *externe* au banquier
+[^capital]: ici, c'est equivalent a une contrainte plus realiste sur le ratio de capital
 
 
-## Bankers (optimality)
+## Banquiers (optimalite)
 
-Denote:
+Notons :
 
-- $m_{B,t} = \beta_B E_t \left( \frac{C_{B,t}}{C_{B,t+1}}\right)$: the stochastic discount factor of the banker
-- $\lambda_{B,t}$: multiplier on the capital adequacy constraint *normalized by marginal utiliy of consumption*
+- $m_{B,t} = \beta_B \left( \frac{C_{B,t}}{C_{B,t+1}}\right)$ : le facteur d'actualisation stochastique du banquier
+- $\lambda_{B,t}$ : multiplicateur de la contrainte de fonds propres *normalise par l'utilite marginale de la consommation*
 
-Optimality conditions:
+Conditions d'optimalite :
 
 $$1-\lambda_{B,t} = E_t \left( m_{B,t} R_{H,t} \right)$$ {#eq-foc-banker-1}
 
 $$1-\gamma_{E} \lambda_{B,t} + \frac{\partial ac_{EB,t}}{\partial L_{E,t}} = E_t \left( m_{B,t} R_{E,t+1} \right)$$ {#eq-foc-banker-2}
 
-These two equations explain the spread between the deposit rate and the lending rate (aka the intermediation premium)
+Ces deux equations expliquent l'ecart entre le taux de depot et le taux de pret (la prime d'intermediation)
 
-## Bankers (optimality)
+## Banquiers (optimalite)
 
 $$1-\lambda_{B,t} = E_t \left( m_{B,t} R_{H,t} \right)$$
 
 $$1-\gamma_{E} \lambda_{B,t} + \frac{\partial ac_{EB,t}}{\partial L_{E,t}} = E_t \left( m_{B,t} R_{E,t+1} \right)$$
 
 
-__Interpretation__:
+__Interpretation__ :
 
-- the banker can consume more by borrowing from the household to fuel consumption
-  - tightens its credit constraint
-  - reduces the value of an extra deposit by $\lambda_{B,t}$
-- the banker can consume more by reducing loans
-  - it also tightens its credit constraint (reduces equity)
-  - effect stronger if collateral requirement is higher
+- le banquier peut consommer davantage en empruntant aux menages pour financer sa consommation
+  - cela resserre sa contrainte de credit
+  - cela reduit la valeur d'un depot supplementaire de $\lambda_{B,t}$
+- le banquier peut consommer davantage en reduisant les prets
+  - cela resserre aussi sa contrainte de credit (baisse des fonds propres)
+  - l'effet est plus fort si l'exigence de collateraux est plus elevee
 
 
-## Market clearing
+## Equilibre des marches
 
-Total supply of housing $H_{E,t} + H_{H,t} = 1$
 
-Market clearing conditions for goods and housing:
+Conditions d'equilibre sur logement :
 
 $$H_{E,t} + H_{H,t} = 1$$
 
+Conditions d'equilibre sur les marches du travail :
 
-## Steady state properties
+$$N_{H,t} = N_{E,t}$$
+
+Conditions d'equilibre sur le marché des biens:
+
+$$Y_t = C_{H,t} + C_{E,t} + C_{E,t} + a c_{EE,t} + a c_{EB,t}$$
+
+## Proprietes de l'etat stationnaire
 
 ::: columns
 
 :::: column
 
-For the __household__:
+Pour les __menages__ :
 
 $$R_H=\frac{1}{\beta_H}$$
 
 
 
-For the __banker__:
+Pour les __banquiers__ :
 
-@eq-foc-banker-1 and @eq-foc-banker-2 imply that as long as $\beta_B<\beta_H$, the bankers are credit constrained
+@eq-foc-banker-1 et @eq-foc-banker-2 impliquent que tant que $\beta_B<\beta_H$, les banquiers sont contraints en credit
 
-With $\gamma_{E}$ smaller than one, there is a spread between return on loans and return on deposits:
+Avec $\gamma_{E}$ inferieur a 1, il existe un spread entre le rendement des prets et celui des depots :
 
 $$\lambda_B = 1-\beta_B R_H = 1-\frac{\beta_B}{\beta_H}>0$$
 
@@ -422,18 +434,18 @@ $$R_E = \frac{1}{\beta_B} - \gamma_E \left( \frac{1}{\beta_B} - \frac{1}{\beta_H
 ::::
 :::: column
 
-For __entrepreneurs__
+Pour les __entrepreneurs__
 
-Entrepreneurs are constrained if $\beta_E R_E<1$.
-that is equivalent to $$\frac{1}{\beta_E}=\gamma_E \frac{1}{\beta_H} + (1-\gamma_E) \frac{1}{\beta_B}$$
+Les entrepreneurs sont contraints si $\beta_E R_E<1$.
+Ce qui est equivalent a $$\frac{1}{\beta_E}=\gamma_E \frac{1}{\beta_H} + (1-\gamma_E) \frac{1}{\beta_B}$$
 
 
 
-__Effect__:
+__Effet__ :
 
-- banker's credit constraint and entrepreneur credit constraint create a wedge and reduce steady-state output
+- les contraintes de credit des banquiers et des entrepreneurs creent un ecart et reduisent la production de long terme
 
-__Technical assumption__: at the steady-state, constraints are binding. Iacoviello assume there remain binding in a neighborhood of the steady-state.
+__Hypothese technique__ : a l'etat stationnaire, les contraintes sont saturantes. Iacoviello suppose qu'elles le restent dans un voisinage de l'etat stationnaire.
 
 ::::
 :::
@@ -444,91 +456,92 @@ __Technical assumption__: at the steady-state, constraints are binding. Iacoviel
 
 :::: column
 
-Time period: 1 quarter
+Periode de temps : 1 trimestre
 
-Time discounts:
+Facteurs d'actualisation :
 
-- households: $\beta_H=0.9925$
-- bankers: $\beta_B=0.945$
-- entrepreneurs: $\beta_E=0.94$
+- menages : $\beta_H=0.9925$
+- banquiers : $\beta_B=0.945$
+- entrepreneurs : $\beta_E=0.94$
 
-Choice of leverage parameters such that $R_H=3%$ and $R_E=5%$.
+Choix des parametres de levier de sorte que $R_H=3%$ et $R_E=5%$.
 
 
 ::::
 :::: column
 
-Adjustment costs: $\phi_{EE}=\phi_{EB}=0.25$
+Couts d'ajustement : $\phi_{EE}=\phi_{EB}=0.25$
 
-Weight of leisure in utility: $\tau=2$ (active time spent=1/2 and Frisch elasticity[^frisch] close to 1).
+Poids du loisir dans l'utilite : $\tau=2$ (temps de travail actif = 1/2 et elasticite de Frisch[^frisch] proche de 1).
 
-Share of housing in production: $\nu=0.05$
+Part du logement dans la production : $\nu=0.05$
 
-Preference parameter for housing $j=0.075$: ratio of real estate wealth to output 3.1 (0.8 commercial, 2.3 residential)
+Parametre de preference pour le logement $j=0.075$ : ratio richesse immobiliere / production = 3.1 (0.8 commercial, 2.3 residentiel)
 
-Leverage:
+Levier :
 
-- $m_N=1$: all labour paid in advance
-- $m_H=0.9$: entrepreneur loan-to-value (LTV)
-- $\gamma_E=0.9$: bank leverage (close to historical capital asset ratios close to 1)
+- $m_N=1$ : tout le travail est paye d'avance
+- $m_H=0.9$ : loan-to-value (LTV) des entrepreneurs
+- $\gamma_E=0.9$ : levier bancaire (proche des ratios historiques de capital sur actifs)
 
 ::::
 :::
 
-[^frisch]: Frisch measures the response of hours worked to wage changes
+[^frisch]: Frisch mesure la reponse du temps de travail aux variations de salaire
 
-## Dynamics
+## Dynamique
 
-Dynamics of intermediation spread
+Dynamique du spread d'intermediation
 
-$$E_t \left( R_{E,t+1} \right) - R_H,t = \frac{\lambda_{B,t}}{m_{B,t}}(1-\gamma_E)$$
+$$E_t \left( R_{E,t+1} \right) - R_{H,t} = \frac{\lambda_{B,t}}{m_{B,t}}(1-\gamma_E)$$
 
 
-## First simulation
+## Premiere simulation
 
-Shock $\epsilon_t$ is calibrated on historical loan losses (amounts of debt writedowns)
+Le choc $\epsilon_t$ est calibre sur les pertes historiques sur prets (montants de depreciation de dette)
 
-Follows $$\epsilon_t = 0.9 \epsilon_{t-1} + \iota_t$$
+On a $$\epsilon_t = 0.9 \epsilon_{t-1} + \iota_t$$
 
-The exogenous deviation is the following
+La deviation exogene est la suivante
 
-- increase by 0.38% of gdp each quarter during 12 quarters
-- losses to financial system rise from zero to 2.8$ after 2 years
-- gradual return to zero
+- hausse de 0.38% du PIB chaque trimestre pendant 12 trimestres
+- les pertes du systeme financier passent de 0 a 2.8% apres 2 ans
+- retour progressif vers zero
 
-## First Simulation
+## Premiere simulation
 
 ![](assets/simulation.png)
 
 
 
-## Extended Model
+## Modele etendu
 
-The full model contains:
+Le modele complet contient :
 
-- two househods:
-  - patient: lend to banks
-  - impatient: 
-    - credit constrained: borrow from the bank
-    - redistributive shocks banks-impatient household
-- habits in consumption + preference shocks $$\max E_t\sum_t \beta_t \log(C_t -\eta C_{H,t-1}) + j A_{j,t} \log(H_{H,t}) + \tau \log(1-N_{H,t})$$
-- shocks to all borrowing capacities
-- shocks to investment efficiency + tfp shocks
+- deux types de menages :
+  - patients : preteurs aux banques
+  - impatients : 
+    - contraints en credit : empruntent a la banque
+    - chocs redistributifs banques-menages impatients
+- habitudes de consommation + chocs de preference $$\max E_t\sum_t \beta^t \log(C_t -\eta C_{H,t-1}) + j A_{j,t} \log(H_{H,t}) + \tau \log(1-N_{H,t})$$
+- chocs sur toutes les capacites d'emprunt
+- chocs d'efficacite de l'investissement + chocs de PTF
 
-Model estimated with a bayesian approach from 1985 to 2010
-- 8 shocks in total
-- 8 observable variables
+Modele estime par une approche bayesienne de 1985 a 2010
+
+- 8 chocs au total
+- 8 variables observables
 
 ## Calibration
 
 ![](assets/full_model_parameters.png)
 
 
-## Estimation Results
+## Resultats d'estimation
 
 ![](assets/estimation_results_1.png)
 
-## Estimation Results
+## Resultats d'estimation
 
 ![](assets/estimation_results_2.png)
 
@@ -538,17 +551,17 @@ Model estimated with a bayesian approach from 1985 to 2010
 
 . . .
 
-An estimated model can be used to *identify* shocks.
+Un modele estime peut etre utilise pour *identifier* les chocs.
 
-- most of the change in house prices / loan volumes can be attributed to financial shocks
-- a good fraction of output and investment shocks too
+- l'essentiel des variations des prix immobiliers et des volumes de credit peut etre attribue aux chocs financiers
+- une part importante des fluctuations de la production et de l'investissement aussi
 
-## Predictive Power of the Model {auto-animate="true"}
+## Pouvoir predictif du modele {auto-animate="true"}
 
 ![](assets/predicted_series.png)
 
 
-## Predictive Power of the Model {auto-animate="true"}
+## Pouvoir predictif du modele {auto-animate="true"}
 
 ::: columns
 
@@ -559,43 +572,43 @@ An estimated model can be used to *identify* shocks.
 ::::
 :::: column
 
-The model predicts other moments that were not targeted:
+Le modele predit aussi d'autres moments qui n'etaient pas cibles :
 
-- i.r. spreads
-- capacity utilization
-- corporate profits $\approx$ banker's consumption
+- spreads de taux d'interet
+- taux d'utilisation des capacites
+- profits des entreprises $\approx$ consommation des banquiers
 
 ::::
 :::
 
 ## Conclusion
 
-The FBC model shows that financial shocks were likely a driver of the financial crisis (🤔)
+Le modele FBC montre que les chocs financiers ont probablement ete un moteur de la crise financiere (🤔)
 
 \ \ \ 
 
 
 . . .
 
-But it is missing:
+Mais il manque :
 
 ::: {.incremental}
 
-- a realistically, microfounded model of banks
-- a role for the central bank and money creation
-  - especially money creation by banks...
+- un modele microfonde et realiste des banques
+- un role pour la banque centrale et la creation monetaire
+  - en particulier la creation monetaire par les banques...
 
-- a more realistic macro environment
-  - in particular, capital
+- un environnement macroeconomique plus realiste
+  - en particulier, le capital
 
 :::
 
 # Appendix
 
-## IRF of the full model (1)
+## IRF du modele complet (1)
 
 ![](assets/full_irfs.png)
 
-## IRF of the full model (2)
+## IRF du modele complet (2)
 
 ![](assets/default_irf.png)

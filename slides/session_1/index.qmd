@@ -1,6 +1,6 @@
 ---
 title: "Résolution des modèles DSGE"
-date: 2025/03/18
+date: 2026/03/18
 subtitle: "Macro II - Fluctuations - ENSAE, 2025-2026"
 author: Pablo Winant
 format:
