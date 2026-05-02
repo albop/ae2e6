@@ -47,4 +47,4 @@ end;
 
 check;
 
-stoch_simul(irf=200, order=1) y c i b;
+stoch_simul(irf=100, order=1) y c i b;

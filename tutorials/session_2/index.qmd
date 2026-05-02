@@ -1,0 +1,180 @@
+---
+title: Premiers pas avec Dynare et appariement des moments.
+subtitle: "Cycles et fluctuations - AE2E6"
+resources:
+    - "*.mod"
+listing:
+    id: mod-listings
+    contents:
+        - "*.mod"
+    fields: [filename]
+format:
+  html:
+    code-fold: true
+    code-tools: true
+  ipynb: default
+jupyter: python3
+---
+
+::: {.callout-note collapse="true" title="Objectifs"}
+
+- Apprendre à utiliser les fichiers mod de Dynare.
+- Apprendre à calculer des moments dans les données et à les comparer avec ceux du modèle.
+
+::: 
+
+::: {.callout-tip title="Fichiers mod" collapse="true"}
+
+:::: {#mod-listings}
+::::
+
+:::
+
+
+
+# Utilisation des fichiers mod Dynare.
+
+Téléchargez le fichier mod [rbc](rbc.mod).
+
+```{python}
+from dyno import dynare
+```
+
+__Ouvrez le modèle RBC et résolvez-le. Corrigez les erreurs du fichier mod s'il y en a.__
+
+```{python}
+dynare("rbc_fixed.mod")
+```
+
+(si besoin, téléchargez le modèle corrigé [ici](rbc_fixed.mod) )
+
+__Inspectez les différents éléments de la solution (règle de décision, moments inconditionnels, simulations).__
+
+Ces éléments sont présents dans le rapport de la question précédente. On peut aussi y accéder en inspectant l'objet renvoyé par la fonction dynare.
+
+```{python}
+report = dynare("rbc_fixed.mod")
+# report. # inspectez l'objet report pour trouver les différents éléments de la solution
+```
+
+```{python}
+# TODO
+```
+
+
+__Interprétez l'effet d'un choc de productivité. Comment dépend-il de la persistance du choc ?__
+
+```{python}
+# TODO
+```
+
+# Calcul des moments dans les données
+
+__Téléchargez les séries temporelles des États-Unis depuis la Banque mondiale pour : PIB réel, investissement, consommation, heures travaillées.__
+
+Utilisons le code suivant pour télécharger les données et les préparer pour l'analyse. Nous allons utiliser la bibliothèque `dbnomics` pour importer les données de l'OCDE (pour ça il suffit de trouver les identifiants des séries sur le site de DBNomics).
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from dbnomics import fetch_series
+from statsmodels.tsa.filters.hp_filter import hpfilter
+```
+
+```{python}
+series_ids = [
+    "OECD/QNA/USA.P5.LNBQRSA.Q",      # investissement
+    "OECD/QNA/USA.B1_GS1.LNBQRSA.Q",  # PIB
+    "OECD/QNA/USA.P3.LNBQRSA.Q",      # consommation
+]
+
+frames = []
+for sid in series_ids:
+    tmp = fetch_series(sid)[["period", "value"]].copy()
+    tmp["Subject"] = sid.split("/")[2].split(".")[1]
+    frames.append(tmp)
+
+df_long = pd.concat(frames, ignore_index=True)
+```
+
+```{python}
+# Ne garder que les données pertinentes, au format long.
+df_long = df_long[["Subject", "period", "value"]]
+```
+
+```{python}
+df = df_long.pivot(index="period", columns="Subject", values="value").reset_index()
+```
+
+```{python}
+df = df.sort_values("period").dropna().reset_index(drop=True)
+```
+
+```{python}
+df = df.rename(
+    columns={
+        "period": "period",
+        "P5": "investment",
+        "B1_GS1": "gdp",
+        "P3": "consumption",
+    }
+)
+```
+
+On peut maintenant tracer les séries temporelles:
+
+```{python}
+# TODO
+```
+
+__Détrendez toutes les séries.__
+
+```{python}
+# Détrender la série de consommation.
+series = df["consumption"]
+_, trend = hpfilter(series, lamb=1600)
+cycle = (series - trend) / trend
+df["consumption_trend"] = trend
+df["consumption_cycle"] = cycle
+```
+
+```{python}
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+axes[0].plot(series.values, label="consumption")
+axes[0].plot(trend.values, label="trend")
+axes[0].set_title("consommation")
+axes[0].legend()
+axes[1].plot(cycle.values)
+axes[1].set_title("consommation (cycle)")
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+# Détrender le PIB.
+```
+
+```{python}
+# Détrender la série d'investissement.
+```
+
+__Calculez les corrélations entre les séries détrendées. Calculez les ratios $\frac{\sigma(investment)}{\sigma(gdp)}$ et $\frac{\sigma (consumption)}{\sigma (gdp)}$. Comparez avec le modèle RBC et commentez.__
+
+```{python}
+# TODO
+```
+
+On peux calculer l'équivalent des ces ratios dans le modèle, en calculant les volatilités conditionnelles (en log)
+
+```{python}
+dr = report.solution.decision_rule
+Σ0 = dr.Y @ dr.Σ @ dr.Y.T # volatilité conditionelle
+x = dr.x0 # steady-state
+std_model = np.diag(Σ0) / x # volatilités conditionnelles en en log
+variable_names = dr.symbols['endogenous']
+```
+
+```{python}
+# TODO
+```
