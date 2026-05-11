@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>A two agents model of inequalities. – Macro II - Fluctuations - Part II</title>
+<title>Un modèle à deux agents des inégalités. – Macro II - Fluctuations - Part II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-listing/list.min.js"></script>
 <script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
@@ -117,6 +117,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   })
   </script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -163,9 +166,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#preference-for-wealth-and-marginal-propensity-to-consume" id="toc-preference-for-wealth-and-marginal-propensity-to-consume" class="nav-link active" data-scroll-target="#preference-for-wealth-and-marginal-propensity-to-consume">Preference for wealth and marginal propensity to consume</a></li>
-  <li><a href="#a-two-agents-model" id="toc-a-two-agents-model" class="nav-link" data-scroll-target="#a-two-agents-model">A two agents model</a></li>
-  <li><a href="#calibrating-and-simulating-the-model" id="toc-calibrating-and-simulating-the-model" class="nav-link" data-scroll-target="#calibrating-and-simulating-the-model">Calibrating and simulating the model</a></li>
+  <li><a href="#préférence-pour-la-richesse-et-propension-marginale-à-consommer" id="toc-préférence-pour-la-richesse-et-propension-marginale-à-consommer" class="nav-link active" data-scroll-target="#préférence-pour-la-richesse-et-propension-marginale-à-consommer">Préférence pour la richesse et propension marginale à consommer</a></li>
+  <li><a href="#un-modèle-à-deux-agents" id="toc-un-modèle-à-deux-agents" class="nav-link" data-scroll-target="#un-modèle-à-deux-agents">Un modèle à deux agents</a></li>
+  <li><a href="#calibration-et-simulation-du-modèle" id="toc-calibration-et-simulation-du-modèle" class="nav-link" data-scroll-target="#calibration-et-simulation-du-modèle">Calibration et simulation du modèle</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index_correction.ipynb" download="index_correction.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
@@ -174,8 +177,8 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">A two agents model of inequalities.</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-<p class="subtitle lead">Business Cycles and Fluctuations - AE2E6</p>
+<div class="quarto-title-block"><div><h1 class="title">Un modèle à deux agents des inégalités.</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Cycles et fluctuations - AE2E6</p>
 </div>
 
 
@@ -192,13 +195,13 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-default callout-tip callout-titled" title="Modfiles">
+<div class="callout callout-style-default callout-tip callout-titled" title="Fichiers mod">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Modfiles
+<span class="screen-reader-only">Tip</span>Fichiers mod
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -218,7 +221,7 @@ one_agent.mod
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1718573648760">
+<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1778538654447">
 <div class="body">
 
 </div>
@@ -230,7 +233,7 @@ one_agent_2.mod
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1718573648760">
+<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1778537842040">
 <div class="body">
 
 </div>
@@ -242,7 +245,7 @@ two_agents.mod
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-listing-file-modified-sort="1718573648761">
+<div class="quarto-post image-right" data-index="3" data-listing-file-modified-sort="1778540787536">
 <div class="body">
 
 </div>
@@ -260,21 +263,24 @@ two_agents_mps.mod
 </div>
 </div>
 </div>
-<p>Uncomment the following lines to install needed packages (if not already present).</p>
-<pre class="{julia}"><code># uncomment the next lines, the first time you run
-# import Pkg; Pkg.add(["DBnomics", "Dynare", "DataFrames"])</code></pre>
-<section id="preference-for-wealth-and-marginal-propensity-to-consume" class="level2">
-<h2 class="anchored" data-anchor-id="preference-for-wealth-and-marginal-propensity-to-consume">Preference for wealth and marginal propensity to consume</h2>
-<p>For now, we consider a single representative agent. She has the ability to buy a two periods bond, yielding 1 after one period. The price of the bond at any date is <span class="math inline">\(q\)</span>, hence its (riskfree) interest rate is <span class="math inline">\(r=1/q\)</span>.</p>
-<p>Agent values consumption <span class="math inline">\(c_t\)</span> and wealth <span class="math inline">\(b_t q_t\)</span> so that she maximizes<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
+<p>Importer l’émulation Dynare.</p>
+<div id="2f4981ff" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dyno <span class="im">import</span> dynare</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="préférence-pour-la-richesse-et-propension-marginale-à-consommer" class="level2">
+<h2 class="anchored" data-anchor-id="préférence-pour-la-richesse-et-propension-marginale-à-consommer">Préférence pour la richesse et propension marginale à consommer</h2>
+<p>Pour l’instant, nous considérons un agent représentatif unique. Il peut acheter une obligation à deux périodes, qui rapporte 1 après une période. Le prix de l’obligation à la date <span class="math inline">\(t\)</span> est <span class="math inline">\(q\)</span>, donc son taux d’intérêt (sans risque) est <span class="math inline">\(r=1/q\)</span>.</p>
+<p>L’agent valorise la consommation <span class="math inline">\(c_t\)</span> et la richesse <span class="math inline">\(b_t q_t\)</span>, et il maximise<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> :</p>
 <p><span class="math display">\[\max \sum_t \beta^t \left( \frac{c_t^{1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}}+ \varphi \frac{ (1+b_t)^{1-\frac{1}{\eta}} } {1-\frac{1}{\eta}} \right)\]</span></p>
-<p>under the budget constraint</p>
+<p>sous la contrainte budgétaire</p>
 <p><span class="math display">\[c_t = y_t + b_{t-1} - b_t q_t\]</span></p>
-<p>where <span class="math inline">\(y_t\)</span> is exogenous income following AR1</p>
+<p>où <span class="math inline">\(y_t\)</span> est un revenu exogène suivant un AR1</p>
 <p><span class="math display">\[(y_t-\overline{y})=\rho (y_{t-1}-\overline{y}) + \epsilon^y_t\]</span></p>
-<pre class="{julia}"><code>using Dynare</code></pre>
 <ol class="example" type="1">
-<li><strong>Write down the optimality condition for debt holdings.</strong></li>
+<li><strong>Écrivez la condition d’optimalité pour les détentions de dette.</strong></li>
 </ol>
 <div class="callout callout-style-default callout-warning callout-titled" title="Correction">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -288,12 +294,14 @@ two_agents_mps.mod
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>We get:</p>
+<p>On obtient :</p>
 <p><span class="math display">\[q_t = \beta \left(\frac{c_{t+1}}{c_{t}}\right)^{-\frac{1}{\sigma}}+\varphi \left(\frac{1 + b_t q_t}{c_{t}}\right)^{-\frac{1}{\sigma}}\]</span></p>
 </div>
 </div>
 </div>
-<p><strong>What are the equations defining the deterministic equilibrium?</strong></p>
+<ol start="2" class="example" type="1">
+<li><strong>Quelles sont les équations qui définissent l’équilibre déterministe ?</strong></li>
+</ol>
 <div class="callout callout-style-default callout-warning callout-titled" title="Correction">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -306,11 +314,304 @@ two_agents_mps.mod
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>At the equilibium, the last equation becomes. <span class="math display">\[q = \beta + \varphi \left(\frac{1 + b q}{c}\right)^{-\frac{1}{\sigma}}\]</span></p>
+<p>À l’équilibre, la dernière équation devient : <span class="math display">\[q = \beta + \varphi \left(\frac{1 + b q}{c}\right)^{-\frac{1}{\sigma}}\]</span></p>
 </div>
 </div>
 </div>
-<p><strong>3. Inspect and run <code>one_agent.mod</code> model. Show that there is a unit root. Can you interpret it?</strong></p>
+<ol start="3" class="example" type="1">
+<li><strong>Inspectez et exécutez le modèle <code>one_agent.mod</code>. Montrez qu’il existe une racine unitaire. Pouvez-vous l’interpréter ?</strong></li>
+</ol>
+<div id="ebdbb72b" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"one_agent.mod"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>report</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Could not normalize the static model. Variable b is not in the maximum cardinality matching.
+Could not normalize the static model. Variable b is not in the maximum cardinality matching.
+Could not normalize the static model. Variable b is not in the maximum cardinality matching.
+Could not normalize the static model. Variable b is not in the maximum cardinality matching.
+Could not normalize the static model. Variable b is not in the maximum cardinality matching.
+Could not normalize the static model. Variable b is not in the maximum cardinality matching.
+Could not normalize the static model. Variable b is not in the maximum cardinality matching.
+Could not normalize the static model. Variable b is not in the maximum cardinality matching.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<h3 class="anchored">Model: one_agent</h3>
+
+<table class="caption-top table table-sm table-striped small">
+<tbody>
+<tr class="odd">
+<td>equations</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>variables</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>&nbsp;&nbsp;endogenous</td>
+<td>3</td>
+<td>y, c, b</td>
+</tr>
+<tr class="even">
+<td>&nbsp;&nbsp;exogenous</td>
+<td>1</td>
+<td>e_y</td>
+</tr>
+<tr class="odd">
+<td>constants</td>
+<td>13</td>
+<td>bbar, beta, cbar, chi, eta, phi, q, r, rho, sig_y, sigma, ybar, zbar</td>
+</tr>
+</tbody>
+</table>
+
+
+<br><h3 class="anchored">Check</h3><br><div style="margin:10px 0 14px 0;"><div style="font-weight:600;color:#0f172a;margin-bottom:6px;">Residuals</div><div style="overflow-x:auto;">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+eq 1
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+eq 2
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+eq 3
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+</tr>
+</tbody>
+</table>
+</div></div><br><div style="margin:10px 0 14px 0;"><div style="font-weight:600;color:#0f172a;margin-bottom:6px;">Generalized Eigenvalues</div><div style="overflow-x:auto;">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+1
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+2
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+0
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+3
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+1
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+4
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+1.04
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+5
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+inf
+</div></td>
+<td style="padding: 6px 10px; border: 1px solid #e2e8f0; white-space: nowrap"><div style="font-size:11px;color:#64748b;">
+6
+</div>
+<div style="font-size:13px;color:#0f172a;font-weight:400;">
+inf
+</div></td>
+</tr>
+</tbody>
+</table>
+</div></div><br>
+        <h3 class="anchored">Decision Rule</h3>
+        <h4 class="anchored">Steady-state</h4>
+        
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">c</th>
+<th data-quarto-table-cell-role="th">b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.0</td>
+<td>1.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+        <h4 class="anchored">Jacobian</h4>
+        
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">y[t-1]</th>
+<th data-quarto-table-cell-role="th">c[t-1]</th>
+<th data-quarto-table-cell-role="th">b[t-1]</th>
+<th data-quarto-table-cell-role="th">e_y[t]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">y[t]</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">c[t]</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.038462</td>
+<td>0.038462</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">b[t]</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+        <br><h3 class="anchored">Moments</h3><br><h4 class="anchored">Theoretical Moments</h4><br>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Mean</th>
+<th data-quarto-table-cell-role="th">Std. Dev.</th>
+<th data-quarto-table-cell-role="th">Variance</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">VARIABLE</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">y</th>
+<td>1.0000</td>
+<td>0.0100</td>
+<td>0.0001</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">c</th>
+<td>1.0000</td>
+<td>25811.1015</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">b</th>
+<td>0.0000</td>
+<td>671088.6400</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+<br><h4 class="anchored">Unconditional Covariances</h4><br>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">c</th>
+<th data-quarto-table-cell-role="th">b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">y</th>
+<td>0.000100</td>
+<td>0.000004</td>
+<td>0.0001</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">c</th>
+<td>0.000004</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">b</th>
+<td>0.000100</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+<br><h4 class="anchored">Conditional Covariances</h4><br>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">c</th>
+<th data-quarto-table-cell-role="th">b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">y</th>
+<td>0.000100</td>
+<td>3.846154e-06</td>
+<td>0.000100</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">c</th>
+<td>0.000004</td>
+<td>1.479290e-07</td>
+<td>0.000004</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">b</th>
+<td>0.000100</td>
+<td>3.846154e-06</td>
+<td>0.000100</td>
+</tr>
+</tbody>
+</table>
+<br><h3 class="anchored">Simulation</h3><br><svg xmlns="http://www.w3.org/2000/svg" width="520" height="368" viewbox="0 0 520 368" role="img" aria-label="Simulation charts"><rect width="100%" height="100%" fill="white"></rect><line x1="12" y1="16" x2="30" y2="16" stroke="#0f766e" stroke-width="2"></line><text x="36" y="20" font-size="12" fill="#334155">e_y</text><line x1="36" y1="164.00" x2="240" y2="164.00" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"></line><rect x="36" y="46" width="204" height="118" fill="none" stroke="#cbd5e1" stroke-width="1"></rect><text x="36" y="40" font-size="13" font-weight="600" fill="#0f172a">y</text><text x="36" y="182" font-size="11" fill="#64748b">0</text><text x="232" y="182" text-anchor="end" font-size="11" fill="#64748b">40</text><text x="30" y="56" text-anchor="end" font-size="11" fill="#64748b">0.01</text><text x="30" y="164" text-anchor="end" font-size="11" fill="#64748b">0</text><polyline fill="none" stroke="#0f766e" stroke-width="2" points="36.00,164.00 41.10,46.00 46.20,164.00 51.30,164.00 56.40,164.00 61.50,164.00 66.60,164.00 71.70,164.00 76.80,164.00 81.90,164.00 87.00,164.00 92.10,164.00 97.20,164.00 102.30,164.00 107.40,164.00 112.50,164.00 117.60,164.00 122.70,164.00 127.80,164.00 132.90,164.00 138.00,164.00 143.10,164.00 148.20,164.00 153.30,164.00 158.40,164.00 163.50,164.00 168.60,164.00 173.70,164.00 178.80,164.00 183.90,164.00 189.00,164.00 194.10,164.00 199.20,164.00 204.30,164.00 209.40,164.00 214.50,164.00 219.60,164.00 224.70,164.00 229.80,164.00 234.90,164.00 240.00,164.00"></polyline><line x1="296" y1="164.00" x2="500" y2="164.00" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"></line><rect x="296" y="46" width="204" height="118" fill="none" stroke="#cbd5e1" stroke-width="1"></rect><text x="296" y="40" font-size="13" font-weight="600" fill="#0f172a">c</text><text x="296" y="182" font-size="11" fill="#64748b">0</text><text x="492" y="182" text-anchor="end" font-size="11" fill="#64748b">40</text><text x="290" y="56" text-anchor="end" font-size="11" fill="#64748b">0.000385</text><text x="290" y="164" text-anchor="end" font-size="11" fill="#64748b">0</text><polyline fill="none" stroke="#0f766e" stroke-width="2" points="296.00,164.00 301.10,46.00 306.20,46.00 311.30,46.00 316.40,46.00 321.50,46.00 326.60,46.00 331.70,46.00 336.80,46.00 341.90,46.00 347.00,46.00 352.10,46.00 357.20,46.00 362.30,46.00 367.40,46.00 372.50,46.00 377.60,46.00 382.70,46.00 387.80,46.00 392.90,46.00 398.00,46.00 403.10,46.00 408.20,46.00 413.30,46.00 418.40,46.00 423.50,46.00 428.60,46.00 433.70,46.00 438.80,46.00 443.90,46.00 449.00,46.00 454.10,46.00 459.20,46.00 464.30,46.00 469.40,46.00 474.50,46.00 479.60,46.00 484.70,46.00 489.80,46.00 494.90,46.00 500.00,46.00"></polyline><line x1="36" y1="334.00" x2="240" y2="334.00" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"></line><rect x="36" y="216" width="204" height="118" fill="none" stroke="#cbd5e1" stroke-width="1"></rect><text x="36" y="210" font-size="13" font-weight="600" fill="#0f172a">b</text><text x="36" y="352" font-size="11" fill="#64748b">0</text><text x="232" y="352" text-anchor="end" font-size="11" fill="#64748b">40</text><text x="30" y="226" text-anchor="end" font-size="11" fill="#64748b">0.01</text><text x="30" y="334" text-anchor="end" font-size="11" fill="#64748b">0</text><polyline fill="none" stroke="#0f766e" stroke-width="2" points="36.00,334.00 41.10,216.00 46.20,216.00 51.30,216.00 56.40,216.00 61.50,216.00 66.60,216.00 71.70,216.00 76.80,216.00 81.90,216.00 87.00,216.00 92.10,216.00 97.20,216.00 102.30,216.00 107.40,216.00 112.50,216.00 117.60,216.00 122.70,216.00 127.80,216.00 132.90,216.00 138.00,216.00 143.10,216.00 148.20,216.00 153.30,216.00 158.40,216.00 163.50,216.00 168.60,216.00 173.70,216.00 178.80,216.00 183.90,216.00 189.00,216.00 194.10,216.00 199.20,216.00 204.30,216.00 209.40,216.00 214.50,216.00 219.60,216.00 224.70,216.00 229.80,216.00 234.90,216.00 240.00,216.00"></polyline></svg>
+</div>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled" title="Correction">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -323,28 +624,19 @@ two_agents_mps.mod
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The <code>one_agent.mod</code> model is a standard consumption saving model without preference for wealth.</p>
-<p>In general, if the solution of a model is <span class="math inline">\(y_t = A y_{t-1}\)</span> where <span class="math inline">\(y_t\)</span> is the vector of variables, we have a unit root when one of the eigenvalues of A is equal to 1 in absolute terms.</p>
-<p>In the specific case of the modfile, we can directly read the values of matrix <span class="math inline">\(A\)</span> are given in the output of dynare (precisely it is a subset of <span class="math inline">\(A'\)</span>)</p>
-<pre><code>  Coefficients of approximate solution function (reduced form)
-
-───────┬──────────────────
-       │ y_t   c_t    b_t
-──────────────────────────
-  ϕ(b) │ 0.0  0.0385  1.0
- e_y_t │ 0.1  0.0038  0.1
-───────┴──────────────────</code></pre>
-<p>The rows correspond to the (predetermined) states. Non predetermined variables do not appear as rows (or equivalently with zeros everywhere).</p>
-<p>Here we see that <span class="math inline">\(b_t\)</span> is the only endogenous state. We also see that its dynamic is given by:</p>
+<p>Le modèle <code>one_agent.mod</code> est un modèle standard d’épargne-consommation sans préférence pour la richesse.</p>
+<p>En général, si la solution d’un modèle est <span class="math inline">\(y_t = A y_{t-1}\)</span>, où <span class="math inline">\(y_t\)</span> est le vecteur des variables, on a une racine unitaire quand l’une des valeurs propres de <span class="math inline">\(A\)</span> est égale à 1 en valeur absolue.</p>
+<p>Dans le cas précis du modfile, on lit directement les valeurs de de A dans la jacobienne. Avec l’ordre du modfile, la matrice est triangulaire supérieure et on voit que la dynamique de la dette est <code>b[t]=1.0 b[t-1] + 0.1 e_y[t]</code>, c’est à dire un AR1 avec une persistance parfaite.</p>
+<p>Les lignes correspondent aux états (prédéterminés). Les variables non prédéterminées n’apparaissent pas en lignes (ou, de façon équivalente, avec des zéros partout).</p>
+<p>Ici, on voit que <span class="math inline">\(b_t\)</span> est le seul état endogène. On voit aussi que sa dynamique est :</p>
 <p><span class="math display">\[b_t = 1.0 b_{t-1} + 0.1 e_{y,t}\]</span></p>
-<p>In other words, the dynamic of <span class="math inline">\(b\)</span> is an AR1 with perfect persistence.</p>
-<p>This behaviour (like in an open economy) comes from the fact that any steady-state level of debt is feasible (in a deterministic model). Hence shocks can affect the steady-state permanently.</p>
+<p>Autrement dit, la dynamique de <span class="math inline">\(b\)</span> est un AR1 avec une persistance parfaite.</p>
+<p>Ce comportement (comme dans une économie ouverte) vient du fait que tout niveau de dette de long terme est possible (dans un modèle déterministe). Les chocs peuvent donc affecter durablement l’état stationnaire.</p>
 </div>
 </div>
 </div>
-<pre class="{julia}"><code>@dynare("one_agent.mod");</code></pre>
-<ol start="2" class="example" type="1">
-<li><strong>What is the consumption response to a temporary income shock? To a permanent one? (with autocorrelation <span class="math inline">\(\rho=0.9\)</span> and <span class="math inline">\(\rho=1.0\)</span>)</strong></li>
+<ol start="4" class="example" type="1">
+<li><strong>Quelle est la réponse de la consommation à un choc temporaire de revenu ? À un choc permanent ? (avec autocorrélation <span class="math inline">\(\rho=0.9\)</span> et <span class="math inline">\(\rho=1.0\)</span>)</strong></li>
 </ol>
 <div class="callout callout-style-default callout-warning callout-titled" title="Correction">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -358,18 +650,18 @@ two_agents_mps.mod
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Change the income equation:</p>
+<p>Modifier l’équation de revenu :</p>
 <ul>
-<li>for a temporary shock remove the zero to get: <code>y = ybar + e_y</code></li>
-<li>For a persistent one, define a new parameter in the parameters line initialized to <code>rho=0.9</code> and change the equation to <code>y - ybar = rho*(y(-1) - ybar) + e_y</code>. In the case <code>rho=1.0</code> note the apparition of a second unit root.</li>
+<li>pour un choc temporaire, retirer le terme autorégressif pour obtenir : <code>y = ybar + e_y</code></li>
+<li>pour un choc persistant, définir un nouveau paramètre dans la ligne des paramètres avec <code>rho=0.9</code>, puis utiliser : <code>y - ybar = rho*(y(-1) - ybar) + e_y</code>. Dans le cas <code>rho=1.0</code>, noter l’apparition d’une deuxième racine unitaire.</li>
 </ul>
-<p>In the simulations, pay attention to the magnitude of the shock <code>e_y</code> (1% by default) to compare it to the magnitude of the response for assets <code>b</code>.</p>
-<p>In all simulations, the persistent effect of the shock on the level of debt comes from the presence of a unit root.</p>
+<p>Dans les simulations, faire attention à la taille du choc <code>e_y</code> (1% par défaut) afin de la comparer à l’amplitude de la réponse des actifs <code>b</code>.</p>
+<p>Dans toutes les simulations, l’effet persistant du choc sur le niveau de dette provient de la présence d’une racine unitaire.</p>
 </div>
 </div>
 </div>
-<ol start="3" class="example" type="1">
-<li><strong>In the modfile, add a preference for wealth term in the utility function and adjust the calibration of <code>beta</code> accordingly.</strong></li>
+<ol start="5" class="example" type="1">
+<li><strong>Dans le modfile, ajoutez un terme de préférence pour la richesse dans la fonction d’utilité et ajustez la calibration de <code>beta</code> en conséquence.</strong></li>
 </ol>
 <div class="callout callout-style-default callout-warning callout-titled" title="Correction">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
@@ -383,15 +675,17 @@ two_agents_mps.mod
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Parameters <code>phi</code> and <code>eta</code> are already predefined.</p>
-<p>Add <code>+ phi*(1+b*q)^(-1/eta)/(c^(-1/sigma))</code> to the Euler equation and <code>beta = 1/r - phi*(1+bbar*q)^(-1/eta)/(cbar^(-1/sigma));</code> in the definition of parameters</p>
-<p>The simulation runs, only when the command <code>check</code> succeeds, in particular, when the steady-sate is satisfied. If it is not the case, you need to adjust the equations/calibration.</p>
-<p>Result is in the <code>one_agent_2.mod</code> file.</p>
-<p>Here we see that one unit root has disappeared, because pref. for wealth pins down equilibrium asset holdings.</p>
+<p>Les paramètres <code>phi</code> et <code>eta</code> sont déjà prédéfinis.</p>
+<p>Ajouter <code>+ phi*(1+b*q)^(-1/eta)/(c^(-1/sigma))</code> à l’équation d’Euler et <code>beta = 1/r - phi*(1+bbar*q)^(-1/eta)/(cbar^(-1/sigma));</code> dans la définition des paramètres.</p>
+<p>La simulation ne se lance que si la commande <code>check</code> réussit, en particulier quand l’état stationnaire est bien satisfait. Sinon, il faut ajuster les équations/la calibration.</p>
+<p>Le résultat est dans le fichier <code>one_agent_2.mod</code>.</p>
+<p>Ici, on voit qu’une racine unitaire a disparu, car la préférence pour la richesse épingle les détentions d’actifs d’équilibre.</p>
 </div>
 </div>
 </div>
-<p><strong>6. Simulate the response to a temporary and a persistent shock. Given <code>phi</code> what is the effect of <code>eta</code>?</strong></p>
+<ol start="6" class="example" type="1">
+<li><strong>Simulez la réponse à un choc temporaire et à un choc persistant. Pour un <code>phi</code> donné, quel est l’effet de <code>eta</code> ?</strong></li>
+</ol>
 <div class="callout callout-style-default callout-warning callout-titled" title="Correction">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -404,18 +698,18 @@ two_agents_mps.mod
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Now the savings response to transitory shock is mean reverting, while the response to a persistent shock is persistent and even increasing over time.</p>
-<p><code>eta</code> affects the long run savings level in response to a temporary income shock. (If curious you should be able to check it does not depend on phi).</p>
+<p>La réponse de l’épargne à un choc transitoire est maintenant de retour vers la moyenne, tandis que la réponse à un choc persistant reste persistante et peut même augmenter au cours du temps.</p>
+<p><code>eta</code> affecte le niveau d’épargne de long terme en réponse à un choc temporaire de revenu. (Par curiosité, vous pouvez vérifier que cela ne dépend pas de <code>phi</code>).</p>
 </div>
 </div>
 </div>
 </section>
-<section id="a-two-agents-model" class="level2">
-<h2 class="anchored" data-anchor-id="a-two-agents-model">A two agents model</h2>
-<p>We now assume there are two agents: bottom and top earners. Top earners amount for a fraction <span class="math inline">\(\chi\)</span> of the total population. Together they earn a fraction <span class="math inline">\(z\in[0,1]\)</span> of the total production <span class="math inline">\(y\)</span> which is an AR1 process as in the first part. The rest goes to the bottom earners.</p>
-<p>Top earners can save by lending to bottom earners. We denote by <span class="math inline">\(B_t\)</span> the total quantity of riskfree bonds, traded at <span class="math inline">\(q_t\)</span>. Note that debt per capita is <span class="math inline">\(\frac{B_t}{\chi}\)</span> for top earners and <span class="math inline">\(\frac{B_t}{1-\chi}\)</span> for bottom earners. Top earners have preference for wealth as in the first part, while bottom earners have standard preferences (with <span class="math inline">\(\varphi=0\)</span>)</p>
-<ol start="4" class="example" type="1">
-<li><strong>Write down the budget equations for both agents. What are the new Euler equations? Check that it is consistent with the <code>two_agents.mod</code> modfile. What are the per capita variables?</strong></li>
+<section id="un-modèle-à-deux-agents" class="level2">
+<h2 class="anchored" data-anchor-id="un-modèle-à-deux-agents">Un modèle à deux agents</h2>
+<p>Nous supposons maintenant qu’il existe deux types d’agents : les bas revenus et les hauts revenus. Les hauts revenus représentent une fraction <span class="math inline">\(\chi\)</span> de la population totale. Ensemble, ils perçoivent une fraction <span class="math inline">\(z\in[0,1]\)</span> de la production totale <span class="math inline">\(y\)</span>, qui suit un processus AR1 comme dans la première partie. Le reste revient aux bas revenus.</p>
+<p>Les hauts revenus peuvent épargner en prêtant aux bas revenus. On note <span class="math inline">\(B_t\)</span> la quantité totale d’obligations sans risque, échangées au prix <span class="math inline">\(q_t\)</span>. Noter que la dette par tête est <span class="math inline">\(\frac{B_t}{\chi}\)</span> pour les hauts revenus et <span class="math inline">\(\frac{B_t}{1-\chi}\)</span> pour les bas revenus. Les hauts revenus ont une préférence pour la richesse comme dans la première partie, tandis que les bas revenus ont des préférences standards (avec <span class="math inline">\(\varphi=0\)</span>).</p>
+<ol start="7" class="example" type="1">
+<li><strong>Écrivez les équations budgétaires des deux agents. Quelles sont les nouvelles équations d’Euler ? Vérifiez la cohérence avec le modfile <code>two_agents.mod</code>. Quelles sont les variables par tête ?</strong></li>
 </ol>
 <div class="callout callout-style-default callout-warning callout-titled" title="Correction">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
@@ -429,14 +723,20 @@ two_agents_mps.mod
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Budget constraints are included in the modfile.</p>
-<p>Per capita variables: <code>c_t</code>, <code>c_b</code>, <code>b_t</code> and <code>b_b</code>.</p>
+<p>Les contraintes budgétaires sont incluses dans le modfile.</p>
+<p>Variables par tête : <code>c_t</code>, <code>c_b</code>, <code>b_t</code> et <code>b_b</code>.</p>
 </div>
 </div>
 </div>
-<ol start="5" class="example" type="1">
-<li><strong>What is qualitatively the effect of a permanent redistributive shock? (simulate the model)</strong></li>
+<ol start="8" class="example" type="1">
+<li><strong>Quel est qualitativement l’effet d’un choc redistributif permanent ? (simulez le modèle)</strong></li>
 </ol>
+<div id="093bf4f1" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"two_agents.mod"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled" title="Correction">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -449,26 +749,19 @@ two_agents_mps.mod
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>With increased income, top earners want to increase their asset holdings. This will happen since bottom earners are indifferent in the steady-state. During the transition however, we see a decrease in the interest rate (to convince borrower to accept a decreasing path of consumption over time).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="two_agents/graphs/irfs_e_z_1.png" class="img-fluid figure-img"></p>
-<figcaption>Response to a redistributive shock</figcaption>
-</figure>
+<p>Avec une hausse du revenu des hauts revenus, ces derniers souhaitent augmenter leurs détentions d’actifs. Cela se produit car les bas revenus sont indifférents à l’état stationnaire. Pendant la transition, on observe toutefois une baisse du taux d’intérêt (pour convaincre les emprunteurs d’accepter une trajectoire de consommation décroissante).</p>
 </div>
 </div>
 </div>
-</div>
-<pre class="{julia}"><code>@dynare("two_agents.mod");</code></pre>
 </section>
-<section id="calibrating-and-simulating-the-model" class="level2">
-<h2 class="anchored" data-anchor-id="calibrating-and-simulating-the-model">Calibrating and simulating the model</h2>
-<p>The model in the modefile is pre-calibrated to match US data in 1983. Assume the model is in equilibrium for an initial level of debt <span class="math inline">\(B=0.91\)</span> (which is the debt/gdp ratio in the us in 1983).</p>
-<p>Taking <span class="math inline">\(\varphi=0.05\)</span> as constant, for any given choice of <span class="math inline">\(\eta\)</span>, there is a unique value of <span class="math inline">\(\beta\)</span> consistent with the equilibrium as in the one agent case.</p>
-<p>Now we would like to calibrate the value of <span class="math inline">\(\eta\)</span> so as to match the marginal propensity to save of top earners which was approximately 50% in 1983.</p>
-<p>Since the two agents model is already calibrated for most variables, we reuse it rather than adapting the one agent model.</p>
-<ol start="6" class="example" type="1">
-<li><strong>In the model <code>two_agents.mod</code> replace the Euler equation of bottom earner by <code>q = 1/rbar</code>. Justify why, from the top earners perspective, the model is now equivalent to a single agent model.</strong></li>
+<section id="calibration-et-simulation-du-modèle" class="level2">
+<h2 class="anchored" data-anchor-id="calibration-et-simulation-du-modèle">Calibration et simulation du modèle</h2>
+<p>Le modèle dans le modfile est pré-calibré pour reproduire les données américaines de 1983. On suppose que le modèle est à l’équilibre pour un niveau initial de dette <span class="math inline">\(B=0.91\)</span> (ratio dette/PIB aux États-Unis en 1983).</p>
+<p>En prenant <span class="math inline">\(\varphi=0.05\)</span> comme constante, pour tout choix donné de <span class="math inline">\(\eta\)</span>, il existe une valeur unique de <span class="math inline">\(\beta\)</span> compatible avec l’équilibre, comme dans le cas à un agent.</p>
+<p>Nous voulons maintenant calibrer la valeur de <span class="math inline">\(\eta\)</span> pour reproduire la propension marginale à épargner des hauts revenus, qui était d’environ 50% en 1983.</p>
+<p>Comme le modèle à deux agents est déjà calibré pour la plupart des variables, on le réutilise plutôt que d’adapter le modèle à un agent.</p>
+<ol start="9" class="example" type="1">
+<li><strong>Dans le modèle <code>two_agents.mod</code>, remplacez l’équation d’Euler du bas revenu par <code>q = 1/rbar</code>. Justifiez pourquoi, du point de vue des hauts revenus, le modèle est alors équivalent à un modèle à un agent.</strong></li>
 </ol>
 <div class="callout callout-style-default callout-warning callout-titled" title="Correction">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
@@ -482,11 +775,13 @@ two_agents_mps.mod
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Interest rate is the only manifestation of bottom earners preferences in the model. If we set it equal to a constant, top earners are now facing an infinitely elastic demand of bonds as in the one agent case.</p>
+<p>Le taux d’intérêt est la seule manifestation des préférences des bas revenus dans le modèle. Si on le fixe à une constante, les hauts revenus font face à une demande d’obligations infiniment élastique, comme dans le cas à un agent.</p>
 </div>
 </div>
 </div>
-<p><strong>@. Use the modified model to compute the marginal propensity out of a permanent income shock after 6 periods. Choose parameter <code>eta</code> so that this m.p.s. is approximatively 50%.</strong></p>
+<ol start="10" class="example" type="1">
+<li><strong>Utilisez le modèle modifié pour calculer la propension marginale à partir d’un choc permanent de revenu après 6 périodes. Choisissez le paramètre <code>eta</code> pour que cette p.m.e. soit approximativement de 50%.</strong></li>
+</ol>
 <div class="callout callout-style-default callout-warning callout-titled" title="Correction">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -499,15 +794,105 @@ two_agents_mps.mod
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Several options here. We can just make a persistent shock of size sig_z to the overall income <span class="math inline">\(y\)</span> and compute the marginal propensity to save at different periods (variable mps). It must be normalized by the initial income level of top earners. We can then run computations for different values of <span class="math inline">\(eta\)</span> until we find the desired value.</p>
-<p>Modified model is <code>two_agents_mps.mps</code>. I found eta=0.6 to be a good calibration.</p>
+<p>Plusieurs options sont possibles. On peut simplement appliquer un choc persistant de taille sig_z au revenu global <span class="math inline">\(y\)</span> et calculer la propension marginale à épargner à différentes périodes (variable mps). Elle doit être normalisée par le niveau initial de revenu des hauts revenus. On peut ensuite faire des calculs pour différentes valeurs de <span class="math inline">\(eta\)</span> jusqu’à trouver la valeur souhaitée.</p>
+<p>Le modèle modifié est <code>two_agents_mps.mod</code>. J’ai trouvé que eta=0.6 est une bonne calibration. Noter que dans ce modèle modifié, le taux d’intérêt est fixé, de sorte que les deux agents sont essentiellement découplés et que le modèle est équivalent à un modèle à un agent pour les hauts revenus.</p>
 </div>
 </div>
 </div>
-<pre class="{julia}"><code>@dynare("two_agents_mps.mps")</code></pre>
-<ol start="7" class="example" type="1">
-<li><strong>What is the effect of a 10% permanent increase in inequalities? Over 30 years and in the long run?</strong></li>
+<div id="a06470d5" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"two_agents_mps.mod"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>report.simulation[<span class="st">'e_y'</span>][[<span class="st">'mps'</span>]][:<span class="dv">7</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mps</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>0.121383</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>0.228505</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>0.322829</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>0.405671</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>0.478216</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>0.541528</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ol start="11" class="example" type="1">
+<li><strong>Quel est l’effet d’une hausse permanente de 10% des inégalités ? Sur 30 ans et à long terme ?</strong></li>
 </ol>
+<div id="0f2cf151" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># charger le modèle original à deux agents</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"two_agents.mod"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> report.simulation[<span class="st">'e_z'</span>] </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">0</span>].plot(df[<span class="st">'z'</span>])</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">0</span>].set_title(<span class="st">'Choc d</span><span class="ch">\'</span><span class="st">inégalité'</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">1</span>].plot(df[<span class="st">'r'</span>])</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">1</span>].set_title(<span class="st">'Taux d</span><span class="ch">\'</span><span class="st">intérêt'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">1</span>].grid(<span class="va">True</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">0</span>].plot(df[<span class="st">'b_t'</span>], label<span class="op">=</span><span class="st">'Actifs hauts revenus'</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">0</span>].set_title(<span class="st">'Actifs hauts revenus'</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">1</span>].plot(df[<span class="st">'b_b'</span>], label<span class="op">=</span><span class="st">'Actifs bas revenus'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">1</span>].set_title(<span class="st">'Actifs bas revenus'</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">1</span>].grid(<span class="va">True</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>, <span class="dv">1</span>].plot(df[<span class="st">'c_b'</span>])</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>, <span class="dv">1</span>].set_title(<span class="st">'Consommation bas revenus'</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>, <span class="dv">1</span>].grid(<span class="va">True</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>,<span class="dv">0</span>].plot(df[<span class="st">'c_t'</span>])</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>,<span class="dv">0</span>].set_title(<span class="st">'Consommation hauts revenus'</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>,<span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_correction_files/figure-html/cell-6-output-1.png" width="758" height="565" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled" title="Correction">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -520,8 +905,22 @@ two_agents_mps.mod
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Several options here. We can just make a persistent shock of size sig_z to the overall income <span class="math inline">\(y\)</span> and compute the marginal propensity to save at different periods (variable mps). It must be normalized by the initial income level of top earners. We can then run computations for different values of <span class="math inline">\(eta\)</span> until we find the desired value.</p>
-<p>Modified model is <code>two_agents_mps.mps</code>. I found eta=0.6 to be a good calibration.</p>
+<p>Une hausse permanente de 10% des inégalités (part de revenu plus élevée pour les hauts revenus) engendre une réallocation de richesse importante et persistante.</p>
+<p>Sur 30 ans :</p>
+<ul>
+<li>Le choc d’inégalité est permanent (z saute et reste élevé).</li>
+<li>Les hauts revenus accumulent progressivement des actifs (<code>b_t</code> augmente fortement).</li>
+<li>Les bas revenus accumulent de la dette (<code>b_b</code> devient plus négatif).</li>
+<li>La consommation des hauts revenus saute à l’impact puis continue d’augmenter graduellement.</li>
+<li>La consommation des bas revenus chute fortement à l’impact puis continue de diminuer progressivement.</li>
+<li>Le taux d’intérêt baisse à l’impact (écart négatif), puis revient lentement vers son niveau initial. L’ajustement passe donc à la fois par les prix (r) et les quantités (actifs/dette), avec un effet quantitatif dominant à long terme.</li>
+</ul>
+<p>À long terme :</p>
+<ul>
+<li>Un nouvel état stationnaire avec des détentions nettes d’actifs bien plus élevées pour les hauts revenus et un endettement plus important pour les bas revenus.</li>
+<li>Une divergence persistante des consommations : <code>c_t</code> plus élevée, <code>c_b</code> plus faible.</li>
+<li>Le choc a donc des effets distributifs permanents sur les inégalités de richesse et de consommation, et pas seulement des effets transitoires.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -536,7 +935,7 @@ two_agents_mps.mod
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>this is the “preference for wealth” specification<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>il s’agit de la spécification de “préférence pour la richesse”<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -991,8 +1390,8 @@ two_agents_mps.mod
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> A two agents model of inequalities.</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> Business Cycles and Fluctuations - AE2E6</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Un modèle à deux agents des inégalités.</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> Cycles et fluctuations - AE2E6</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="an">resources:</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - '*.mod'</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="an">listing:</span></span>
@@ -1010,217 +1409,249 @@ two_agents_mps.mod
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Modfiles" collapse="true"}</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Fichiers mod" collapse="true"}</span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>:::: {#mod-listings}</span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>Uncomment the following lines to install needed packages (if not already present).</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>Importer l'émulation Dynare.</span>
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co"># uncomment the next lines, the first time you run</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co"># import Pkg; Pkg.add(["DBnomics", "Dynare", "DataFrames"])</span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preference for wealth and marginal propensity to consume</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dyno <span class="im">import</span> dynare</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Préférence pour la richesse et propension marginale à consommer</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>For now, we consider a single representative agent. She has the ability to buy a two periods bond, yielding 1 after one period. The price of the bond at any date is $q$, hence its (riskfree) interest rate is $r=1/q$.</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>Agent values consumption $c_t$ and wealth $b_t q_t$ so that she maximizes<span class="ot">[^footnote]</span>:</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>$$\max \sum_t \beta^t \left( \frac{c_t^{1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}}+ \varphi \frac{ (1+b_t)^{1-\frac{1}{\eta}} } {1-\frac{1}{\eta}} \right)$$</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>under the budget constraint</span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>$$c_t = y_t + b_{t-1} - b_t q_t$$</span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>where $y_t$ is exogenous income following AR1 </span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>$$(y_t-\overline{y})=\rho (y_{t-1}-\overline{y}) + \epsilon^y_t$$</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>Pour l'instant, nous considérons un agent représentatif unique. Il peut acheter une obligation à deux périodes, qui rapporte 1 après une période. Le prix de l'obligation à la date $t$ est $q$, donc son taux d'intérêt (sans risque) est $r=1/q$.</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>L'agent valorise la consommation $c_t$ et la richesse $b_t q_t$, et il maximise<span class="ot">[^footnote]</span> :</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>$$\max \sum_t \beta^t \left( \frac{c_t^{1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}}+ \varphi \frac{ (1+b_t)^{1-\frac{1}{\eta}} } {1-\frac{1}{\eta}} \right)$$</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>sous la contrainte budgétaire</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>$$c_t = y_t + b_{t-1} - b_t q_t$$</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>où $y_t$ est un revenu exogène suivant un AR1 </span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>$$(y_t-\overline{y})=\rho (y_{t-1}-\overline{y}) + \epsilon^y_t$$</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="ot">[^footnote]: </span>this is the "preference for wealth" specification</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="ot">[^footnote]: </span>il s'agit de la spécification de "préférence pour la richesse"</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dynare</span></span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>@. __Écrivez la condition d'optimalité pour les détentions de dette.__</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>On obtient :</span>
 <span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>@. __Write down the optimality condition for debt holdings.__</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>$$q_t = \beta \left(\frac{c_{t+1}}{c_{t}}\right)^{-\frac{1}{\sigma}}+\varphi \left(\frac{1 + b_t q_t}{c_{t}}\right)^{-\frac{1}{\sigma}}$$</span>
 <span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>We get:</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>@. __Quelles sont les équations qui définissent l'équilibre déterministe ?__</span>
 <span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>$$q_t = \beta \left(\frac{c_{t+1}}{c_{t}}\right)^{-\frac{1}{\sigma}}+\varphi \left(\frac{1 + b_t q_t}{c_{t}}\right)^{-\frac{1}{\sigma}}$$</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
 <span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>__What are the equations defining the deterministic equilibrium?__</span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
-<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>At the equilibium, the last equation becomes.</span>
-<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>$$q = \beta + \varphi \left(\frac{1 + b q}{c}\right)^{-\frac{1}{\sigma}}$$</span>
-<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>__3. Inspect and run `one_agent.mod` model. Show that there is a unit root. Can you interpret it?__</span>
-<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>À l'équilibre, la dernière équation devient :</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>$$q = \beta + \varphi \left(\frac{1 + b q}{c}\right)^{-\frac{1}{\sigma}}$$</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>@. __Inspectez et exécutez le modèle `one_agent.mod`. Montrez qu'il existe une racine unitaire. Pouvez-vous l'interpréter ?__</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"one_agent.mod"</span>)</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>report</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>The <span class="in">`one_agent.mod`</span> model is a standard consumption saving model without preference for wealth. </span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
 <span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>In general, if the solution of a model is $y_t = A y_{t-1}$ where $y_t$ is the vector of variables, we have a unit root when one of the eigenvalues of A is equal to 1 in absolute terms.</span>
-<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>In the specific case of the modfile, we can directly read the values of matrix $A$ are given in the output of dynare (precisely it is a subset of $A'$)</span>
-<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a><span class="in">  Coefficients of approximate solution function (reduced form)</span></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>Le modèle <span class="in">`one_agent.mod`</span> est un modèle standard d'épargne-consommation sans préférence pour la richesse.</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>En général, si la solution d'un modèle est $y_t = A y_{t-1}$, où $y_t$ est le vecteur des variables, on a une racine unitaire quand l'une des valeurs propres de $A$ est égale à 1 en valeur absolue.</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>Dans le cas précis du modfile, on lit directement les valeurs de de A dans la jacobienne. Avec l'ordre du modfile, la matrice est triangulaire supérieure et on voit que la dynamique de la dette est  <span class="in">`b[t]=1.0 b[t-1] + 0.1 e_y[t]`</span>, c'est à dire un AR1 avec une persistance parfaite.</span>
 <span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a><span class="in">───────┬──────────────────</span></span>
-<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a><span class="in">       │ y_t   c_t    b_t</span></span>
-<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a><span class="in">──────────────────────────</span></span>
-<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a><span class="in">  ϕ(b) │ 0.0  0.0385  1.0</span></span>
-<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a><span class="in"> e_y_t │ 0.1  0.0038  0.1</span></span>
-<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a><span class="in">───────┴──────────────────</span></span>
-<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>Les lignes correspondent aux états (prédéterminés). Les variables non prédéterminées n'apparaissent pas en lignes (ou, de façon équivalente, avec des zéros partout).</span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>Ici, on voit que $b_t$ est le seul état endogène. On voit aussi que sa dynamique est :</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>$$b_t = 1.0 b_{t-1} + 0.1 e_{y,t}$$</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>Autrement dit, la dynamique de $b$ est un AR1 avec une persistance parfaite.</span>
 <span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>The rows correspond to the (predetermined) states. Non predetermined variables do not appear as rows (or equivalently with zeros everywhere).</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>Ce comportement (comme dans une économie ouverte) vient du fait que tout niveau de dette de long terme est possible (dans un modèle déterministe). Les chocs peuvent donc affecter durablement l'état stationnaire.</span>
 <span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>Here we see that $b_t$ is the only endogenous state. We also see that its dynamic is given by:</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>$$b_t = 1.0 b_{t-1} + 0.1 e_{y,t}$$</span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>@. __Quelle est la réponse de la consommation à un choc temporaire de revenu ? À un choc permanent ? (avec autocorrélation $\rho=0.9$ et $\rho=1.0$)__</span>
 <span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>In other words, the dynamic of $b$ is an AR1 with perfect persistence.</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
 <span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>This behaviour (like in an open economy) comes from the fact that any steady-state level of debt is feasible (in a deterministic model). Hence shocks can affect the steady-state permanently.</span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>Modifier l'équation de revenu :</span>
 <span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a><span class="pp">@dynare</span>(<span class="st">"one_agent.mod"</span>);</span>
-<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>@. __What is the consumption response to a temporary income shock? To a permanent one? (with autocorrelation $\rho=0.9$ and $\rho=1.0$)__</span>
-<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
-<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a>Change the income equation:</span>
-<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>for a temporary shock remove the zero to get: <span class="in">`y = ybar + e_y`</span></span>
-<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>For a persistent one, define a new parameter in the parameters line initialized to <span class="in">`rho=0.9`</span> and change the equation to <span class="in">`y - ybar = rho*(y(-1) - ybar) + e_y`</span>. In the case <span class="in">`rho=1.0`</span> note the apparition of a second unit root.</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>pour un choc temporaire, retirer le terme autorégressif pour obtenir : <span class="in">`y = ybar + e_y`</span></span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>pour un choc persistant, définir un nouveau paramètre dans la ligne des paramètres avec <span class="in">`rho=0.9`</span>, puis utiliser : <span class="in">`y - ybar = rho*(y(-1) - ybar) + e_y`</span>. Dans le cas <span class="in">`rho=1.0`</span>, noter l'apparition d'une deuxième racine unitaire.</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>Dans les simulations, faire attention à la taille du choc <span class="in">`e_y`</span> (1% par défaut) afin de la comparer à l'amplitude de la réponse des actifs <span class="in">`b`</span>.</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>Dans toutes les simulations, l'effet persistant du choc sur le niveau de dette provient de la présence d'une racine unitaire.</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>@. __Dans le modfile, ajoutez un terme de préférence pour la richesse dans la fonction d'utilité et ajustez la calibration de `beta` en conséquence.__</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>Les paramètres <span class="in">`phi`</span> et <span class="in">`eta`</span> sont déjà prédéfinis.</span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>Ajouter <span class="in">`+ phi*(1+b*q)^(-1/eta)/(c^(-1/sigma))`</span> à l'équation d'Euler et <span class="in">`beta = 1/r - phi*(1+bbar*q)^(-1/eta)/(cbar^(-1/sigma));`</span> dans la définition des paramètres.</span>
 <span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>In the simulations, pay attention to the magnitude of the shock <span class="in">`e_y`</span> (1% by default) to compare it to the magnitude of the response for assets <span class="in">`b`</span>.</span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>La simulation ne se lance que si la commande <span class="in">`check`</span> réussit, en particulier quand l'état stationnaire est bien satisfait. Sinon, il faut ajuster les équations/la calibration.</span>
 <span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>In all simulations, the persistent effect of the shock on the level of debt comes from the presence of a unit root.</span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>Le résultat est dans le fichier <span class="in">`one_agent_2.mod`</span>.</span>
 <span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a>Ici, on voit qu'une racine unitaire a disparu, car la préférence pour la richesse épingle les détentions d'actifs d'équilibre.</span>
 <span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a>@. __In the modfile, add a preference for wealth term in the utility function and adjust the calibration of `beta` accordingly.__</span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a>@. __Simulez la réponse à un choc temporaire et à un choc persistant. Pour un `phi` donné, quel est l'effet de `eta` ?__</span>
 <span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a>Parameters <span class="in">`phi`</span> and <span class="in">`eta`</span> are already predefined.</span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
 <span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a>Add <span class="in">`+ phi*(1+b*q)^(-1/eta)/(c^(-1/sigma))`</span> to the Euler equation and <span class="in">`beta = 1/r - phi*(1+bbar*q)^(-1/eta)/(cbar^(-1/sigma));`</span> in the definition of parameters</span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>The simulation runs, only when the command <span class="in">`check`</span> succeeds, in particular, when the steady-sate is satisfied. If it is not the case, you need to adjust the equations/calibration.</span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>La réponse de l'épargne à un choc transitoire est maintenant de retour vers la moyenne, tandis que la réponse à un choc persistant reste persistante et peut même augmenter au cours du temps.</span>
 <span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a>Result is in the <span class="in">`one_agent_2.mod`</span> file.</span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a><span class="in">`eta`</span> affecte le niveau d'épargne de long terme en réponse à un choc temporaire de revenu. (Par curiosité, vous pouvez vérifier que cela ne dépend pas de <span class="in">`phi`</span>).</span>
 <span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>Here we see that one unit root has disappeared, because pref. for wealth pins down equilibrium asset holdings.</span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a><span class="fu">## Un modèle à deux agents</span></span>
 <span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a>__6. Simulate the response to a temporary and a persistent shock. Given `phi` what is the effect of `eta`?__</span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a>Nous supposons maintenant qu'il existe deux types d'agents : les bas revenus et les hauts revenus. Les hauts revenus représentent une fraction $\chi$ de la population totale. Ensemble, ils perçoivent une fraction $z\in<span class="co">[</span><span class="ot">0,1</span><span class="co">]</span>$ de la production totale $y$, qui suit un processus AR1 comme dans la première partie. Le reste revient aux bas revenus.</span>
 <span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>Les hauts revenus peuvent épargner en prêtant aux bas revenus. On note $B_t$ la quantité totale d'obligations sans risque, échangées au prix $q_t$. Noter que la dette par tête est $\frac{B_t}{\chi}$ pour les hauts revenus et $\frac{B_t}{1-\chi}$ pour les bas revenus. Les hauts revenus ont une préférence pour la richesse comme dans la première partie, tandis que les bas revenus ont des préférences standards (avec $\varphi=0$).</span>
 <span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a>@. __Écrivez les équations budgétaires des deux agents. Quelles sont les nouvelles équations d'Euler ? Vérifiez la cohérence avec le modfile `two_agents.mod`. Quelles sont les variables par tête ?__</span>
 <span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a>Now the savings response to transitory shock is mean reverting, while the response to a persistent shock is persistent and even increasing over time.</span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
 <span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a><span class="in">`eta`</span> affects the long run savings level in response to a temporary income shock. (If curious you should be able to check it does not depend on phi).</span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a>Les contraintes budgétaires sont incluses dans le modfile.</span>
 <span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>Variables par tête : <span class="in">`c_t`</span>, <span class="in">`c_b`</span>, <span class="in">`b_t`</span> et <span class="in">`b_b`</span>.</span>
 <span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a><span class="fu">## A two agents model</span></span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a>We now assume there are two agents: bottom and top earners. Top earners amount for a fraction $\chi$ of the total population. Together they earn a fraction $z\in<span class="co">[</span><span class="ot">0,1</span><span class="co">]</span>$ of the total production $y$ which is an AR1 process as in the first part. The rest goes to the bottom earners.</span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a>@. __Quel est qualitativement l'effet d'un choc redistributif permanent ? (simulez le modèle)__</span>
 <span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a>Top earners can save by lending to bottom earners. We denote by $B_t$ the total quantity of riskfree bonds, traded at $q_t$. Note that debt per capita is $\frac{B_t}{\chi}$ for top earners and $\frac{B_t}{1-\chi}$ for bottom earners. Top earners have preference for wealth as in the first part, while bottom earners have standard preferences (with $\varphi=0$)</span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a>@. __Write down the budget equations for both agents. What are the new Euler equations? Check that it is consistent with the `two_agents.mod` modfile. What are the per capita variables?__</span>
-<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
-<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a>Budget constraints are included in the modfile.</span>
+<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"two_agents.mod"</span>)</span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a>Per capita variables: <span class="in">`c_t`</span>, <span class="in">`c_b`</span>, <span class="in">`b_t`</span> and <span class="in">`b_b`</span>.</span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
 <span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a>Avec une hausse du revenu des hauts revenus, ces derniers souhaitent augmenter leurs détentions d'actifs. Cela se produit car les bas revenus sont indifférents à l'état stationnaire. Pendant la transition, on observe toutefois une baisse du taux d'intérêt (pour convaincre les emprunteurs d'accepter une trajectoire de consommation décroissante).</span>
 <span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a>@. __What is qualitatively the effect of a permanent redistributive shock? (simulate the model)__</span>
+<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
+<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a><span class="fu">## Calibration et simulation du modèle</span></span>
 <span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a>With increased income, top earners want to increase their asset holdings. This will happen since bottom earners are indifferent in the steady-state. During the transition however, we see a decrease in the interest rate (to convince borrower to accept a decreasing path of consumption over time).</span>
+<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a>Le modèle dans le modfile est pré-calibré pour reproduire les données américaines de 1983. On suppose que le modèle est à l'équilibre pour un niveau initial de dette $B=0.91$ (ratio dette/PIB aux États-Unis en 1983).</span>
 <span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a><span class="al">![Response to a redistributive shock](two_agents/graphs/irfs_e_z_1.png)</span></span>
+<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a>En prenant $\varphi=0.05$ comme constante, pour tout choix donné de $\eta$, il existe une valeur unique de $\beta$ compatible avec l'équilibre, comme dans le cas à un agent.</span>
 <span id="cb7-189"><a href="#cb7-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a>Nous voulons maintenant calibrer la valeur de $\eta$ pour reproduire la propension marginale à épargner des hauts revenus, qui était d'environ 50% en 1983.</span>
 <span id="cb7-191"><a href="#cb7-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a><span class="pp">@dynare</span>(<span class="st">"two_agents.mod"</span>);</span>
-<span id="cb7-196"><a href="#cb7-196" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-192"><a href="#cb7-192" aria-hidden="true" tabindex="-1"></a>Comme le modèle à deux agents est déjà calibré pour la plupart des variables, on le réutilise plutôt que d'adapter le modèle à un agent.</span>
+<span id="cb7-193"><a href="#cb7-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a>@. __Dans le modèle `two_agents.mod`, remplacez l'équation d'Euler du bas revenu par `q = 1/rbar`. Justifiez pourquoi, du point de vue des hauts revenus, le modèle est alors équivalent à un modèle à un agent.__</span>
+<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-196"><a href="#cb7-196" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
 <span id="cb7-197"><a href="#cb7-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-198"><a href="#cb7-198" aria-hidden="true" tabindex="-1"></a><span class="fu">## Calibrating and simulating the model</span></span>
+<span id="cb7-198"><a href="#cb7-198" aria-hidden="true" tabindex="-1"></a>Le taux d'intérêt est la seule manifestation des préférences des bas revenus dans le modèle. Si on le fixe à une constante, les hauts revenus font face à une demande d'obligations infiniment élastique, comme dans le cas à un agent.</span>
 <span id="cb7-199"><a href="#cb7-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-200"><a href="#cb7-200" aria-hidden="true" tabindex="-1"></a>The model in the modefile is pre-calibrated to match US data in 1983. Assume the model is in equilibrium for an initial level of debt $B=0.91$ (which is the debt/gdp ratio in the us in 1983). </span>
-<span id="cb7-201"><a href="#cb7-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-202"><a href="#cb7-202" aria-hidden="true" tabindex="-1"></a>Taking $\varphi=0.05$ as constant, for any given choice of $\eta$, there is a unique value of $\beta$ consistent with the equilibrium as in the one agent case.</span>
-<span id="cb7-203"><a href="#cb7-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-204"><a href="#cb7-204" aria-hidden="true" tabindex="-1"></a>Now we would like to calibrate the value of $\eta$ so as to match the marginal propensity to save of top earners which was approximately 50% in 1983. </span>
-<span id="cb7-205"><a href="#cb7-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-206"><a href="#cb7-206" aria-hidden="true" tabindex="-1"></a>Since the two agents model is already calibrated for most variables, we reuse it rather than adapting the one agent model.</span>
-<span id="cb7-207"><a href="#cb7-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-208"><a href="#cb7-208" aria-hidden="true" tabindex="-1"></a>@. __In the model `two_agents.mod` replace the Euler equation of bottom earner by `q = 1/rbar`. Justify why, from the top earners perspective, the model is now equivalent to a single agent model.__</span>
-<span id="cb7-209"><a href="#cb7-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-210"><a href="#cb7-210" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
-<span id="cb7-211"><a href="#cb7-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-212"><a href="#cb7-212" aria-hidden="true" tabindex="-1"></a>Interest rate is the only manifestation of bottom earners preferences in the model. If we set it equal to a constant, top earners are now facing an infinitely elastic demand of bonds as in the one agent case.</span>
-<span id="cb7-213"><a href="#cb7-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-214"><a href="#cb7-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-215"><a href="#cb7-215" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb7-216"><a href="#cb7-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-217"><a href="#cb7-217" aria-hidden="true" tabindex="-1"></a>__@. Use the modified model to compute the marginal propensity out of a permanent income shock after 6 periods. Choose parameter `eta` so that this m.p.s. is approximatively 50%.__</span>
-<span id="cb7-218"><a href="#cb7-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
-<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a>Several options here. We can just make a persistent shock of size sig_z to the overall income $y$ and compute the marginal propensity to save at different periods (variable mps). It must be normalized by the initial income level of top earners. We can then run computations for different values of $eta$ until we find the desired value.</span>
-<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a>Modified model is <span class="in">`two_agents_mps.mps`</span>. I found eta=0.6 to be a good calibration.</span>
-<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb7-200"><a href="#cb7-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-201"><a href="#cb7-201" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb7-202"><a href="#cb7-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-203"><a href="#cb7-203" aria-hidden="true" tabindex="-1"></a>@. __Utilisez le modèle modifié pour calculer la propension marginale à partir d'un choc permanent de revenu après 6 périodes. Choisissez le paramètre `eta` pour que cette p.m.e. soit approximativement de 50%.__</span>
+<span id="cb7-204"><a href="#cb7-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-205"><a href="#cb7-205" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
+<span id="cb7-206"><a href="#cb7-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-207"><a href="#cb7-207" aria-hidden="true" tabindex="-1"></a>Plusieurs options sont possibles. On peut simplement appliquer un choc persistant de taille sig_z au revenu global $y$ et calculer la propension marginale à épargner à différentes périodes (variable mps). Elle doit être normalisée par le niveau initial de revenu des hauts revenus. On peut ensuite faire des calculs pour différentes valeurs de $eta$ jusqu'à trouver la valeur souhaitée.</span>
+<span id="cb7-208"><a href="#cb7-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-209"><a href="#cb7-209" aria-hidden="true" tabindex="-1"></a>Le modèle modifié est <span class="in">`two_agents_mps.mod`</span>. J'ai trouvé que eta=0.6 est une bonne calibration. Noter que dans ce modèle modifié, le taux d'intérêt est fixé, de sorte que les deux agents sont essentiellement découplés et que le modèle est équivalent à un modèle à un agent pour les hauts revenus.</span>
+<span id="cb7-210"><a href="#cb7-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-211"><a href="#cb7-211" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb7-212"><a href="#cb7-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-215"><a href="#cb7-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-216"><a href="#cb7-216" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"two_agents_mps.mod"</span>)</span>
+<span id="cb7-217"><a href="#cb7-217" aria-hidden="true" tabindex="-1"></a>report.simulation[<span class="st">'e_y'</span>][[<span class="st">'mps'</span>]][:<span class="dv">7</span>]</span>
+<span id="cb7-218"><a href="#cb7-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a>@. __Quel est l'effet d'une hausse permanente de 10% des inégalités ? Sur 30 ans et à long terme ?__</span>
+<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb7-226"><a href="#cb7-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-229"><a href="#cb7-229" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb7-230"><a href="#cb7-230" aria-hidden="true" tabindex="-1"></a><span class="pp">@dynare</span>(<span class="st">"two_agents_mps.mps"</span>)</span>
-<span id="cb7-231"><a href="#cb7-231" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-232"><a href="#cb7-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-233"><a href="#cb7-233" aria-hidden="true" tabindex="-1"></a>@. __What is the effect of a 10% permanent increase in inequalities? Over 30 years and in the long run?__</span>
-<span id="cb7-234"><a href="#cb7-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-235"><a href="#cb7-235" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
-<span id="cb7-236"><a href="#cb7-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-237"><a href="#cb7-237" aria-hidden="true" tabindex="-1"></a>Several options here. We can just make a persistent shock of size sig_z to the overall income $y$ and compute the marginal propensity to save at different periods (variable mps). It must be normalized by the initial income level of top earners. We can then run computations for different values of $eta$ until we find the desired value.</span>
-<span id="cb7-238"><a href="#cb7-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-239"><a href="#cb7-239" aria-hidden="true" tabindex="-1"></a>Modified model is <span class="in">`two_agents_mps.mps`</span>. I found eta=0.6 to be a good calibration.</span>
-<span id="cb7-240"><a href="#cb7-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-241"><a href="#cb7-241" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb7-227"><a href="#cb7-227" aria-hidden="true" tabindex="-1"></a><span class="co"># charger le modèle original à deux agents</span></span>
+<span id="cb7-228"><a href="#cb7-228" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"two_agents.mod"</span>)</span>
+<span id="cb7-229"><a href="#cb7-229" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> report.simulation[<span class="st">'e_z'</span>] </span>
+<span id="cb7-230"><a href="#cb7-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-231"><a href="#cb7-231" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb7-232"><a href="#cb7-232" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">0</span>].plot(df[<span class="st">'z'</span>])</span>
+<span id="cb7-233"><a href="#cb7-233" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">0</span>].set_title(<span class="st">'Choc d</span><span class="ch">\'</span><span class="st">inégalité'</span>)</span>
+<span id="cb7-234"><a href="#cb7-234" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb7-235"><a href="#cb7-235" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">1</span>].plot(df[<span class="st">'r'</span>])</span>
+<span id="cb7-236"><a href="#cb7-236" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">1</span>].set_title(<span class="st">'Taux d</span><span class="ch">\'</span><span class="st">intérêt'</span>)</span>
+<span id="cb7-237"><a href="#cb7-237" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">1</span>].grid(<span class="va">True</span>)</span>
+<span id="cb7-238"><a href="#cb7-238" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">0</span>].plot(df[<span class="st">'b_t'</span>], label<span class="op">=</span><span class="st">'Actifs hauts revenus'</span>)</span>
+<span id="cb7-239"><a href="#cb7-239" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">0</span>].set_title(<span class="st">'Actifs hauts revenus'</span>)</span>
+<span id="cb7-240"><a href="#cb7-240" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb7-241"><a href="#cb7-241" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">1</span>].plot(df[<span class="st">'b_b'</span>], label<span class="op">=</span><span class="st">'Actifs bas revenus'</span>)</span>
+<span id="cb7-242"><a href="#cb7-242" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">1</span>].set_title(<span class="st">'Actifs bas revenus'</span>)</span>
+<span id="cb7-243"><a href="#cb7-243" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">1</span>].grid(<span class="va">True</span>)</span>
+<span id="cb7-244"><a href="#cb7-244" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>, <span class="dv">1</span>].plot(df[<span class="st">'c_b'</span>])</span>
+<span id="cb7-245"><a href="#cb7-245" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>, <span class="dv">1</span>].set_title(<span class="st">'Consommation bas revenus'</span>)</span>
+<span id="cb7-246"><a href="#cb7-246" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>, <span class="dv">1</span>].grid(<span class="va">True</span>)</span>
+<span id="cb7-247"><a href="#cb7-247" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>,<span class="dv">0</span>].plot(df[<span class="st">'c_t'</span>])</span>
+<span id="cb7-248"><a href="#cb7-248" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>,<span class="dv">0</span>].set_title(<span class="st">'Consommation hauts revenus'</span>)</span>
+<span id="cb7-249"><a href="#cb7-249" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>,<span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb7-250"><a href="#cb7-250" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-251"><a href="#cb7-251" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb7-252"><a href="#cb7-252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-253"><a href="#cb7-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-254"><a href="#cb7-254" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
+<span id="cb7-255"><a href="#cb7-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-256"><a href="#cb7-256" aria-hidden="true" tabindex="-1"></a>Une hausse permanente de 10% des inégalités (part de revenu plus élevée pour les hauts revenus) engendre une réallocation de richesse importante et persistante.</span>
+<span id="cb7-257"><a href="#cb7-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-258"><a href="#cb7-258" aria-hidden="true" tabindex="-1"></a>Sur 30 ans :</span>
+<span id="cb7-259"><a href="#cb7-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-260"><a href="#cb7-260" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Le choc d'inégalité est permanent (z saute et reste élevé).</span>
+<span id="cb7-261"><a href="#cb7-261" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Les hauts revenus accumulent progressivement des actifs (<span class="in">`b_t`</span> augmente fortement).</span>
+<span id="cb7-262"><a href="#cb7-262" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Les bas revenus accumulent de la dette (<span class="in">`b_b`</span> devient plus négatif).</span>
+<span id="cb7-263"><a href="#cb7-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>La consommation des hauts revenus saute à l'impact puis continue d'augmenter graduellement.</span>
+<span id="cb7-264"><a href="#cb7-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>La consommation des bas revenus chute fortement à l'impact puis continue de diminuer progressivement.</span>
+<span id="cb7-265"><a href="#cb7-265" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Le taux d'intérêt baisse à l'impact (écart négatif), puis revient lentement vers son niveau initial. L'ajustement passe donc à la fois par les prix (r) et les quantités (actifs/dette), avec un effet quantitatif dominant à long terme.</span>
+<span id="cb7-266"><a href="#cb7-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-267"><a href="#cb7-267" aria-hidden="true" tabindex="-1"></a>À long terme :</span>
+<span id="cb7-268"><a href="#cb7-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-269"><a href="#cb7-269" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Un nouvel état stationnaire avec des détentions nettes d'actifs bien plus élevées pour les hauts revenus et un endettement plus important pour les bas revenus.</span>
+<span id="cb7-270"><a href="#cb7-270" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Une divergence persistante des consommations : <span class="in">`c_t`</span> plus élevée, <span class="in">`c_b`</span> plus faible.</span>
+<span id="cb7-271"><a href="#cb7-271" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Le choc a donc des effets distributifs permanents sur les inégalités de richesse et de consommation, et pas seulement des effets transitoires.</span>
+<span id="cb7-272"><a href="#cb7-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-273"><a href="#cb7-273" aria-hidden="true" tabindex="-1"></a>::::</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -86,5 +86,5 @@ end;
 
 check;
 
-stoch_simul(order=1);
+stoch_simul(order=1, periods=200);
 

@@ -109,6 +109,34 @@ ul.task-list li input[type="checkbox"] {
       window['quarto-listing-loaded']();
     }
   })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-corrections-listings .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-corrections-listings'] = new List('listing-corrections-listings', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
   </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
@@ -233,9 +261,9 @@ Title
 
 </tr>
 
-<tr data-index="3" data-listing-date-sort="1776204000000" data-listing-file-modified-sort="1777589942790" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2074" data-listing-title-sort="Intermédiation financière" data-listing-filename-sort="index.qmd">
+<tr data-index="3" data-listing-date-sort="1776808800000" data-listing-file-modified-sort="1778541006557" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2074" data-listing-title-sort="Intermédiation financière" data-listing-filename-sort="index.qmd">
 <td>
-<span class="listing-date">Apr 15, 2026</span>
+<span class="listing-date">Apr 22, 2026</span>
 </td>
 <td>
 <a href="./slides/session_4/handout.html" class="title listing-title">Intermédiation financière</a>
@@ -284,6 +312,13 @@ Tutoriels
 
 </tr>
 
+<tr data-index="3" data-listing-file-modified-sort="1778540084868" data-listing-reading-time-sort="3" data-listing-word-count-sort="596" data-listing-title-sort="Un modèle à deux agents des inégalités." data-listing-filename-sort="index.qmd">
+<td>
+<a href="./tutorials/session_4/index.html" class="title listing-title">Un modèle à deux agents des inégalités.</a>
+</td>
+
+</tr>
+
 </tbody>
 </table>
 <div class="listing-no-matching d-none">No matching items</div>
@@ -293,7 +328,37 @@ Tutoriels
 
 </section>
 
-</main> <!-- /main -->
+<div class="quarto-listing quarto-listing-container-table" id="listing-corrections-listings">
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+
+<th>
+Corrections
+</th>
+
+</tr>
+</thead>
+<tbody class="list">
+
+<tr data-index="0" data-listing-file-modified-sort="1775772011659" data-listing-reading-time-sort="14" data-listing-word-count-sort="2685" data-listing-title-sort="Bases de Python et processus VAR - Correction" data-listing-filename-sort="index_correction.qmd">
+<td>
+<a href="./tutorials/session_1/index_correction.html" class="title listing-title">Bases de Python et processus VAR - Correction</a>
+</td>
+
+</tr>
+
+<tr data-index="1" data-listing-file-modified-sort="1777588130831" data-listing-reading-time-sort="5" data-listing-word-count-sort="843" data-listing-title-sort="Premiers pas avec Dynare et appariement des moments." data-listing-filename-sort="index_correction.qmd">
+<td>
+<a href="./tutorials/session_2/index_correction.html" class="title listing-title">Premiers pas avec Dynare et appariement des moments.</a>
+</td>
+
+</tr>
+
+</tbody>
+</table>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
