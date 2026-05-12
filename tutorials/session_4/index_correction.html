@@ -264,7 +264,7 @@ two_agents_mps.mod
 </div>
 </div>
 <p>Importer l’émulation Dynare.</p>
-<div id="2f4981ff" class="cell" data-execution_count="1">
+<div id="65ef4f22" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dyno <span class="im">import</span> dynare</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -274,7 +274,7 @@ two_agents_mps.mod
 <h2 class="anchored" data-anchor-id="préférence-pour-la-richesse-et-propension-marginale-à-consommer">Préférence pour la richesse et propension marginale à consommer</h2>
 <p>Pour l’instant, nous considérons un agent représentatif unique. Il peut acheter une obligation à deux périodes, qui rapporte 1 après une période. Le prix de l’obligation à la date <span class="math inline">\(t\)</span> est <span class="math inline">\(q\)</span>, donc son taux d’intérêt (sans risque) est <span class="math inline">\(r=1/q\)</span>.</p>
 <p>L’agent valorise la consommation <span class="math inline">\(c_t\)</span> et la richesse <span class="math inline">\(b_t q_t\)</span>, et il maximise<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> :</p>
-<p><span class="math display">\[\max \sum_t \beta^t \left( \frac{c_t^{1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}}+ \varphi \frac{ (1+b_t)^{1-\frac{1}{\eta}} } {1-\frac{1}{\eta}} \right)\]</span></p>
+<p><span class="math display">\[\max \sum_t \beta^t \left( \frac{c_t^{1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}}+ \varphi \frac{ (1+b_t q_t)^{1-\frac{1}{\eta}} } {1-\frac{1}{\eta}} \right)\]</span></p>
 <p>sous la contrainte budgétaire</p>
 <p><span class="math display">\[c_t = y_t + b_{t-1} - b_t q_t\]</span></p>
 <p>où <span class="math inline">\(y_t\)</span> est un revenu exogène suivant un AR1</p>
@@ -295,7 +295,7 @@ two_agents_mps.mod
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>On obtient :</p>
-<p><span class="math display">\[q_t = \beta \left(\frac{c_{t+1}}{c_{t}}\right)^{-\frac{1}{\sigma}}+\varphi \left(\frac{1 + b_t q_t}{c_{t}}\right)^{-\frac{1}{\sigma}}\]</span></p>
+<p><span class="math display">\[q_t = \beta \left(\frac{c_{t+1}}{c_{t}}\right)^{-\frac{1}{\sigma}}+\varphi\frac{ \left(1 + b_t q_t\right)^{-\frac{1}{\eta}}}{\left(c_{t}\right)^{-\frac{1}{\sigma}}}\]</span></p>
 </div>
 </div>
 </div>
@@ -314,14 +314,14 @@ two_agents_mps.mod
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>À l’équilibre, la dernière équation devient : <span class="math display">\[q = \beta + \varphi \left(\frac{1 + b q}{c}\right)^{-\frac{1}{\sigma}}\]</span></p>
+<p>À l’équilibre, la dernière équation devient : <span class="math display">\[q = \beta + \varphi \frac{\left(1 + b q\right)^{-\frac{1}{\eta}}}{c^{-\frac{1}{\sigma}}}\]</span></p>
 </div>
 </div>
 </div>
 <ol start="3" class="example" type="1">
 <li><strong>Inspectez et exécutez le modèle <code>one_agent.mod</code>. Montrez qu’il existe une racine unitaire. Pouvez-vous l’interpréter ?</strong></li>
 </ol>
-<div id="ebdbb72b" class="cell" data-execution_count="2">
+<div id="6f469a12" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"one_agent.mod"</span>)</span>
@@ -731,7 +731,7 @@ inf
 <ol start="8" class="example" type="1">
 <li><strong>Quel est qualitativement l’effet d’un choc redistributif permanent ? (simulez le modèle)</strong></li>
 </ol>
-<div id="093bf4f1" class="cell" data-execution_count="3">
+<div id="5bb47b8d" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"two_agents.mod"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -799,7 +799,7 @@ inf
 </div>
 </div>
 </div>
-<div id="a06470d5" class="cell" data-execution_count="4">
+<div id="2886d36e" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"two_agents_mps.mod"</span>)</span>
@@ -854,7 +854,7 @@ inf
 <ol start="11" class="example" type="1">
 <li><strong>Quel est l’effet d’une hausse permanente de 10% des inégalités ? Sur 30 ans et à long terme ?</strong></li>
 </ol>
-<div id="0f2cf151" class="cell" data-execution_count="5">
+<div id="38b270df" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
@@ -1429,7 +1429,7 @@ inf
 <span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>L'agent valorise la consommation $c_t$ et la richesse $b_t q_t$, et il maximise<span class="ot">[^footnote]</span> :</span>
 <span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>$$\max \sum_t \beta^t \left( \frac{c_t^{1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}}+ \varphi \frac{ (1+b_t)^{1-\frac{1}{\eta}} } {1-\frac{1}{\eta}} \right)$$</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>$$\max \sum_t \beta^t \left( \frac{c_t^{1-\frac{1}{\sigma}}}{1-\frac{1}{\sigma}}+ \varphi \frac{ (1+b_t q_t)^{1-\frac{1}{\eta}} } {1-\frac{1}{\eta}} \right)$$</span>
 <span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>sous la contrainte budgétaire</span>
 <span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
@@ -1450,7 +1450,7 @@ inf
 <span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>On obtient :</span>
 <span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>$$q_t = \beta \left(\frac{c_{t+1}}{c_{t}}\right)^{-\frac{1}{\sigma}}+\varphi \left(\frac{1 + b_t q_t}{c_{t}}\right)^{-\frac{1}{\sigma}}$$</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>$$q_t = \beta \left(\frac{c_{t+1}}{c_{t}}\right)^{-\frac{1}{\sigma}}+\varphi\frac{ \left(1 + b_t q_t\right)^{-\frac{1}{\eta}}}{\left(c_{t}\right)^{-\frac{1}{\sigma}}}$$</span>
 <span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a></span>
@@ -1459,7 +1459,7 @@ inf
 <span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>:::: {.callout-warning title="Correction" collapse="true"}</span>
 <span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>À l'équilibre, la dernière équation devient :</span>
-<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>$$q = \beta + \varphi \left(\frac{1 + b q}{c}\right)^{-\frac{1}{\sigma}}$$</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>$$q = \beta + \varphi \frac{\left(1 + b q\right)^{-\frac{1}{\eta}}}{c^{-\frac{1}{\sigma}}}$$</span>
 <span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>

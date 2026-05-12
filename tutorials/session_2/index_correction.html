@@ -272,7 +272,7 @@ rbc_open.mod
 <section id="utilisation-des-fichiers-mod-dynare." class="level1">
 <h1>Utilisation des fichiers mod Dynare.</h1>
 <p>Téléchargez le fichier mod <a href="rbc.mod">rbc</a>.</p>
-<div id="d53ff226" class="cell" data-execution_count="1">
+<div id="05ce9d17" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dyno <span class="im">import</span> dynare</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -286,7 +286,7 @@ rbc_open.mod
 <li>la fonction check renvoie une erreur car le steady-state ne satisfait pas les équations. On peut rajouter <code>steady;</code> avant <code>check;</code> pour recalculer l’état stationnaire.</li>
 <li>on peut ensuite décommenter la ligne <code>stoch_simul;</code> pour calculer la solution du modèle. Notons que le mode émulation dynare, accepte l’option <code>periods=100</code> pour changer l’horizon de simulation.</li>
 </ul>
-<div id="43faf4a6" class="cell" data-execution_count="2">
+<div id="fcb0dff0" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"rbc_fixed.mod"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -295,14 +295,14 @@ rbc_open.mod
 <p>(si besoin, téléchargez le modèle corrigé <a href="rbc_fixed.mod">ici</a> )</p>
 <p><strong>Inspectez les différents éléments de la solution (règle de décision, moments inconditionnels, simulations).</strong></p>
 <p>Ces éléments sont présents dans le rapport de la question précédente. On peut aussi y accéder en inspectant l’objet renvoyé par la fonction dynare.</p>
-<div id="48375657" class="cell" data-execution_count="3">
+<div id="b9bc7e32" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"rbc_fixed.mod"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># report. # inspectez l'objet report pour trouver les différents éléments de la solution</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="5b23f653" class="cell" data-execution_count="4">
+<div id="3c0fd246" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>report.eigenvalues <span class="co"># les 2n valeurs propres du système linéarisé</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -314,7 +314,7 @@ rbc_open.mod
               inf])</code></pre>
 </div>
 </div>
-<div id="0e631802" class="cell" data-execution_count="5">
+<div id="dabfb345" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dr <span class="op">=</span> report.solution.decision_rule <span class="co"># la solution</span></span>
@@ -365,7 +365,7 @@ Y
 [[8.1e-05]]</code></pre>
 </div>
 </div>
-<div id="62812aa8" class="cell" data-execution_count="6">
+<div id="fafe5bdf" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Moments</span></span>
@@ -401,7 +401,7 @@ Y
 <p><strong>Interprétez l’effet d’un choc de productivité. Comment dépend-il de la persistance du choc ?</strong></p>
 <p>On voit que le choc de productivité augmente immédiatement la produciton l’investissement et la consommation. On remarque que la consommation met plus de temps à attendre son maximum: dans les premières périodes,il faut en effet épargner pour pouvoir investir et profiter mieux du choc de la peristance du choc. Cela crée donc un arbitrage initial entre consommer le gain de productivité et l’investir pour en profiter plus dans le futur.</p>
 <p>En changeant la valeur dans le modèle du taux de dépréciation du capital, on peut voir un changement dans le forme du profil de consommation.</p>
-<div id="b8e28c4f" class="cell" data-execution_count="7">
+<div id="4aa93187" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bonus: </span></span>
@@ -435,7 +435,7 @@ Y
 <h1>Calcul des moments dans les données</h1>
 <p><strong>Téléchargez les séries temporelles des États-Unis depuis la Banque mondiale pour : PIB réel, investissement, consommation, heures travaillées.</strong></p>
 <p>Utilisons le code suivant pour télécharger les données et les préparer pour l’analyse. Nous allons utiliser la bibliothèque <code>dbnomics</code> pour importer les données de l’OCDE (pour ça il suffit de trouver les identifiants des séries sur le site de DBNomics).</p>
-<div id="cf5352ca" class="cell" data-execution_count="8">
+<div id="1e99c454" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -445,7 +445,7 @@ Y
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.filters.hp_filter <span class="im">import</span> hpfilter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="546e6203" class="cell" data-execution_count="9">
+<div id="c8a3e28d" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>series_ids <span class="op">=</span> [</span>
@@ -463,26 +463,26 @@ Y
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>df_long <span class="op">=</span> pd.concat(frames, ignore_index<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="05d6a0f2" class="cell" data-execution_count="10">
+<div id="fd312946" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ne garder que les données pertinentes, au format long.</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_long <span class="op">=</span> df_long[[<span class="st">"Subject"</span>, <span class="st">"period"</span>, <span class="st">"value"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="9c07b6a3" class="cell" data-execution_count="11">
+<div id="cd917c45" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df_long.pivot(index<span class="op">=</span><span class="st">"period"</span>, columns<span class="op">=</span><span class="st">"Subject"</span>, values<span class="op">=</span><span class="st">"value"</span>).reset_index()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="68aa2ea0" class="cell" data-execution_count="12">
+<div id="cf98f91f" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.sort_values(<span class="st">"period"</span>).dropna().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="89c2157d" class="cell" data-execution_count="13">
+<div id="6c0e8611" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.rename(</span>
@@ -496,7 +496,7 @@ Y
 </details>
 </div>
 <p>On peut maintenant tracer les séries temporelles:</p>
-<div id="7a02f9dd" class="cell" data-execution_count="14">
+<div id="079e01dd" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
@@ -518,7 +518,7 @@ Y
 </div>
 </div>
 <p><strong>Détrendez toutes les séries.</strong></p>
-<div id="953fddf3" class="cell" data-execution_count="15">
+<div id="31b1d10b" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détrender la série de consommation.</span></span>
@@ -529,7 +529,7 @@ Y
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"consumption_cycle"</span>] <span class="op">=</span> cycle</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="26add1a7" class="cell" data-execution_count="16">
+<div id="392c6dfe" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
@@ -550,7 +550,7 @@ Y
 </div>
 </div>
 </div>
-<div id="1fff4b34" class="cell" data-execution_count="17">
+<div id="88e3fdbd" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détrender le PIB.</span></span>
@@ -561,7 +561,7 @@ Y
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"gdp_cycle"</span>] <span class="op">=</span> cycle</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="21772a4f" class="cell" data-execution_count="18">
+<div id="e11a1db0" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détrender la série d'investissement.</span></span>
@@ -573,21 +573,21 @@ Y
 </details>
 </div>
 <p><strong>Calculez les corrélations entre les séries détrendées. Calculez les ratios <span class="math inline">\(\frac{\sigma(investment)}{\sigma(gdp)}\)</span> et <span class="math inline">\(\frac{\sigma (consumption)}{\sigma (gdp)}\)</span>. Comparez avec le modèle RBC et commentez.</strong></p>
-<div id="61b2b540" class="cell" data-execution_count="19">
+<div id="6609d238" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ne garder que la partie pertinente du DataFrame.</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>relevant_df <span class="op">=</span> df[[<span class="st">"gdp_cycle"</span>, <span class="st">"investment_cycle"</span>, <span class="st">"consumption_cycle"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="f1de14b2" class="cell" data-execution_count="20">
+<div id="762913c5" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir le dataframe en matrice NumPy.</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>mat <span class="op">=</span> relevant_df.to_numpy()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="3bc91037" class="cell" data-execution_count="21">
+<div id="a0b60384" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>relevant_df.corr()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -636,7 +636,7 @@ Y
 </div>
 </div>
 </div>
-<div id="c0b8cf66" class="cell" data-execution_count="22">
+<div id="2288fbeb" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>std_y <span class="op">=</span> relevant_df[<span class="st">"gdp_cycle"</span>].std()</span>
@@ -644,7 +644,7 @@ Y
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>std_c <span class="op">=</span> relevant_df[<span class="st">"consumption_cycle"</span>].std()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="be6c802a" class="cell" data-execution_count="23">
+<div id="3b42d899" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ratio de volatilité empiriques"</span>)</span>
@@ -658,7 +658,7 @@ sigma(c)/sigma(y) : 0.6950802322322035</code></pre>
 </div>
 </div>
 <p>On peux calculer l’équivalent des ces ratios dans le modèle, en calculant les volatilités conditionnelles (en log)</p>
-<div id="73092aa6" class="cell" data-execution_count="24">
+<div id="2cdc15a1" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>dr <span class="op">=</span> report.solution.decision_rule</span>
@@ -668,7 +668,7 @@ sigma(c)/sigma(y) : 0.6950802322322035</code></pre>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>variable_names <span class="op">=</span> dr.symbols[<span class="st">'endogenous'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="b57b18c3" class="cell" data-execution_count="25">
+<div id="34aaa4b5" class="cell" data-execution_count="25">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>std_y_model <span class="op">=</span> std_model[variable_names.index(<span class="st">'y'</span>)]</span>
@@ -676,7 +676,7 @@ sigma(c)/sigma(y) : 0.6950802322322035</code></pre>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>std_c_model <span class="op">=</span> std_model[variable_names.index(<span class="st">'c'</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="284cc5e5" class="cell" data-execution_count="26">
+<div id="433ccd65" class="cell" data-execution_count="26">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>std_y_model <span class="op">=</span> std_model[variable_names.index(<span class="st">'y'</span>)]</span>
@@ -684,7 +684,7 @@ sigma(c)/sigma(y) : 0.6950802322322035</code></pre>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>std_c_model <span class="op">=</span> std_model[variable_names.index(<span class="st">'c'</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="0589b930" class="cell" data-execution_count="27">
+<div id="ffbdf404" class="cell" data-execution_count="27">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ratio de volatilité selon le modèle"</span>)</span>

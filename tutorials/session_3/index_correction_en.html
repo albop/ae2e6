@@ -281,7 +281,7 @@ rbc_open_stationary_kappa005.mod
 </div>
 </div>
 <p>Import dynare emulation from dyno.py.</p>
-<div id="11116548" class="cell" data-execution_count="1">
+<div id="c8c4846e" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dyno <span class="im">import</span> dynare</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -373,7 +373,7 @@ rbc_open_stationary_kappa005.mod
 <p><span class="math display">\[c_t + i_t + b^{\star}_t - r^{\star} b^{\star}_{t-1} = y_t\]</span></p>
 <p>Next, we can observe that the static model doesn’t pin down the steady-state level of <span class="math inline">\(b^{\star}\)</span> ; we set it to 0, so that the steady-state values of all other variables ar unchanged. We thus add <span class="math inline">\(b^{\star}=0\)</span> in the <code>steady_state_model;</code> block.</p>
 <p>Here is the output we get:</p>
-<div id="99a6a89e" class="cell" data-execution_count="2">
+<div id="67451460" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as we modify the modfile, we can check it runs without </span></span>
@@ -1144,7 +1144,7 @@ inf
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In the output from the above question we have:</p>
-<div id="cb7c45f4" class="cell" data-execution_count="3">
+<div id="427c6747" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"rbc_open.mod"</span>) <span class="co"># remove the ; to print the result</span></span>
@@ -1247,7 +1247,7 @@ inf
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="72e81049" class="cell" data-execution_count="4">
+<div id="3fdcf5f0" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> dynare(<span class="st">"rbc_open.mod"</span>)</span>
@@ -1260,23 +1260,23 @@ inf
 <div class="cell-output cell-output-display" data-execution_count="4">
 
 <style>
-  #altair-viz-77af603c00a843cb8af0ea50317caafa.vega-embed {
+  #altair-viz-64ff9afe8b924d32aeba4d0425e786fe.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-77af603c00a843cb8af0ea50317caafa.vega-embed details,
-  #altair-viz-77af603c00a843cb8af0ea50317caafa.vega-embed details summary {
+  #altair-viz-64ff9afe8b924d32aeba4d0425e786fe.vega-embed details,
+  #altair-viz-64ff9afe8b924d32aeba4d0425e786fe.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-77af603c00a843cb8af0ea50317caafa"></div>
+<div id="altair-viz-64ff9afe8b924d32aeba4d0425e786fe"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-77af603c00a843cb8af0ea50317caafa") {
-      outputDiv = document.getElementById("altair-viz-77af603c00a843cb8af0ea50317caafa");
+    if (outputDiv.id !== "altair-viz-64ff9afe8b924d32aeba4d0425e786fe") {
+      outputDiv = document.getElementById("altair-viz-64ff9afe8b924d32aeba4d0425e786fe");
     }
 
     const paths = {
@@ -1330,7 +1330,7 @@ inf
 </div>
 <p>The simulation horizon is specified in the <code>stoch_simul(irf=200, order=1)</code> as the argument to the <code>irf</code> keyword. Here we save the report with a specific name to access the simulation and the graph.</p>
 <p>The simulation object is a dictionary with keys the shock names and values the simulated time series as python dataframes.</p>
-<div id="f3619c75" class="cell" data-execution_count="5">
+<div id="f14e56c9" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>report.simulation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1366,7 +1366,7 @@ inf
 </div>
 </div>
 <p>Instead of creating custom graph from the dataframe, one can access the the figure instead</p>
-<div id="10cbec02" class="cell" data-execution_count="6">
+<div id="8ac67bcb" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>report.figure</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1374,23 +1374,23 @@ inf
 <div class="cell-output cell-output-display" data-execution_count="6">
 
 <style>
-  #altair-viz-66ace3a7e4464a13964861ffb0d6e0be.vega-embed {
+  #altair-viz-32dd109cc6094180b5e2b2d0fb035a4c.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-66ace3a7e4464a13964861ffb0d6e0be.vega-embed details,
-  #altair-viz-66ace3a7e4464a13964861ffb0d6e0be.vega-embed details summary {
+  #altair-viz-32dd109cc6094180b5e2b2d0fb035a4c.vega-embed details,
+  #altair-viz-32dd109cc6094180b5e2b2d0fb035a4c.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-66ace3a7e4464a13964861ffb0d6e0be"></div>
+<div id="altair-viz-32dd109cc6094180b5e2b2d0fb035a4c"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-66ace3a7e4464a13964861ffb0d6e0be") {
-      outputDiv = document.getElementById("altair-viz-66ace3a7e4464a13964861ffb0d6e0be");
+    if (outputDiv.id !== "altair-viz-32dd109cc6094180b5e2b2d0fb035a4c") {
+      outputDiv = document.getElementById("altair-viz-32dd109cc6094180b5e2b2d0fb035a4c");
     }
 
     const paths = {
@@ -1503,7 +1503,7 @@ inf
 <ol start="9" class="example" type="1">
 <li><strong>Update the modfile and comment on the generated moments. Do they depend on the choice of <span class="math inline">\(\kappa\)</span>?</strong></li>
 </ol>
-<div id="eb2e16dc" class="cell" data-execution_count="7">
+<div id="44c3425b" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#run modified modfile rbc_open_stationary</span></span>
@@ -1524,7 +1524,7 @@ inf
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>With the addition of a small friction we obtain the well defined following moments:</p>
-<div id="d53627e6" class="cell" data-execution_count="8">
+<div id="9477ff77" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>report_stationary.simple_moments_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1610,7 +1610,7 @@ inf
 </div>
 </div>
 <p>We obtain the following irf:</p>
-<div id="4091b847" class="cell" data-execution_count="9">
+<div id="1f4b8f0f" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>report_stationary.figure</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1618,23 +1618,23 @@ inf
 <div class="cell-output cell-output-display" data-execution_count="9">
 
 <style>
-  #altair-viz-1c30149bd6d34ae3aa416431a5564e7d.vega-embed {
+  #altair-viz-273233243fd84489876c0e535fd4e072.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-1c30149bd6d34ae3aa416431a5564e7d.vega-embed details,
-  #altair-viz-1c30149bd6d34ae3aa416431a5564e7d.vega-embed details summary {
+  #altair-viz-273233243fd84489876c0e535fd4e072.vega-embed details,
+  #altair-viz-273233243fd84489876c0e535fd4e072.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-1c30149bd6d34ae3aa416431a5564e7d"></div>
+<div id="altair-viz-273233243fd84489876c0e535fd4e072"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-1c30149bd6d34ae3aa416431a5564e7d") {
-      outputDiv = document.getElementById("altair-viz-1c30149bd6d34ae3aa416431a5564e7d");
+    if (outputDiv.id !== "altair-viz-273233243fd84489876c0e535fd4e072") {
+      outputDiv = document.getElementById("altair-viz-273233243fd84489876c0e535fd4e072");
     }
 
     const paths = {
@@ -1703,7 +1703,7 @@ inf
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>If we set <span class="math inline">\(\kappa=0.005\)</span> instead we obtain the following theoretical moments:</p>
-<div id="3756f6cc" class="cell" data-execution_count="10">
+<div id="8b37780c" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>report_stationary_high_kappa <span class="op">=</span> dynare(<span class="st">"rbc_open_stationary_kappa005.mod"</span>)</span>
@@ -1793,7 +1793,7 @@ inf
 <p>Another interesting exercise consists in comparing the impulse response functions obtained with <span class="math inline">\(\kappa=0.000\)</span>, <span class="math inline">\(\kappa=0.001\)</span> and <span class="math inline">\(\kappa=0.005\)</span> (see code below).</p>
 <p>In the short run, the dynamic responses are very similar for all variables, except consumption which does not jump anymore to its long run trend as long as there is a small friction on the interest rate. Overall the addition of the friction slows down the adjustment of production variables to the productivty shock.</p>
 <p>In the long run, the friction implies a return to the initial steady-state counteracting the short term effect of the exogenous shock.</p>
-<div id="6ebe1302" class="cell" data-execution_count="11">
+<div id="e875e210" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>irfs_kappa_00 <span class="op">=</span> report.simulation[<span class="st">"epsilon"</span>]</span>
